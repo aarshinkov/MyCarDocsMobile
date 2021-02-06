@@ -3,6 +3,7 @@ package com.atanasvasil.mobile.mycardocs;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.UsersApi;
@@ -30,6 +31,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 List<User> users = response.body();
+
+                for (User user : users) {
+                    Log.d("USER", "user: " + user.getEmail());
+                }
 
                 // ... do whatever you want with users list
             }
