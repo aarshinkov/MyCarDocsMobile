@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
-
+                Log.e("ERROR", "onFailure: ", t);
             }
         });
     }
