@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/registerEmailTV"
+            android:id="@+id/registerEmailЕТ"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -36,7 +36,7 @@
             app:layout_constraintTop_toBottomOf="@+id/registerHeaderTV" />
 
         <EditText
-            android:id="@+id/registerPasswordTV"
+            android:id="@+id/registerPasswordЕТ"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -46,10 +46,10 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
             app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
-            app:layout_constraintTop_toBottomOf="@+id/registerEmailTV" />
+            app:layout_constraintTop_toBottomOf="@+id/registerEmailЕТ" />
 
         <EditText
-            android:id="@+id/registerConfirmPasswordTV"
+            android:id="@+id/registerConfirmPasswordЕТ"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -60,10 +60,10 @@
             app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
-            app:layout_constraintTop_toBottomOf="@+id/registerPasswordTV" />
+            app:layout_constraintTop_toBottomOf="@+id/registerPasswordЕТ" />
 
         <EditText
-            android:id="@+id/registerFirstNameTV"
+            android:id="@+id/registerFirstNameЕТ"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -73,10 +73,10 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
             app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
-            app:layout_constraintTop_toBottomOf="@+id/registerConfirmPasswordTV" />
+            app:layout_constraintTop_toBottomOf="@+id/registerConfirmPasswordЕТ" />
 
         <EditText
-            android:id="@+id/registerLastNameTV"
+            android:id="@+id/registerLastNameЕТ"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -87,7 +87,7 @@
             app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
-            app:layout_constraintTop_toBottomOf="@+id/registerFirstNameTV" />
+            app:layout_constraintTop_toBottomOf="@+id/registerFirstNameЕТ" />
 
         <Button
             android:id="@+id/registerBtn"
@@ -96,7 +96,7 @@
             android:layout_marginTop="32dp"
             android:text="@string/registration_button"
             app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
-            app:layout_constraintTop_toBottomOf="@+id/registerLastNameTV" />
+            app:layout_constraintTop_toBottomOf="@+id/registerLastNameЕТ" />
 
         <Button
             android:id="@+id/registerCancelBtn"
@@ -105,7 +105,7 @@
             android:layout_marginTop="32dp"
             android:text="@string/registration_cancel"
             app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-            app:layout_constraintTop_toBottomOf="@+id/registerLastNameTV" />
+            app:layout_constraintTop_toBottomOf="@+id/registerLastNameЕТ" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/registerGuideLeft"

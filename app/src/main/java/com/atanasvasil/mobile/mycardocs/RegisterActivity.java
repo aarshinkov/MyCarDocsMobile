@@ -1,18 +1,18 @@
 package com.atanasvasil.mobile.mycardocs;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private TextView registerEmailTV;
-    private TextView registerPasswordTV;
-    private TextView registerConfirmPasswordTV;
-    private TextView registerFirstNameTV;
-    private TextView registerLastNameTV;
+    private EditText registerEmailЕТ;
+    private EditText registerPasswordЕТ;
+    private EditText registerConfirmPasswordЕТ;
+    private EditText registerFirstNameЕТ;
+    private EditText registerLastNameЕT;
     private Button registerCancelBtn;
     private Button registerBtn;
 
