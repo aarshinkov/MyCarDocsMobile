@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/registerHeaderTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:text="@string/registration_header"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/registerEmailTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="@string/registration_email"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/registerHeaderTV" />
+
+        <EditText
+            android:id="@+id/registerPasswordTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/registration_password"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/registerEmailTV" />
+
+        <EditText
+            android:id="@+id/registerConfirmPasswordTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/registration_password_confirm"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/registerPasswordTV" />
+
+        <EditText
+            android:id="@+id/registerFirstNameTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/registration_first_name"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/registerConfirmPasswordTV" />
+
+        <EditText
+            android:id="@+id/registerLastNameTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/registration_last_name"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/registerFirstNameTV" />
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/registration_button"
+            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/registerLastNameTV" />
+
+        <Button
+            android:id="@+id/registerCancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/registration_cancel"
+            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
+            app:layout_constraintTop_toBottomOf="@+id/registerLastNameTV" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/registerGuideLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/registerGuideRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
