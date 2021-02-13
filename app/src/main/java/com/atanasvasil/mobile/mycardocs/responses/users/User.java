@@ -13,6 +13,10 @@ public class User implements Serializable {
     private String lastName;
     private Timestamp editedOn;
 
+    public String getFullName() {
+        return lastName != null ? firstName + " " + lastName : firstName;
+    }
+
     public Long getUserId() {
         return userId;
     }
