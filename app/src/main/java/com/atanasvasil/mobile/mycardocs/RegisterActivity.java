@@ -31,6 +31,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button registerBtn;
     private ProgressDialog dialog;
 
+    boolean isUserExist = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,10 @@ public class RegisterActivity extends AppCompatActivity {
         dialog = new ProgressDialog(this);
 
         registerCancelBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+
             // Cancel button
         });
 
@@ -72,7 +78,30 @@ public class RegisterActivity extends AppCompatActivity {
                 registerEmailЕТ.setError("Email must not be empty!");
                 hasErrors = true;
             }
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(API_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
 
+            UsersApi usersApi = retrofit.create(UsersApi.class);
+
+            usersApi.isUserExistByEmail(email).enqueue(new Callback<Boolean>() {
+                @Override
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    isUserExist = response.body();
+
+                }
+
+                @Override
+                public void onFailure(Call<Boolean> call, Throwable t) {
+
+                }
+            });
+
+            if (isUserExist) {
+                registerEmailЕТ.setError("The Email is registered!");
+                hasErrors = true;
+            }
             if (!password.equals(confirmPassword)) {
                 registerPasswordЕТ.setError("Passwords must match!");
                 registerConfirmPasswordЕТ.setError("Passwords must match!");
@@ -90,12 +119,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             if (!hasErrors) {
                 // DATABASE
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(API_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
-                UsersApi usersApi = retrofit.create(UsersApi.class);
 
                 User user = new User();
                 user.setEmail(email);

@@ -16,10 +16,14 @@ public interface UsersApi {
     Call<List<User>> getUsers();
 
     @GET("api/users/{userId}")
-    Call<User> getUser(@Path("userId") Long userId);
+    Call<User> getUserByUserId(@Path("userId") Long userId);
+
+    @GET("api/users/exists/{email}")
+    Call<Boolean> isUserExistByEmail(@Path("email") String email);
 
     @POST("api/users")
     Call<User> createUser(@Body User user);
+
 
 //    Call<User> getPassword(@Path("PasswordId")Long passwordId);
 }
