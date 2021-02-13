@@ -22,7 +22,7 @@ import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.API_URL;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    static final int TAKE_PICTURE = 666;
+
 
     private EditText registerEmailЕТ;
     private EditText registerPasswordЕТ;
@@ -42,9 +42,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         //Initialize fields
         //...
+
         registerEmailЕТ = findViewById(R.id.registerEmailЕТ);
         registerPasswordЕТ = findViewById(R.id.registerPasswordЕТ);
         registerConfirmPasswordЕТ = findViewById(R.id.registerConfirmPasswordЕТ);
+        registerFirstNameЕТ = findViewById(R.id.registerFirstNameЕТ);
+        registerLastNameЕT = findViewById(R.id.registerLastNameЕТ);
         registerCancelBtn = findViewById(R.id.registerCancelBtn);
         registerBtn = findViewById(R.id.registerBtn);
 
@@ -108,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         User createdUser = response.body();
 
-                        Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
