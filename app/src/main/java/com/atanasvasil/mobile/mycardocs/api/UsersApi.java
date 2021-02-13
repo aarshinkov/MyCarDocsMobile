@@ -5,7 +5,9 @@ import com.atanasvasil.mobile.mycardocs.responses.users.User;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface UsersApi {
@@ -15,4 +17,9 @@ public interface UsersApi {
 
     @GET("api/users/{userId}")
     Call<User> getUser(@Path("userId") Long userId);
+
+    @POST("api/users")
+    Call<User> createUser(@Body User user);
+
+//    Call<User> getPassword(@Path("PasswordId")Long passwordId);
 }

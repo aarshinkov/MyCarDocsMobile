@@ -8,10 +8,10 @@ public class User implements Serializable {
 
     private Long userId;
     private String email;
+    private String password;
     private String firstName;
     private String lastName;
     private Timestamp editedOn;
-    private String password;
 
     public Long getUserId() {
         return userId;
@@ -27,6 +27,14 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -52,13 +60,6 @@ public class User implements Serializable {
     public void setEditedOn(Timestamp editedOn) {
         this.editedOn = editedOn;
     }
-
-    public String getPassword() {
-        return getPassword();
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    }
+}
 
 

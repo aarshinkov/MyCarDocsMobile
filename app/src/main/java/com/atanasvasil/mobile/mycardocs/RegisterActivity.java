@@ -2,30 +2,23 @@ package com.atanasvasil.mobile.mycardocs;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.atanasvasil.mobile.mycardocs.api.UsersApi;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import android.content.Intent;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.API_URL;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -38,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText registerLastNameЕT;
     private Button registerCancelBtn;
     private Button registerBtn;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,132 +42,81 @@ public class RegisterActivity extends AppCompatActivity {
 
         //Initialize fields
         //...
-
+        registerEmailЕТ = findViewById(R.id.registerEmailЕТ);
+        registerPasswordЕТ = findViewById(R.id.registerPasswordЕТ);
+        registerConfirmPasswordЕТ = findViewById(R.id.registerConfirmPasswordЕТ);
         registerCancelBtn = findViewById(R.id.registerCancelBtn);
         registerBtn = findViewById(R.id.registerBtn);
+
+        dialog = new ProgressDialog(getApplicationContext());
 
         registerCancelBtn.setOnClickListener(v -> {
             // Cancel button
         });
 
         registerBtn.setOnClickListener(v -> {
-                    if (v.getId() == R.id.registerBtn) {
-                        if (registerEmailЕТ.getText().length() > 0
-                                && registerPasswordЕТ.getText().length() > 0
-                                && registerPasswordЕТ.getText().toString().equals(registerConfirmPasswordЕТ.getText().toString())) {
 
-                            String password = registerPasswordЕТ.getText().toString();
-                            String firstName = registerFirstNameЕТ.getText().toString();
-                            String lastName = registerLastNameЕT.getText().toString();
+            dialog.show();
 
-                            User user = new User();
-                            user.setPassword(password);
-                            user.setFirstName(firstName);
-                            user.setLastName(lastName);
+            boolean hasErrors = false;
 
-                            new RegisterAsyncTask(user).execute();
+            String email = registerEmailЕТ.getText().toString();
+            String password = registerPasswordЕТ.getText().toString();
+            String confirmPassword = registerConfirmPasswordЕТ.getText().toString();
+            String firstName = registerFirstNameЕТ.getText().toString();
+            String lastName = registerLastNameЕT.getText().toString();
 
-                        } else {
-                            Toast.makeText(RegisterActivity.this,
-                                    "Please provide all the necessary information!", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                    }
-
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(intent);
-
-                };
-            View.OnLongClickListener onLongClick = new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-
-                    Intent pictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                    startActivityForResult(pictureIntent, TAKE_PICTURE);
-                    return true;
-                }
-            };
-
-            @Override
-        protected void onActivityResult ( int requestCode, int resultCode, @Nullable Intent data)
-            {
-                super.onActivityResult(requestCode, resultCode, data);
-
-                if (requestCode == TAKE_PICTURE && resultCode == RESULT_OK) {
-                    Bundle extras = data.getExtras();
-                    Bitmap avatarImage = (Bitmap) extras.get("data");
-                }
+            if (email.isEmpty()) {
+                registerEmailЕТ.setError("Email must not be empty!");
+                hasErrors = true;
             }
 
-            private class RegisterAsyncTask extends AsyncTask<Void, Void, Void> {
+            if (!password.equals(confirmPassword)) {
+                registerPasswordЕТ.setError("Passwords must match!");
+                registerConfirmPasswordЕТ.setError("Passwords must match!");
+                hasErrors = true;
+            }
 
-                User user;
-                boolean isSuccess = false;
+            // VALIDATIONS
+            // ...
 
-                ProgressDialog dialog;
+            if (!hasErrors) {
+                // DATABASE
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(API_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
 
-                RegisterAsyncTask(User user) {
-                    this.user = user;
-                    dialog = new ProgressDialog(RegisterActivity.this);
-                }
+                UsersApi usersApi = retrofit.create(UsersApi.class);
 
-                @Override
-                protected void onPreExecute() {
-                    dialog.setTitle("Registration in progress...");
-                    dialog.show();
-                }
-                // Registration button
+                User user = new User();
+                user.setEmail(email);
+                user.setPassword(password);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
 
-                @Override
-                protected Void doInBackground(Void... voids) {
+                usersApi.createUser(user).enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
 
-                    String urlString = String.format("http://94.72.129.171:9003/MyCarDocs/RegisterUser?" +
-                                    "password=%s&fname=%s&lname=%s",
-                            user.getPassword(), user.getFirstName(), user.getLastName());
+                        User createdUser = response.body();
 
-                    HttpURLConnection urlConnection = null;
-                    try {
-                        URL url = new URL(urlString);
-                        urlConnection = (HttpURLConnection) url.openConnection();
+                        Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
 
-                        InputStream stream = new BufferedInputStream(urlConnection.getInputStream());
-
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-
-                        String result = reader.readLine();
-
-                        if (result != null) {
-                            if (result.contains("true")) {
-                                isSuccess = true;
-                            }
-                        }
-
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } finally {
-                        if (urlConnection != null)
-                            urlConnection.disconnect();
-                    }
-
-                    return null;
-                }
-
-                @Override
-                protected void onPostExecute(Void aVoid) {
-                    super.onPostExecute(aVoid);
-
-                    dialog.hide();
-
-                    if (isSuccess) {
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
-                    } else {
-                        Toast.makeText(RegisterActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
                     }
-                }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                    }
+                });
             }
 
-        }
+//            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+//            startActivity(intent);
+
+        });
+    }
+}

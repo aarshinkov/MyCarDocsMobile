@@ -13,13 +13,13 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_about_us"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
             android:paddingLeft="20dip"
-            android:id="@+id/tv_about_us"
+            android:text="My cars Docs"
             android:textColor="#595d5f"
-            android:text="My cars Docs" />
+            android:textSize="15sp" />
 
     </LinearLayout>
     <View
