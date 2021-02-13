@@ -22,13 +22,11 @@ import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.API_URL;
 
 public class RegisterActivity extends AppCompatActivity {
 
-
-
     private EditText registerEmailЕТ;
     private EditText registerPasswordЕТ;
     private EditText registerConfirmPasswordЕТ;
-    private EditText registerFirstNameЕТ;
-    private EditText registerLastNameЕT;
+    private EditText registerFirstNameET;
+    private EditText registerLastNameET;
     private Button registerCancelBtn;
     private Button registerBtn;
     private ProgressDialog dialog;
@@ -46,8 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
         registerEmailЕТ = findViewById(R.id.registerEmailЕТ);
         registerPasswordЕТ = findViewById(R.id.registerPasswordЕТ);
         registerConfirmPasswordЕТ = findViewById(R.id.registerConfirmPasswordЕТ);
-        registerFirstNameЕТ = findViewById(R.id.registerFirstNameЕТ);
-        registerLastNameЕT = findViewById(R.id.registerLastNameЕТ);
+        registerFirstNameET = findViewById(R.id.registerFirstNameET);
+        registerLastNameET = findViewById(R.id.registerLastNameET);
         registerCancelBtn = findViewById(R.id.registerCancelBtn);
         registerBtn = findViewById(R.id.registerBtn);
 
@@ -67,8 +65,8 @@ public class RegisterActivity extends AppCompatActivity {
             String email = registerEmailЕТ.getText().toString();
             String password = registerPasswordЕТ.getText().toString();
             String confirmPassword = registerConfirmPasswordЕТ.getText().toString();
-            String firstName = registerFirstNameЕТ.getText().toString();
-            String lastName = registerLastNameЕT.getText().toString();
+            String firstName = registerFirstNameET.getText().toString();
+            String lastName = registerLastNameET.getText().toString();
 
             if (email.isEmpty()) {
                 registerEmailЕТ.setError("Email must not be empty!");
@@ -81,12 +79,12 @@ public class RegisterActivity extends AppCompatActivity {
                 hasErrors = true;
             }
             if (firstName.isEmpty()) {
-                registerFirstNameЕТ.setError("The first name field is empty!");
+                registerFirstNameET.setError("The first name field is empty!");
                 hasErrors = true;
             }
 
             if (lastName.isEmpty()) {
-                registerLastNameЕT.setError("The last name field is empty!");
+                registerLastNameET.setError("The last name field is empty!");
                 hasErrors = true;
             }
 

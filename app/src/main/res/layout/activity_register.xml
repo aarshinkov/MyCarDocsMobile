@@ -63,7 +63,7 @@
             app:layout_constraintTop_toBottomOf="@+id/registerPasswordЕТ" />
 
         <EditText
-            android:id="@+id/registerFirstNameЕТ"
+            android:id="@+id/registerFirstNameET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -76,7 +76,7 @@
             app:layout_constraintTop_toBottomOf="@+id/registerConfirmPasswordЕТ" />
 
         <EditText
-            android:id="@+id/registerLastNameЕТ"
+            android:id="@+id/registerLastNameET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -87,7 +87,7 @@
             app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
-            app:layout_constraintTop_toBottomOf="@+id/registerFirstNameЕТ" />
+            app:layout_constraintTop_toBottomOf="@+id/registerFirstNameET" />
 
         <Button
             android:id="@+id/registerBtn"
@@ -96,7 +96,7 @@
             android:layout_marginTop="32dp"
             android:text="@string/registration_button"
             app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
-            app:layout_constraintTop_toBottomOf="@+id/registerLastNameЕТ" />
+            app:layout_constraintTop_toBottomOf="@+id/registerLastNameET" />
 
         <Button
             android:id="@+id/registerCancelBtn"
@@ -105,7 +105,7 @@
             android:layout_marginTop="32dp"
             android:text="@string/registration_cancel"
             app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-            app:layout_constraintTop_toBottomOf="@+id/registerLastNameЕТ" />
+            app:layout_constraintTop_toBottomOf="@+id/registerLastNameET" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/registerGuideLeft"
