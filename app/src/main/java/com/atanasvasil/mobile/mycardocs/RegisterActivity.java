@@ -56,67 +56,90 @@ public class RegisterActivity extends AppCompatActivity {
 
         registerBtn.setOnClickListener(v -> {
 
-            dialog.show();
+            boolean isSuccess = false;
+                dialog.setTitle("Registration in progress...");
+                dialog.show();
 
-            boolean hasErrors = false;
+                boolean hasErrors = false;
 
-            String email = registerEmailЕТ.getText().toString();
-            String password = registerPasswordЕТ.getText().toString();
-            String confirmPassword = registerConfirmPasswordЕТ.getText().toString();
-            String firstName = registerFirstNameЕТ.getText().toString();
-            String lastName = registerLastNameЕT.getText().toString();
+                String email = registerEmailЕТ.getText().toString();
+                String password = registerPasswordЕТ.getText().toString();
+                String confirmPassword = registerConfirmPasswordЕТ.getText().toString();
+                String firstName = registerFirstNameЕТ.getText().toString();
+                String lastName = registerLastNameЕT.getText().toString();
 
-            if (email.isEmpty()) {
-                registerEmailЕТ.setError("Email must not be empty!");
+                if (email.isEmpty()) {
+                    registerEmailЕТ.setError("Email must not be empty!");
+                    hasErrors = true;
+                }
+
+                if (!password.equals(confirmPassword)) {
+                    registerPasswordЕТ.setError("Passwords must match!");
+                    registerConfirmPasswordЕТ.setError("Passwords must match!");
+                    hasErrors = true;
+                }
+                if (firstName.isEmpty()) {
+                    registerFirstNameЕТ.setError("The FirstName field is empty!");
+                    hasErrors = true;
+                }
+            if (lastName.isEmpty()) {
+                registerLastNameЕT.setError("The LastName field is empty!");
                 hasErrors = true;
             }
 
-            if (!password.equals(confirmPassword)) {
-                registerPasswordЕТ.setError("Passwords must match!");
-                registerConfirmPasswordЕТ.setError("Passwords must match!");
-                hasErrors = true;
-            }
+                // VALIDATIONS
+                // ...
 
-            // VALIDATIONS
-            // ...
+                if (!hasErrors) {
+                    // DATABASE
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(API_URL)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
 
-            if (!hasErrors) {
-                // DATABASE
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(API_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                    UsersApi usersApi = retrofit.create(UsersApi.class);
 
-                UsersApi usersApi = retrofit.create(UsersApi.class);
+                    User user = new User();
+                    user.setEmail(email);
+                    user.setPassword(password);
+                    user.setFirstName(firstName);
+                    user.setLastName(lastName);
 
-                User user = new User();
-                user.setEmail(email);
-                user.setPassword(password);
-                user.setFirstName(firstName);
-                user.setLastName(lastName);
+                    usersApi.createUser(user).enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
 
-                usersApi.createUser(user).enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
+                            User createdUser = response.body();
 
-                        User createdUser = response.body();
+                            Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
 
-                        Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
 
-                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    }
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
 
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
+                        }
+                    });
+                }
 
-                    }
-                });
-            }
+
+                    dialog.hide();
+
+            if(isSuccess){
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+
+            }else{
+                Toast.makeText(RegisterActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+
 
 //            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
 //            startActivity(intent);
 
-        });
+                });
+        }
     }
 }
+
+
