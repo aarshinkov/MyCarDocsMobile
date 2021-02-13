@@ -127,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             if (hasErrors) {
-                Toast.makeText(getApplicationContext(), "Some errors", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "Some errors", Toast.LENGTH_LONG).show();
                 dialog.hide();
                 return;
             }
