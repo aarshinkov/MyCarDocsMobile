@@ -15,5 +15,4 @@ public interface UsersApi {
 
     @GET("api/users/{userId}")
     Call<User> getUser(@Path("userId") Long userId);
-    Call<User> getPassword(@Path("PasswordId")Long passwordId);
 }
