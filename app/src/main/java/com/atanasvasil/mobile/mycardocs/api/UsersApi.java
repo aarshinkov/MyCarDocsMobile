@@ -15,8 +15,12 @@ public interface UsersApi {
     @GET("api/users")
     Call<List<User>> getUsers();
 
-    @GET("api/users/{userId}")
-    Call<User> getUserByUserId(@Path("userId") Long userId);
+    /**
+     * @param identifier userId or email
+     * @return the user if it exists; null - if not
+     */
+    @GET("api/users/{identifier}")
+    Call<User> getUser(@Path("identifier") String identifier);
 
     @GET("api/users/exists/{email}")
     Call<Boolean> isUserExistByEmail(@Path("email") String email);
