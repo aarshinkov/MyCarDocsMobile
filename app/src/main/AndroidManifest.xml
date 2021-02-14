@@ -12,18 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCarDocs"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PopupMenu"></activity>
         <activity
-            android:name=".RegisterActivity"
-            android:parentActivityName=".LoginActivity" />
-        <activity android:name=".LoginActivity">
+            android:name=".activities.RegisterActivity"
+            android:parentActivityName=".activities.LoginActivity" />
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

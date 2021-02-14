@@ -1,22 +1,19 @@
-package com.atanasvasil.mobile.mycardocs;
+package com.atanasvasil.mobile.mycardocs.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.AuthApi;
-import com.atanasvasil.mobile.mycardocs.api.UsersApi;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

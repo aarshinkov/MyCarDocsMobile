@@ -1,4 +1,4 @@
-package com.atanasvasil.mobile.mycardocs;
+package com.atanasvasil.mobile.mycardocs.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.api.UsersApi;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
 
