@@ -1,5 +1,7 @@
 package com.atanasvasil.mobile.mycardocs.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,9 +35,10 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText registerLastNameET;
     private Button registerCancelBtn;
     private Button registerBtn;
+    public static final String MyPreferences = "MyPrefs";
 
     private ProgressDialog dialog;
-
+    SharedPreferences sharedpreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerLastNameET = findViewById(R.id.registerLastNameET);
         registerCancelBtn = findViewById(R.id.registerCancelBtn);
         registerBtn = findViewById(R.id.registerBtn);
+        sharedpreferences = getSharedPreferences(MyPreferences, Context.MODE_PRIVATE);
 
         dialog = new ProgressDialog(this);
         dialog.setMessage("Registration in progress...");
@@ -149,6 +153,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString(email, registerEmailЕТ);
+                    editor.putString(registerFirstNameET, firstName);
+                    editor.putString(registerPasswordЕТ, password);
+                    editor.commit();
+                    Toast.makeText(RegisterActivity.this, "Thanks", Toast.LENGTH_LONG).show();
                 }
 
                 @Override
