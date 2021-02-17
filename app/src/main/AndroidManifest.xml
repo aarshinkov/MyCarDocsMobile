@@ -13,6 +13,10 @@
         android:theme="@style/Theme.MyCarDocs"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/nav_home"
+            android:theme="@style/Theme.MyCarDocs.NoActionBar" />
+        <activity
             android:name=".activities.RegisterActivity"
             android:parentActivityName=".activities.LoginActivity" />
         <activity android:name=".activities.LoginActivity">
