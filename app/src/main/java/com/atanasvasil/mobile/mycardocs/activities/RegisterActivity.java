@@ -153,6 +153,7 @@ public class RegisterActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
                     dialog.hide();

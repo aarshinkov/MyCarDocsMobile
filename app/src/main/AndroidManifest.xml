@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCarDocs"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activities.LogoutActivity"></activity>
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/nav_home"

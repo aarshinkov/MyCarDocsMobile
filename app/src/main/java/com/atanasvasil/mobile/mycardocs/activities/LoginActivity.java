@@ -105,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+
                 }
 
                 @Override
@@ -115,10 +116,13 @@ public class LoginActivity extends AppCompatActivity {
             });
         });
 
+
+
         loginRegisterTV.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
+
 
         loginForgotPasswordTV.setOnClickListener(v -> {
             Toast.makeText(getApplicationContext(), "Forgot password button clicked", Toast.LENGTH_LONG).show();
