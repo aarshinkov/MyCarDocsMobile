@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (userId == null) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
 
@@ -135,13 +136,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    //public void updateNavHeader() {
-
-
-    // navNameTV.setText(User.getDisplayName());
-    //navEmailTV.setText(User.getEmail());}
-
-
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -154,8 +148,8 @@ public class MainActivity extends AppCompatActivity {
         editor.clear();
         editor.apply();
         // След излизане пренасочваме потребителя към Login Activity
-        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i);
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
