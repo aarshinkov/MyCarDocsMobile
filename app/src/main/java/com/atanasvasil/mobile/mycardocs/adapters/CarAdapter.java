@@ -38,17 +38,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
         Car car = data.get(position);
 
-//            String name = car.getName();
-//            holder.getSightItemNameTV().setText(name);
-//
-//            String imageUrl = BASE_URL + "images/sights/" + sight.getImage();
-//            Picasso.get().load(imageUrl).into(holder.getSightItemImageIV());
-
         holder.getCarItemBrandTV().setText(car.getBrand());
         holder.getCarItemModelTV().setText(car.getModel());
-//        holder.getHotelsStarsRB().setNumStars(sight.getStars());
+        holder.getCarItemColorTV().setText(car.getColor());
+        holder.getCarItemYearTV().setText(String.valueOf(car.getYear()));
 
-//            holder.getSightItemLocationTV().setText(sight.getLocation());
+        holder.getCarItemLicensePlateTV().setText(car.getLicensePlate());
 
         holder.getCardView().setOnClickListener(v -> {
             Toast.makeText(v.getContext(), "CAR CLICKED: " + car.getCarId(), Toast.LENGTH_LONG).show();
@@ -69,6 +64,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         private final CardView cardView;
         private final TextView carItemBrandTV;
         private final TextView carItemModelTV;
+        private final TextView carItemColorTV;
+        private final TextView carItemYearTV;
+        private final TextView carItemLicensePlateTV;
+//        private final TextView carItemAliasTV;
+//        private final TextView carItemAddedOnTV;
+//        private final TextView carItemEditedOnTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +77,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
             carItemBrandTV = itemView.findViewById(R.id.carItemBrandTV);
             carItemModelTV = itemView.findViewById(R.id.carItemModelTV);
+            carItemColorTV = itemView.findViewById(R.id.carItemColorTV);
+            carItemYearTV = itemView.findViewById(R.id.carItemYearTV);
+            carItemLicensePlateTV = itemView.findViewById(R.id.carItemLicensePlateTV);
+//            carItemAliasTV = itemView.findViewById(R.id.carItemAliasTV);
+//            carItemAddedOnTV = itemView.findViewById(R.id.carItemAddedOnTV);
+//            carItemEditedOnTV = itemView.findViewById(R.id.carItemEditedOnTV);
         }
 
         public CardView getCardView() {
@@ -88,6 +95,18 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
         public TextView getCarItemModelTV() {
             return carItemModelTV;
+        }
+
+        public TextView getCarItemColorTV() {
+            return carItemColorTV;
+        }
+
+        public TextView getCarItemYearTV() {
+            return carItemYearTV;
+        }
+
+        public TextView getCarItemLicensePlateTV() {
+            return carItemLicensePlateTV;
         }
     }
 }

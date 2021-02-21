@@ -25,29 +25,105 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <View
+                android:id="@+id/carItemHeaderBG"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/carItemBrandTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toStartOf="@+id/carItemRightGuide"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/carItemLeftGuide"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Name" />
+                app:layout_constraintTop_toTopOf="@+id/carItemHeaderBG"
+                tools:text="Audi" />
+
+            <TextView
+                android:id="@+id/carItemModelLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Model"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/carItemLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carItemHeaderBG" />
 
             <TextView
                 android:id="@+id/carItemModelTV"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/carItemLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carItemModelLabelTV"
+                tools:text="Q7" />
+
+            <TextView
+                android:id="@+id/carItemLicensePlateLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="License plate"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/carItemRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carItemHeaderBG" />
+
+            <TextView
+                android:id="@+id/carItemLicensePlateTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/carItemRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carItemLicensePlateLabelTV"
+                tools:text="PA1234AA" />
+
+            <TextView
+                android:id="@+id/carItemYearLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Year"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/carItemRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carItemLicensePlateTV" />
+
+            <TextView
+                android:id="@+id/carItemYearTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/carItemRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carItemYearLabelTV"
+                tools:text="2015" />
+
+            <TextView
+                android:id="@+id/carItemColorLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Color"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/carItemLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carItemModelTV" />
+
+            <TextView
+                android:id="@+id/carItemColorTV"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/carItemRightGuide"
                 app:layout_constraintStart_toStartOf="@+id/carItemLeftGuide"
-                app:layout_constraintTop_toBottomOf="@+id/carItemBrandTV" />
+                app:layout_constraintTop_toBottomOf="@+id/carItemColorLabelTV"
+                tools:text="Red" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/carItemLeftGuide"
