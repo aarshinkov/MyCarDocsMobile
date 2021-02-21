@@ -22,7 +22,7 @@ public class LogoutActivity extends  AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logout);
+        setContentView(R.layout.fragment_home);
 
         logout = (Button) findViewById(R.id.logoutBtn);
         close = (Button)findViewById(R.id.closeBtn);

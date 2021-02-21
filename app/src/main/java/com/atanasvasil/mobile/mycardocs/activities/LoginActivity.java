@@ -125,7 +125,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
         loginForgotPasswordTV.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "Forgot password button clicked", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(Intent.EXTRA_EMAIL , new String[]{"recipient@example.com"});
+            i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
+            i.putExtra(Intent.EXTRA_TEXT , "body of email");
+            try {
+                startActivity(Intent.createChooser(i, "Send mail..."));
+            } catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(LoginActivity.this,
+                        "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+            }
+
         });
     }
 }
