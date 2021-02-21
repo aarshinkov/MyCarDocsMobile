@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_EMAIL;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_FIRST_NAME;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_LAST_NAME;
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_ID;
 
@@ -65,6 +69,19 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = headerView.findViewById(R.id.navNameTV);
+        TextView navUserMail = headerView.findViewById(R.id.navEmailTV);
+        //ImageView navUserPhot = headerView.findViewById(R.id.navImageTV);
+
+        String email = pref.getString(SHARED_PREF_EMAIL, "");
+        String firstName = pref.getString(SHARED_PREF_FIRST_NAME, "");
+        String lastName = pref.getString(SHARED_PREF_LAST_NAME, "");
+
+        navUsername.setText(firstName + " " + lastName);
+        navUserMail.setText(email);
+
         navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -74,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Logout clicked", Toast.LENGTH_LONG).show();
                         logoutUser();
 
                     }
@@ -121,11 +137,6 @@ public class MainActivity extends AppCompatActivity {
 
     //public void updateNavHeader() {
 
-    //  NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-    // View headerView = navigationView.getHeaderView(0);
-    // TextView navUsername = headerView.findViewById(R.id.navNameTV);
-    // TextView navUserMail = headerView.findViewById(R.id.navEmailTV);
-    //  ImageView navUserPhot = headerView.findViewById(R.id.navImageTV);
 
     // navNameTV.setText(User.getDisplayName());
     //navEmailTV.setText(User.getEmail());}
