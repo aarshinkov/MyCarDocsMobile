@@ -68,18 +68,18 @@ public class CarCreateActivity extends AppCompatActivity {
 
             Retrofit retrofit = Api.getRetrofit();
             CarsApi carsApi = retrofit.create(CarsApi.class);
-          carsApi.createCar(ccr).enqueue(new Callback<Car>() {
-              @Override
-              public void onResponse(Call<Car> call, Response<Car> response) {
-                  Toast.makeText(getApplicationContext(), "Car created successfully",
-                          Toast.LENGTH_LONG).show();
-              }
+            carsApi.createCar(ccr).enqueue(new Callback<Car>() {
+                @Override
+                public void onResponse(Call<Car> call, Response<Car> response) {
+                    Toast.makeText(getApplicationContext(), "Car created successfully",
+                            Toast.LENGTH_LONG).show();
+                }
 
-              @Override
-              public void onFailure(Call<Car> call, Throwable t) {
+                @Override
+                public void onFailure(Call<Car> call, Throwable t) {
 
-              }
-          });
+                }
+            });
 
         });
     }

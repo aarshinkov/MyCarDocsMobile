@@ -1,6 +1,7 @@
 package com.atanasvasil.mobile.mycardocs.fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,11 +15,22 @@ import android.view.ViewGroup;
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.cars.CarCreateActivity;
 import com.atanasvasil.mobile.mycardocs.adapters.CarAdapter;
+import com.atanasvasil.mobile.mycardocs.api.Api;
+import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_ID;
 
 public class CarsFragment extends Fragment {
 
@@ -27,6 +39,7 @@ public class CarsFragment extends Fragment {
     private List<Car> cars;
 
     private FloatingActionButton carCreateFBtn;
+    private SharedPreferences pref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +60,29 @@ public class CarsFragment extends Fragment {
             Intent intent = new Intent(getContext(), CarCreateActivity.class);
             startActivity(intent);
         });
+
+        Retrofit retrofit = Api.getRetrofit();
+        CarsApi carsApi = retrofit.create(CarsApi.class);
+
+        pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        Long userId = pref.getLong(SHARED_PREF_USER_ID, 0);
+
+        carsApi.getUserCars(userId).enqueue(new Callback<List<Car>>() {
+            @Override
+            public void onResponse(Call<List<Car>> call, Response<List<Car>> response) {
+                List<Car> storedCars = response.body();
+                if (storedCars != null) {
+                    cars.addAll(storedCars);
+                    carAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Car>> call, Throwable t) {
+
+            }
+        });
+
 
         return root;
     }
