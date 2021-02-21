@@ -1,5 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.atanasvasil.mobile.mycardocs.R;
+import com.atanasvasil.mobile.mycardocs.activities.cars.CarCreateActivity;
 import com.atanasvasil.mobile.mycardocs.adapters.CarAdapter;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,6 +43,10 @@ public class CarsFragment extends Fragment {
         recyclerView.setAdapter(carAdapter);
 
         carCreateFBtn = root.findViewById(R.id.carCreateFBtn);
+        carCreateFBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), CarCreateActivity.class);
+            startActivity(intent);
+        });
 
         return root;
     }
