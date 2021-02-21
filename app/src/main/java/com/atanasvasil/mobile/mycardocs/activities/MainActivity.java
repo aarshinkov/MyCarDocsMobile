@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        String userId = pref.getString(SHARED_PREF_USER_ID, null);
+        Long userId = pref.getLong(SHARED_PREF_USER_ID, 0);
 
-        if (userId == null) {
+        if (userId == null || userId == 0) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

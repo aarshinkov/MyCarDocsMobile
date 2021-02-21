@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     User user = response.body();
 
-                    editor.putString(SHARED_PREF_USER_ID, String.valueOf(user.getUserId()));
+                    editor.putLong(SHARED_PREF_USER_ID, user.getUserId());
                     editor.putString(SHARED_PREF_EMAIL, user.getEmail());
                     editor.putString(SHARED_PREF_FIRST_NAME, user.getFirstName());
                     editor.putString(SHARED_PREF_LAST_NAME, user.getLastName());
