@@ -11,4 +11,10 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
+    <fragment
+        android:id="@+id/nav_cars"
+        android:name="com.atanasvasil.mobile.mycardocs.fragments.CarsFragment"
+        android:label="@string/menu_cars"
+        tools:layout="@layout/fragment_cars" />
+
 </navigation>

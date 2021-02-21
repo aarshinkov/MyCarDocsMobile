@@ -18,8 +18,6 @@ public class CarsFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_cars, container, false);
 
-
-
         return root;
     }
 }
