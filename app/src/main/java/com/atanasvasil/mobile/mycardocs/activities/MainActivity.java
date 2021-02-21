@@ -4,53 +4,48 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
-import com.atanasvasil.mobile.mycardocs.BuildConfig;
-import com.atanasvasil.mobile.mycardocs.R;
-import com.atanasvasil.mobile.mycardocs.responses.users.User;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
+import com.atanasvasil.mobile.mycardocs.BuildConfig;
+import com.atanasvasil.mobile.mycardocs.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_ID;
 
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
-
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        protected boolean checkUserStatus()
-    {
-            boolean isLoggedIn  ;
-            Context context = getApplicationContext();
-            SharedPreferences pref = context.getSharedPreferences("Session Data", MODE_PRIVATE);
-            isLoggedIn = pref.getBoolean("isLoggedIn", false);
-            return isLoggedIn ;
-        }
-        SharedPreferences pref = context.getSharedPreferences(
-                "Session Data", MODE_PRIVATE);
-        SharedPreferences.Editor edit = pref.edit();
-        edit.putInt("LAST_VERSION_CODE", BuildConfig.VERSION_CODE);
-        edit.putBoolean("isLoggedIn", true);// or false if you log out
-        edit.commit();
+        pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        String userId = pref.getString(SHARED_PREF_USER_ID, null);
 
+        if (userId == null) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -69,12 +64,29 @@ public class MainActivity extends AppCompatActivity  {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
+        navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(getApplicationContext(), "Logout clicked", Toast.LENGTH_LONG).show();
+                logoutUser();
+                return true;
+            }
+        });
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home).setOpenableLayout(drawer).build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    protected boolean checkUserStatus() {
+        boolean isLoggedIn;
+        Context context = getApplicationContext();
+        SharedPreferences pref = context.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        isLoggedIn = pref.getBoolean("isLoggedIn", false);
+        return isLoggedIn;
     }
 
     @Override
@@ -87,19 +99,30 @@ public class MainActivity extends AppCompatActivity  {
 
     //public void updateNavHeader() {
 
-      //  NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-       // View headerView = navigationView.getHeaderView(0);
-       // TextView navUsername = headerView.findViewById(R.id.navNameTV);
-       // TextView navUserMail = headerView.findViewById(R.id.navEmailTV);
-      //  ImageView navUserPhot = headerView.findViewById(R.id.navImageTV);
+    //  NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+    // View headerView = navigationView.getHeaderView(0);
+    // TextView navUsername = headerView.findViewById(R.id.navNameTV);
+    // TextView navUserMail = headerView.findViewById(R.id.navEmailTV);
+    //  ImageView navUserPhot = headerView.findViewById(R.id.navImageTV);
 
-       // navNameTV.setText(User.getDisplayName());
-        //navEmailTV.setText(User.getEmail());}
+    // navNameTV.setText(User.getDisplayName());
+    //navEmailTV.setText(User.getEmail());}
 
 
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
+    }
+
+    public void logoutUser() {
+        pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        editor = pref.edit();
+        editor.clear();
+        editor.apply();
+        // След излизане пренасочваме потребителя към Login Activity
+        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
     }
 }

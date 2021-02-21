@@ -123,8 +123,8 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
         loginForgotPasswordTV.setOnClickListener(v -> {
+
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
             i.putExtra(Intent.EXTRA_EMAIL , new String[]{"recipient@example.com"});
@@ -136,7 +136,6 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this,
                         "There are no email clients installed.", Toast.LENGTH_SHORT).show();
             }
-
         });
     }
 }
