@@ -1,6 +1,7 @@
 package com.atanasvasil.mobile.mycardocs.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.atanasvasil.mobile.mycardocs.R;
+import com.atanasvasil.mobile.mycardocs.activities.LoginActivity;
+import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
+import com.atanasvasil.mobile.mycardocs.activities.cars.CarActivity;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 
 import java.util.List;
@@ -46,10 +50,9 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         holder.getCarItemLicensePlateTV().setText(car.getLicensePlate());
 
         holder.getCardView().setOnClickListener(v -> {
-            Toast.makeText(v.getContext(), "CAR CLICKED: " + car.getCarId(), Toast.LENGTH_LONG).show();
-//            Intent intent = new Intent(v.getContext(), CarActivity.class);
-//            intent.putExtra("carId", car.getCarId());
-//            v.getContext().startActivity(intent);
+            Intent intent = new Intent(v.getContext(), CarActivity.class);
+            intent.putExtra("carId", car.getCarId());
+            v.getContext().startActivity(intent);
         });
     }
 

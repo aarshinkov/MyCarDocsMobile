@@ -13,6 +13,12 @@
         android:theme="@style/Theme.MyCarDocs"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.cars.CarUpdateActivity"
+            android:parentActivityName=".activities.cars.CarActivity" />
+        <activity
+            android:name=".activities.cars.CarActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
             android:name=".activities.cars.CarCreateActivity"
             android:parentActivityName=".activities.MainActivity" />
         <activity

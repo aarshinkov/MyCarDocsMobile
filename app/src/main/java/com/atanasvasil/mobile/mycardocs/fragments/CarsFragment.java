@@ -1,5 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.cars.CarCreateActivity;
@@ -37,13 +39,13 @@ public class CarsFragment extends Fragment {
     private RecyclerView recyclerView;
     private CarAdapter carAdapter;
     private List<Car> cars;
+    private ProgressDialog loadingDialog;
 
     private FloatingActionButton carCreateFBtn;
     private SharedPreferences pref;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_cars, container, false);
 
@@ -54,6 +56,10 @@ public class CarsFragment extends Fragment {
         cars = new ArrayList<>();
         carAdapter = new CarAdapter(getContext(), cars);
         recyclerView.setAdapter(carAdapter);
+
+        loadingDialog = new ProgressDialog(getContext());
+        loadingDialog.setMessage("Loading cars...");
+        loadingDialog.show();
 
         carCreateFBtn = root.findViewById(R.id.carCreateFBtn);
         carCreateFBtn.setOnClickListener(v -> {
@@ -70,19 +76,28 @@ public class CarsFragment extends Fragment {
         carsApi.getUserCars(userId).enqueue(new Callback<List<Car>>() {
             @Override
             public void onResponse(Call<List<Car>> call, Response<List<Car>> response) {
+
+                if (response.code() == 400) {
+                    //EMPTY car list
+                    loadingDialog.hide();
+                    return;
+                }
+
                 List<Car> storedCars = response.body();
+
                 if (storedCars != null) {
                     cars.addAll(storedCars);
                     carAdapter.notifyDataSetChanged();
+                    loadingDialog.hide();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Car>> call, Throwable t) {
-
+                Toast.makeText(getContext(), "Error communicating with the server. Try again!", Toast.LENGTH_LONG).show();
+                loadingDialog.hide();
             }
         });
-
 
         return root;
     }

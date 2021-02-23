@@ -42,6 +42,7 @@ public class CarCreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_car_create);
 
         getSupportActionBar().setTitle("Create a car");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         carCreateBrandET = findViewById(R.id.carCreateBrandET);
         carCreateModelET = findViewById(R.id.carCreateModelET);
