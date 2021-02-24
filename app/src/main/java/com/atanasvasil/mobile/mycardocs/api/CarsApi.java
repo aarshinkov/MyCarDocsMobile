@@ -1,6 +1,7 @@
 package com.atanasvasil.mobile.mycardocs.api;
 
 import com.atanasvasil.mobile.mycardocs.requests.CarCreateRequest;
+import com.atanasvasil.mobile.mycardocs.requests.CarUpdateRequest;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface CarsApi {
@@ -22,6 +24,9 @@ public interface CarsApi {
 
     @POST("api/cars")
     Call<Car> createCar(@Body CarCreateRequest ccr);
+
+    @PUT("api/cars")
+    Call<Car> updateCar(@Body CarUpdateRequest ccr);
 
     @DELETE("api/cars/{carId}")
     Call<Boolean> deleteCar(@Path("carId") String carId);
