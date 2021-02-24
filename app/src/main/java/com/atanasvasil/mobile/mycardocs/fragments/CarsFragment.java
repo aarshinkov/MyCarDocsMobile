@@ -94,7 +94,7 @@ public class CarsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Car>> call, Throwable t) {
-                Toast.makeText(getContext(), "Error communicating with the server. Try again!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.error_server, Toast.LENGTH_LONG).show();
                 loadingDialog.hide();
             }
         });

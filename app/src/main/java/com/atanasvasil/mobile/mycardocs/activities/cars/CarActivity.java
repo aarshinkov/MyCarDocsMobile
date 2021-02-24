@@ -75,7 +75,7 @@ public class CarActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Car> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error communicating with the server. Try again!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
                 loadingDialog.hide();
             }
         });
