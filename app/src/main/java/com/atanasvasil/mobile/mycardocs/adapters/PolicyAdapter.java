@@ -4,8 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,16 +15,18 @@ import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 
 import java.util.List;
 
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getStringResource;
+
 public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder> {
 
+    private final Context context;
     private final LayoutInflater layoutInflater;
-
     private final List<Policy> data;
 
     public PolicyAdapter(Context context, List<Policy> data) {
+        this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.data = data;
-
     }
 
     @NonNull
@@ -39,8 +39,8 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Policy policy = data.get(position);
-        holder.getPolicyItemTypeTV().setText(policy.getType());
-
+        String type = getStringResource(context, "policy_type_" + policy.getType());
+        holder.getPolicyItemTypeTV().setText(type);
     }
 
     @Override
@@ -57,8 +57,6 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
             super(itemView);
             cardView = itemView.findViewById(R.id.policyCard);
             policyItemTypeTV = itemView.findViewById(R.id.policyItemTypeTV);
-
-
         }
 
         public CardView getCardView() {

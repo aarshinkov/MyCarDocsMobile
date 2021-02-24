@@ -33,8 +33,14 @@ public class PoliciesFragment extends Fragment {
 
         policies = new ArrayList<>();
         policyAdapter = new PolicyAdapter(getContext(), policies);
+        recyclerView.setAdapter(policyAdapter);
         Policy policy = new Policy();
         policy.setType(1);
+
+        policies.add(policy);
+
+        policy = new Policy();
+        policy.setType(3);
 
         policies.add(policy);
         policyAdapter.notifyDataSetChanged();

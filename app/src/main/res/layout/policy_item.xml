@@ -54,6 +54,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Insurer name"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/policyItemLeftGuide"
                 app:layout_constraintTop_toBottomOf="@+id/policyItemHeaderBG" />
 
@@ -61,9 +62,9 @@
                 android:id="@+id/insurerNameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/policyItemLeftGuide"
-                app:layout_constraintTop_toBottomOf="@+id/insurerNameLabelTV" />
+                app:layout_constraintTop_toBottomOf="@+id/insurerNameLabelTV"
+                tools:text="Name" />
 
             <TextView
                 android:id="@+id/licensePlateLabelTV"
@@ -72,6 +73,7 @@
                 android:layout_marginTop="8dp"
                 android:text="License plate"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/policyItemRightGuide"
                 app:layout_constraintTop_toBottomOf="@+id/policyItemHeaderBG" />
 
@@ -79,9 +81,9 @@
                 android:id="@+id/licensePlateTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 app:layout_constraintEnd_toStartOf="@+id/policyItemRightGuide"
-                app:layout_constraintTop_toBottomOf="@+id/licensePlateLabelTV" />
+                app:layout_constraintTop_toBottomOf="@+id/licensePlateLabelTV"
+                tools:text="PA8822AA" />
 
             <TextView
                 android:id="@+id/startDateLabelTV"
@@ -90,6 +92,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Start date"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/policyItemLeftGuide"
                 app:layout_constraintTop_toBottomOf="@+id/insurerNameTV" />
 
@@ -97,9 +100,11 @@
                 android:id="@+id/startDateTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/policyItemLeftGuide"
-                app:layout_constraintTop_toBottomOf="@+id/startDateLabelTV" />
+                app:layout_constraintTop_toBottomOf="@+id/startDateLabelTV"
+                tools:text="22.08.2020" />
 
             <TextView
                 android:id="@+id/endDateLabelTV"
@@ -108,16 +113,36 @@
                 android:layout_marginTop="8dp"
                 android:text="End date"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toStartOf="@+id/policyItemRightGuide"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/policyItemStatus"
+                app:layout_constraintStart_toEndOf="@+id/startDateLabelTV"
                 app:layout_constraintTop_toBottomOf="@+id/licensePlateTV" />
 
             <TextView
                 android:id="@+id/endDateTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintEnd_toStartOf="@+id/policyItemRightGuide"
-                app:layout_constraintTop_toBottomOf="@+id/endDateLabelTV" />
+                app:layout_constraintStart_toStartOf="@+id/endDateLabelTV"
+                app:layout_constraintTop_toBottomOf="@+id/endDateLabelTV"
+                tools:text="22.08.2021" />
+
+            <View
+                android:id="@+id/policyItemStatus"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/success"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageView
+                android:id="@+id/policyItemStatusIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/policyItemStatus"
+                app:layout_constraintEnd_toEndOf="@+id/policyItemStatus"
+                app:layout_constraintStart_toStartOf="@+id/policyItemStatus"
+                app:layout_constraintTop_toTopOf="@+id/policyItemStatus"
+                app:srcCompat="@drawable/ic_check" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/policyItemLeftGuide"

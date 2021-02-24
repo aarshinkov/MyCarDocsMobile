@@ -52,7 +52,6 @@ public class CarsFragment extends Fragment {
         recyclerView = root.findViewById(R.id.cars);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         cars = new ArrayList<>();
         carAdapter = new CarAdapter(getContext(), cars);
         recyclerView.setAdapter(carAdapter);

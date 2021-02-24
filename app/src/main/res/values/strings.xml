@@ -29,6 +29,10 @@
     <string name="car_action_edit">Edit</string>
     <string name="car_action_delete">Delete</string>
 
+    <string name="policy_type_1">Insurance</string>
+    <string name="policy_type_2">Kasko</string>
+    <string name="policy_type_3">Vinetka</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
