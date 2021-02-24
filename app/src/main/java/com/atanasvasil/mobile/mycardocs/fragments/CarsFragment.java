@@ -15,13 +15,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.atanasvasil.mobile.mycardocs.R;
-import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
 import com.atanasvasil.mobile.mycardocs.activities.cars.CarCreateActivity;
 import com.atanasvasil.mobile.mycardocs.adapters.CarAdapter;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
-import com.atanasvasil.mobile.mycardocs.responses.users.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -33,18 +31,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PRED_LICENSE_PLATE;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_ALIAS;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_BRAND;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_CAR_ID;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_COLOR;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_EMAIL;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_FIRST_NAME;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_LAST_NAME;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_MODEL;
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_ID;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_YEAR;
 
 public class CarsFragment extends Fragment {
 
@@ -55,8 +43,6 @@ public class CarsFragment extends Fragment {
 
     private FloatingActionButton carCreateFBtn;
     private SharedPreferences pref;
-    private SharedPreferences.Editor editor;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -85,7 +71,6 @@ public class CarsFragment extends Fragment {
         CarsApi carsApi = retrofit.create(CarsApi.class);
 
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-
         Long userId = pref.getLong(SHARED_PREF_USER_ID, 0);
 
         carsApi.getUserCars(userId).enqueue(new Callback<List<Car>>() {
@@ -94,22 +79,9 @@ public class CarsFragment extends Fragment {
 
                 if (response.code() == 400) {
                     //EMPTY car list
-
+                    loadingDialog.hide();
+                    return;
                 }
-                Car car = response.body();
-
-                editor.putString(SHARED_PREF_CAR_ID, car.getCarId());
-                editor.putString(SHARED_PREF_BRAND, car.getBrand());
-                editor.putString(SHARED_PREF_MODEL, car.getModel());
-                editor.putString(SHARED_PREF_COLOR, car.getColor());
-                editor.putString(SHARED_PREF_YEAR, car.getYear());
-                editor.putString(SHARED_PREF_ALIAS, car.getAlias());
-                editor.putString(SHARED_PRED_LICENSE_PLATE, car.getLicensePlate());
-
-                Intent intent = new Intent(Context(), CarCreateActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-
 
                 List<Car> storedCars = response.body();
 

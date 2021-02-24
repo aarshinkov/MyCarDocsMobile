@@ -11,14 +11,4 @@ public class AppConstants {
     public static final String SHARED_PREF_EMAIL = "email";
     public static final String SHARED_PREF_FIRST_NAME = "firstName";
     public static final String SHARED_PREF_LAST_NAME = "lastName";
-
-    public static final String SHARED_PREF_CAR_ID = "carId";
-    public static final String SHARED_PREF_BRAND = "brand";
-    public static final String SHARED_PREF_MODEL = "model";
-    public static final String SHARED_PREF_COLOR = "color";
-    public static final String SHARED_PREF_YEAR = "year";
-    public static final String SHARED_PRED_LICENSE_PLATE ="License plate";
-    public static final String SHARED_PREF_ALIAS = "alias";
-
-
 }
