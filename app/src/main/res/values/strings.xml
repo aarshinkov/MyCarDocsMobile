@@ -23,6 +23,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_cars">Cars</string>
+    <string name="menu_policies">Policies</string>
     <string name="menu_logout">Logout</string>
 
     <string name="car_action_edit">Edit</string>
