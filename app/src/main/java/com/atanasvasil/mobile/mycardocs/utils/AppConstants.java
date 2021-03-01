@@ -7,8 +7,5 @@ public class AppConstants {
 
     public static final String SHARED_PREF_NAME = "APP_SP";
 
-    public static final String SHARED_PREF_USER_ID = "userId";
-    public static final String SHARED_PREF_EMAIL = "email";
-    public static final String SHARED_PREF_FIRST_NAME = "firstName";
-    public static final String SHARED_PREF_LAST_NAME = "lastName";
+    public static final String SHARED_PREF_USER = "user";
 }

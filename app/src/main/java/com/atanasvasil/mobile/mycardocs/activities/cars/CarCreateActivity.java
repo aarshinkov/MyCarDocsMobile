@@ -16,6 +16,7 @@ import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.requests.CarCreateRequest;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
+import com.atanasvasil.mobile.mycardocs.responses.users.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_ID;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
 
 public class CarCreateActivity extends AppCompatActivity {
 
@@ -60,7 +61,7 @@ public class CarCreateActivity extends AppCompatActivity {
         carCreateBtn = findViewById(R.id.carCreateBtn);
 
         pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        Long userId = pref.getLong(SHARED_PREF_USER_ID, 0);
+        User user = getLoggedUser(pref);
 
         carCreateBtn.setOnClickListener(v -> {
 
@@ -78,7 +79,7 @@ public class CarCreateActivity extends AppCompatActivity {
             ccr.setYear(Integer.parseInt(carCreateYearET.getText().toString()));
             ccr.setLicensePlate(carCreateLicensePlateET.getText().toString());
             ccr.setAlias(carCreateAliasET.getText().toString());
-            ccr.setUserId(userId);
+            ccr.setUserId(user.getUserId());
 
             Retrofit retrofit = Api.getRetrofit();
             CarsApi carsApi = retrofit.create(CarsApi.class);

@@ -15,17 +15,15 @@ import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.AuthApi;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_EMAIL;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_FIRST_NAME;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_LAST_NAME;
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_ID;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -93,10 +91,10 @@ public class LoginActivity extends AppCompatActivity {
 
                     User user = response.body();
 
-                    editor.putLong(SHARED_PREF_USER_ID, user.getUserId());
-                    editor.putString(SHARED_PREF_EMAIL, user.getEmail());
-                    editor.putString(SHARED_PREF_FIRST_NAME, user.getFirstName());
-                    editor.putString(SHARED_PREF_LAST_NAME, user.getLastName());
+                    Gson gson = new Gson();
+                    String json = gson.toJson(user);
+
+                    editor.putString(SHARED_PREF_USER, json);
                     editor.apply();
 
                     Toast.makeText(getApplicationContext(), "Hello, " + user.getFullName(), Toast.LENGTH_LONG).show();
@@ -117,7 +115,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
         loginRegisterTV.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
@@ -127,9 +124,9 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
-            i.putExtra(Intent.EXTRA_EMAIL , new String[]{"recipient@example.com"});
+            i.putExtra(Intent.EXTRA_EMAIL, new String[]{"recipient@example.com"});
             i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
-            i.putExtra(Intent.EXTRA_TEXT , "body of email");
+            i.putExtra(Intent.EXTRA_TEXT, "body of email");
             try {
                 startActivity(Intent.createChooser(i, "Send mail..."));
             } catch (android.content.ActivityNotFoundException ex) {

@@ -20,6 +20,7 @@ import com.atanasvasil.mobile.mycardocs.adapters.CarAdapter;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
+import com.atanasvasil.mobile.mycardocs.responses.users.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ import retrofit2.Retrofit;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_ID;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
 
 public class CarsFragment extends Fragment {
 
@@ -70,9 +71,9 @@ public class CarsFragment extends Fragment {
         CarsApi carsApi = retrofit.create(CarsApi.class);
 
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        Long userId = pref.getLong(SHARED_PREF_USER_ID, 0);
+        User user = getLoggedUser(pref);
 
-        carsApi.getUserCars(userId).enqueue(new Callback<List<Car>>() {
+        carsApi.getUserCars(user.getUserId()).enqueue(new Callback<List<Car>>() {
             @Override
             public void onResponse(Call<List<Car>> call, Response<List<Car>> response) {
 

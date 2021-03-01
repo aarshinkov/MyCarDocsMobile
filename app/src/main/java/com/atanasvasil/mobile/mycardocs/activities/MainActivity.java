@@ -21,13 +21,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.atanasvasil.mobile.mycardocs.R;
+import com.atanasvasil.mobile.mycardocs.responses.users.User;
 import com.google.android.material.navigation.NavigationView;
 
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_EMAIL;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_FIRST_NAME;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_LAST_NAME;
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_ID;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.isLoggedIn;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,13 +42,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        Long userId = pref.getLong(SHARED_PREF_USER_ID, 0);
 
-        if (userId == null || userId == 0) {
+        if (!isLoggedIn(pref)) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+            return;
         }
+
+        User user = getLoggedUser(pref);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -63,11 +64,9 @@ public class MainActivity extends AppCompatActivity {
         TextView navUserMail = headerView.findViewById(R.id.navEmailTV);
         //ImageView navUserPhot = headerView.findViewById(R.id.navImageTV);
 
-        String email = pref.getString(SHARED_PREF_EMAIL, "");
-        String firstName = pref.getString(SHARED_PREF_FIRST_NAME, "");
-        String lastName = pref.getString(SHARED_PREF_LAST_NAME, "");
+        String email = user.getEmail();
 
-        navUsername.setText(firstName + " " + lastName);
+        navUsername.setText(user.getFullName());
         navUserMail.setText(email);
 
         navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -105,14 +104,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-    }
-
-    protected boolean checkUserStatus() {
-        boolean isLoggedIn;
-        Context context = getApplicationContext();
-        SharedPreferences pref = context.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        isLoggedIn = pref.getBoolean("isLoggedIn", false);
-        return isLoggedIn;
     }
 
     @Override

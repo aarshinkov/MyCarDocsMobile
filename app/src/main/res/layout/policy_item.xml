@@ -48,86 +48,107 @@
                 tools:text="Type" />
 
             <TextView
-                android:id="@+id/insurerNameLabelTV"
+                android:id="@+id/policyItemNumberLabelTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text="Number"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/policyItemLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/policyItemHeaderBG" />
+
+            <TextView
+                android:id="@+id/policyItemNumberTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toEndOf="@+id/policyItemNumberLabelTV"
+                app:layout_constraintTop_toBottomOf="@+id/policyItemHeaderBG"
+                tools:text="5488454" />
+
+            <TextView
+                android:id="@+id/policyItemInsurerNameLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="Insurer name"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/policyItemLeftGuide"
-                app:layout_constraintTop_toBottomOf="@+id/policyItemHeaderBG" />
+                app:layout_constraintTop_toBottomOf="@+id/policyItemNumberLabelTV" />
 
             <TextView
-                android:id="@+id/insurerNameTV"
+                android:id="@+id/policyItemInsurerNameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/policyItemLeftGuide"
-                app:layout_constraintTop_toBottomOf="@+id/insurerNameLabelTV"
+                app:layout_constraintTop_toBottomOf="@+id/policyItemInsurerNameLabelTV"
                 tools:text="Name" />
 
             <TextView
-                android:id="@+id/licensePlateLabelTV"
+                android:id="@+id/policyItemLicensePlateLabelTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="License plate"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/policyItemRightGuide"
-                app:layout_constraintTop_toBottomOf="@+id/policyItemHeaderBG" />
+                app:layout_constraintTop_toBottomOf="@+id/policyItemNumberLabelTV" />
 
             <TextView
-                android:id="@+id/licensePlateTV"
+                android:id="@+id/policyItemLicensePlateTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toStartOf="@+id/policyItemRightGuide"
-                app:layout_constraintTop_toBottomOf="@+id/licensePlateLabelTV"
+                app:layout_constraintTop_toBottomOf="@+id/policyItemLicensePlateLabelTV"
                 tools:text="PA8822AA" />
 
             <TextView
-                android:id="@+id/startDateLabelTV"
+                android:id="@+id/policyItemStartDateLabelTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Start date"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/policyItemLeftGuide"
-                app:layout_constraintTop_toBottomOf="@+id/insurerNameTV" />
+                app:layout_constraintTop_toBottomOf="@+id/policyItemInsurerNameTV" />
 
             <TextView
-                android:id="@+id/startDateTV"
+                android:id="@+id/policyItemStartDateTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/policyItemLeftGuide"
-                app:layout_constraintTop_toBottomOf="@+id/startDateLabelTV"
+                app:layout_constraintTop_toBottomOf="@+id/policyItemStartDateLabelTV"
                 tools:text="22.08.2020" />
 
             <TextView
-                android:id="@+id/endDateLabelTV"
+                android:id="@+id/policyItemEndDateLabelTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="End date"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/policyItemStatus"
-                app:layout_constraintStart_toEndOf="@+id/startDateLabelTV"
-                app:layout_constraintTop_toBottomOf="@+id/licensePlateTV" />
+                app:layout_constraintEnd_toStartOf="@+id/carItemCarIconView"
+                app:layout_constraintStart_toEndOf="@+id/policyItemStartDateLabelTV"
+                app:layout_constraintTop_toBottomOf="@+id/policyItemLicensePlateTV" />
 
             <TextView
-                android:id="@+id/endDateTV"
+                android:id="@+id/policyItemEndDateTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/endDateLabelTV"
-                app:layout_constraintTop_toBottomOf="@+id/endDateLabelTV"
+                app:layout_constraintStart_toStartOf="@+id/policyItemEndDateLabelTV"
+                app:layout_constraintTop_toBottomOf="@+id/policyItemEndDateLabelTV"
                 tools:text="22.08.2021" />
 
             <View
-                android:id="@+id/policyItemStatus"
+                android:id="@+id/carItemCarIconView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/success"
@@ -138,10 +159,10 @@
                 android:id="@+id/policyItemStatusIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/policyItemStatus"
-                app:layout_constraintEnd_toEndOf="@+id/policyItemStatus"
-                app:layout_constraintStart_toStartOf="@+id/policyItemStatus"
-                app:layout_constraintTop_toTopOf="@+id/policyItemStatus"
+                app:layout_constraintBottom_toBottomOf="@+id/carItemCarIconView"
+                app:layout_constraintEnd_toEndOf="@+id/carItemCarIconView"
+                app:layout_constraintStart_toStartOf="@+id/carItemCarIconView"
+                app:layout_constraintTop_toTopOf="@+id/carItemCarIconView"
                 app:srcCompat="@drawable/ic_check" />
 
             <androidx.constraintlayout.widget.Guideline

@@ -34,16 +34,34 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <View
+                android:id="@+id/carItemCarIconView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/success"
+                app:layout_constraintStart_toStartOf="@+id/carItemLeftGuide"
+                app:layout_constraintTop_toTopOf="@+id/carItemHeaderBG" />
+
+            <ImageView
+                android:id="@+id/carItemCarIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/carItemCarIconView"
+                app:layout_constraintEnd_toEndOf="@+id/carItemCarIconView"
+                app:layout_constraintStart_toStartOf="@+id/carItemCarIconView"
+                app:layout_constraintTop_toTopOf="@+id/carItemCarIconView"
+                app:srcCompat="@drawable/ic_car_white" />
+
             <TextView
                 android:id="@+id/carItemBrandTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toStartOf="@+id/carItemRightGuide"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/carItemLeftGuide"
+                app:layout_constraintStart_toEndOf="@+id/carItemCarIconView"
                 app:layout_constraintTop_toTopOf="@+id/carItemHeaderBG"
                 tools:text="Audi" />
 
@@ -51,7 +69,7 @@
                 android:id="@+id/carItemModelLabelTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Model"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -70,7 +88,7 @@
                 android:id="@+id/carItemLicensePlateLabelTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="License plate"
                 android:textColor="@color/black"
                 android:textStyle="bold"

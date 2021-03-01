@@ -27,6 +27,4 @@ public interface UsersApi {
 
     @POST("api/users")
     Call<User> createUser(@Body User user);
-
-//    Call<User> getPassword(@Path("PasswordId")Long passwordId);
 }

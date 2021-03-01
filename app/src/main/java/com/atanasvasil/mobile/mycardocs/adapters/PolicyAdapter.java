@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static com.atanasvasil.mobile.mycardocs.utils.Utils.getStringResource;
 
@@ -39,8 +43,31 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Policy policy = data.get(position);
+
         String type = getStringResource(context, "policy_type_" + policy.getType());
-        holder.getPolicyItemTypeTV().setText(type);
+        holder.getTypeTV().setText(type);
+
+        holder.getNumberTV().setText(policy.getNumber());
+
+        holder.getInsurerNameTV().setText(policy.getInsName());
+        holder.getLicensePlateTV().setText(policy.getCar().getLicensePlate());
+
+        Date now = new Date();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+
+        Date date = new Date();
+        date.setTime(policy.getStartDate().getTime());
+        holder.getStartDateTV().setText(sdf.format(date));
+
+        date = new Date();
+        date.setTime(policy.getEndDate().getTime());
+        holder.getEndDateTV().setText(sdf.format(date));
+
+        if (now.after(date)) {
+            holder.getStatus().setBackgroundColor(context.getResources().getColor(R.color.danger));
+            holder.getStatusIcon().setImageResource(R.drawable.ic_close);
+        }
     }
 
     @Override
@@ -51,21 +78,62 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final CardView cardView;
-        private final TextView policyItemTypeTV;
+        private final TextView typeTV;
+        private final TextView numberTV;
+        private final TextView insurerNameTV;
+        private final TextView licensePlateTV;
+        private final TextView startDateTV;
+        private final TextView endDateTV;
+        private final View status;
+        private final ImageView statusIcon;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.policyCard);
-            policyItemTypeTV = itemView.findViewById(R.id.policyItemTypeTV);
+            typeTV = itemView.findViewById(R.id.policyItemTypeTV);
+            numberTV = itemView.findViewById(R.id.policyItemNumberTV);
+            insurerNameTV = itemView.findViewById(R.id.policyItemInsurerNameTV);
+            licensePlateTV = itemView.findViewById(R.id.policyItemLicensePlateTV);
+            startDateTV = itemView.findViewById(R.id.policyItemStartDateTV);
+            endDateTV = itemView.findViewById(R.id.policyItemEndDateTV);
+            status = itemView.findViewById(R.id.carItemCarIconView);
+            statusIcon = itemView.findViewById(R.id.policyItemStatusIcon);
         }
 
         public CardView getCardView() {
             return cardView;
         }
 
-        public TextView getPolicyItemTypeTV() {
-            return policyItemTypeTV;
+        public TextView getTypeTV() {
+            return typeTV;
+        }
+
+        public TextView getNumberTV() {
+            return numberTV;
+        }
+
+        public TextView getInsurerNameTV() {
+            return insurerNameTV;
+        }
+
+        public TextView getLicensePlateTV() {
+            return licensePlateTV;
+        }
+
+        public TextView getStartDateTV() {
+            return startDateTV;
+        }
+
+        public TextView getEndDateTV() {
+            return endDateTV;
+        }
+
+        public View getStatus() {
+            return status;
+        }
+
+        public ImageView getStatusIcon() {
+            return statusIcon;
         }
     }
-
 }

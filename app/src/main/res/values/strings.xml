@@ -30,8 +30,10 @@
     <string name="car_action_delete">Delete</string>
 
     <string name="policy_type_1">Insurance</string>
-    <string name="policy_type_2">Kasko</string>
-    <string name="policy_type_3">Vinetka</string>
+    <string name="policy_type_2">Casco</string>
+    <string name="policy_type_3">Vignette</string>
+
+    <string name="policies_nofound">No policies found.</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

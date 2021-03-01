@@ -1,5 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,19 +10,40 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.adapters.PolicyAdapter;
+import com.atanasvasil.mobile.mycardocs.api.PolicyApi;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
+import com.atanasvasil.mobile.mycardocs.responses.users.User;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.atanasvasil.mobile.mycardocs.api.Api.getRetrofit;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
 
 public class PoliciesFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private PolicyAdapter policyAdapter;
     private List<Policy> policies;
+
+    private CircularProgressIndicator progress;
+
+    private TextView noPoliciesFoundTV;
+
+    private SharedPreferences pref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,21 +53,53 @@ public class PoliciesFragment extends Fragment {
         recyclerView = root.findViewById(R.id.policies);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        noPoliciesFoundTV = root.findViewById(R.id.noPoliciesFoundTV);
+
         policies = new ArrayList<>();
         policyAdapter = new PolicyAdapter(getContext(), policies);
         recyclerView.setAdapter(policyAdapter);
-        Policy policy = new Policy();
-        policy.setType(1);
 
-        policies.add(policy);
+        progress = root.findViewById(R.id.policiesProgress);
+        progress.setVisibility(View.VISIBLE);
 
-        policy = new Policy();
-        policy.setType(3);
+        Retrofit retrofit = getRetrofit();
 
-        policies.add(policy);
+        PolicyApi policyApi = retrofit.create(PolicyApi.class);
+
+        pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        User user = getLoggedUser(pref);
+
+        policyApi.getPoliciesByUserId(user.getUserId()).enqueue(new Callback<List<Policy>>() {
+            @Override
+            public void onResponse(Call<List<Policy>> call, Response<List<Policy>> response) {
+
+                if (response.code() == 400) {
+//                    Toast.makeText(getContext(), "No policies found", Toast.LENGTH_LONG).show();
+                    noPoliciesFoundTV.setVisibility(View.VISIBLE);
+                    progress.setVisibility(View.GONE);
+                    return;
+                }
+
+                noPoliciesFoundTV.setVisibility(View.GONE);
+
+                List<Policy> storedHotels = response.body();
+
+                policies.addAll(storedHotels);
+
+                policyAdapter = new PolicyAdapter(getContext(), policies);
+                recyclerView.setAdapter(policyAdapter);
+                policyAdapter.notifyDataSetChanged();
+                progress.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<List<Policy>> call, Throwable t) {
+                Toast.makeText(getContext(), R.string.error_server, Toast.LENGTH_SHORT).show();
+                progress.setVisibility(View.GONE);
+            }
+        });
+
         policyAdapter.notifyDataSetChanged();
         return root;
-
-
     }
 }
