@@ -52,6 +52,8 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
         holder.getInsurerNameTV().setText(policy.getInsName());
         holder.getLicensePlateTV().setText(policy.getCar().getLicensePlate());
 
+        holder.getStatus().setTooltipText("Valid policy.");
+
         Date now = new Date();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
@@ -60,12 +62,19 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
         date.setTime(policy.getStartDate().getTime());
         holder.getStartDateTV().setText(sdf.format(date));
 
+        if (now.before(date)) {
+            holder.getStatus().setBackgroundColor(context.getResources().getColor(R.color.warning));
+            holder.getStatus().setTooltipText("Pending policy.");
+            holder.getStatusIcon().setImageResource(R.drawable.ic_time);
+        }
+
         date = new Date();
         date.setTime(policy.getEndDate().getTime());
         holder.getEndDateTV().setText(sdf.format(date));
 
         if (now.after(date)) {
             holder.getStatus().setBackgroundColor(context.getResources().getColor(R.color.danger));
+            holder.getStatus().setTooltipText("Expired policy.");
             holder.getStatusIcon().setImageResource(R.drawable.ic_close);
         }
     }
