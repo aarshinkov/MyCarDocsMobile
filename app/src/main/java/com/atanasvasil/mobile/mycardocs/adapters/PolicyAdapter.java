@@ -56,7 +56,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
         holder.getInsurerNameTV().setText(policy.getInsName());
         holder.getLicensePlateTV().setText(policy.getCar().getLicensePlate());
 
-        holder.getStatus().setTooltipText("Valid policy.");
+        holder.getStatus().setTooltipText("Active policy.");
 
         Date now = new Date();
 

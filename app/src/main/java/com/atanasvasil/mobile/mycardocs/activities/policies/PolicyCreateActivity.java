@@ -31,12 +31,12 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
         policyCreateStartDateET = findViewById(R.id.policyCreateStartDateET);
 
-//        policyCreateStartDateET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                picker.show(getSupportFragmentManager(), picker.toString());
-//            }
-//        });
+        policyCreateStartDateET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                picker.show(getSupportFragmentManager(), picker.toString());
+            }
+        });
 
         picker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
@@ -51,6 +51,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
                 Date date = new Date(selection + offsetFromUTC);
 
                 Toast.makeText(getApplicationContext(), simpleFormat.format(date), Toast.LENGTH_LONG).show();
+                policyCreateStartDateET.setText(simpleFormat.format(date));
             }
         });
 
