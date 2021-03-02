@@ -2,6 +2,7 @@ package com.atanasvasil.mobile.mycardocs.activities.cars;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -26,7 +27,8 @@ import retrofit2.Retrofit;
 
 public class CarActivity extends AppCompatActivity {
 
-    private  TextView carAliasLabelTV;
+    private SwipeRefreshLayout carRefresh;
+    private TextView carAliasLabelTV;
     private TextView carBrandTV;
     private TextView carModelTV;
     private TextView carColorTV;
@@ -53,6 +55,7 @@ public class CarActivity extends AppCompatActivity {
         carYearTV = findViewById(R.id.carYearTV);
         carLicensePlateTV = findViewById(R.id.carLicensePlateTV);
         carAliasTV = findViewById(R.id.carAliasTV);
+        carRefresh = findViewById(R.id.carRefresh);
 
         loadingDialog = new ProgressDialog(this);
         loadingDialog.setMessage("Loading car...");
@@ -60,8 +63,17 @@ public class CarActivity extends AppCompatActivity {
 
         getCar(carId);
 
+        carRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getCar(carId);
+                carRefresh.setRefreshing(false);
+            }
+        });
+
     }
-    private void getCar(String carId){
+
+    private void getCar(String carId) {
         Retrofit retrofit = Api.getRetrofit();
 
         CarsApi carsApi = retrofit.create(CarsApi.class);
@@ -86,9 +98,9 @@ public class CarActivity extends AppCompatActivity {
                         carColorTV.setText(car.getColor());
                         carYearTV.setText(String.valueOf(car.getYear()));
                         carLicensePlateTV.setText(car.getLicensePlate());
-                        if(car.getAlias() != null && !car.getAlias().isEmpty()) {
+                        if (car.getAlias() != null && !car.getAlias().isEmpty()) {
                             carAliasTV.setText(car.getAlias());
-                        } else{
+                        } else {
                             carAliasLabelTV.setVisibility(View.GONE);
                             carAliasTV.setVisibility(View.GONE);
                         }
