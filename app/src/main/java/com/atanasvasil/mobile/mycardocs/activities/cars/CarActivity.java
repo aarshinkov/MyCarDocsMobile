@@ -19,6 +19,7 @@ import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,7 +28,6 @@ import retrofit2.Retrofit;
 
 public class CarActivity extends AppCompatActivity {
 
-    private SwipeRefreshLayout carRefresh;
     private TextView carAliasLabelTV;
     private TextView carBrandTV;
     private TextView carModelTV;
@@ -35,7 +35,10 @@ public class CarActivity extends AppCompatActivity {
     private TextView carYearTV;
     private TextView carLicensePlateTV;
     private TextView carAliasTV;
-    private ProgressDialog loadingDialog;
+
+    private SwipeRefreshLayout carRefresh;
+
+    private CircularProgressIndicator carProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +58,11 @@ public class CarActivity extends AppCompatActivity {
         carYearTV = findViewById(R.id.carYearTV);
         carLicensePlateTV = findViewById(R.id.carLicensePlateTV);
         carAliasTV = findViewById(R.id.carAliasTV);
+
         carRefresh = findViewById(R.id.carRefresh);
 
-        loadingDialog = new ProgressDialog(this);
-        loadingDialog.setMessage("Loading car...");
-        loadingDialog.show();
+        carProgress = findViewById(R.id.carProgress);
+        carProgress.setVisibility(View.VISIBLE);
 
         getCar(carId);
 
@@ -84,7 +87,7 @@ public class CarActivity extends AppCompatActivity {
 
                 if (!response.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Error getting car", Toast.LENGTH_LONG).show();
-                    loadingDialog.hide();
+                    carProgress.setVisibility(View.GONE);
                     return;
                 }
 
@@ -111,16 +114,15 @@ public class CarActivity extends AppCompatActivity {
                     }
                 }
 
-                loadingDialog.hide();
+                carProgress.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<Car> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
-                loadingDialog.hide();
+                carProgress.setVisibility(View.GONE);
             }
         });
-
     }
 
     @Override

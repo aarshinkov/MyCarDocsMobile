@@ -26,6 +26,13 @@
     <string name="menu_policies">Policies</string>
     <string name="menu_logout">Logout</string>
 
+    <string name="car_brand">Brand</string>
+    <string name="car_model">Model</string>
+    <string name="car_color">Color</string>
+    <string name="car_year">Year</string>
+    <string name="car_license_plate">License plate</string>
+    <string name="car_alias">Alias</string>
+
     <string name="car_action_edit">Edit</string>
     <string name="car_action_delete">Delete</string>
 
