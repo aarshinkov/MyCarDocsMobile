@@ -138,9 +138,10 @@ public class CarActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Car deleted successfully!", Toast.LENGTH_LONG).show();
 
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                intent.putExtra("fragment", "cars");
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
-//                            onBackPressed();
-//                            parent.findViewById(R.id.nav_view).findViewById(R.id.nav_hotels).performClick();
+
                                 return;
                             }
                         }
