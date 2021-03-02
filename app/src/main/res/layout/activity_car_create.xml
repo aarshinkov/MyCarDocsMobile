@@ -1,105 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.cars.CarCreateActivity">
 
-    <EditText
-        android:id="@+id/carCreateBrandET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Brand"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/carCreateModelET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="Model"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/carCreateBrandET" />
+        <EditText
+            android:id="@+id/carCreateBrandET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Brand"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/carCreateColorET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="Color"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/carCreateModelET" />
+        <EditText
+            android:id="@+id/carCreateModelET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="Model"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carCreateBrandET" />
 
-    <EditText
-        android:id="@+id/carCreateYearET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="Year"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/carCreateColorET" />
+        <EditText
+            android:id="@+id/carCreateColorET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="Color"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carCreateModelET" />
 
-    <EditText
-        android:id="@+id/carCreateLicensePlateET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="License plate"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/carCreateYearET" />
+        <EditText
+            android:id="@+id/carCreateYearET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="Year"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carCreateColorET" />
 
-    <EditText
-        android:id="@+id/carCreateAliasET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="Alias"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/carCreateLicensePlateET" />
+        <EditText
+            android:id="@+id/carCreateLicensePlateET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="License plate"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carCreateYearET" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/carCreateLeftGuide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        <EditText
+            android:id="@+id/carCreateAliasET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="Alias"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carCreateLicensePlateET" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/carCreateRightGuide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/carCreateLeftGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
 
-    <Button
-        android:id="@+id/carCreateBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Save"
-        app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/carCreateAliasET" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/carCreateRightGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/carCreateBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Save"
+            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carCreateAliasET" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -3,17 +3,23 @@ package com.atanasvasil.mobile.mycardocs.activities.cars;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.atanasvasil.mobile.mycardocs.R;
+import com.atanasvasil.mobile.mycardocs.activities.LoginActivity;
+import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.requests.CarCreateRequest;
 import com.atanasvasil.mobile.mycardocs.requests.CarUpdateRequest;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +36,7 @@ public class CarUpdateActivity extends AppCompatActivity {
     private EditText carUpdateAliasET;
     private Button carUpdateBtn;
 
-    private ProgressDialog loadingDialog;
+    private LinearProgressIndicator progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +46,7 @@ public class CarUpdateActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Edit a car");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        loadingDialog = new ProgressDialog(this);
-        loadingDialog.setCanceledOnTouchOutside(false);
-        loadingDialog.setMessage("Updating a car...");
+        progress = findViewById(R.id.carUpdateProgress);
 
         carUpdateBrandET = findViewById(R.id.carUpdateBrandET);
         carUpdateModelET = findViewById(R.id.carUpdateModelET);
@@ -51,7 +55,6 @@ public class CarUpdateActivity extends AppCompatActivity {
         carUpdateLicensePlateET = findViewById(R.id.carUpdateLicensePlateET);
         carUpdateAliasET = findViewById(R.id.carUpdateAliasET);
         carUpdateBtn = findViewById(R.id.carUpdateBtn);
-
 
         Retrofit retrofit = Api.getRetrofit();
 
@@ -77,7 +80,9 @@ public class CarUpdateActivity extends AppCompatActivity {
         });
 
         carUpdateBtn.setOnClickListener(v -> {
-            loadingDialog.show();
+
+            progress.setVisibility(View.VISIBLE);
+
             CarUpdateRequest ccr = new CarUpdateRequest();
             ccr.setCarId(carId);
             ccr.setBrand(carUpdateBrandET.getText().toString());
@@ -91,18 +96,21 @@ public class CarUpdateActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Car> call, Response<Car> response) {
                     Toast.makeText(getApplicationContext(), "Car updated successfully", Toast.LENGTH_LONG).show();
-                    loadingDialog.hide();
-                }
 
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("fragment", "cars");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
+                    progress.setVisibility(View.GONE);
+                }
 
                 @Override
                 public void onFailure(Call<Car> call, Throwable t) {
-
+                    Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
+                    progress.setVisibility(View.GONE);
                 }
             });
-
-
         });
-
     }
 }

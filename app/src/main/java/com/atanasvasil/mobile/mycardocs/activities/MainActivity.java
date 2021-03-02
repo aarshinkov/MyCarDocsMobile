@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = headerView.findViewById(R.id.navNameTV);
         TextView navUserMail = headerView.findViewById(R.id.navEmailTV);
@@ -104,6 +103,19 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        String redirectFragment = getIntent().getStringExtra("fragment");
+
+        if (redirectFragment != null) {
+            switch (redirectFragment) {
+                case "cars":
+                    navigationView.getMenu().performIdentifierAction(R.id.nav_cars, 0);
+                    break;
+                case "policies":
+                    navigationView.getMenu().performIdentifierAction(R.id.nav_policies, 0);
+                    break;
+            }
+        }
     }
 
     @Override

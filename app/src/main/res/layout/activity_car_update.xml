@@ -1,103 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.cars.CarUpdateActivity">
-    <EditText
-        android:id="@+id/carUpdateBrandET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Brand"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/carUpdateModelET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="Model"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/carUpdateBrandET" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/carUpdateColorET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="Color"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/carUpdateModelET" />
+        <EditText
+            android:id="@+id/carUpdateBrandET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Brand"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/carUpdateYearET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="Year"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/carUpdateColorET" />
+        <EditText
+            android:id="@+id/carUpdateModelET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="Model"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateBrandET" />
 
-    <EditText
-        android:id="@+id/carUpdateLicensePlateET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="License plate"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/carUpdateYearET" />
+        <EditText
+            android:id="@+id/carUpdateColorET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="Color"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateModelET" />
 
-    <EditText
-        android:id="@+id/carUpdateAliasET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="Alias"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/carUpdateLicensePlateET" />
+        <EditText
+            android:id="@+id/carUpdateYearET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="Year"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorET" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/carUpdateLeftGuide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        <EditText
+            android:id="@+id/carUpdateLicensePlateET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="License plate"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateYearET" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/carUpdateRightGuide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        <EditText
+            android:id="@+id/carUpdateAliasET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="Alias"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateLicensePlateET" />
 
-    <Button
-        android:id="@+id/carUpdateBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Update"
-        app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/carUpdateAliasET" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/carUpdateLeftGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/carUpdateRightGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <Button
+            android:id="@+id/carUpdateBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Update"
+            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateAliasET" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/carUpdateProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

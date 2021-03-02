@@ -6,15 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".fragments.CarsFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cars"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/carRefresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/carCreateFBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cars"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/carCreateFBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/carCreateFBtn"
@@ -25,6 +40,17 @@
         android:src="@drawable/ic_add_car"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline5" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/carsProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/carRefresh"
+        app:layout_constraintEnd_toEndOf="@+id/carRefresh"
+        app:layout_constraintStart_toStartOf="@+id/carRefresh"
+        app:layout_constraintTop_toTopOf="@+id/carRefresh" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
