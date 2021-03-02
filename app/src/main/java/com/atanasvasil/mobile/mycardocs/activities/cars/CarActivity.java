@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +26,13 @@ import retrofit2.Retrofit;
 
 public class CarActivity extends AppCompatActivity {
 
+    private  TextView carAliasLabelTV;
     private TextView carBrandTV;
+    private TextView carModelTV;
+    private TextView carColorTV;
+    private TextView carYearTV;
+    private TextView carLicensePlateTV;
+    private TextView carAliasTV;
     private ProgressDialog loadingDialog;
 
     @Override
@@ -39,12 +46,22 @@ public class CarActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String carId = intent.getStringExtra("carId");
 
+        carAliasLabelTV = findViewById(R.id.carAliasLabelTV);
         carBrandTV = findViewById(R.id.carBrandTV);
+        carModelTV = findViewById(R.id.carModelTV);
+        carColorTV = findViewById(R.id.carColorTV);
+        carYearTV = findViewById(R.id.carYearTV);
+        carLicensePlateTV = findViewById(R.id.carLicensePlateTV);
+        carAliasTV = findViewById(R.id.carAliasTV);
 
         loadingDialog = new ProgressDialog(this);
         loadingDialog.setMessage("Loading car...");
         loadingDialog.show();
 
+        getCar(carId);
+
+    }
+    private void getCar(String carId){
         Retrofit retrofit = Api.getRetrofit();
 
         CarsApi carsApi = retrofit.create(CarsApi.class);
@@ -63,7 +80,19 @@ public class CarActivity extends AppCompatActivity {
                     Car car = response.body();
 
                     if (car != null) {
+
                         carBrandTV.setText(car.getBrand());
+                        carModelTV.setText(car.getModel());
+                        carColorTV.setText(car.getColor());
+                        carYearTV.setText(String.valueOf(car.getYear()));
+                        carLicensePlateTV.setText(car.getLicensePlate());
+                        if(car.getAlias() != null && !car.getAlias().isEmpty()) {
+                            carAliasTV.setText(car.getAlias());
+                        } else{
+                            carAliasLabelTV.setVisibility(View.GONE);
+                            carAliasTV.setVisibility(View.GONE);
+                        }
+
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Car not found", Toast.LENGTH_LONG).show();
@@ -79,6 +108,7 @@ public class CarActivity extends AppCompatActivity {
                 loadingDialog.hide();
             }
         });
+
     }
 
     @Override

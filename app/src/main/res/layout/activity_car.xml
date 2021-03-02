@@ -8,30 +8,149 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/carBrandTV"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Brand"
-            app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/carBrandLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Brand"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/carLeftGuide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="16dp" />
+            <TextView
+                android:id="@+id/carModelLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Model"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carBrandTV" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/carRightGuide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="16dp" />
+            <TextView
+                android:id="@+id/carColorLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Color"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carModelTV" />
+
+            <TextView
+                android:id="@+id/carYearLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Year"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carColorTV" />
+
+            <TextView
+                android:id="@+id/carLicensePlateLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="License plate"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carYearTV" />
+
+            <TextView
+                android:id="@+id/carAliasLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Alias"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carLicensePlateTV" />
+
+            <TextView
+                android:id="@+id/carBrandTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Brand"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/carModelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Model"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carBrandTV" />
+
+            <TextView
+                android:id="@+id/carColorTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Color"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carModelTV" />
+
+            <TextView
+                android:id="@+id/carYearTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Year"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carColorTV" />
+
+            <TextView
+                android:id="@+id/carLicensePlateTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="License plate"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carYearTV" />
+
+            <TextView
+                android:id="@+id/carAliasTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Alias"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carLicensePlateTV" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/carLeftGuide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/carRightGuide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
