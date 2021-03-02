@@ -1,5 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.fragments;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -15,10 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.atanasvasil.mobile.mycardocs.R;
+import com.atanasvasil.mobile.mycardocs.activities.policies.PolicyCreateActivity;
 import com.atanasvasil.mobile.mycardocs.adapters.PolicyAdapter;
 import com.atanasvasil.mobile.mycardocs.api.PolicyApi;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import java.util.ArrayList;
@@ -40,6 +43,7 @@ public class PoliciesFragment extends Fragment {
     private PolicyAdapter policyAdapter;
     private List<Policy> policies;
     private SwipeRefreshLayout policiesRefresh;
+    private FloatingActionButton policyCreateFBtn;
 
     private CircularProgressIndicator progress;
 
@@ -53,6 +57,7 @@ public class PoliciesFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_policies, container, false);
 
         policiesRefresh = root.findViewById(R.id.policiesRefresh);
+        policyCreateFBtn = root.findViewById(R.id.policyCreateFBtn);
 
         recyclerView = root.findViewById(R.id.policies);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -77,6 +82,11 @@ public class PoliciesFragment extends Fragment {
                 getPoliciesByUserId(user.getUserId());
                 policiesRefresh.setRefreshing(false);
             }
+        });
+
+        policyCreateFBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), PolicyCreateActivity.class);
+            startActivity(intent);
         });
 
         return root;
