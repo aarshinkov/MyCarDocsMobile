@@ -28,13 +28,8 @@ import retrofit2.Retrofit;
 
 public class CarActivity extends AppCompatActivity {
 
-    private TextView carAliasLabelTV;
-    private TextView carBrandTV;
-    private TextView carModelTV;
-    private TextView carColorTV;
+    private TextView carInfoTV;
     private TextView carYearTV;
-    private TextView carLicensePlateTV;
-    private TextView carAliasTV;
 
     private SwipeRefreshLayout carRefresh;
 
@@ -51,13 +46,14 @@ public class CarActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String carId = intent.getStringExtra("carId");
 
-        carAliasLabelTV = findViewById(R.id.carAliasLabelTV);
-        carBrandTV = findViewById(R.id.carBrandTV);
-        carModelTV = findViewById(R.id.carModelTV);
-        carColorTV = findViewById(R.id.carColorTV);
+        carInfoTV = findViewById(R.id.carInfoTV);
         carYearTV = findViewById(R.id.carYearTV);
-        carLicensePlateTV = findViewById(R.id.carLicensePlateTV);
-        carAliasTV = findViewById(R.id.carAliasTV);
+//        carAliasLabelTV = findViewById(R.id.carAliasLabelTV);
+//        carBrandTV = findViewById(R.id.carBrandTV);
+//        carModelTV = findViewById(R.id.carModelTV);
+//        carColorTV = findViewById(R.id.carColorTV);
+//        carLicensePlateTV = findViewById(R.id.carLicensePlateTV);
+//        carAliasTV = findViewById(R.id.carAliasTV);
 
         carRefresh = findViewById(R.id.carRefresh);
 
@@ -96,17 +92,19 @@ public class CarActivity extends AppCompatActivity {
 
                     if (car != null) {
 
-                        carBrandTV.setText(car.getBrand());
-                        carModelTV.setText(car.getModel());
-                        carColorTV.setText(car.getColor());
-                        carYearTV.setText(String.valueOf(car.getYear()));
-                        carLicensePlateTV.setText(car.getLicensePlate());
-                        if (car.getAlias() != null && !car.getAlias().isEmpty()) {
-                            carAliasTV.setText(car.getAlias());
-                        } else {
-                            carAliasLabelTV.setVisibility(View.GONE);
-                            carAliasTV.setVisibility(View.GONE);
-                        }
+                        carInfoTV.setText(getString(R.string.car_info, car.getBrand(), car.getModel()));
+                        carYearTV.setText(getString(R.string.car_year, car.getYear()));
+
+//                        carBrandTV.setText(car.getBrand());
+//                        carModelTV.setText(car.getModel());
+//                        carColorTV.setText(car.getColor());
+//                        carLicensePlateTV.setText(car.getLicensePlate());
+//                        if (car.getAlias() != null && !car.getAlias().isEmpty()) {
+//                            carAliasTV.setText(car.getAlias());
+//                        } else {
+//                            carAliasLabelTV.setVisibility(View.GONE);
+//                            carAliasTV.setVisibility(View.GONE);
+//                        }
 
 
                     } else {
