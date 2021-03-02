@@ -9,13 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.atanasvasil.mobile.mycardocs.R;
-import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
 import com.atanasvasil.mobile.mycardocs.activities.cars.CarCreateActivity;
 import com.atanasvasil.mobile.mycardocs.adapters.CarAdapter;
 import com.atanasvasil.mobile.mycardocs.api.Api;
@@ -23,7 +21,6 @@ import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import java.util.ArrayList;
@@ -43,7 +40,7 @@ public class CarsFragment extends Fragment {
     private RecyclerView recyclerView;
     private CarAdapter carAdapter;
     private List<Car> cars;
-    private SwipeRefreshLayout carRefresh;
+    private SwipeRefreshLayout carsRefresh;
 
     private CircularProgressIndicator progress;
 
@@ -55,7 +52,7 @@ public class CarsFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_cars, container, false);
 
-        carRefresh = root.findViewById(R.id.carRefresh);
+        carsRefresh = root.findViewById(R.id.carsRefresh);
 
         recyclerView = root.findViewById(R.id.cars);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -78,12 +75,12 @@ public class CarsFragment extends Fragment {
 
         getUserCars(user.getUserId());
 
-        carRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        carsRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
                 getUserCars(user.getUserId());
-                carRefresh.setRefreshing(false);
+                carsRefresh.setRefreshing(false);
             }
         });
 
@@ -91,6 +88,7 @@ public class CarsFragment extends Fragment {
     }
 
     private void getUserCars(Long userId) {
+
         Retrofit retrofit = Api.getRetrofit();
         CarsApi carsApi = retrofit.create(CarsApi.class);
 

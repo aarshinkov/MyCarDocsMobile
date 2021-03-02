@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,7 @@ public class PoliciesFragment extends Fragment {
     private RecyclerView recyclerView;
     private PolicyAdapter policyAdapter;
     private List<Policy> policies;
+    private SwipeRefreshLayout policiesRefresh;
 
     private CircularProgressIndicator progress;
 
@@ -49,6 +51,8 @@ public class PoliciesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_policies, container, false);
+
+        policiesRefresh = root.findViewById(R.id.policiesRefresh);
 
         recyclerView = root.findViewById(R.id.policies);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -62,14 +66,28 @@ public class PoliciesFragment extends Fragment {
         progress = root.findViewById(R.id.policiesProgress);
         progress.setVisibility(View.VISIBLE);
 
-        Retrofit retrofit = getRetrofit();
-
-        PolicyApi policyApi = retrofit.create(PolicyApi.class);
-
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         User user = getLoggedUser(pref);
 
-        policyApi.getPoliciesByUserId(user.getUserId()).enqueue(new Callback<List<Policy>>() {
+        getPoliciesByUserId(user.getUserId());
+
+        policiesRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getPoliciesByUserId(user.getUserId());
+                policiesRefresh.setRefreshing(false);
+            }
+        });
+
+        return root;
+    }
+
+    public void getPoliciesByUserId(Long userId) {
+
+        Retrofit retrofit = getRetrofit();
+        PolicyApi policyApi = retrofit.create(PolicyApi.class);
+
+        policyApi.getPoliciesByUserId(userId).enqueue(new Callback<List<Policy>>() {
             @Override
             public void onResponse(Call<List<Policy>> call, Response<List<Policy>> response) {
 
@@ -82,12 +100,14 @@ public class PoliciesFragment extends Fragment {
 
                 noPoliciesFoundTV.setVisibility(View.GONE);
 
-                List<Policy> storedHotels = response.body();
+                List<Policy> storedPolicies = response.body();
 
-                policies.addAll(storedHotels);
+                policies.clear();
 
-                policyAdapter = new PolicyAdapter(getContext(), policies);
-                recyclerView.setAdapter(policyAdapter);
+                if (storedPolicies != null) {
+                    policies.addAll(storedPolicies);
+                }
+
                 policyAdapter.notifyDataSetChanged();
                 progress.setVisibility(View.GONE);
             }
@@ -100,6 +120,5 @@ public class PoliciesFragment extends Fragment {
         });
 
         policyAdapter.notifyDataSetChanged();
-        return root;
     }
 }

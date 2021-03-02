@@ -7,7 +7,7 @@
     tools:context=".fragments.CarsFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/carRefresh"
+        android:id="@+id/carsRefresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -47,10 +47,10 @@
         android:layout_height="wrap_content"
         android:indeterminate="true"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/carRefresh"
-        app:layout_constraintEnd_toEndOf="@+id/carRefresh"
-        app:layout_constraintStart_toStartOf="@+id/carRefresh"
-        app:layout_constraintTop_toTopOf="@+id/carRefresh" />
+        app:layout_constraintBottom_toBottomOf="@+id/carsRefresh"
+        app:layout_constraintEnd_toEndOf="@+id/carsRefresh"
+        app:layout_constraintStart_toStartOf="@+id/carsRefresh"
+        app:layout_constraintTop_toTopOf="@+id/carsRefresh" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"

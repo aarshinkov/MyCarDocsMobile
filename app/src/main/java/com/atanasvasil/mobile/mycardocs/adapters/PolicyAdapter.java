@@ -44,6 +44,10 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Policy policy = data.get(position);
 
+        holder.getStatus().setBackgroundColor(context.getResources().getColor(R.color.success));
+        holder.getStatus().setTooltipText("Valid policy.");
+        holder.getStatusIcon().setImageResource(R.drawable.ic_check);
+
         String type = getStringResource(context, "policy_type_" + policy.getType());
         holder.getTypeTV().setText(type);
 
