@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = headerView.findViewById(R.id.navNameTV);
         TextView navUserMail = headerView.findViewById(R.id.navEmailTV);
-        //ImageView navUserPhot = headerView.findViewById(R.id.navImageTV);
 
         String email = user.getEmail();
 
@@ -85,8 +84,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Do something when No button clicked
-                        Toast.makeText(getApplicationContext(),
-                                "No Button Clicked", Toast.LENGTH_SHORT).show();
                     }
                 });
                 AlertDialog dialog = builder.create();

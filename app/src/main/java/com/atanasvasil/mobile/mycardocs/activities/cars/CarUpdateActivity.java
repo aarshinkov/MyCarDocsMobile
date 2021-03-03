@@ -78,8 +78,6 @@ public class CarUpdateActivity extends AppCompatActivity {
                 carUpdateColorET.setText(car.getColor());
                 carUpdateTransmissionSP.setSelection(car.getTransmission(), true);
                 carUpdatePowerTypeSP.setSelection(car.getPowerType(), true);
-//                carUpdateTransmissionSP.setText(Integer.toString(car.getTransmission()));
-//                carUpdatePowerTypeSP.setText(Integer.toString(car.getPowerType()));
                 carUpdateYearET.setText(String.valueOf(car.getYear()));
                 carUpdateLicensePlateET.setText(car.getLicensePlate());
                 carUpdateAliasET.setText(car.getAlias());

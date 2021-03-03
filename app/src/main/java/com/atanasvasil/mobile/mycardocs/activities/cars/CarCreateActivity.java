@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.atanasvasil.mobile.mycardocs.R;
@@ -35,6 +36,8 @@ public class CarCreateActivity extends AppCompatActivity {
     private EditText carCreateBrandET;
     private EditText carCreateModelET;
     private EditText carCreateColorET;
+    private Spinner carCreateTransmissionSP;
+    private Spinner carCreatePowerTypeSP;
     private EditText carCreateYearET;
     private EditText carCreateLicensePlateET;
     private EditText carCreateAliasET;
@@ -57,6 +60,8 @@ public class CarCreateActivity extends AppCompatActivity {
         carCreateBrandET = findViewById(R.id.carCreateBrandET);
         carCreateModelET = findViewById(R.id.carCreateModelET);
         carCreateColorET = findViewById(R.id.carCreateColorET);
+        carCreateTransmissionSP = findViewById(R.id.carCreateTransmissionSP);
+        carCreatePowerTypeSP = findViewById(R.id.carCreatePowerTypeSP);
         carCreateYearET = findViewById(R.id.carCreateYearET);
         carCreateLicensePlateET = findViewById(R.id.carCreateLicensePlateET);
         carCreateAliasET = findViewById(R.id.carCreateAliasET);
@@ -78,6 +83,10 @@ public class CarCreateActivity extends AppCompatActivity {
             ccr.setBrand(carCreateBrandET.getText().toString());
             ccr.setModel(carCreateModelET.getText().toString());
             ccr.setColor(carCreateColorET.getText().toString());
+            int transmission = carCreateTransmissionSP.getSelectedItemPosition();
+            ccr.setTransmission(transmission);
+            int powerType = carCreatePowerTypeSP.getSelectedItemPosition();
+            ccr.setPowerType(powerType);
             ccr.setYear(Integer.parseInt(carCreateYearET.getText().toString()));
             ccr.setLicensePlate(carCreateLicensePlateET.getText().toString());
             ccr.setAlias(carCreateAliasET.getText().toString());

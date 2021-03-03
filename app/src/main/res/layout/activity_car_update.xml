@@ -46,18 +46,6 @@
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/carUpdateModelET" />
 
-        <!--        <EditText-->
-        <!--            android:id="@+id/carUpdateTransmissionET"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="16dp"-->
-        <!--            android:ems="10"-->
-        <!--            android:hint="Transmission"-->
-        <!--            android:inputType="textPersonName"-->
-        <!--            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"-->
-        <!--            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorET" />-->
-
         <Spinner
             android:id="@+id/carUpdateTransmissionSP"
             android:layout_width="0dp"
@@ -77,18 +65,6 @@
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/carUpdateTransmissionSP" />
-
-        <!--        <EditText-->
-        <!--            android:id="@+id/carUpdatePowerTypeET"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="15dp"-->
-        <!--            android:ems="10"-->
-        <!--            android:hint="Power type"-->
-        <!--            android:inputType="textPersonName"-->
-        <!--            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"-->
-        <!--            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/carUpdateTransmissionET" />-->
 
         <EditText
             android:id="@+id/carUpdateYearET"

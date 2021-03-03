@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -44,6 +45,8 @@ public class CarsFragment extends Fragment {
 
     private CircularProgressIndicator progress;
 
+    private TextView noCarsFoundTV;
+
     private FloatingActionButton carCreateFBtn;
     private SharedPreferences pref;
 
@@ -56,6 +59,8 @@ public class CarsFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.cars);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        noCarsFoundTV = root.findViewById(R.id.noCarsFoundTV);
 
         cars = new ArrayList<>();
         carAdapter = new CarAdapter(getContext(), cars);
@@ -97,9 +102,12 @@ public class CarsFragment extends Fragment {
             public void onResponse(Call<List<Car>> call, Response<List<Car>> response) {
 
                 if (response.code() == 400) {
+                    noCarsFoundTV.setVisibility(View.VISIBLE);
                     progress.setVisibility(View.GONE);
                     return;
                 }
+
+                noCarsFoundTV.setVisibility(View.GONE);
 
                 List<Car> storedCars = response.body();
 

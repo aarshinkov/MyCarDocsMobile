@@ -26,6 +26,8 @@
     <string name="menu_policies">Policies</string>
     <string name="menu_logout">Logout</string>
 
+    <string name="cars_nofound">No cars found.</string>
+
     <string name="car_info">%1$s %2$s</string>
     <string name="car_year_label">Year</string>
     <string name="car_year">%1$d - Edition</string>
