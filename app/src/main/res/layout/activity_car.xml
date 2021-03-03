@@ -19,121 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/carBrandLabelTV"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="16dp"-->
-            <!--                android:text="@string/car_brand"-->
-            <!--                android:textStyle="bold"-->
-            <!--                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/carBrandTV"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="16dp"-->
-            <!--                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"-->
-            <!--                app:layout_constraintTop_toTopOf="parent"-->
-            <!--                tools:text="Brand" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/carModelLabelTV"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                android:text="@string/car_model"-->
-            <!--                android:textStyle="bold"-->
-            <!--                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/carBrandLabelTV" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/carModelTV"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/carBrandTV"-->
-            <!--                tools:text="Model" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/carColorLabelTV"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                android:text="@string/car_color"-->
-            <!--                android:textStyle="bold"-->
-            <!--                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/carModelLabelTV" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/carColorTV"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/carModelTV"-->
-            <!--                tools:text="Color" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/carYearLabelTV"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                android:text="@string/car_year"-->
-            <!--                android:textStyle="bold"-->
-            <!--                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/carColorLabelTV" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/carYearTV"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/carColorTV"-->
-            <!--                tools:text="Year" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/carLicensePlateLabelTV"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                android:text="@string/car_license_plate"-->
-            <!--                android:textStyle="bold"-->
-            <!--                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/carYearLabelTV" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/carLicensePlateTV"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/carYearTV"-->
-            <!--                tools:text="License plate" />-->
-
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/carAliasLabelTV"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                android:text="@string/car_alias"-->
-            <!--                android:textStyle="bold"-->
-            <!--                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/carLicensePlateLabelTV" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/carAliasTV"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/carLicensePlateTV"-->
-            <!--                tools:text="Alias" />-->
-
             <TextView
                 android:id="@+id/carInfoTV"
                 android:layout_width="wrap_content"
@@ -142,6 +27,7 @@
                 android:fontFamily="@font/nunito"
                 android:textSize="24sp"
                 android:textStyle="bold"
+                android:transitionName="carInfo"
                 app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Car info" />
@@ -152,9 +38,200 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/nunito"
+                android:textSize="18sp"
+                android:transitionName="carYear"
                 app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                 app:layout_constraintTop_toBottomOf="@+id/carInfoTV"
                 tools:text="Year" />
+
+            <TextView
+                android:id="@+id/carLicensePlateTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:textSize="18sp"
+                android:transitionName="carLicensePlate"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carInfoTV"
+                tools:text="License plate" />
+
+            <View
+                android:id="@+id/carDividerOne"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carYearTV" />
+
+            <ImageView
+                android:id="@+id/carTransmissionIV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carDividerOne"
+                app:srcCompat="@drawable/ic_settings" />
+
+            <TextView
+                android:id="@+id/carTransmissionLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/car_transmission_label"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carTransmissionIV" />
+
+            <TextView
+                android:id="@+id/carTransmissionTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carTransmissionLabelTV"
+                tools:text="Transmission" />
+
+            <ImageView
+                android:id="@+id/carPowerTypeIV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carDividerOne"
+                app:srcCompat="@drawable/ic_gas_station" />
+
+            <TextView
+                android:id="@+id/carPowerTypeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carPowerTypeLabelTV"
+                tools:text="Power type" />
+
+            <TextView
+                android:id="@+id/carPowerTypeLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/car_power_type_label"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carPowerTypeIV" />
+
+            <View
+                android:id="@+id/carDividerTwo"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carTransmissionTV" />
+
+            <TextView
+                android:id="@+id/carAliasLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/car_alias"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carDividerTwo"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/carAliasTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="Alias"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carDividerTwo"
+                tools:text="Alias"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/carColorLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/car_color"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carAliasLabelTV" />
+
+            <TextView
+                android:id="@+id/carColorTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carAliasTV"
+                tools:text="Color" />
+
+            <TextView
+                android:id="@+id/carAddedOnLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/car_added_on"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carColorLabelTV" />
+
+            <TextView
+                android:id="@+id/carAddedOnTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carColorTV"
+                tools:text="Added on" />
+
+            <TextView
+                android:id="@+id/carEditedOnLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/car_edited_on"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carAddedOnLabelTV"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/carEditedOnTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                app:layout_constraintTop_toBottomOf="@+id/carAddedOnTV"
+                tools:text="Edited on"
+                tools:visibility="visible" />
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/carProgress"

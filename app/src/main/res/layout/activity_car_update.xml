@@ -14,7 +14,7 @@
             android:id="@+id/carUpdateBrandET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Brand"
             android:inputType="textPersonName"
@@ -26,7 +26,7 @@
             android:id="@+id/carUpdateModelET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Model"
             android:inputType="textPersonName"
@@ -38,7 +38,7 @@
             android:id="@+id/carUpdateColorET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Color"
             android:inputType="textPersonName"
@@ -46,23 +46,67 @@
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/carUpdateModelET" />
 
+        <!--        <EditText-->
+        <!--            android:id="@+id/carUpdateTransmissionET"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:ems="10"-->
+        <!--            android:hint="Transmission"-->
+        <!--            android:inputType="textPersonName"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorET" />-->
+
+        <Spinner
+            android:id="@+id/carUpdateTransmissionSP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:entries="@array/car_transmissions"
+            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorET" />
+
+        <Spinner
+            android:id="@+id/carUpdatePowerTypeSP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:entries="@array/car_power_types"
+            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateTransmissionSP" />
+
+        <!--        <EditText-->
+        <!--            android:id="@+id/carUpdatePowerTypeET"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="15dp"-->
+        <!--            android:ems="10"-->
+        <!--            android:hint="Power type"-->
+        <!--            android:inputType="textPersonName"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/carUpdateTransmissionET" />-->
+
         <EditText
             android:id="@+id/carUpdateYearET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Year"
             android:inputType="number"
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorET" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdatePowerTypeSP" />
 
         <EditText
             android:id="@+id/carUpdateLicensePlateET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="License plate"
             android:inputType="textPersonName"
@@ -74,7 +118,7 @@
             android:id="@+id/carUpdateAliasET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Alias"
             android:inputType="textPersonName"
@@ -101,7 +145,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Update"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/carUpdateAliasET" />

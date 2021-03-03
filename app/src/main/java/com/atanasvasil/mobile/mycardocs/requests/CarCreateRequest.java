@@ -5,6 +5,8 @@ public class CarCreateRequest {
     private String brand;
     private String model;
     private String color;
+    private Integer transmission;
+    private Integer powerType;
     private Integer year;
     private String licensePlate;
     private String alias;
@@ -32,6 +34,22 @@ public class CarCreateRequest {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public Integer getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(Integer transmission) {
+        this.transmission = transmission;
+    }
+
+    public Integer getPowerType() {
+        return powerType;
+    }
+
+    public void setPowerType(Integer powerType) {
+        this.powerType = powerType;
     }
 
     public Integer getYear() {

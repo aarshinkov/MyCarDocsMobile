@@ -35,6 +35,30 @@
     <string name="car_color">Color</string>
     <string name="car_license_plate">License plate</string>
     <string name="car_alias">Alias</string>
+    <string name="car_added_on">Added on</string>
+    <string name="car_edited_on">Edited on</string>
+
+    <string name="car_transmission_label">Transmission</string>
+    <string name="car_transmission_0">Manual</string>
+    <string name="car_transmission_1">Automatic</string>
+
+    <string-array name="car_transmissions">
+        <item>Manual</item>
+        <item>Automatic</item>
+    </string-array>
+
+    <string name="car_power_type_label">Power type/fuel</string>
+    <string name="car_power_type_0">Diesel</string>
+    <string name="car_power_type_1">Gasoline</string>
+    <string name="car_power_type_2">LPG</string>
+    <string name="car_power_type_3">Electric</string>
+
+    <string-array name="car_power_types">
+        <item>Diesel</item>
+        <item>Gasoline</item>
+        <item>LPG</item>
+        <item>Electric</item>
+    </string-array>
 
     <string name="car_action_edit">Edit</string>
     <string name="car_action_delete">Delete</string>

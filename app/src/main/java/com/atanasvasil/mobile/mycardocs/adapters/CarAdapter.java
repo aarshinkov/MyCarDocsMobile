@@ -1,5 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.atanasvasil.mobile.mycardocs.R;
@@ -45,17 +48,15 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         holder.getCarItemYearTV().setText(String.valueOf(car.getYear()));
         holder.getCarItemLicensePlateTV().setText(car.getLicensePlate());
 
-//        holder.getCarItemBrandTV().setText(car.getBrand());
-//        holder.getCarItemModelTV().setText(car.getModel());
-//        holder.getCarItemColorTV().setText(car.getColor());
-//        holder.getCarItemYearTV().setText(String.valueOf(car.getYear()));
-
-//        holder.getCarItemLicensePlateTV().setText(car.getLicensePlate());
-
         holder.getCardView().setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), CarActivity.class);
             intent.putExtra("carId", car.getCarId());
-            v.getContext().startActivity(intent);
+            Pair<View, String> p1 = Pair.create(holder.getCarItemInfoTV(), "carInfo");
+            Pair<View, String> p2 = Pair.create(holder.getCarItemYearTV(), "carYear");
+            Pair<View, String> p3 = Pair.create(holder.getCarItemLicensePlateTV(), "carLicensePlate");
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, p1, p2, p3);
+//            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, holder.getCarItemInfoTV(), "carInfo");
+            context.startActivity(intent, options.toBundle());
         });
     }
 
@@ -79,13 +80,6 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
             carItemInfoTV = itemView.findViewById(R.id.carItemInfoTV);
             carItemYearTV = itemView.findViewById(R.id.carItemYearTV);
             carItemLicensePlateTV = itemView.findViewById(R.id.carItemLicensePlateTV);
-//            carItemModelTV = itemView.findViewById(R.id.carItemModelTV);
-//            carItemColorTV = itemView.findViewById(R.id.carItemColorTV);
-//            carItemYearTV = itemView.findViewById(R.id.carItemYearTV);
-//            carItemLicensePlateTV = itemView.findViewById(R.id.carItemLicensePlateTV);
-//            carItemAliasTV = itemView.findViewById(R.id.carItemAliasTV);
-//            carItemAddedOnTV = itemView.findViewById(R.id.carItemAddedOnTV);
-//            carItemEditedOnTV = itemView.findViewById(R.id.carItemEditedOnTV);
         }
 
         public CardView getCardView() {
