@@ -65,9 +65,20 @@
     <string name="car_action_edit">Edit</string>
     <string name="car_action_delete">Delete</string>
 
+    <string name="policy_number">Policy number</string>
+    <string name="policy_ins_name">Insurer name</string>
+    <string name="policy_start_date">Start date</string>
+    <string name="policy_end_date">End date</string>
+
     <string name="policy_type_1">Insurance</string>
     <string name="policy_type_2">Casco</string>
     <string name="policy_type_3">Vignette</string>
+
+    <string-array name="policy_types">
+        <item>Insurance</item>
+        <item>Casco</item>
+        <item>Vignette</item>
+    </string-array>
 
     <string name="policies_nofound">No policies found.</string>
 

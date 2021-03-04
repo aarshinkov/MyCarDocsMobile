@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCarDocs"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.policies.PolicyCreateActivity" />
+        <activity
+            android:name=".activities.policies.PolicyCreateActivity"
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.cars.CarUpdateActivity"
             android:parentActivityName=".activities.cars.CarActivity" />

@@ -11,16 +11,69 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/policyCreateNumberET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/policy_number"
+            app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateProgress" />
+
+        <Spinner
+            android:id="@+id/policyCreateTypeSP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:entries="@array/policy_types"
+            app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateNumberET" />
+
+        <EditText
+            android:id="@+id/policyCreateInsNameET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/policy_ins_name"
+            app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateTypeSP" />
+
+        <Spinner
+            android:id="@+id/policyCreateCarsSP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateInsNameET" />
+
+        <EditText
             android:id="@+id/policyCreateStartDateET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
-            android:hint="Enter start date"
+            android:hint="@string/policy_start_date"
             android:inputType="date"
             app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateCarsSP" />
+
+        <EditText
+            android:id="@+id/policyCreateEndDateET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/policy_end_date"
+            android:inputType="date"
+            app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateStartDateET" />
 
         <Button
             android:id="@+id/policyCreateBtn"
@@ -29,7 +82,7 @@
             android:text="Create policy"
             app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/policyCreateStartDateET" />
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateEndDateET" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/policyCreateProgress"

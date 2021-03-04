@@ -3,7 +3,6 @@ package com.atanasvasil.mobile.mycardocs.activities.cars;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,14 +13,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.atanasvasil.mobile.mycardocs.R;
-import com.atanasvasil.mobile.mycardocs.activities.LoginActivity;
 import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
-import com.atanasvasil.mobile.mycardocs.requests.CarCreateRequest;
-import com.atanasvasil.mobile.mycardocs.requests.CarUpdateRequest;
+import com.atanasvasil.mobile.mycardocs.requests.cars.CarUpdateRequest;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import retrofit2.Call;

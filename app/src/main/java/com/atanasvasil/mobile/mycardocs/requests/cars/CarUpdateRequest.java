@@ -1,7 +1,10 @@
-package com.atanasvasil.mobile.mycardocs.requests;
+package com.atanasvasil.mobile.mycardocs.requests.cars;
 
-public class CarCreateRequest {
+import java.io.Serializable;
 
+public class CarUpdateRequest implements Serializable {
+
+    private String carId;
     private String brand;
     private String model;
     private String color;
@@ -10,7 +13,14 @@ public class CarCreateRequest {
     private Integer year;
     private String licensePlate;
     private String alias;
-    private Long userId;
+
+    public String getCarId() {
+        return carId;
+    }
+
+    public void setCarId(String carId) {
+        this.carId = carId;
+    }
 
     public String getBrand() {
         return brand;
@@ -74,13 +84,5 @@ public class CarCreateRequest {
 
     public void setAlias(String alias) {
         this.alias = alias;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 }

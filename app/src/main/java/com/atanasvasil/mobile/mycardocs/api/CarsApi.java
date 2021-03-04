@@ -1,7 +1,7 @@
 package com.atanasvasil.mobile.mycardocs.api;
 
-import com.atanasvasil.mobile.mycardocs.requests.CarCreateRequest;
-import com.atanasvasil.mobile.mycardocs.requests.CarUpdateRequest;
+import com.atanasvasil.mobile.mycardocs.requests.cars.CarCreateRequest;
+import com.atanasvasil.mobile.mycardocs.requests.cars.CarUpdateRequest;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 
 import java.util.List;

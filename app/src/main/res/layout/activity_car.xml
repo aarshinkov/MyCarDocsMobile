@@ -55,6 +55,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     android:textSize="18sp"
+                    android:textStyle="bold"
                     android:transitionName="carLicensePlate"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carInfoTV"
@@ -86,6 +87,8 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/car_transmission_label"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carTransmissionIV" />
 
@@ -127,6 +130,8 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/car_power_type_label"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carPowerTypeIV" />
 
