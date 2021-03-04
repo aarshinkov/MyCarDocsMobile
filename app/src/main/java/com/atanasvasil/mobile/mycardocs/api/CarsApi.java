@@ -19,6 +19,9 @@ public interface CarsApi {
     @GET("api/cars/{carId}")
     Call<Car> getCar(@Path("carId") String carId);
 
+    @GET("api/cars/license/{licensePlate}")
+    Call<Car> getCarByLicensePlate(@Path("licensePlate") String licensePlate);
+
     @GET("api/cars/user/{userId}")
     Call<List<Car>> getUserCars(@Path("userId") Long userId);
 
