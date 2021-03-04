@@ -34,6 +34,7 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -97,8 +98,11 @@ public class PolicyCreateActivity extends AppCompatActivity {
         policyCreateEndDateET.setInputType(InputType.TYPE_NULL);
 
         policyCreateStartDateET.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "Click", Toast.LENGTH_LONG).show();
             showDateTimeDialog(policyCreateStartDateET);
+        });
+
+        policyCreateEndDateET.setOnClickListener(v -> {
+            showDateTimeDialog(policyCreateEndDateET);
         });
 
         policyCreateBtn.setOnClickListener(v -> {
@@ -116,11 +120,15 @@ public class PolicyCreateActivity extends AppCompatActivity {
             String licensePlate = policyCreateCarsSP.getSelectedItem().toString();
 
             try {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+
                 Date startDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(policyCreateStartDateET.getText().toString());
-                pcr.setStartDate(startDate);
+                String startFDate = dateFormat.format(startDate);
+                pcr.setStartDate(startFDate);
 
                 Date endDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(policyCreateEndDateET.getText().toString());
-                pcr.setEndDate(endDate);
+                String endFDate = dateFormat.format(endDate);
+                pcr.setEndDate(endFDate);
 
             } catch (Exception e) {
 
@@ -132,6 +140,23 @@ public class PolicyCreateActivity extends AppCompatActivity {
                 public void onResponse(Call<Car> call, Response<Car> response) {
                     Car car = response.body();
                     pcr.setCarId(car.getCarId());
+
+                    PolicyApi policyApi = retrofit.create(PolicyApi.class);
+                    policyApi.createPolicy(pcr).enqueue(new Callback<Policy>() {
+                        @Override
+                        public void onResponse(Call<Policy> call, Response<Policy> response) {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("fragment", "policies");
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
+
+                        @Override
+                        public void onFailure(Call<Policy> call, Throwable t) {
+
+                        }
+                    });
+
                 }
 
                 @Override
@@ -139,23 +164,6 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
                 }
             });
-
-            PolicyApi policyApi = retrofit.create(PolicyApi.class);
-            policyApi.createPolicy(pcr).enqueue(new Callback<Policy>() {
-                @Override
-                public void onResponse(Call<Policy> call, Response<Policy> response) {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("fragment", "policies");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }
-
-                @Override
-                public void onFailure(Call<Policy> call, Throwable t) {
-
-                }
-            });
-
         });
     }
 
