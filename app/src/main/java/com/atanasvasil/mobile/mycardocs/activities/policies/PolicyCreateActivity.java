@@ -103,6 +103,10 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
         policyCreateBtn.setOnClickListener(v -> {
 
+            if (isFieldsValid()) {
+                return;
+            }
+
             PolicyCreateRequest pcr = new PolicyCreateRequest();
 
             pcr.setNumber(policyCreateNumberET.getText().toString());
@@ -229,5 +233,38 @@ public class PolicyCreateActivity extends AppCompatActivity {
         };
 
         new DatePickerDialog(this, dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    private boolean isFieldsValid() {
+
+        boolean hasErrors = false;
+
+        String number = policyCreateNumberET.getText().toString();
+        Integer type = policyCreateTypeSP.getSelectedItemPosition() + 1;
+        String insName = policyCreateInsNameET.getText().toString();
+        String startDate = policyCreateStartDateET.getText().toString();
+        String endDate = policyCreateEndDateET.getText().toString();
+
+        if (number == null || number.isEmpty()) {
+            policyCreateNumberET.setError("Policy number must not be empty");
+            hasErrors = true;
+        }
+
+        if (insName == null || insName.isEmpty()) {
+            policyCreateInsNameET.setError("Insurer name must not be empty");
+            hasErrors = true;
+        }
+
+        if (startDate == null || startDate.isEmpty()) {
+            policyCreateStartDateET.setError("Start date must not be empty");
+            hasErrors = true;
+        }
+
+        if (endDate == null || startDate.isEmpty()) {
+            policyCreateEndDateET.setError("End date must not be empty");
+            hasErrors = true;
+        }
+
+        return hasErrors;
     }
 }

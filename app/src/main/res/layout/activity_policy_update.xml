@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.policies.PolicyUpdateActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/policyUpdateNumberET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/policy_number"
+            app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyUpdateProgress" />
+
+        <Spinner
+            android:id="@+id/policyUpdateTypeSP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:entries="@array/policy_types"
+            app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyUpdateNumberET" />
+
+        <EditText
+            android:id="@+id/policyUpdateInsNameET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/policy_ins_name"
+            app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyUpdateTypeSP" />
+
+        <Spinner
+            android:id="@+id/policyUpdateCarsSP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyUpdateInsNameET" />
+
+        <EditText
+            android:id="@+id/policyUpdateStartDateET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/policy_start_date"
+            android:inputType="date"
+            app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyUpdateCarsSP" />
+
+        <EditText
+            android:id="@+id/policyUpdateEndDateET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/policy_end_date"
+            android:inputType="date"
+            app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyUpdateStartDateET" />
+
+        <Button
+            android:id="@+id/policyUpdateBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Update policy"
+            app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyUpdateEndDateET" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/policyUpdateProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/policyUpdateRightGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/policyUpdateLeftGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
