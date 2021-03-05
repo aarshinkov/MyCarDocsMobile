@@ -28,6 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:contentDescription="@string/policy_icon"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_policies" />
@@ -40,6 +41,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/nunito"
                     android:textSize="20sp"
+                    android:tooltipText="@string/policy_number"
                     android:transitionName="policyNumber"
                     app:layout_constraintStart_toEndOf="@+id/policyIV"
                     app:layout_constraintTop_toTopOf="parent"
@@ -51,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    android:text="Policy type"
+                    android:text="@string/policy_type"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
@@ -61,7 +63,7 @@
                     android:id="@+id/policyTypeTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     android:transitionName="policyType"
@@ -75,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    android:text="Insurer name"
+                    android:text="@string/policy_ins_name"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
@@ -85,7 +87,7 @@
                     android:id="@+id/policyInsurerNameTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     android:transitionName="policyInsName"
@@ -99,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    android:text="Start date"
+                    android:text="@string/policy_start_date"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
@@ -109,7 +111,7 @@
                     android:id="@+id/policyStartDateTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     android:transitionName="policyStartDate"
@@ -123,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    android:text="End date"
+                    android:text="@string/policy_end_date"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
@@ -133,13 +135,38 @@
                     android:id="@+id/policyEndDateTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     android:transitionName="policyEndDate"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
                     app:layout_constraintTop_toBottomOf="@+id/policyStartDateTV"
                     tools:text="11.04.2021 23:59" />
+
+                <TextView
+                    android:id="@+id/policyStatusLabelTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/policy_status"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyEndDateLabelTV" />
+
+                <TextView
+                    android:id="@+id/policyStatusTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/policy_status_active"
+                    android:textColor="@color/success"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyEndDateTV" />
 
                 <View
                     android:id="@+id/policyDivider"
@@ -149,13 +176,14 @@
                     android:background="?android:attr/listDivider"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyEndDateTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/policyStatusTV" />
 
                 <ImageView
                     android:id="@+id/policyCarIV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:contentDescription="@string/policy_car_info_icon"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/policyDivider"
                     app:srcCompat="@drawable/ic_cars" />
@@ -166,7 +194,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Car information"
+                    android:text="@string/policy_car_info"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     app:layout_constraintStart_toEndOf="@+id/policyCarIV"
                     app:layout_constraintTop_toBottomOf="@id/policyDivider" />
@@ -177,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    android:text="Car brand &amp; model"
+                    android:text="@string/policy_car_brand_model"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
@@ -187,7 +215,7 @@
                     android:id="@+id/policyCarInfoTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
@@ -200,7 +228,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    android:text="License plate"
+                    android:text="@string/policy_car_license_plate"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
@@ -210,7 +238,7 @@
                     android:id="@+id/policyCarLicensePlateTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     android:transitionName="policyCarLicensePlate"
@@ -224,7 +252,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    android:text="Year"
+                    android:text="@string/policy_car_year"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
@@ -234,7 +262,7 @@
                     android:id="@+id/policyCarYearTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
@@ -247,7 +275,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    android:text="Color"
+                    android:text="@string/policy_car_color"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
@@ -257,34 +285,12 @@
                     android:id="@+id/policyCarColorTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
                     app:layout_constraintTop_toBottomOf="@+id/policyCarYearTV"
                     tools:text="Color" />
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/policyLicensePlateLabelTV"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginTop="8dp"-->
-                <!--                    android:fontFamily="@font/nunito"-->
-                <!--                    android:text="License plate"-->
-                <!--                    android:textColor="@color/black"-->
-                <!--                    android:textStyle="bold"-->
-                <!--                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"-->
-                <!--                    app:layout_constraintTop_toBottomOf="@+id/policyNumberTV" />-->
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/policyLicensePlateTV"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:fontFamily="@font/nunito"-->
-                <!--                    android:transitionName="policyCarLicensePlate"-->
-                <!--                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"-->
-                <!--                    app:layout_constraintTop_toBottomOf="@+id/policyLicensePlateLabelTV"-->
-                <!--                    tools:text="PA8822AA" />-->
 
                 <com.google.android.material.progressindicator.CircularProgressIndicator
                     android:id="@+id/policyProgress"

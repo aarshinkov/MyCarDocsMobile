@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">MyCarDocs</string>
+    <string name="app_logo">Application logo</string>
 
     <string name="nav_home">Home</string>
 
@@ -28,6 +29,9 @@
 
     <string name="cars_nofound">No cars found.</string>
 
+    <string name="car_create_button">Car create button</string>
+
+    <string name="car_icon">Car icon</string>
     <string name="car_info">%1$s %2$s</string>
     <string name="car_year_label">Year</string>
     <string name="car_year">%1$d - Edition</string>
@@ -65,10 +69,20 @@
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
 
+    <string name="policy_icon">Policy icon</string>
+
+    <string name="policy_no">Policy No.</string>
     <string name="policy_number">Policy number</string>
-    <string name="policy_ins_name">Insurer name</string>
+    <string name="policy_ins_name">Provider name</string>
     <string name="policy_start_date">Start date</string>
     <string name="policy_end_date">End date</string>
+
+    <string name="policy_type">Policy type</string>
+    <string name="policy_status">Status</string>
+
+    <string name="policy_status_active">Active policy</string>
+    <string name="policy_status_expired">Expired policy</string>
+    <string name="policy_status_pending">Pending policy</string>
 
     <string name="policy_type_1">Insurance</string>
     <string name="policy_type_2">Casco</string>
@@ -80,8 +94,17 @@
         <item>Vignette</item>
     </string-array>
 
+    <string name="policy_car_info_icon">Policy car info icon</string>
+    <string name="policy_car_info">Car information</string>
+    <string name="policy_car_brand_model">Car brand &amp; model</string>
+    <string name="policy_car_license_plate">License plate</string>
+    <string name="policy_car_year">Year</string>
+    <string name="policy_car_color">Color</string>
+
     <string name="policies_nofound">No policies found.</string>
     <string name="policies_nocars">To create a policy you must create a car first.</string>
+
+    <string name="policy_create_buttonon">Policy create button</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

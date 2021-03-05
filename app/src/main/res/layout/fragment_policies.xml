@@ -17,7 +17,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="14sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/carsRefresh"
         app:layout_constraintStart_toStartOf="@+id/policiesLeftGuide"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
@@ -68,10 +67,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:clickable="true"
+        android:contentDescription="@string/policy_create_buttonon"
         android:src="@drawable/ic_add_car"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/policiesRightGuide" />
+        app:layout_constraintEnd_toStartOf="@+id/policiesRightGuide"
+        tools:visibility="visible" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/policiesProgress"

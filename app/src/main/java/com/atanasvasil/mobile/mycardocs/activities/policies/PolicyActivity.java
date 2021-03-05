@@ -41,6 +41,7 @@ public class PolicyActivity extends AppCompatActivity {
     private TextView policyInsurerNameTV;
     private TextView policyStartDateTV;
     private TextView policyEndDateTV;
+    private TextView policyStatusTV;
     private TextView policyCarInfoTV;
     private TextView policyCarLicensePlateTV;
     private TextView policyCarYearTV;
@@ -68,6 +69,7 @@ public class PolicyActivity extends AppCompatActivity {
         policyInsurerNameTV = findViewById(R.id.policyInsurerNameTV);
         policyStartDateTV = findViewById(R.id.policyStartDateTV);
         policyEndDateTV = findViewById(R.id.policyEndDateTV);
+        policyStatusTV = findViewById(R.id.policyStatusTV);
         policyCarInfoTV = findViewById(R.id.policyCarInfoTV);
         policyCarLicensePlateTV = findViewById(R.id.policyCarLicensePlateTV);
         policyCarYearTV = findViewById(R.id.policyCarYearTV);
@@ -125,15 +127,26 @@ public class PolicyActivity extends AppCompatActivity {
                         policyTypeTV.setText(type);
                         policyInsurerNameTV.setText(policy.getInsName());
 
+                        Date now = new Date();
                         Date date = new Date();
                         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
 
                         date.setTime(policy.getStartDate().getTime());
                         policyStartDateTV.setText(sdf.format(date));
 
+                        if (now.before(date)) {
+                            policyStatusTV.setTextColor(getApplicationContext().getResources().getColor(R.color.warning));
+                            policyStatusTV.setText(getString(R.string.policy_status_pending));
+                        }
+
                         date = new Date();
                         date.setTime(policy.getEndDate().getTime());
                         policyEndDateTV.setText(sdf.format(date));
+
+                        if (now.after(date)) {
+                            policyStatusTV.setTextColor(getApplicationContext().getResources().getColor(R.color.danger));
+                            policyStatusTV.setText(getString(R.string.policy_status_expired));
+                        }
 
                         Car car = policy.getCar();
 

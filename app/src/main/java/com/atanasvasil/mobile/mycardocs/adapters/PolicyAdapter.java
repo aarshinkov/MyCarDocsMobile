@@ -51,7 +51,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
         Policy policy = data.get(position);
 
         holder.getStatus().setBackgroundColor(context.getResources().getColor(R.color.success));
-        holder.getStatus().setTooltipText("Valid policy.");
+        holder.getStatus().setTooltipText(context.getString(R.string.policy_status_active));
         holder.getStatusIcon().setImageResource(R.drawable.ic_check);
 
         String type = getStringResource(context, "policy_type_" + policy.getType());
@@ -74,7 +74,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
 
         if (now.before(date)) {
             holder.getStatus().setBackgroundColor(context.getResources().getColor(R.color.warning));
-            holder.getStatus().setTooltipText("Pending policy.");
+            holder.getStatus().setTooltipText(context.getString(R.string.policy_status_pending));
             holder.getStatusIcon().setImageResource(R.drawable.ic_time);
         }
 
@@ -84,7 +84,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
 
         if (now.after(date)) {
             holder.getStatus().setBackgroundColor(context.getResources().getColor(R.color.danger));
-            holder.getStatus().setTooltipText("Expired policy.");
+            holder.getStatus().setTooltipText(context.getString(R.string.policy_status_expired));
             holder.getStatusIcon().setImageResource(R.drawable.ic_close);
         }
 
