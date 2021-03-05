@@ -16,6 +16,7 @@ import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,9 +32,12 @@ public class HomeFragment extends Fragment {
 
     private TextView welcomeTV;
     private CardView carsCountCV;
-    private CardView policiesCountCV;
     private TextView carsCountTV;
+    private CircularProgressIndicator carsCountProgress;
+
+    private CardView policiesCountCV;
     private TextView policiesCountTV;
+    private CircularProgressIndicator policiesCountProgress;
 
     private SharedPreferences pref;
 
@@ -43,9 +47,12 @@ public class HomeFragment extends Fragment {
 
         welcomeTV = root.findViewById(R.id.welcomeTV);
         carsCountCV = root.findViewById(R.id.carsCountCV);
-        policiesCountCV = root.findViewById(R.id.policiesCountCV);
         carsCountTV = root.findViewById(R.id.carsCountTV);
+        carsCountProgress = root.findViewById(R.id.carsCountProgress);
+
+        policiesCountCV = root.findViewById(R.id.policiesCountCV);
         policiesCountTV = root.findViewById(R.id.policiesCountTV);
+        policiesCountProgress = root.findViewById(R.id.policiesCountProgress);
 
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
@@ -53,18 +60,31 @@ public class HomeFragment extends Fragment {
 
         welcomeTV.setText(getString(R.string.home_welcome, getString(R.string.app_name), user.getFullName()));
 
+        loadData(user.getUserId());
+
+        carsCountCV.setOnClickListener(v -> getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_cars).performClick());
+        policiesCountCV.setOnClickListener(v -> getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_policies).performClick());
+
+        return root;
+    }
+
+    private void loadData(Long userId) {
+
         Retrofit retrofit = getRetrofit();
         CarsApi carsApi = retrofit.create(CarsApi.class);
         PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
-        carsApi.getCarsCountByUserId(user.getUserId()).enqueue(new Callback<Long>() {
+        carsApi.getCarsCountByUserId(userId).enqueue(new Callback<Long>() {
             @Override
             public void onResponse(Call<Long> call, Response<Long> response) {
 
                 if (response.code() == 404) {
+                    carsCountTV.setVisibility(View.VISIBLE);
                     return;
                 }
 
+                carsCountProgress.setVisibility(View.GONE);
+                carsCountTV.setVisibility(View.VISIBLE);
                 carsCountTV.setText(Long.toString(response.body()));
             }
 
@@ -74,14 +94,17 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        policiesApi.getPoliciesCountByUserId(user.getUserId()).enqueue(new Callback<Long>() {
+        policiesApi.getPoliciesCountByUserId(userId).enqueue(new Callback<Long>() {
             @Override
             public void onResponse(Call<Long> call, Response<Long> response) {
 
                 if (response.code() == 404) {
+                    policiesCountTV.setVisibility(View.VISIBLE);
                     return;
                 }
 
+                policiesCountProgress.setVisibility(View.GONE);
+                policiesCountTV.setVisibility(View.VISIBLE);
                 policiesCountTV.setText(Long.toString(response.body()));
             }
 
@@ -90,10 +113,5 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
-        carsCountCV.setOnClickListener(v -> getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_cars).performClick());
-        policiesCountCV.setOnClickListener(v -> getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_policies).performClick());
-
-        return root;
     }
 }
