@@ -6,224 +6,244 @@
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
-    <ImageView
-        android:id="@+id/appLogoIV"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="fitCenter"
-        android:scaleX="3"
-        android:scaleY="3"
-        app:layout_constraintEnd_toStartOf="@+id/homeRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
-
-    <TextView
-        android:id="@+id/welcomeTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/nunito"
-        android:gravity="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/homeRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/appLogoIV"
-        tools:text="Welcome!" />
-
-    <TextView
-        android:id="@+id/manageTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/nunito"
-        android:text="Manage your cars and policies."
-        android:textSize="16sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toStartOf="@+id/homeRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeTV" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/homeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/manageTV">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/carsCountCV"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/appLogoIV"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="fitCenter"
+                    android:scaleX="3"
+                    android:scaleY="3"
+                    app:layout_constraintEnd_toStartOf="@+id/homeRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/logo" />
+
                 <TextView
-                    android:id="@+id/carsCountHeaderTV"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/welcomeTV"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    android:text="Cars"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/carsCountIV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/carsCountHeaderTV"
-                    app:srcCompat="@drawable/ic_cars" />
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toStartOf="@+id/homeRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/appLogoIV"
+                    tools:text="Welcome!" />
 
                 <TextView
-                    android:id="@+id/carsCountTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="8dp"
+                    android:id="@+id/manageTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:fontFamily="@font/nunito"
-                    android:gravity="center_vertical"
-                    android:text="0"
-                    android:textSize="18sp"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/carsCountIV"
-                    app:layout_constraintTop_toBottomOf="@+id/carsCountHeaderTV"
-                    app:layout_constraintVertical_bias="1.0"
-                    tools:visibility="visible" />
+                    android:text="Manage your cars and policies."
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toStartOf="@+id/homeRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/welcomeTV" />
 
-                <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/carsCountProgress"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/manageTV">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/carsCountCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/carsCountHeaderTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/nunito"
+                                android:text="Cars"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/carsCountIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="8dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/carsCountHeaderTV"
+                                app:srcCompat="@drawable/ic_cars" />
+
+                            <TextView
+                                android:id="@+id/carsCountTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="8dp"
+                                android:fontFamily="@font/nunito"
+                                android:gravity="center_vertical"
+                                android:text="0"
+                                android:textSize="18sp"
+                                android:visibility="invisible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/carsCountIV"
+                                app:layout_constraintTop_toBottomOf="@+id/carsCountHeaderTV"
+                                app:layout_constraintVertical_bias="1.0"
+                                tools:visibility="visible" />
+
+                            <com.google.android.material.progressindicator.CircularProgressIndicator
+                                android:id="@+id/carsCountProgress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:indeterminate="true"
+                                app:indicatorSize="15dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/carsCountTV"
+                                app:layout_constraintStart_toEndOf="@+id/carsCountIV"
+                                app:layout_constraintTop_toTopOf="@+id/carsCountTV" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/policiesCountCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/policiesCountHeaderTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/nunito"
+                                android:text="Policies"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/policiesCountIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="8dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/policiesCountHeaderTV"
+                                app:srcCompat="@drawable/ic_policies" />
+
+                            <TextView
+                                android:id="@+id/policiesCountTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="8dp"
+                                android:fontFamily="@font/nunito"
+                                android:gravity="center_vertical"
+                                android:text="0"
+                                android:textSize="18sp"
+                                android:visibility="invisible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/policiesCountIV"
+                                app:layout_constraintTop_toBottomOf="@+id/policiesCountHeaderTV"
+                                app:layout_constraintVertical_bias="1.0"
+                                tools:visibility="visible" />
+
+                            <com.google.android.material.progressindicator.CircularProgressIndicator
+                                android:id="@+id/policiesCountProgress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:indeterminate="true"
+                                app:indicatorSize="15dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/policiesCountTV"
+                                app:layout_constraintStart_toEndOf="@+id/policiesCountIV"
+                                app:layout_constraintTop_toTopOf="@+id/policiesCountTV" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/homeLeftGuide"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:indeterminate="true"
-                    app:indicatorSize="15dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/carsCountTV"
-                    app:layout_constraintStart_toEndOf="@+id/carsCountIV"
-                    app:layout_constraintTop_toTopOf="@+id/carsCountTV" />
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="16dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/homeRightGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="16dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/policiesCountCV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/policiesCountHeaderTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/nunito"
-                    android:text="Policies"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/policiesCountIV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/policiesCountHeaderTV"
-                    app:srcCompat="@drawable/ic_policies" />
-
-                <TextView
-                    android:id="@+id/policiesCountTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/nunito"
-                    android:gravity="center_vertical"
-                    android:text="0"
-                    android:textSize="18sp"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/policiesCountIV"
-                    app:layout_constraintTop_toBottomOf="@+id/policiesCountHeaderTV"
-                    app:layout_constraintVertical_bias="1.0"
-                    tools:visibility="visible" />
-
-                <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/policiesCountProgress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:indeterminate="true"
-                    app:indicatorSize="15dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/policiesCountTV"
-                    app:layout_constraintStart_toEndOf="@+id/policiesCountIV"
-                    app:layout_constraintTop_toTopOf="@+id/policiesCountTV" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/homeLeftGuide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/homeRightGuide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
-
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

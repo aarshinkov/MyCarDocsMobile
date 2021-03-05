@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
@@ -30,6 +31,8 @@ import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
 
 public class HomeFragment extends Fragment {
 
+    private SwipeRefreshLayout homeRefresh;
+
     private TextView welcomeTV;
     private CardView carsCountCV;
     private TextView carsCountTV;
@@ -44,6 +47,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        homeRefresh = root.findViewById(R.id.homeRefresh);
 
         welcomeTV = root.findViewById(R.id.welcomeTV);
         carsCountCV = root.findViewById(R.id.carsCountCV);
@@ -65,10 +70,21 @@ public class HomeFragment extends Fragment {
         carsCountCV.setOnClickListener(v -> getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_cars).performClick());
         policiesCountCV.setOnClickListener(v -> getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_policies).performClick());
 
+        homeRefresh.setOnRefreshListener(() -> {
+            loadData(user.getUserId());
+            homeRefresh.setRefreshing(false);
+        });
+
         return root;
     }
 
     private void loadData(Long userId) {
+
+        carsCountProgress.setVisibility(View.VISIBLE);
+        carsCountTV.setVisibility(View.INVISIBLE);
+
+        policiesCountProgress.setVisibility(View.VISIBLE);
+        policiesCountTV.setVisibility(View.INVISIBLE);
 
         Retrofit retrofit = getRetrofit();
         CarsApi carsApi = retrofit.create(CarsApi.class);
