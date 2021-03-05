@@ -1,5 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.activities.policies;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -185,6 +187,12 @@ public class PolicyCreateActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        onBackPressed();
+        return true;
     }
 
     private void showDateTimeDialog(final EditText field) {

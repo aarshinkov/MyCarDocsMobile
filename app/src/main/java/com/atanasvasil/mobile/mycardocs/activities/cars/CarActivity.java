@@ -202,7 +202,7 @@ public class CarActivity extends AppCompatActivity {
 
             builder.setTitle("Delete car.");
 
-            builder.setMessage("Are you sure you want to delete this car?");
+            builder.setMessage("Are you sure you want to delete this car? Note that all policies, associated with this car, will be automatically deleted!");
 
             ProgressDialog loadingDialog = new ProgressDialog(this);
             loadingDialog.setCanceledOnTouchOutside(false);
