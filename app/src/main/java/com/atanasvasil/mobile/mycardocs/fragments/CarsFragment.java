@@ -49,6 +49,7 @@ public class CarsFragment extends Fragment {
 
     private FloatingActionButton carCreateFBtn;
     private SharedPreferences pref;
+    private User user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,7 +77,7 @@ public class CarsFragment extends Fragment {
         });
 
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        User user = getLoggedUser(pref);
+        user = getLoggedUser(pref);
 
         getUserCars(user.getUserId());
 
@@ -127,5 +128,11 @@ public class CarsFragment extends Fragment {
                 progress.setVisibility(View.GONE);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        getUserCars(user.getUserId());
+        super.onResume();
     }
 }

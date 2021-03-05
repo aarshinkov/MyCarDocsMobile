@@ -12,5 +12,18 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowContentTransitions">true</item>
+
+        <!--        <item name="android:windowEnterTransition">@android:transition/move</item>-->
+        <!--        <item name="android:windowExitTransition">@android:transition/move</item>-->
     </style>
+
+    <style name="Theme.MyCarDocs.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MyCarDocs.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MyCarDocs.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

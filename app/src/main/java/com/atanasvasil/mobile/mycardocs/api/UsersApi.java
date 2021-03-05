@@ -27,4 +27,7 @@ public interface UsersApi {
 
     @POST("api/users")
     Call<User> createUser(@Body User user);
+
+    @GET("api/users/{userId}/has/cars")
+    Call<Boolean> hasUserCars(@Path("userId") Long userId);
 }

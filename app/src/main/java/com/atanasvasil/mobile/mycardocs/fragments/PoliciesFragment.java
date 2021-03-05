@@ -19,6 +19,7 @@ import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.policies.PolicyCreateActivity;
 import com.atanasvasil.mobile.mycardocs.adapters.PolicyAdapter;
 import com.atanasvasil.mobile.mycardocs.api.PolicyApi;
+import com.atanasvasil.mobile.mycardocs.api.UsersApi;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -48,8 +49,10 @@ public class PoliciesFragment extends Fragment {
     private CircularProgressIndicator progress;
 
     private TextView noPoliciesFoundTV;
+    private TextView noActivePoliciesTV;
 
     private SharedPreferences pref;
+    private User user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class PoliciesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         noPoliciesFoundTV = root.findViewById(R.id.noPoliciesFoundTV);
+        noActivePoliciesTV = root.findViewById(R.id.noActivePoliciesTV);
 
         policies = new ArrayList<>();
         policyAdapter = new PolicyAdapter(getContext(), policies);
@@ -72,7 +76,7 @@ public class PoliciesFragment extends Fragment {
         progress.setVisibility(View.VISIBLE);
 
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        User user = getLoggedUser(pref);
+        user = getLoggedUser(pref);
 
         getPoliciesByUserId(user.getUserId());
 
@@ -87,6 +91,26 @@ public class PoliciesFragment extends Fragment {
         policyCreateFBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), PolicyCreateActivity.class);
             startActivity(intent);
+        });
+
+        Retrofit retrofit = getRetrofit();
+        UsersApi usersApi = retrofit.create(UsersApi.class);
+
+        usersApi.hasUserCars(user.getUserId()).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+
+                if (response.body()) {
+                    policyCreateFBtn.setVisibility(View.VISIBLE);
+                } else {
+                    noActivePoliciesTV.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+
+            }
         });
 
         return root;
@@ -130,5 +154,11 @@ public class PoliciesFragment extends Fragment {
         });
 
         policyAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+        getPoliciesByUserId(user.getUserId());
+        super.onResume();
     }
 }

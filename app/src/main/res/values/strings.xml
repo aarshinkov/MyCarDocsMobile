@@ -62,8 +62,8 @@
         <item>Electric</item>
     </string-array>
 
-    <string name="car_action_edit">Edit</string>
-    <string name="car_action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
 
     <string name="policy_number">Policy number</string>
     <string name="policy_ins_name">Insurer name</string>
@@ -81,6 +81,7 @@
     </string-array>
 
     <string name="policies_nofound">No policies found.</string>
+    <string name="policies_nocars">To create a policy you must create a car first.</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

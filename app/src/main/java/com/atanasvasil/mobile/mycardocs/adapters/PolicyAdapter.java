@@ -1,6 +1,8 @@
 package com.atanasvasil.mobile.mycardocs.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +11,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.atanasvasil.mobile.mycardocs.R;
+import com.atanasvasil.mobile.mycardocs.activities.cars.CarActivity;
+import com.atanasvasil.mobile.mycardocs.activities.policies.PolicyActivity;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 
 import java.text.SimpleDateFormat;
@@ -81,6 +87,20 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
             holder.getStatus().setTooltipText("Expired policy.");
             holder.getStatusIcon().setImageResource(R.drawable.ic_close);
         }
+
+        holder.getCardView().setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), PolicyActivity.class);
+            intent.putExtra("policyId", policy.getPolicyId());
+            Pair<View, String> p1 = Pair.create(holder.getNumberTV(), "policyNumber");
+            Pair<View, String> p2 = Pair.create(holder.getInsurerNameTV(), "policyType");
+            Pair<View, String> p3 = Pair.create(holder.getInsurerNameTV(), "policyInsName");
+            Pair<View, String> p4 = Pair.create(holder.getStartDateTV(), "policyStartDate");
+            Pair<View, String> p5 = Pair.create(holder.getEndDateTV(), "policyEndDate");
+            Pair<View, String> p6 = Pair.create(holder.getLicensePlateTV(), "policyCarLicensePlate");
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, p1, p2, p3, p4, p5, p6);
+//            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, holder.getCarItemInfoTV(), "carInfo");
+            context.startActivity(intent, options.toBundle());
+        });
     }
 
     @Override
@@ -90,6 +110,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+
         private final CardView cardView;
         private final TextView typeTV;
         private final TextView numberTV;

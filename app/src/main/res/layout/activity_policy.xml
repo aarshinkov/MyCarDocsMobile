@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.policies.PolicyActivity">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/policyRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/policyIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_policies" />
+
+                <TextView
+                    android:id="@+id/policyNumberTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/nunito"
+                    android:textSize="20sp"
+                    android:transitionName="policyNumber"
+                    app:layout_constraintStart_toEndOf="@+id/policyIV"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="89544754515" />
+
+                <TextView
+                    android:id="@+id/policyTypeLabelTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Policy type"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyNumberTV" />
+
+                <TextView
+                    android:id="@+id/policyTypeTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:transitionName="policyType"
+                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyNumberTV"
+                    tools:text="Type" />
+
+                <TextView
+                    android:id="@+id/policyInsurerNameLabelTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Insurer name"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyTypeLabelTV" />
+
+                <TextView
+                    android:id="@+id/policyInsurerNameTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:transitionName="policyInsName"
+                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyTypeTV"
+                    tools:text="Name" />
+
+                <TextView
+                    android:id="@+id/policyStartDateLabelTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Start date"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyInsurerNameLabelTV" />
+
+                <TextView
+                    android:id="@+id/policyStartDateTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:transitionName="policyStartDate"
+                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyInsurerNameTV"
+                    tools:text="12.04.2020 00:00" />
+
+                <TextView
+                    android:id="@+id/policyEndDateLabelTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="End date"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyStartDateLabelTV" />
+
+                <TextView
+                    android:id="@+id/policyEndDateTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:transitionName="policyEndDate"
+                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyStartDateTV"
+                    tools:text="11.04.2021 23:59" />
+
+                <View
+                    android:id="@+id/policyDivider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyEndDateTV" />
+
+                <ImageView
+                    android:id="@+id/policyCarIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyDivider"
+                    app:srcCompat="@drawable/ic_cars" />
+
+                <TextView
+                    android:id="@+id/policyCarLabelTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Car information"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintStart_toEndOf="@+id/policyCarIV"
+                    app:layout_constraintTop_toBottomOf="@id/policyDivider" />
+
+                <TextView
+                    android:id="@+id/policyCarInfoLabelTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Car brand &amp; model"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarLabelTV" />
+
+                <TextView
+                    android:id="@+id/policyCarInfoTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarLabelTV"
+                    tools:text="Name" />
+
+                <TextView
+                    android:id="@+id/policyCarLicensePlateLabelTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="License plate"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarInfoLabelTV" />
+
+                <TextView
+                    android:id="@+id/policyCarLicensePlateTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:transitionName="policyCarLicensePlate"
+                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarInfoTV"
+                    tools:text="License plate" />
+
+                <TextView
+                    android:id="@+id/policyCarYearLabelTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Year"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarLicensePlateLabelTV" />
+
+                <TextView
+                    android:id="@+id/policyCarYearTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarLicensePlateTV"
+                    tools:text="Year" />
+
+                <TextView
+                    android:id="@+id/policyCarColorLabelTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Color"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarYearLabelTV" />
+
+                <TextView
+                    android:id="@+id/policyCarColorTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarYearTV"
+                    tools:text="Color" />
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/policyLicensePlateLabelTV"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:fontFamily="@font/nunito"-->
+                <!--                    android:text="License plate"-->
+                <!--                    android:textColor="@color/black"-->
+                <!--                    android:textStyle="bold"-->
+                <!--                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/policyNumberTV" />-->
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/policyLicensePlateTV"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:fontFamily="@font/nunito"-->
+                <!--                    android:transitionName="policyCarLicensePlate"-->
+                <!--                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/policyLicensePlateLabelTV"-->
+                <!--                    tools:text="PA8822AA" />-->
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/policyProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/policyLeftGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="16dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/policyRightGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="16dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

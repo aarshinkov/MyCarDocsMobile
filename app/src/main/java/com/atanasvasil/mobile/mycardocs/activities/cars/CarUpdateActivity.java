@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.atanasvasil.mobile.mycardocs.R;
-import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
+import com.atanasvasil.mobile.mycardocs.activities.policies.PolicyActivity;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.requests.cars.CarUpdateRequest;
@@ -110,11 +110,9 @@ public class CarUpdateActivity extends AppCompatActivity {
             carsApi.updateCar(ccr).enqueue(new Callback<Car>() {
                 @Override
                 public void onResponse(Call<Car> call, Response<Car> response) {
-                    Toast.makeText(getApplicationContext(), "Car updated successfully", Toast.LENGTH_LONG).show();
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("fragment", "cars");
-                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Car updated successfully", Toast.LENGTH_LONG).show();
+                    finish();
 
                     progress.setVisibility(View.GONE);
                 }

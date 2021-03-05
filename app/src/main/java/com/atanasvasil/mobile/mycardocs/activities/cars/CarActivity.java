@@ -2,11 +2,8 @@ package com.atanasvasil.mobile.mycardocs.activities.cars;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -55,6 +52,8 @@ public class CarActivity extends AppCompatActivity {
 
     private CircularProgressIndicator carProgress;
 
+    private String carId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +63,7 @@ public class CarActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        String carId = intent.getStringExtra("carId");
+        carId = intent.getStringExtra("carId");
 
         carInfoTV = findViewById(R.id.carInfoTV);
         carYearTV = findViewById(R.id.carYearTV);
@@ -98,6 +97,7 @@ public class CarActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        getCar(carId);
         carProgress.setVisibility(View.GONE);
         super.onResume();
     }
@@ -181,7 +181,7 @@ public class CarActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.car_operations, menu);
+        getMenuInflater().inflate(R.menu.action_operations, menu);
 
         return true;
     }
@@ -189,14 +189,14 @@ public class CarActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId() == R.id.car_action_edit) {
+        if (item.getItemId() == R.id.action_edit) {
 
             Intent intent = new Intent(getApplicationContext(), CarUpdateActivity.class);
             intent.putExtra("carId", getIntent().getStringExtra("carId"));
             startActivity(intent);
             return false;
 
-        } else if (item.getItemId() == R.id.car_action_delete) {
+        } else if (item.getItemId() == R.id.action_delete) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(CarActivity.this);
 

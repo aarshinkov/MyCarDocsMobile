@@ -9,8 +9,9 @@ public class PolicyUpdateRequest implements Serializable {
     private String number;
     private Integer type;
     private String insName;
-    private Date startDate;
-    private Date endDate;
+    private String carId;
+    private String startDate;
+    private String endDate;
 
     public String getPolicyId() {
         return policyId;
@@ -44,19 +45,27 @@ public class PolicyUpdateRequest implements Serializable {
         this.insName = insName;
     }
 
-    public Date getStartDate() {
+    public String getCarId() {
+        return carId;
+    }
+
+    public void setCarId(String carId) {
+        this.carId = carId;
+    }
+
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 }

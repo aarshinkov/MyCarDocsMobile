@@ -19,6 +19,9 @@ public interface PolicyApi {
     @GET("api/policies")
     Call<List<Policy>> getPolicies();
 
+    @GET("api/policies/{policyId}")
+    Call<Policy> getPolicy(@Path("policyId") String policyId);
+
     @GET("api/policies/user/id/{userId}")
     Call<List<Policy>> getPoliciesByUserId(@Path("userId") Long userId);
 

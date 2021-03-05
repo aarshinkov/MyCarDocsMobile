@@ -27,7 +27,6 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/nunito"
         android:text="Car insuranse Application"
-        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +49,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Get your car policy in just 3 minutes !"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

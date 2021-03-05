@@ -67,7 +67,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
     private SharedPreferences pref;
 
-    ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,12 +121,13 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
             try {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
-                Date startDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(policyCreateStartDateET.getText().toString());
+                Date startDate = sdf.parse(policyCreateStartDateET.getText().toString());
                 String startFDate = dateFormat.format(startDate);
                 pcr.setStartDate(startFDate);
 
-                Date endDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(policyCreateEndDateET.getText().toString());
+                Date endDate = sdf.parse(policyCreateEndDateET.getText().toString());
                 String endFDate = dateFormat.format(endDate);
                 pcr.setEndDate(endFDate);
 
@@ -212,9 +213,10 @@ public class PolicyCreateActivity extends AppCompatActivity {
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         calendar.set(Calendar.MINUTE, minute);
 
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
                         field.setText(simpleDateFormat.format(calendar.getTime()));
+                        field.setError(null);
                     }
                 };
 
@@ -234,7 +236,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
                 calendar.set(Calendar.YEAR, year);
                 calendar.set(Calendar.MONTH, month);
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
                 policyCreateStartDateET.setText(simpleDateFormat.format(calendar.getTime()));
 
             }
