@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
@@ -21,9 +20,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.atanasvasil.mobile.mycardocs.R;
-import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
-import com.atanasvasil.mobile.mycardocs.api.PolicyApi;
+import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.requests.policies.PolicyUpdateRequest;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
@@ -108,8 +106,8 @@ public class PolicyUpdateActivity extends AppCompatActivity {
 
         Retrofit retrofit = getRetrofit();
 
-        PolicyApi policyApi = retrofit.create(PolicyApi.class);
-        policyApi.getPolicy(policyId).enqueue(new Callback<Policy>() {
+        PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
+        policiesApi.getPolicy(policyId).enqueue(new Callback<Policy>() {
             @Override
             public void onResponse(Call<Policy> call, Response<Policy> response) {
 
@@ -178,8 +176,8 @@ public class PolicyUpdateActivity extends AppCompatActivity {
                     Car car = response.body();
                     pur.setCarId(car.getCarId());
 
-                    PolicyApi policyApi = retrofit.create(PolicyApi.class);
-                    policyApi.updatePolicy(pur).enqueue(new Callback<Policy>() {
+                    PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
+                    policiesApi.updatePolicy(pur).enqueue(new Callback<Policy>() {
                         @Override
                         public void onResponse(Call<Policy> call, Response<Policy> response) {
 

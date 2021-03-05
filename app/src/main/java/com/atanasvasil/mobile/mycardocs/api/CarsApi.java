@@ -33,4 +33,7 @@ public interface CarsApi {
 
     @DELETE("api/cars/{carId}")
     Call<Boolean> deleteCar(@Path("carId") String carId);
+
+    @GET("api/cars/count/{userId}")
+    Call<Long> getCarsCountByUserId(@Path("userId") Long userId);
 }

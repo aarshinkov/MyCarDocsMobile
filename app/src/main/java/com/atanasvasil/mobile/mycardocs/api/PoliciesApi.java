@@ -14,7 +14,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
-public interface PolicyApi {
+public interface PoliciesApi {
 
     @GET("api/policies")
     Call<List<Policy>> getPolicies();
@@ -33,4 +33,7 @@ public interface PolicyApi {
 
     @DELETE("api/policies/{policyId}")
     Call<Boolean> deletePolicy(@Path("policyId") String policyId);
+
+    @GET("api/policies/count/{userId}")
+    Call<Long> getPoliciesCountByUserId(@Path("userId") Long userId);
 }

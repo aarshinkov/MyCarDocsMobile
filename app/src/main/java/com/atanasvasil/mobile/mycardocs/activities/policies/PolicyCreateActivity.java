@@ -1,47 +1,36 @@
 package com.atanasvasil.mobile.mycardocs.activities.policies;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
-import com.atanasvasil.mobile.mycardocs.api.PolicyApi;
+import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.requests.policies.PolicyCreateRequest;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
-import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -142,8 +131,8 @@ public class PolicyCreateActivity extends AppCompatActivity {
                     Car car = response.body();
                     pcr.setCarId(car.getCarId());
 
-                    PolicyApi policyApi = retrofit.create(PolicyApi.class);
-                    policyApi.createPolicy(pcr).enqueue(new Callback<Policy>() {
+                    PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
+                    policiesApi.createPolicy(pcr).enqueue(new Callback<Policy>() {
                         @Override
                         public void onResponse(Call<Policy> call, Response<Policy> response) {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);

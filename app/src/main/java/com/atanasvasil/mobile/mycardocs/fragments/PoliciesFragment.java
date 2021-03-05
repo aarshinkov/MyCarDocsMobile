@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.policies.PolicyCreateActivity;
 import com.atanasvasil.mobile.mycardocs.adapters.PolicyAdapter;
-import com.atanasvasil.mobile.mycardocs.api.PolicyApi;
+import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.api.UsersApi;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
@@ -119,9 +119,9 @@ public class PoliciesFragment extends Fragment {
     public void getPoliciesByUserId(Long userId) {
 
         Retrofit retrofit = getRetrofit();
-        PolicyApi policyApi = retrofit.create(PolicyApi.class);
+        PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
-        policyApi.getPoliciesByUserId(userId).enqueue(new Callback<List<Policy>>() {
+        policiesApi.getPoliciesByUserId(userId).enqueue(new Callback<List<Policy>>() {
             @Override
             public void onResponse(Call<List<Policy>> call, Response<List<Policy>> response) {
 

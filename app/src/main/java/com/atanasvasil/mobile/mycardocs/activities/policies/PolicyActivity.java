@@ -16,8 +16,7 @@ import android.widget.Toast;
 
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
-import com.atanasvasil.mobile.mycardocs.api.Api;
-import com.atanasvasil.mobile.mycardocs.api.PolicyApi;
+import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
@@ -104,9 +103,9 @@ public class PolicyActivity extends AppCompatActivity {
 
         Retrofit retrofit = getRetrofit();
 
-        PolicyApi policyApi = retrofit.create(PolicyApi.class);
+        PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
-        policyApi.getPolicy(policyId).enqueue(new Callback<Policy>() {
+        policiesApi.getPolicy(policyId).enqueue(new Callback<Policy>() {
             @Override
             public void onResponse(Call<Policy> call, Response<Policy> response) {
 
@@ -207,11 +206,11 @@ public class PolicyActivity extends AppCompatActivity {
 
                 Retrofit retrofit = getRetrofit();
 
-                PolicyApi policyApi = retrofit.create(PolicyApi.class);
+                PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
                 String policyId = getIntent().getStringExtra("policyId");
 
-                policyApi.deletePolicy(policyId).enqueue(new Callback<Boolean>() {
+                policiesApi.deletePolicy(policyId).enqueue(new Callback<Boolean>() {
                     @Override
                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {
 

@@ -2,6 +2,8 @@
     <string name="app_name">MyCarDocs</string>
     <string name="app_logo">Application logo</string>
 
+    <string name="home_welcome">Welcome to %1$s, %2$s!</string>
+
     <string name="nav_home">Home</string>
 
     <string name="login">Login</string>
