@@ -59,7 +59,7 @@ public class CarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car);
 
-        getSupportActionBar().setTitle("View a car");
+        getSupportActionBar().setTitle(getString(R.string.car_view_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();

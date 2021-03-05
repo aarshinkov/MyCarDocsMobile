@@ -76,9 +76,12 @@ public class RegisterActivity extends AppCompatActivity {
             final String firstName = registerFirstNameET.getText().toString();
             final String lastName = registerLastNameET.getText().toString();
 
+            boolean isEmailEmpty = false;
+
             if (email.isEmpty()) {
                 registerEmailЕТ.setError("Email must not be empty!");
                 hasErrors = true;
+                isEmailEmpty = true;
             }
 
             if (password.isEmpty()) {
@@ -95,7 +98,11 @@ public class RegisterActivity extends AppCompatActivity {
                 registerPasswordЕТ.setError("Passwords must match!");
                 registerConfirmPasswordЕТ.setError("Passwords must match!");
                 hasErrors = true;
+            } else {
+                registerPasswordЕТ.setError(null);
+                registerConfirmPasswordЕТ.setError(null);
             }
+
             if (firstName.isEmpty()) {
                 registerFirstNameET.setError("The first name must not be empty!");
                 hasErrors = true;
@@ -118,9 +125,11 @@ public class RegisterActivity extends AppCompatActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
-            try {
-                isExist = usersApi.isUserExistByEmail(email).execute().body();
-            } catch (IOException ignore) {
+            if (!isEmailEmpty) {
+                try {
+                    isExist = usersApi.isUserExistByEmail(email).execute().body();
+                } catch (IOException ignore) {
+                }
             }
 
             if (isExist) {
@@ -129,7 +138,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             if (hasErrors) {
-//                Toast.makeText(getApplicationContext(), "Some errors", Toast.LENGTH_LONG).show();
                 dialog.hide();
                 return;
             }

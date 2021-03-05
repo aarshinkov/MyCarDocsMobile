@@ -44,7 +44,7 @@ public class CarUpdateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_update);
 
-        getSupportActionBar().setTitle("Edit a car");
+        getSupportActionBar().setTitle(getString(R.string.car_update_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         progress = findViewById(R.id.carUpdateProgress);
@@ -111,7 +111,7 @@ public class CarUpdateActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Car> call, Response<Car> response) {
 
-                    Toast.makeText(getApplicationContext(), "Car updated successfully", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.car_update_success, Toast.LENGTH_LONG).show();
                     finish();
 
                     progress.setVisibility(View.GONE);
@@ -144,34 +144,34 @@ public class CarUpdateActivity extends AppCompatActivity {
         try {
             year = Integer.parseInt(carUpdateYearET.getText().toString());
         } catch (NumberFormatException e) {
-            carUpdateYearET.setError("Invalid format");
+            carUpdateYearET.setError(getString(R.string.car_operation_invalid_format));
             hasErrors = true;
         }
 
         String licensePlate = carUpdateLicensePlateET.getText().toString();
 
         if (brand == null || brand.isEmpty()) {
-            carUpdateBrandET.setError("Brand must not be empty");
+            carUpdateBrandET.setError(getString(R.string.car_operation_brand_empty));
             hasErrors = true;
         }
 
         if (model == null || model.isEmpty()) {
-            carUpdateModelET.setError("Model must not be empty");
+            carUpdateModelET.setError(getString(R.string.car_operation_model_empty));
             hasErrors = true;
         }
 
         if (color == null || color.isEmpty()) {
-            carUpdateColorET.setError("Color must not be empty");
+            carUpdateColorET.setError(getString(R.string.car_operation_color_empty));
             hasErrors = true;
         }
 
         if (year == null) {
-            carUpdateYearET.setError("Year must not be empty");
+            carUpdateYearET.setError(getString(R.string.car_operation_year_empty));
             hasErrors = true;
         }
 
         if (licensePlate == null || licensePlate.isEmpty()) {
-            carUpdateLicensePlateET.setError("License plate must not be empty");
+            carUpdateLicensePlateET.setError(getString(R.string.car_operation_license_plate_empty));
             hasErrors = true;
         }
 

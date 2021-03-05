@@ -51,7 +51,7 @@ public class CarCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_create);
 
-        getSupportActionBar().setTitle("Create a car");
+        getSupportActionBar().setTitle(getString(R.string.car_create_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         progress = findViewById(R.id.carCreateProgress);
@@ -97,7 +97,7 @@ public class CarCreateActivity extends AppCompatActivity {
             carsApi.createCar(ccr).enqueue(new Callback<Car>() {
                 @Override
                 public void onResponse(Call<Car> call, Response<Car> response) {
-                    Toast.makeText(getApplicationContext(), "Car created successfully", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.car_create_success, Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("fragment", "cars");
@@ -136,34 +136,34 @@ public class CarCreateActivity extends AppCompatActivity {
         try {
             year = Integer.parseInt(carCreateYearET.getText().toString());
         } catch (NumberFormatException e) {
-            carCreateYearET.setError("Invalid format");
+            carCreateYearET.setError(getString(R.string.car_operation_invalid_format));
             hasErrors = true;
         }
 
         String licensePlate = carCreateLicensePlateET.getText().toString();
 
         if (brand == null || brand.isEmpty()) {
-            carCreateBrandET.setError("Brand must not be empty");
+            carCreateBrandET.setError(getString(R.string.car_operation_brand_empty));
             hasErrors = true;
         }
 
         if (model == null || model.isEmpty()) {
-            carCreateModelET.setError("Model must not be empty");
+            carCreateModelET.setError(getString(R.string.car_operation_model_empty));
             hasErrors = true;
         }
 
         if (color == null || color.isEmpty()) {
-            carCreateColorET.setError("Color must not be empty");
+            carCreateColorET.setError(getString(R.string.car_operation_color_empty));
             hasErrors = true;
         }
 
         if (year == null) {
-            carCreateYearET.setError("Year must not be empty");
+            carCreateYearET.setError(getString(R.string.car_operation_year_empty));
             hasErrors = true;
         }
 
         if (licensePlate == null || licensePlate.isEmpty()) {
-            carCreateLicensePlateET.setError("License plate must not be empty");
+            carCreateLicensePlateET.setError(getString(R.string.car_operation_license_plate_empty));
             hasErrors = true;
         }
 
