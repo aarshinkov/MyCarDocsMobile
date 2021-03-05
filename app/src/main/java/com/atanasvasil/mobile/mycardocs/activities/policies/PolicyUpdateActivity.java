@@ -140,7 +140,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
 
             progress.setVisibility(View.VISIBLE);
 
-            if (isFieldsValid()) {
+            if (isFieldsInvalid()) {
                 return;
             }
 
@@ -271,7 +271,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
 
     }
 
-    private boolean isFieldsValid() {
+    private boolean isFieldsInvalid() {
 
         boolean hasErrors = false;
 

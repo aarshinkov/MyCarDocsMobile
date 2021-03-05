@@ -98,7 +98,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
         policyCreateBtn.setOnClickListener(v -> {
 
-            if (isFieldsValid()) {
+            if (isFieldsInvalid()) {
                 return;
             }
 
@@ -242,7 +242,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
         new DatePickerDialog(this, dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
-    private boolean isFieldsValid() {
+    private boolean isFieldsInvalid() {
 
         boolean hasErrors = false;
 

@@ -73,7 +73,7 @@ public class CarCreateActivity extends AppCompatActivity {
 
             progress.setVisibility(View.VISIBLE);
 
-            if (isFieldsValid()) {
+            if (isFieldsInvalid()) {
                 progress.setVisibility(View.GONE);
                 return;
             }
@@ -124,7 +124,7 @@ public class CarCreateActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean isFieldsValid() {
+    private boolean isFieldsInvalid() {
 
         boolean hasErrors = false;
 
