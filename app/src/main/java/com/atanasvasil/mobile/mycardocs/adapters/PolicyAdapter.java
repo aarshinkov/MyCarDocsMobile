@@ -62,8 +62,6 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
         holder.getInsurerNameTV().setText(policy.getInsName());
         holder.getLicensePlateTV().setText(policy.getCar().getLicensePlate());
 
-        holder.getStatus().setTooltipText("Active policy.");
-
         Date now = new Date();
 
         SimpleDateFormat sdf = new SimpleDateFormat(context.getString(R.string.date_1), Locale.getDefault());

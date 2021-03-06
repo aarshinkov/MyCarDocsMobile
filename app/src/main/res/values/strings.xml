@@ -16,8 +16,15 @@
     <string name="login_button">Login</string>
     <string name="login_registration">Don\'t have an account? Register</string>
     <string name="login_forgot">Forgot password?</string>
+    <string name="login_process">Logging in…</string>
 
-    <string name="registration">Registration</string>
+    <string name="login_email_empty">Email must not be empty</string>
+    <string name="login_password_empty">Password must not be empty</string>
+    <string name="login_invalid_credentials">Invalid email/password!</string>
+    <string name="login_welcome">Welcome, %1$s!</string>
+    <string name="login_error">Error logging you in!</string>
+
+    <string name="registration_title">Registration</string>
     <string name="registration_header">Register to create and manage your documents and car expenses.</string>
     <string name="registration_first_name">First name</string>
     <string name="registration_last_name">Last name</string>
@@ -26,6 +33,20 @@
     <string name="registration_password_confirm">Confirm password</string>
     <string name="registration_button">Register</string>
     <string name="registration_cancel">Cancel</string>
+
+    <string name="registration_progress">Registration in progress…</string>
+    <string name="registration_email_empty">Email must not be empty</string>
+    <string name="registration_password_empty">Password must not be empty</string>
+    <string name="registration_confirm_password_empty">Confirm password must not be empty</string>
+    <string name="registration_passwords_match">Passwords must match</string>
+    <string name="registration_first_name_empty">First name must not be empty</string>
+    <string name="registration_last_name_empty">Last name must not be empty</string>
+    <string name="registration_email_exists">This email is already registered</string>
+    <string name="registration_success">Account created successfully</string>
+    <string name="registration_error">Error creating account</string>
+
+    <string name="logout_title">Logging out…</string>
+    <string name="logout_message">Are you sure you want to logout?</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_cars">Cars</string>
@@ -106,9 +127,13 @@
     <string name="policies_nocars">To create a policy you must create a car first.</string>
 
     <!-- Policy create -->
-    <string name="policy_create_button">Policy create button</string>
+    <string name="policy_create_title">Create a policy</string>
+    <string name="policy_create_button">Create policy</string>
+    <string name="policy_create_button_descr">Policy create button</string>
 
     <!-- Policy view -->
+    <string name="policy_view_title">Policy information</string>
+
     <string name="policy_no">Policy No.</string>
     <string name="policy_number">Policy number</string>
     <string name="policy_ins_name">Provider name</string>
@@ -138,8 +163,26 @@
     <string name="policy_car_color">Color</string>
 
     <!-- Policy update -->
+    <string name="policy_update_title">Edit a policy</string>
+    <string name="policy_update_button">Update policy</string>
+    <string name="policy_update_success">Policy updated successfully!</string>
 
     <!-- Policy delete -->
+    <string name="policy_delete_title">Delete policy.</string>
+    <string name="policy_delete_message">Сигурни ли сте, че искате да изтриете тази полица?</string>
+    <string name="policy_delete_process">Изтриване на полица…</string>
+    <string name="policy_delete_success">Полицата е изтрита успешно!</string>
+    <string name="policy_delete_error">Грешка при изтриване на полица!</string>
+
+    <!-- Policy operations -->
+    <string name="policy_operation_policy_number_empty">Policy number must not be empty</string>
+    <string name="policy_operation_insurer_name_empty">Insurer name must not be empty</string>
+    <string name="policy_operation_start_date_empty">Start date must not be empty</string>
+    <string name="policy_operation_end_date_empty">End date must not be empty</string>
+
+    <!-- Policy responses -->
+    <string name="policy_get_error">Error getting policy</string>
+    <string name="policy_not_found">Policy not found</string>
 
     <string name="error_server">Error communicating with the server. Try again!</string>
 

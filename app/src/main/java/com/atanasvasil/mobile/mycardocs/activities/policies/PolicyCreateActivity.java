@@ -66,7 +66,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_policy_create);
 
-        getSupportActionBar().setTitle("Create a policy");
+        getSupportActionBar().setTitle(R.string.policy_create_title);
 
         policyCreateNumberET = findViewById(R.id.policyCreateNumberET);
         policyCreateTypeSP = findViewById(R.id.policyCreateTypeSP);
@@ -254,22 +254,22 @@ public class PolicyCreateActivity extends AppCompatActivity {
         String endDate = policyCreateEndDateET.getText().toString();
 
         if (number == null || number.isEmpty()) {
-            policyCreateNumberET.setError("Policy number must not be empty");
+            policyCreateNumberET.setError(getString(R.string.policy_operation_policy_number_empty));
             hasErrors = true;
         }
 
         if (insName == null || insName.isEmpty()) {
-            policyCreateInsNameET.setError("Insurer name must not be empty");
+            policyCreateInsNameET.setError(getString(R.string.policy_operation_insurer_name_empty));
             hasErrors = true;
         }
 
         if (startDate == null || startDate.isEmpty()) {
-            policyCreateStartDateET.setError("Start date must not be empty");
+            policyCreateStartDateET.setError(getString(R.string.policy_operation_start_date_empty));
             hasErrors = true;
         }
 
         if (endDate == null || startDate.isEmpty()) {
-            policyCreateEndDateET.setError("End date must not be empty");
+            policyCreateEndDateET.setError(getString(R.string.policy_operation_end_date_empty));
             hasErrors = true;
         }
 

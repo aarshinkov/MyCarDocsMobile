@@ -79,7 +79,7 @@
             android:id="@+id/policyCreateBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Create policy"
+            android:text="@string/policy_create_button"
             app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/policyCreateEndDateET" />

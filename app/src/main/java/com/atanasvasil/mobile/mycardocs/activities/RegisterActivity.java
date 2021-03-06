@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        setTitle(R.string.registration);
+        setTitle(R.string.registration_title);
 
         registerEmailЕТ = findViewById(R.id.registerEmailЕТ);
         registerPasswordЕТ = findViewById(R.id.registerPasswordЕТ);
@@ -55,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerBtn = findViewById(R.id.registerBtn);
 
         dialog = new ProgressDialog(this);
-        dialog.setMessage("Registration in progress...");
+        dialog.setMessage(getString(R.string.registration_progress));
 
         registerCancelBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -79,24 +79,24 @@ public class RegisterActivity extends AppCompatActivity {
             boolean isEmailEmpty = false;
 
             if (email.isEmpty()) {
-                registerEmailЕТ.setError("Email must not be empty!");
+                registerEmailЕТ.setError(getString(R.string.registration_email_empty));
                 hasErrors = true;
                 isEmailEmpty = true;
             }
 
             if (password.isEmpty()) {
-                registerPasswordЕТ.setError("Password must not be empty!");
+                registerPasswordЕТ.setError(getString(R.string.registration_password_empty));
                 hasErrors = true;
             }
 
             if (confirmPassword.isEmpty()) {
-                registerConfirmPasswordЕТ.setError("Confirm password must not be empty!");
+                registerConfirmPasswordЕТ.setError(getString(R.string.registration_confirm_password_empty));
                 hasErrors = true;
             }
 
             if (!password.equals(confirmPassword)) {
-                registerPasswordЕТ.setError("Passwords must match!");
-                registerConfirmPasswordЕТ.setError("Passwords must match!");
+                registerPasswordЕТ.setError(getString(R.string.registration_passwords_match));
+                registerConfirmPasswordЕТ.setError(getString(R.string.registration_passwords_match));
                 hasErrors = true;
             } else {
                 registerPasswordЕТ.setError(null);
@@ -104,12 +104,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             if (firstName.isEmpty()) {
-                registerFirstNameET.setError("The first name must not be empty!");
+                registerFirstNameET.setError(getString(R.string.registration_first_name_empty));
                 hasErrors = true;
             }
 
             if (lastName.isEmpty()) {
-                registerLastNameET.setError("The last name field must not be empty!");
+                registerLastNameET.setError(getString(R.string.registration_last_name_empty));
                 hasErrors = true;
             }
 
@@ -133,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             if (isExist) {
-                registerEmailЕТ.setError("This email is already registered!");
+                registerEmailЕТ.setError(getString(R.string.registration_email_exists));
                 hasErrors = true;
             }
 
@@ -154,7 +154,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     response.body();
 
-                    Toast.makeText(getApplicationContext(), "Account created successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.registration_success, Toast.LENGTH_LONG).show();
 
                     dialog.hide();
 
@@ -165,6 +165,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), R.string.registration_error, Toast.LENGTH_LONG).show();
                     dialog.hide();
                 }
             });

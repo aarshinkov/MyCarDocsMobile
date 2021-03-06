@@ -16,8 +16,15 @@
     <string name="login_button">Вход</string>
     <string name="login_registration">Нямате акаунт? Регистрирайте се</string>
     <string name="login_forgot">Забравена парола?</string>
+    <string name="login_process">Вписване…</string>
 
-    <string name="registration">Регистрация</string>
+    <string name="login_email_empty">Имейлът не може да бъде празен</string>
+    <string name="login_password_empty">Паролата не може да бъде празна</string>
+    <string name="login_invalid_credentials">Невалидни имейл/парола!</string>
+    <string name="login_welcome">Добре дошли, %1$s!</string>
+    <string name="login_error">Грешка при вписване!</string>
+
+    <string name="registration_title">Регистрация</string>
     <string name="registration_header">Регистрирайте се за да управлявате вашите автомобили и полици.</string>
     <string name="registration_first_name">Име</string>
     <string name="registration_last_name">Фамилия</string>
@@ -26,6 +33,20 @@
     <string name="registration_password_confirm">Потвърди парола</string>
     <string name="registration_button">Регистрирай се</string>
     <string name="registration_cancel">Отказ</string>
+
+    <string name="registration_progress">Регистриране на потребител…</string>
+    <string name="registration_email_empty">Имейлът не може да бъде празен</string>
+    <string name="registration_password_empty">Паролата не може да бъде празна</string>
+    <string name="registration_confirm_password_empty">Потвърждението на паролата не може да бъде празно</string>
+    <string name="registration_passwords_match">Паролите не съвпадат</string>
+    <string name="registration_first_name_empty">Името не може да бъде празно</string>
+    <string name="registration_last_name_empty">Фамилията не може да бъде празна</string>
+    <string name="registration_email_exists">Имейлът е вече регистриран</string>
+    <string name="registration_success">Акаунтът е създаден успешно</string>
+    <string name="registration_error">Грешка при създаването на акаунт</string>
+
+    <string name="logout_title">Изход…</string>
+    <string name="logout_message">Наистина ли искате да излезете?</string>
 
     <string name="menu_home">Начало</string>
     <string name="menu_cars">Автомобили</string>
@@ -106,9 +127,13 @@
     <string name="policies_nocars">За да създадете полица, трябва първо да създадете автомобил.</string>
 
     <!-- Policy create -->
-    <string name="policy_create_button">Бутон за създаване на полица</string>
+    <string name="policy_create_title">Създаване на полица</string>
+    <string name="policy_create_button">Създай полица</string>
+    <string name="policy_create_button_descr">Бутон за създаване на полица</string>
 
     <!-- Policy view -->
+    <string name="policy_view_title">Информация за полица</string>
+
     <string name="policy_no">Номер полица</string>
     <string name="policy_number">Номера полица</string>
     <string name="policy_ins_name">Име на изпълнител</string>
@@ -138,8 +163,26 @@
     <string name="policy_car_color">Цвят</string>
 
     <!-- Policy update -->
+    <string name="policy_update_title">Редактиране на полица</string>
+    <string name="policy_update_button">Редактирай полица</string>
+    <string name="policy_update_success">Полицата е редактирана успешно!</string>
 
     <!-- Policy delete -->
+    <string name="policy_delete_title">Изтриване на полица.</string>
+    <string name="policy_delete_message">Сигурни ли сте, че искате да изтриете тази полица?</string>
+    <string name="policy_delete_process">Изтриване на полица…</string>
+    <string name="policy_delete_success">Полицата е изтрита успешно!</string>
+    <string name="policy_delete_error">Грешка при изтриване на полица!</string>
+
+    <!-- Policy operations -->
+    <string name="policy_operation_policy_number_empty">Номерът на полицата не може да бъде празен</string>
+    <string name="policy_operation_insurer_name_empty">Името на изпълнителят не може да бъде празен</string>
+    <string name="policy_operation_start_date_empty">Началната дата не може да бъде празна</string>
+    <string name="policy_operation_end_date_empty">Крайната дата не може да бъде празна</string>
+
+    <!-- Policy responses -->
+    <string name="policy_get_error">Грешка при вземане на полица</string>
+    <string name="policy_not_found">Полицата не е намерена</string>
 
     <string name="error_server">Грешка в комуникацията със сървъра. Опитайте отново!</string>
 

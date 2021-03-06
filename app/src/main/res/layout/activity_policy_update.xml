@@ -79,7 +79,7 @@
             android:id="@+id/policyUpdateBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Update policy"
+            android:text="@string/policy_update_button"
             app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/policyUpdateEndDateET" />

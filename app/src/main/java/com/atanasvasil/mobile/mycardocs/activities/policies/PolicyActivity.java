@@ -57,7 +57,7 @@ public class PolicyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_policy);
 
-        getSupportActionBar().setTitle("Policy information");
+        getSupportActionBar().setTitle(R.string.policy_view_title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
@@ -110,7 +110,7 @@ public class PolicyActivity extends AppCompatActivity {
             public void onResponse(Call<Policy> call, Response<Policy> response) {
 
                 if (!response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Error getting policy", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.policy_get_error, Toast.LENGTH_LONG).show();
                     policyProgress.setVisibility(View.GONE);
                     return;
                 }
@@ -155,7 +155,7 @@ public class PolicyActivity extends AppCompatActivity {
                         policyCarColorTV.setText(car.getColor());
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "Policy not found", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.policy_not_found, Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -192,15 +192,15 @@ public class PolicyActivity extends AppCompatActivity {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(PolicyActivity.this);
 
-            builder.setTitle("Delete policy.");
+            builder.setTitle(R.string.policy_delete_title);
 
-            builder.setMessage("Are you sure you want to delete this policy?");
+            builder.setMessage(R.string.policy_delete_message);
 
             ProgressDialog loadingDialog = new ProgressDialog(this);
             loadingDialog.setCanceledOnTouchOutside(false);
-            loadingDialog.setMessage("Deleting policy...");
+            loadingDialog.setMessage(getString(R.string.policy_delete_process));
 
-            builder.setPositiveButton("Yes", (dialog, which) -> {
+            builder.setPositiveButton(R.string.yes, (dialog, which) -> {
 
                 loadingDialog.show();
 
@@ -215,7 +215,7 @@ public class PolicyActivity extends AppCompatActivity {
                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {
 
                         if (response.code() == 404) {
-                            Toast.makeText(getApplicationContext(), "Policy not found", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), R.string.policy_not_found, Toast.LENGTH_LONG).show();
                             loadingDialog.hide();
                             return;
                         }
@@ -225,7 +225,7 @@ public class PolicyActivity extends AppCompatActivity {
                         if (result != null) {
                             if (result) {
                                 loadingDialog.hide();
-                                Toast.makeText(getApplicationContext(), "Policy deleted successfully!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), R.string.policy_delete_success, Toast.LENGTH_LONG).show();
 
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 intent.putExtra("fragment", "policies");
@@ -236,60 +236,19 @@ public class PolicyActivity extends AppCompatActivity {
                             }
                         }
 
-                        Toast.makeText(getApplicationContext(), "Error deleting the policy!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.policy_delete_error, Toast.LENGTH_LONG).show();
                         loadingDialog.hide();
                     }
 
                     @Override
                     public void onFailure(Call<Boolean> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Error deleting the policy!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.policy_delete_error, Toast.LENGTH_LONG).show();
                         loadingDialog.hide();
                     }
                 });
-
-//                CarsApi carsApi = retrofit.create(CarsApi.class);
-//
-//                String carId = getIntent().getStringExtra("carId");
-//
-//                carsApi.deleteCar(carId).enqueue(new Callback<Boolean>() {
-//                    @Override
-//                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-//
-//                        if (response.code() == 404) {
-//                            Toast.makeText(getApplicationContext(), "Car not found", Toast.LENGTH_LONG).show();
-//                            loadingDialog.hide();
-//                            return;
-//                        }
-//
-//                        Boolean result = response.body();
-//
-//                        if (result != null) {
-//                            if (result) {
-//                                loadingDialog.hide();
-//                                Toast.makeText(getApplicationContext(), "Car deleted successfully!", Toast.LENGTH_LONG).show();
-//
-//                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                                intent.putExtra("fragment", "cars");
-//                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                                startActivity(intent);
-//
-//                                return;
-//                            }
-//                        }
-//
-//                        Toast.makeText(getApplicationContext(), "Error deleting the car!", Toast.LENGTH_LONG).show();
-//                        loadingDialog.hide();
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<Boolean> call, Throwable t) {
-//                        Toast.makeText(getApplicationContext(), "Error deleting the car!", Toast.LENGTH_LONG).show();
-//                        loadingDialog.hide();
-//                    }
-//                });
             });
 
-            builder.setNegativeButton("Cancel", (dialog, which) -> {
+            builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
             });
 
             AlertDialog dialog = builder.create();

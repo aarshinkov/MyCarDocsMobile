@@ -69,7 +69,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_policy_update);
 
-        getSupportActionBar().setTitle("Edit a policy");
+        getSupportActionBar().setTitle(R.string.policy_update_title);
 
         progress = findViewById(R.id.policyUpdateProgress);
 
@@ -181,7 +181,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Policy> call, Response<Policy> response) {
 
-                            Toast.makeText(getApplicationContext(), "Policy updated successfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), R.string.policy_update_success, Toast.LENGTH_LONG).show();
                             finish();
 
                             progress.setVisibility(View.GONE);
@@ -282,22 +282,22 @@ public class PolicyUpdateActivity extends AppCompatActivity {
         String endDate = policyUpdateEndDateET.getText().toString();
 
         if (number == null || number.isEmpty()) {
-            policyUpdateNumberET.setError("Policy number must not be empty");
+            policyUpdateNumberET.setError(getString(R.string.policy_operation_policy_number_empty));
             hasErrors = true;
         }
 
         if (insName == null || insName.isEmpty()) {
-            policyUpdateInsNameET.setError("Insurer name must not be empty");
+            policyUpdateInsNameET.setError(getString(R.string.policy_operation_insurer_name_empty));
             hasErrors = true;
         }
 
         if (startDate == null || startDate.isEmpty()) {
-            policyUpdateStartDateET.setError("Start date must not be empty");
+            policyUpdateStartDateET.setError(getString(R.string.policy_operation_start_date_empty));
             hasErrors = true;
         }
 
         if (endDate == null || startDate.isEmpty()) {
-            policyUpdateEndDateET.setError("End date must not be empty");
+            policyUpdateEndDateET.setError(getString(R.string.policy_operation_end_date_empty));
             hasErrors = true;
         }
 

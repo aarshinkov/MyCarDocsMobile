@@ -59,7 +59,7 @@ public class CarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car);
 
-        getSupportActionBar().setTitle(getString(R.string.car_view_title));
+        getSupportActionBar().setTitle(R.string.car_view_title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
@@ -200,9 +200,9 @@ public class CarActivity extends AppCompatActivity {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(CarActivity.this);
 
-            builder.setTitle(getString(R.string.car_delete_title));
+            builder.setTitle(R.string.car_delete_title);
 
-            builder.setMessage(getString(R.string.car_delete_message));
+            builder.setMessage(R.string.car_delete_message);
 
             ProgressDialog loadingDialog = new ProgressDialog(this);
             loadingDialog.setCanceledOnTouchOutside(false);

@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:clickable="true"
-        android:contentDescription="@string/policy_create_button"
+        android:contentDescription="@string/policy_create_button_descr"
         android:src="@drawable/ic_add_car"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         editor = pref.edit();
 
         dialog = new ProgressDialog(this);
-        dialog.setMessage("Logging in...");
+        dialog.setMessage(getString(R.string.login_process));
 
         loginBtn.setOnClickListener(v -> {
             dialog.show();
@@ -63,12 +63,12 @@ public class LoginActivity extends AppCompatActivity {
             boolean hasErrors = false;
 
             if (email.isEmpty()) {
-                loginEmailET.setError("Email must not be empty");
+                loginEmailET.setError(getString(R.string.login_email_empty));
                 hasErrors = true;
             }
 
             if (password.isEmpty()) {
-                loginPasswordET.setError("Password must not be empty");
+                loginPasswordET.setError(getString(R.string.login_password_empty));
                 hasErrors = true;
             }
 
@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString(SHARED_PREF_USER, json);
                     editor.apply();
 
-                    Toast.makeText(getApplicationContext(), "Hello, " + user.getFullName(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.login_welcome, user.getFullName()), Toast.LENGTH_LONG).show();
                     dialog.hide();
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Error logging you in!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.login_error, Toast.LENGTH_LONG).show();
                     dialog.hide();
                 }
             });
