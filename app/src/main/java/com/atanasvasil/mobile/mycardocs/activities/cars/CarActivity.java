@@ -115,7 +115,7 @@ public class CarActivity extends AppCompatActivity {
             public void onResponse(Call<Car> call, Response<Car> response) {
 
                 if (!response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Error getting car", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.car_get_error, Toast.LENGTH_LONG).show();
                     carProgress.setVisibility(View.GONE);
                     return;
                 }
@@ -148,7 +148,7 @@ public class CarActivity extends AppCompatActivity {
 
                         carColorTV.setText(car.getColor());
 
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+                        SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.date_1), Locale.getDefault());
 
                         Date date = new Date();
                         date.setTime(car.getAddedOn().getTime());
@@ -163,7 +163,7 @@ public class CarActivity extends AppCompatActivity {
                         }
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "Car not found", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.car_not_found, Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -200,15 +200,15 @@ public class CarActivity extends AppCompatActivity {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(CarActivity.this);
 
-            builder.setTitle("Delete car.");
+            builder.setTitle(getString(R.string.car_delete_title));
 
-            builder.setMessage("Are you sure you want to delete this car? Note that all policies, associated with this car, will be automatically deleted!");
+            builder.setMessage(getString(R.string.car_delete_message));
 
             ProgressDialog loadingDialog = new ProgressDialog(this);
             loadingDialog.setCanceledOnTouchOutside(false);
-            loadingDialog.setMessage("Deleting car...");
+            loadingDialog.setMessage(getString(R.string.car_delete_process));
 
-            builder.setPositiveButton("Yes", (dialog, which) -> {
+            builder.setPositiveButton(R.string.yes, (dialog, which) -> {
 
                 loadingDialog.show();
 
@@ -223,7 +223,7 @@ public class CarActivity extends AppCompatActivity {
                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {
 
                         if (response.code() == 404) {
-                            Toast.makeText(getApplicationContext(), "Car not found", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), R.string.car_not_found, Toast.LENGTH_LONG).show();
                             loadingDialog.hide();
                             return;
                         }
@@ -233,7 +233,7 @@ public class CarActivity extends AppCompatActivity {
                         if (result != null) {
                             if (result) {
                                 loadingDialog.hide();
-                                Toast.makeText(getApplicationContext(), "Car deleted successfully!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), R.string.car_delete_success, Toast.LENGTH_LONG).show();
 
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 intent.putExtra("fragment", "cars");
@@ -244,19 +244,19 @@ public class CarActivity extends AppCompatActivity {
                             }
                         }
 
-                        Toast.makeText(getApplicationContext(), "Error deleting the car!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.car_delete_error, Toast.LENGTH_LONG).show();
                         loadingDialog.hide();
                     }
 
                     @Override
                     public void onFailure(Call<Boolean> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Error deleting the car!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.car_delete_error, Toast.LENGTH_LONG).show();
                         loadingDialog.hide();
                     }
                 });
             });
 
-            builder.setNegativeButton("Cancel", (dialog, which) -> {
+            builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
             });
 
             AlertDialog dialog = builder.create();

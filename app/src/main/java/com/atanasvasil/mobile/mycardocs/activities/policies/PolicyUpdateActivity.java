@@ -117,7 +117,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
                 policyUpdateInsNameET.setText(policy.getInsName());
 
                 Date date = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+                SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.date_time_1), Locale.getDefault());
 
                 date.setTime(policy.getStartDate().getTime());
                 policyUpdateStartDateET.setText(sdf.format(date));
@@ -154,8 +154,8 @@ public class PolicyUpdateActivity extends AppCompatActivity {
             String licensePlate = policyUpdateCarsSP.getSelectedItem().toString();
 
             try {
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                DateFormat dateFormat = new SimpleDateFormat(getString(R.string.date_time_default), Locale.getDefault());
+                SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.date_time_1), Locale.getDefault());
 
                 Date startDate = sdf.parse(policyUpdateStartDateET.getText().toString());
                 String startFDate = dateFormat.format(startDate);
@@ -256,7 +256,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         calendar.set(Calendar.MINUTE, minute);
 
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_time_1), Locale.getDefault());
 
                         field.setText(simpleDateFormat.format(calendar.getTime()));
                         field.setError(null);

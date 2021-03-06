@@ -128,7 +128,7 @@ public class PolicyActivity extends AppCompatActivity {
 
                         Date now = new Date();
                         Date date = new Date();
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+                        SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.date_time_1), Locale.getDefault());
 
                         date.setTime(policy.getStartDate().getTime());
                         policyStartDateTV.setText(sdf.format(date));

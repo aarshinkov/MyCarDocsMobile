@@ -66,7 +66,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
 
         Date now = new Date();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat(context.getString(R.string.date_1), Locale.getDefault());
 
         Date date = new Date();
         date.setTime(policy.getStartDate().getTime());

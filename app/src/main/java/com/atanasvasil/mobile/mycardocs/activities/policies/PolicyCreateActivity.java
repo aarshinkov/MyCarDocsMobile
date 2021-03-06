@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -111,8 +112,8 @@ public class PolicyCreateActivity extends AppCompatActivity {
             String licensePlate = policyCreateCarsSP.getSelectedItem().toString();
 
             try {
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                DateFormat dateFormat = new SimpleDateFormat(getString(R.string.date_time_default), Locale.getDefault());
+                SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.date_time_1), Locale.getDefault());
 
                 Date startDate = sdf.parse(policyCreateStartDateET.getText().toString());
                 String startFDate = dateFormat.format(startDate);
@@ -210,7 +211,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         calendar.set(Calendar.MINUTE, minute);
 
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_time_1), Locale.getDefault());
 
                         field.setText(simpleDateFormat.format(calendar.getTime()));
                         field.setError(null);
@@ -233,7 +234,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
                 calendar.set(Calendar.YEAR, year);
                 calendar.set(Calendar.MONTH, month);
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_1), Locale.getDefault());
                 policyCreateStartDateET.setText(simpleDateFormat.format(calendar.getTime()));
 
             }
