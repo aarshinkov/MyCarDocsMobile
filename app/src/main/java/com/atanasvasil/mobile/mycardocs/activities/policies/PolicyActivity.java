@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,8 @@ public class PolicyActivity extends AppCompatActivity {
     private TextView policyStartDateTV;
     private TextView policyEndDateTV;
     private TextView policyStatusTV;
+    private ProgressBar policyValidProgress;
+    private TextView policyValidProgressTV;
     private TextView policyCarInfoTV;
     private TextView policyCarLicensePlateTV;
     private TextView policyCarYearTV;
@@ -69,6 +72,8 @@ public class PolicyActivity extends AppCompatActivity {
         policyStartDateTV = findViewById(R.id.policyStartDateTV);
         policyEndDateTV = findViewById(R.id.policyEndDateTV);
         policyStatusTV = findViewById(R.id.policyStatusTV);
+        policyValidProgress = findViewById(R.id.policyValidProgress);
+        policyValidProgressTV = findViewById(R.id.policyValidProgressTV);
         policyCarInfoTV = findViewById(R.id.policyCarInfoTV);
         policyCarLicensePlateTV = findViewById(R.id.policyCarLicensePlateTV);
         policyCarYearTV = findViewById(R.id.policyCarYearTV);
@@ -127,24 +132,63 @@ public class PolicyActivity extends AppCompatActivity {
                         policyInsurerNameTV.setText(policy.getInsName());
 
                         Date now = new Date();
-                        Date date = new Date();
+                        Date startDate = new Date();
+                        Date endDate = new Date();
                         SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.date_time_1), Locale.getDefault());
 
-                        date.setTime(policy.getStartDate().getTime());
-                        policyStartDateTV.setText(sdf.format(date));
+                        startDate.setTime(policy.getStartDate().getTime());
+                        policyStartDateTV.setText(sdf.format(startDate));
 
-                        if (now.before(date)) {
-                            policyStatusTV.setTextColor(getApplicationContext().getResources().getColor(R.color.warning));
-                            policyStatusTV.setText(getString(R.string.policy_status_pending));
+                        endDate.setTime(policy.getEndDate().getTime());
+                        policyEndDateTV.setText(sdf.format(endDate));
+
+                        if (now.after(startDate) && now.before(endDate)) {
+                            policyStatusTV.setTextColor(getApplicationContext().getResources().getColor(R.color.success));
+                            policyStatusTV.setText(getString(R.string.policy_status_active));
+
+                            policyValidProgressTV.setVisibility(View.VISIBLE);
+
+                            long diff = endDate.getTime() - startDate.getTime();
+                            int allDays = (int) (diff / (1000 * 60 * 60 * 24));
+
+                            diff = endDate.getTime() - new Date().getTime();
+                            int remainingDays = (int) (diff / (1000 * 60 * 60 * 24));
+
+                            policyValidProgress.setMax(allDays);
+                            policyValidProgress.setProgress(allDays - remainingDays);
+
+                            if (remainingDays == 1) {
+                                policyValidProgressTV.setText(getString(R.string.policy_days_remaining_1));
+                            } else {
+                                policyValidProgressTV.setText(getString(R.string.policy_days_remaining, remainingDays));
+                            }
                         }
 
-                        date = new Date();
-                        date.setTime(policy.getEndDate().getTime());
-                        policyEndDateTV.setText(sdf.format(date));
+                        if (now.before(startDate)) {
+                            policyStatusTV.setTextColor(getApplicationContext().getResources().getColor(R.color.warning));
+                            policyStatusTV.setText(getString(R.string.policy_status_pending));
 
-                        if (now.after(date)) {
+                            policyValidProgress.setMax(1);
+                            policyValidProgress.setProgress(0);
+                            policyValidProgressTV.setVisibility(View.VISIBLE);
+
+                            long diff = endDate.getTime() - startDate.getTime();
+                            int allDays = (int) (diff / (1000 * 60 * 60 * 24));
+
+                            if (allDays == 1) {
+                                policyValidProgressTV.setText(getString(R.string.policy_total_days_1));
+                            } else {
+                                policyValidProgressTV.setText(getString(R.string.policy_total_days, allDays));
+                            }
+                        }
+
+                        if (now.after(endDate)) {
                             policyStatusTV.setTextColor(getApplicationContext().getResources().getColor(R.color.danger));
                             policyStatusTV.setText(getString(R.string.policy_status_expired));
+
+                            policyValidProgress.setMax(1);
+                            policyValidProgress.setProgress(2);
+                            policyValidProgressTV.setVisibility(View.GONE);
                         }
 
                         Car car = policy.getCar();
