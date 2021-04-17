@@ -2,10 +2,12 @@ package com.atanasvasil.mobile.mycardocs.activities.cars;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,7 +22,11 @@ import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,6 +41,8 @@ import static com.atanasvasil.mobile.mycardocs.utils.Utils.getStringResource;
 
 public class CarActivity extends AppCompatActivity {
 
+    private ConstraintLayout carActivityLayout;
+
     private TextView carInfoTV;
     private TextView carYearTV;
     private TextView carLicensePlateTV;
@@ -47,6 +55,9 @@ public class CarActivity extends AppCompatActivity {
     private TextView carAddedOnTV;
     private TextView carEditedOnLabelTV;
     private TextView carEditedOnTV;
+
+    private MaterialButton carEditBtn;
+    private MaterialButton carDeleteBtn;
 
     private SwipeRefreshLayout carRefresh;
 
@@ -61,6 +72,8 @@ public class CarActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(R.string.car_view_title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        carActivityLayout = findViewById(R.id.carActivityLayout);
 
         Intent intent = getIntent();
         carId = intent.getStringExtra("carId");
@@ -78,6 +91,9 @@ public class CarActivity extends AppCompatActivity {
         carEditedOnLabelTV = findViewById(R.id.carEditedOnLabelTV);
         carEditedOnTV = findViewById(R.id.carEditedOnTV);
 
+        carEditBtn = findViewById(R.id.carEditBtn);
+        carDeleteBtn = findViewById(R.id.carDeleteBtn);
+
         carRefresh = findViewById(R.id.carRefresh);
 
         carProgress = findViewById(R.id.carProgress);
@@ -93,6 +109,13 @@ public class CarActivity extends AppCompatActivity {
             }
         });
 
+        carEditBtn.setOnClickListener(v -> {
+            editCar();
+        });
+
+        carDeleteBtn.setOnClickListener(v -> {
+            deleteCar();
+        });
     }
 
     @Override
@@ -112,7 +135,7 @@ public class CarActivity extends AppCompatActivity {
 
         carsApi.getCar(carId).enqueue(new Callback<Car>() {
             @Override
-            public void onResponse(Call<Car> call, Response<Car> response) {
+            public void onResponse(@NotNull Call<Car> call, @NotNull Response<Car> response) {
 
                 if (!response.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), R.string.car_get_error, Toast.LENGTH_LONG).show();
@@ -171,99 +194,87 @@ public class CarActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Car> call, Throwable t) {
+            public void onFailure(@NotNull Call<Car> call, @NotNull Throwable t) {
                 Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
                 carProgress.setVisibility(View.GONE);
             }
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    private void editCar() {
+        Intent intent = new Intent(getApplicationContext(), CarUpdateActivity.class);
+        intent.putExtra("carId", getIntent().getStringExtra("carId"));
+        startActivity(intent);
+    }
 
-        getMenuInflater().inflate(R.menu.action_operations, menu);
+    private void deleteCar() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(CarActivity.this);
 
-        return true;
+        builder.setTitle(R.string.car_delete_title);
+
+        builder.setMessage(R.string.car_delete_message);
+
+        ProgressDialog progress = new ProgressDialog(this);
+        progress.setMessage(getString(R.string.car_delete_process));
+        progress.setCancelable(false);
+        progress.setCanceledOnTouchOutside(false);
+
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+
+            progress.show();
+
+            Retrofit retrofit = Api.getRetrofit();
+
+            CarsApi carsApi = retrofit.create(CarsApi.class);
+
+            String carId = getIntent().getStringExtra("carId");
+
+            carsApi.deleteCar(carId).enqueue(new Callback<Boolean>() {
+                @Override
+                public void onResponse(@NotNull Call<Boolean> call, @NotNull Response<Boolean> response) {
+
+                    if (response.code() == 404) {
+                        Toast.makeText(getApplicationContext(), R.string.car_not_found, Toast.LENGTH_LONG).show();
+                        progress.hide();
+                        return;
+                    }
+
+                    Boolean result = response.body();
+
+                    if (result != null) {
+                        if (result) {
+                            Toast.makeText(getApplicationContext(), R.string.car_delete_success, Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("fragment", "cars");
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), R.string.car_delete_error, Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    progress.hide();
+                }
+
+                @Override
+                public void onFailure(@NotNull Call<Boolean> call, @NotNull Throwable t) {
+                    Toast.makeText(getApplicationContext(), R.string.car_delete_error, Toast.LENGTH_LONG).show();
+                    progress.hide();
+                }
+            });
+        });
+
+        builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
+        });
+
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        if (item.getItemId() == R.id.action_edit) {
-
-            Intent intent = new Intent(getApplicationContext(), CarUpdateActivity.class);
-            intent.putExtra("carId", getIntent().getStringExtra("carId"));
-            startActivity(intent);
-            return false;
-
-        } else if (item.getItemId() == R.id.action_delete) {
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(CarActivity.this);
-
-            builder.setTitle(R.string.car_delete_title);
-
-            builder.setMessage(R.string.car_delete_message);
-
-            ProgressDialog loadingDialog = new ProgressDialog(this);
-            loadingDialog.setCanceledOnTouchOutside(false);
-            loadingDialog.setMessage(getString(R.string.car_delete_process));
-
-            builder.setPositiveButton(R.string.yes, (dialog, which) -> {
-
-                loadingDialog.show();
-
-                Retrofit retrofit = Api.getRetrofit();
-
-                CarsApi carsApi = retrofit.create(CarsApi.class);
-
-                String carId = getIntent().getStringExtra("carId");
-
-                carsApi.deleteCar(carId).enqueue(new Callback<Boolean>() {
-                    @Override
-                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-
-                        if (response.code() == 404) {
-                            Toast.makeText(getApplicationContext(), R.string.car_not_found, Toast.LENGTH_LONG).show();
-                            loadingDialog.hide();
-                            return;
-                        }
-
-                        Boolean result = response.body();
-
-                        if (result != null) {
-                            if (result) {
-                                loadingDialog.hide();
-                                Toast.makeText(getApplicationContext(), R.string.car_delete_success, Toast.LENGTH_LONG).show();
-
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                intent.putExtra("fragment", "cars");
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-
-                                return;
-                            }
-                        }
-
-                        Toast.makeText(getApplicationContext(), R.string.car_delete_error, Toast.LENGTH_LONG).show();
-                        loadingDialog.hide();
-                    }
-
-                    @Override
-                    public void onFailure(Call<Boolean> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), R.string.car_delete_error, Toast.LENGTH_LONG).show();
-                        loadingDialog.hide();
-                    }
-                });
-            });
-
-            builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
-            });
-
-            AlertDialog dialog = builder.create();
-
-            dialog.show();
-            return false;
-        }
 
         onBackPressed();
         return true;

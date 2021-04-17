@@ -6,72 +6,120 @@
     android:layout_height="match_parent"
     tools:context=".fragments.PoliciesFragment">
 
-    <TextView
-        android:id="@+id/noPoliciesFoundTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/nunito"
-        android:text="@string/policies_nofound"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="14sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@+id/policiesLeftGuide"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/noActivePoliciesTV"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/policiesNoItemsRefresh"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="@font/nunito"
-        android:gravity="center"
-        android:text="@string/policies_nocars"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="14sp"
-
-        android:visibility="gone"
+        android:layout_height="0dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/policiesRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/policiesLeftGuide"
-        tools:visibility="visible" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="100dp"
+                android:paddingBottom="100dp">
+
+                <ImageView
+                    android:id="@+id/policiesNoItemsIV"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/ic_policies_not_found"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/policiesNoItemsTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/policies_nofound"
+                    android:textAlignment="center"
+                    android:textColor="@color/soft_black"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/policiesNoItemsRightGuide"
+                    app:layout_constraintStart_toStartOf="@id/policiesNoItemsLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@id/policiesNoItemsIV" />
+
+                <TextView
+                    android:id="@+id/noCarsForPolicyTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/nunito"
+                    android:gravity="center"
+                    android:text="@string/policies_nocars"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toStartOf="@+id/policiesNoItemsRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/policiesNoItemsLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/policiesNoItemsTV"
+                    tools:visibility="visible" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/policiesNoItemsLeftGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="16dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/policiesNoItemsRightGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="16dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/policiesRefresh"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/policyCreateFBtn"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noPoliciesFoundTV"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="visible">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/policies"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
+            android:paddingBottom="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/policyCreateFBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
         android:contentDescription="@string/policy_create_button_descr"
         android:src="@drawable/ic_add_car"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/policiesRightGuide"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:visibility="visible" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
@@ -81,22 +129,22 @@
         android:indeterminate="true"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/policiesRefresh"
-        app:layout_constraintEnd_toStartOf="@+id/policiesRightGuide"
+        app:layout_constraintEnd_toEndOf="@+id/policiesRefresh"
         app:layout_constraintStart_toStartOf="@+id/policiesRefresh"
         app:layout_constraintTop_toTopOf="@+id/policiesRefresh" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/policiesLeftGuide"
+        android:id="@+id/policiesGuideLeft"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        app:layout_constraintGuide_begin="8dp" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/policiesRightGuide"
+        android:id="@+id/policiesGuideRight"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        app:layout_constraintGuide_end="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

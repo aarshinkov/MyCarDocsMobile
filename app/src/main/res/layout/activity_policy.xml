@@ -211,7 +211,7 @@
                     android:contentDescription="@string/policy_car_info_icon"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/policyDivider"
-                    app:srcCompat="@drawable/ic_cars" />
+                    app:srcCompat="@drawable/ic_car" />
 
                 <TextView
                     android:id="@+id/policyCarLabelTV"

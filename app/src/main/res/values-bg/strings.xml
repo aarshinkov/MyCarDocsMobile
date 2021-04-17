@@ -112,10 +112,10 @@
     <!-- Car operations -->
     <string name="car_operation_invalid_format">Невалиден формат</string>
     <string name="car_operation_brand_empty">Марката не може да бъде празна</string>
-    <string name="car_operation_model_empty">Моделът не може да бъде празна</string>
-    <string name="car_operation_color_empty">Цветът не може да бъде празна</string>
+    <string name="car_operation_model_empty">Моделът не може да бъде празен</string>
+    <string name="car_operation_color_empty">Цветът не може да бъде празен</string>
     <string name="car_operation_year_empty">Годината не може да бъде празна</string>
-    <string name="car_operation_license_plate_empty">Рег. номер не може да бъде празна</string>
+    <string name="car_operation_license_plate_empty">Рег. номер не може да бъде празен</string>
 
     <!-- Car responses -->
     <string name="car_get_error">Грешка при вземане на автомобил</string>
@@ -129,6 +129,8 @@
     <!-- Policy create -->
     <string name="policy_create_title">Създаване на полица</string>
     <string name="policy_create_button">Създай полица</string>
+    <string name="policy_create_type_prompt">Тип на полица</string>
+    <string name="policy_create_car_prompt">Автомобил</string>
     <string name="policy_create_button_descr">Бутон за създаване на полица</string>
 
     <!-- Policy view -->

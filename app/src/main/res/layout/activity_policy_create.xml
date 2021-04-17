@@ -27,6 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:entries="@array/policy_types"
+            android:prompt="@string/policy_create_type_prompt"
+            android:spinnerMode="dialog"
             app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/policyCreateNumberET" />
@@ -47,6 +49,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:prompt="@string/policy_create_car_prompt"
+            android:spinnerMode="dialog"
             app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/policyCreateInsNameET" />

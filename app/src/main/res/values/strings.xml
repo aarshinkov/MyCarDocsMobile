@@ -129,6 +129,8 @@
     <!-- Policy create -->
     <string name="policy_create_title">Create a policy</string>
     <string name="policy_create_button">Create policy</string>
+    <string name="policy_create_type_prompt">Policy type</string>
+    <string name="policy_create_car_prompt">Car</string>
     <string name="policy_create_button_descr">Policy create button</string>
 
     <!-- Policy view -->

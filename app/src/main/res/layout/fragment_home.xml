@@ -115,7 +115,7 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/carsCountHeaderTV"
-                                app:srcCompat="@drawable/ic_cars" />
+                                app:srcCompat="@drawable/ic_car" />
 
                             <TextView
                                 android:id="@+id/carsCountTV"

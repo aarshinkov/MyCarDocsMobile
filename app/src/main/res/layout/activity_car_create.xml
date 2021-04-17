@@ -52,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:entries="@array/car_transmissions"
+            android:spinnerMode="dialog"
             app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/carCreateColorET" />
@@ -62,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:entries="@array/car_power_types"
+            android:spinnerMode="dialog"
             app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/carCreateTransmissionSP" />

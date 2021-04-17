@@ -44,11 +44,10 @@ public class CarsFragment extends Fragment {
     private RecyclerView recyclerView;
     private CarAdapter carAdapter;
     private List<Car> cars;
+    private SwipeRefreshLayout carsNoItemsRefresh;
     private SwipeRefreshLayout carsRefresh;
 
     private CircularProgressIndicator progress;
-
-    private TextView noCarsFoundTV;
 
     private FloatingActionButton carCreateFBtn;
     private SharedPreferences pref;
@@ -59,12 +58,11 @@ public class CarsFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_cars, container, false);
 
+        carsNoItemsRefresh = root.findViewById(R.id.carsNoItemsRefresh);
         carsRefresh = root.findViewById(R.id.carsRefresh);
 
         recyclerView = root.findViewById(R.id.cars);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        noCarsFoundTV = root.findViewById(R.id.noCarsFoundTV);
 
         cars = new ArrayList<>();
         carAdapter = new CarAdapter(getContext(), cars);
@@ -82,13 +80,22 @@ public class CarsFragment extends Fragment {
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
 
-        getUserCars(loggedUser.getUserId());
+        getUserCars();
+
+        carsNoItemsRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                getUserCars();
+                carsNoItemsRefresh.setRefreshing(false);
+            }
+        });
 
         carsRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                getUserCars(loggedUser.getUserId());
+                getUserCars();
                 carsRefresh.setRefreshing(false);
             }
         });
@@ -96,22 +103,21 @@ public class CarsFragment extends Fragment {
         return root;
     }
 
-    private void getUserCars(String userId) {
+    private void getUserCars() {
 
         Retrofit retrofit = Api.getRetrofit();
         CarsApi carsApi = retrofit.create(CarsApi.class);
 
-        carsApi.getUserCars(userId).enqueue(new Callback<List<Car>>() {
+        carsApi.getUserCars(loggedUser.getUserId()).enqueue(new Callback<List<Car>>() {
             @Override
             public void onResponse(@NotNull Call<List<Car>> call, @NotNull Response<List<Car>> response) {
 
                 if (response.code() == 400) {
-                    noCarsFoundTV.setVisibility(View.VISIBLE);
+                    carsNoItemsRefresh.setVisibility(View.VISIBLE);
+                    carsRefresh.setVisibility(View.INVISIBLE);
                     progress.setVisibility(View.GONE);
                     return;
                 }
-
-                noCarsFoundTV.setVisibility(View.GONE);
 
                 List<Car> storedCars = response.body();
 
@@ -119,6 +125,16 @@ public class CarsFragment extends Fragment {
 
                 if (storedCars != null) {
                     cars.addAll(storedCars);
+
+                    final int size = storedCars.size();
+
+                    if (size <= 0) {
+                        carsNoItemsRefresh.setVisibility(View.VISIBLE);
+                        carsRefresh.setVisibility(View.INVISIBLE);
+                    } else {
+                        carsNoItemsRefresh.setVisibility(View.INVISIBLE);
+                        carsRefresh.setVisibility(View.VISIBLE);
+                    }
                 }
 
                 carAdapter.notifyDataSetChanged();
@@ -135,7 +151,7 @@ public class CarsFragment extends Fragment {
 
     @Override
     public void onResume() {
-        getUserCars(loggedUser.getUserId());
+        getUserCars();
         super.onResume();
     }
 }
