@@ -11,6 +11,7 @@ public class PolicyCreateRequest implements Serializable {
     private String carId;
     private String startDate;
     private String endDate;
+    private String userId;
 
     public String getNumber() {
         return number;
@@ -58,5 +59,13 @@ public class PolicyCreateRequest implements Serializable {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

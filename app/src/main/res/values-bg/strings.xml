@@ -4,7 +4,7 @@
 
     <string name="nav_home">Начало</string>
 
-    <string name="home_welcome">Добре дошли в %1$s, %2$s!</string>
+    <string name="home_welcome">Добре дошли в %1$s, <![CDATA[<br/><b>%2$s</b>]]>!</string>
     <string name="home_manage">Управлявайте вашите автомобили и полици.</string>
     <string name="home_cars">Автомобили</string>
     <string name="home_policies">Полици</string>
@@ -124,7 +124,7 @@
     <!-- Policies lists -->
     <string name="policy_icon">Икона полица</string>
     <string name="policies_nofound">Няма открити полици.</string>
-    <string name="policies_nocars">За да създадете полица, трябва първо да създадете автомобил.</string>
+    <string name="policies_nocars">За да създадете полици, трябва първо да създадете автомобил.</string>
 
     <!-- Policy create -->
     <string name="policy_create_title">Създаване на полица</string>

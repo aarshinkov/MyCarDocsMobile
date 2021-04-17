@@ -317,6 +317,31 @@
                     app:layout_constraintTop_toBottomOf="@+id/policyCarYearTV"
                     tools:text="Color" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/policyEditBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/action_edit"
+                    app:icon="@drawable/ic_edit"
+                    app:iconGravity="textStart"
+                    app:layout_constraintEnd_toEndOf="@id/policyRightGuide"
+                    app:layout_constraintStart_toStartOf="@id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@id/policyCarColorLabelTV" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/policyDeleteBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/danger"
+                    android:text="@string/action_delete"
+                    app:icon="@drawable/ic_delete"
+                    app:iconGravity="textStart"
+                    app:layout_constraintEnd_toEndOf="@id/policyRightGuide"
+                    app:layout_constraintStart_toStartOf="@id/policyLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@id/policyEditBtn" />
+
                 <com.google.android.material.progressindicator.CircularProgressIndicator
                     android:id="@+id/policyProgress"
                     android:layout_width="wrap_content"

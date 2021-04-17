@@ -108,7 +108,7 @@ public class CarsFragment extends Fragment {
         Retrofit retrofit = Api.getRetrofit();
         CarsApi carsApi = retrofit.create(CarsApi.class);
 
-        carsApi.getUserCars(loggedUser.getUserId()).enqueue(new Callback<List<Car>>() {
+        carsApi.getUserCars(loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Car>>() {
             @Override
             public void onResponse(@NotNull Call<List<Car>> call, @NotNull Response<List<Car>> response) {
 

@@ -6,6 +6,11 @@ import android.content.SharedPreferences;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
 import com.google.gson.Gson;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_AUTH;
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_EMAIL;
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_FIRST_NAME;
@@ -25,6 +30,17 @@ public class Utils {
 //            Log.e("ERROR", "Some error: ", e);
         }
         return "";
+    }
+
+    public static <T extends Number> String getWholeNumberFormatted(T number) {
+
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+        DecimalFormatSymbols symbols = formatter.getDecimalFormatSymbols();
+
+        symbols.setGroupingSeparator(' ');
+        formatter.setDecimalFormatSymbols(symbols);
+
+        return formatter.format(number);
     }
 
     public static Boolean isLoggedIn(SharedPreferences pref) {

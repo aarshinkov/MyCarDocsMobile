@@ -116,7 +116,7 @@ public class PoliciesFragment extends Fragment {
         Retrofit retrofit = getRetrofit();
         PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
-        policiesApi.getPoliciesByUserId(loggedUser.getUserId()).enqueue(new Callback<List<Policy>>() {
+        policiesApi.getPoliciesByUserId(loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Policy>>() {
             @Override
             public void onResponse(@NotNull Call<List<Policy>> call, @NotNull Response<List<Policy>> response) {
 

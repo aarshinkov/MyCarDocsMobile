@@ -29,6 +29,8 @@ import com.atanasvasil.mobile.mycardocs.responses.users.User;
 import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -59,11 +61,14 @@ public class PolicyUpdateActivity extends AppCompatActivity {
 
     private List<String> cars = new ArrayList<>();
 
+    private LoggedUser loggedUser;
     private SharedPreferences pref;
 
     private ArrayAdapter<String> adapter;
 
     private LinearProgressIndicator progress;
+
+    private String policyId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +79,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
 
         progress = findViewById(R.id.policyUpdateProgress);
 
-        String policyId = getIntent().getStringExtra("policyId");
+        policyId = getIntent().getStringExtra("policyId");
 
         policyUpdateNumberET = findViewById(R.id.policyUpdateNumberET);
         policyUpdateTypeSP = findViewById(R.id.policyUpdateTypeSP);
@@ -86,9 +91,9 @@ public class PolicyUpdateActivity extends AppCompatActivity {
         policyUpdateBtn = findViewById(R.id.policyUpdateBtn);
 
         pref = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        LoggedUser loggedUser = getLoggedUser(pref);
+        loggedUser = getLoggedUser(pref);
 
-        loadCars(loggedUser.getUserId());
+        loadCars();
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
 
@@ -108,9 +113,9 @@ public class PolicyUpdateActivity extends AppCompatActivity {
         Retrofit retrofit = getRetrofit();
 
         PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
-        policiesApi.getPolicy(policyId).enqueue(new Callback<Policy>() {
+        policiesApi.getPolicy(policyId, loggedUser.getAuthorization()).enqueue(new Callback<Policy>() {
             @Override
-            public void onResponse(Call<Policy> call, Response<Policy> response) {
+            public void onResponse(@NotNull Call<Policy> call, @NotNull Response<Policy> response) {
 
                 Policy policy = response.body();
                 policyUpdateNumberET.setText(policy.getNumber());
@@ -132,7 +137,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Policy> call, Throwable t) {
+            public void onFailure(@NotNull Call<Policy> call, @NotNull Throwable t) {
                 Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
             }
         });
@@ -147,7 +152,6 @@ public class PolicyUpdateActivity extends AppCompatActivity {
 
             PolicyUpdateRequest pur = new PolicyUpdateRequest();
 
-            pur.setPolicyId(policyId);
             pur.setNumber(policyUpdateNumberET.getText().toString());
             pur.setType(policyUpdateTypeSP.getSelectedItemPosition() + 1);
             pur.setInsName(policyUpdateInsNameET.getText().toString());
@@ -171,16 +175,17 @@ public class PolicyUpdateActivity extends AppCompatActivity {
             }
 
             CarsApi carsApi = retrofit.create(CarsApi.class);
-            carsApi.getCarByLicensePlate(licensePlate).enqueue(new Callback<Car>() {
+            carsApi.getCarByLicensePlate(licensePlate, loggedUser.getAuthorization()).enqueue(new Callback<Car>() {
                 @Override
-                public void onResponse(Call<Car> call, Response<Car> response) {
+                public void onResponse(@NotNull Call<Car> call, @NotNull Response<Car> response) {
                     Car car = response.body();
                     pur.setCarId(car.getCarId());
+                    pur.setUserId(loggedUser.getUserId());
 
                     PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
-                    policiesApi.updatePolicy(pur).enqueue(new Callback<Policy>() {
+                    policiesApi.updatePolicy(policyId, pur, loggedUser.getAuthorization()).enqueue(new Callback<Policy>() {
                         @Override
-                        public void onResponse(Call<Policy> call, Response<Policy> response) {
+                        public void onResponse(@NotNull Call<Policy> call, @NotNull Response<Policy> response) {
 
                             Toast.makeText(getApplicationContext(), R.string.policy_update_success, Toast.LENGTH_LONG).show();
                             finish();
@@ -189,7 +194,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<Policy> call, Throwable t) {
+                        public void onFailure(@NotNull Call<Policy> call, @NotNull Throwable t) {
                             Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
                             progress.setVisibility(View.GONE);
                         }
@@ -198,7 +203,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<Car> call, Throwable t) {
+                public void onFailure(@NotNull Call<Car> call, @NotNull Throwable t) {
                     Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
                     progress.setVisibility(View.GONE);
                 }
@@ -206,14 +211,14 @@ public class PolicyUpdateActivity extends AppCompatActivity {
         });
     }
 
-    public void loadCars(String userId) {
+    public void loadCars() {
 
         Retrofit retrofit = getRetrofit();
         CarsApi carsApi = retrofit.create(CarsApi.class);
 
-        carsApi.getUserCars(userId).enqueue(new Callback<List<Car>>() {
+        carsApi.getUserCars(loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Car>>() {
             @Override
-            public void onResponse(Call<List<Car>> call, Response<List<Car>> response) {
+            public void onResponse(@NotNull Call<List<Car>> call, @NotNull Response<List<Car>> response) {
 
                 if (response.code() == 400) {
                     return;
@@ -230,7 +235,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Car>> call, Throwable t) {
+            public void onFailure(@NotNull Call<List<Car>> call, @NotNull Throwable t) {
                 Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
             }
         });

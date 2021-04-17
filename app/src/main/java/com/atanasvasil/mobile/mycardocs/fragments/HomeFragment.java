@@ -2,6 +2,7 @@ package com.atanasvasil.mobile.mycardocs.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,11 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,6 +37,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.atanasvasil.mobile.mycardocs.api.Api.getRetrofit;
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
 import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getWholeNumberFormatted;
 
 public class HomeFragment extends Fragment {
 
@@ -45,6 +52,7 @@ public class HomeFragment extends Fragment {
     private TextView policiesCountTV;
     private CircularProgressIndicator policiesCountProgress;
 
+    private LoggedUser loggedUser;
     private SharedPreferences pref;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,24 +72,24 @@ public class HomeFragment extends Fragment {
 
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
-        LoggedUser loggedUser = getLoggedUser(pref);
+        loggedUser = getLoggedUser(pref);
 
-        welcomeTV.setText(getString(R.string.home_welcome, getString(R.string.app_name), loggedUser.getFullName()));
+        welcomeTV.setText(Html.fromHtml(getString(R.string.home_welcome, getString(R.string.app_name), loggedUser.getFullName()), 0));
 
-        loadData(loggedUser.getUserId());
+        loadData();
 
         carsCountCV.setOnClickListener(v -> getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_cars).performClick());
         policiesCountCV.setOnClickListener(v -> getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_policies).performClick());
 
         homeRefresh.setOnRefreshListener(() -> {
-            loadData(loggedUser.getUserId());
+            loadData();
             homeRefresh.setRefreshing(false);
         });
 
         return root;
     }
 
-    private void loadData(String userId) {
+    private void loadData() {
 
         carsCountProgress.setVisibility(View.VISIBLE);
         carsCountTV.setVisibility(View.INVISIBLE);
@@ -93,7 +101,7 @@ public class HomeFragment extends Fragment {
         CarsApi carsApi = retrofit.create(CarsApi.class);
         PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
-        carsApi.getCarsCountByUserId(userId).enqueue(new Callback<Long>() {
+        carsApi.getCarsCountByUserId(loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<Long>() {
             @Override
             public void onResponse(@NotNull Call<Long> call, @NotNull Response<Long> response) {
 
@@ -104,7 +112,7 @@ public class HomeFragment extends Fragment {
 
                 carsCountProgress.setVisibility(View.GONE);
                 carsCountTV.setVisibility(View.VISIBLE);
-                carsCountTV.setText(Long.toString(response.body()));
+                carsCountTV.setText(getWholeNumberFormatted(response.body()));
             }
 
             @Override
@@ -113,7 +121,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        policiesApi.getPoliciesCountByUserId(userId).enqueue(new Callback<Long>() {
+        policiesApi.getPoliciesCountByUserId(loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<Long>() {
             @Override
             public void onResponse(@NotNull Call<Long> call, @NotNull Response<Long> response) {
 
@@ -124,7 +132,7 @@ public class HomeFragment extends Fragment {
 
                 policiesCountProgress.setVisibility(View.GONE);
                 policiesCountTV.setVisibility(View.VISIBLE);
-                policiesCountTV.setText(Long.toString(response.body()));
+                policiesCountTV.setText(getWholeNumberFormatted(response.body()));
             }
 
             @Override

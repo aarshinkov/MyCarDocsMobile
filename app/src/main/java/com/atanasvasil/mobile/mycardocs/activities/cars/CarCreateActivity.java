@@ -44,6 +44,7 @@ public class CarCreateActivity extends AppCompatActivity {
     private EditText carCreateAliasET;
     private Button carCreateBtn;
 
+    private LoggedUser loggedUser;
     private SharedPreferences pref;
 
     private LinearProgressIndicator progress;
@@ -69,7 +70,7 @@ public class CarCreateActivity extends AppCompatActivity {
         carCreateBtn = findViewById(R.id.carCreateBtn);
 
         pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        LoggedUser loggedUser = getLoggedUser(pref);
+        loggedUser = getLoggedUser(pref);
 
         carCreateBtn.setOnClickListener(v -> {
 
@@ -96,9 +97,15 @@ public class CarCreateActivity extends AppCompatActivity {
             Retrofit retrofit = Api.getRetrofit();
             CarsApi carsApi = retrofit.create(CarsApi.class);
 
-            carsApi.createCar(ccr).enqueue(new Callback<Car>() {
+            carsApi.createCar(ccr, loggedUser.getAuthorization()).enqueue(new Callback<Car>() {
                 @Override
                 public void onResponse(@NotNull Call<Car> call, @NotNull Response<Car> response) {
+
+                    if (response.code() == 403) {
+                        progress.setVisibility(View.GONE);
+                        return;
+                    }
+
                     Toast.makeText(getApplicationContext(), R.string.car_create_success, Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);

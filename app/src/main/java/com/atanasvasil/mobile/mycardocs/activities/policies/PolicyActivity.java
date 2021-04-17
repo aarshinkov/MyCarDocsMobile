@@ -7,6 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +21,11 @@ import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
 import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
+import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,6 +37,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import static com.atanasvasil.mobile.mycardocs.api.Api.getRetrofit;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
 import static com.atanasvasil.mobile.mycardocs.utils.Utils.getStringResource;
 
 public class PolicyActivity extends AppCompatActivity {
@@ -49,9 +56,15 @@ public class PolicyActivity extends AppCompatActivity {
     private TextView policyCarYearTV;
     private TextView policyCarColorTV;
 
+    private MaterialButton policyEditBtn;
+    private MaterialButton policyDeleteBtn;
+
     private SwipeRefreshLayout policyRefresh;
 
     private CircularProgressIndicator policyProgress;
+
+    private LoggedUser loggedUser;
+    private SharedPreferences pref;
 
     private String policyId;
 
@@ -79,10 +92,16 @@ public class PolicyActivity extends AppCompatActivity {
         policyCarYearTV = findViewById(R.id.policyCarYearTV);
         policyCarColorTV = findViewById(R.id.policyCarColorTV);
 
+        policyEditBtn = findViewById(R.id.policyEditBtn);
+        policyDeleteBtn = findViewById(R.id.policyDeleteBtn);
+
         policyRefresh = findViewById(R.id.policyRefresh);
 
         policyProgress = findViewById(R.id.policyProgress);
         policyProgress.setVisibility(View.VISIBLE);
+
+        pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        loggedUser = getLoggedUser(pref);
 
         getPolicy(policyId);
 
@@ -92,6 +111,14 @@ public class PolicyActivity extends AppCompatActivity {
                 getPolicy(policyId);
                 policyRefresh.setRefreshing(false);
             }
+        });
+
+        policyEditBtn.setOnClickListener(v -> {
+            editPolicy();
+        });
+
+        policyDeleteBtn.setOnClickListener(v -> {
+            deletePolicy();
         });
     }
 
@@ -110,9 +137,9 @@ public class PolicyActivity extends AppCompatActivity {
 
         PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
-        policiesApi.getPolicy(policyId).enqueue(new Callback<Policy>() {
+        policiesApi.getPolicy(policyId, loggedUser.getAuthorization()).enqueue(new Callback<Policy>() {
             @Override
-            public void onResponse(Call<Policy> call, Response<Policy> response) {
+            public void onResponse(@NotNull Call<Policy> call, @NotNull Response<Policy> response) {
 
                 if (!response.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), R.string.policy_get_error, Toast.LENGTH_LONG).show();
@@ -212,7 +239,7 @@ public class PolicyActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Policy> call, Throwable t) {
+            public void onFailure(@NotNull Call<Policy> call, @NotNull Throwable t) {
                 Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
                 policyProgress.setVisibility(View.GONE);
 //                getPolicy(policyId);
@@ -220,92 +247,82 @@ public class PolicyActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    private void editPolicy() {
 
-        getMenuInflater().inflate(R.menu.action_operations, menu);
+        Intent intent = new Intent(getApplicationContext(), PolicyUpdateActivity.class);
+        intent.putExtra("policyId", getIntent().getStringExtra("policyId"));
+        startActivity(intent);
+    }
 
-        return true;
+    private void deletePolicy() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(PolicyActivity.this);
+
+        builder.setTitle(R.string.policy_delete_title);
+
+        builder.setMessage(R.string.policy_delete_message);
+
+        ProgressDialog loadingDialog = new ProgressDialog(this);
+        loadingDialog.setCanceledOnTouchOutside(false);
+        loadingDialog.setMessage(getString(R.string.policy_delete_process));
+
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+
+            loadingDialog.show();
+
+            Retrofit retrofit = getRetrofit();
+
+            PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
+
+            String policyId = getIntent().getStringExtra("policyId");
+
+            policiesApi.deletePolicy(policyId, loggedUser.getAuthorization()).enqueue(new Callback<Boolean>() {
+                @Override
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+
+                    if (response.code() == 404) {
+                        Toast.makeText(getApplicationContext(), R.string.policy_not_found, Toast.LENGTH_LONG).show();
+                        loadingDialog.hide();
+                        return;
+                    }
+
+                    Boolean result = response.body();
+
+                    if (result != null) {
+                        if (result) {
+                            loadingDialog.hide();
+                            Toast.makeText(getApplicationContext(), R.string.policy_delete_success, Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("fragment", "policies");
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), R.string.policy_delete_error, Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    loadingDialog.hide();
+                }
+
+                @Override
+                public void onFailure(@NotNull Call<Boolean> call, @NotNull Throwable t) {
+                    Toast.makeText(getApplicationContext(), R.string.policy_delete_error, Toast.LENGTH_LONG).show();
+                    loadingDialog.hide();
+                }
+            });
+        });
+
+        builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
+        });
+
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        if (item.getItemId() == R.id.action_edit) {
-
-            Intent intent = new Intent(getApplicationContext(), PolicyUpdateActivity.class);
-            intent.putExtra("policyId", getIntent().getStringExtra("policyId"));
-            startActivity(intent);
-            return false;
-
-        } else if (item.getItemId() == R.id.action_delete) {
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(PolicyActivity.this);
-
-            builder.setTitle(R.string.policy_delete_title);
-
-            builder.setMessage(R.string.policy_delete_message);
-
-            ProgressDialog loadingDialog = new ProgressDialog(this);
-            loadingDialog.setCanceledOnTouchOutside(false);
-            loadingDialog.setMessage(getString(R.string.policy_delete_process));
-
-            builder.setPositiveButton(R.string.yes, (dialog, which) -> {
-
-                loadingDialog.show();
-
-                Retrofit retrofit = getRetrofit();
-
-                PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
-
-                String policyId = getIntent().getStringExtra("policyId");
-
-                policiesApi.deletePolicy(policyId).enqueue(new Callback<Boolean>() {
-                    @Override
-                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-
-                        if (response.code() == 404) {
-                            Toast.makeText(getApplicationContext(), R.string.policy_not_found, Toast.LENGTH_LONG).show();
-                            loadingDialog.hide();
-                            return;
-                        }
-
-                        Boolean result = response.body();
-
-                        if (result != null) {
-                            if (result) {
-                                loadingDialog.hide();
-                                Toast.makeText(getApplicationContext(), R.string.policy_delete_success, Toast.LENGTH_LONG).show();
-
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                intent.putExtra("fragment", "policies");
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-
-                                return;
-                            }
-                        }
-
-                        Toast.makeText(getApplicationContext(), R.string.policy_delete_error, Toast.LENGTH_LONG).show();
-                        loadingDialog.hide();
-                    }
-
-                    @Override
-                    public void onFailure(Call<Boolean> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), R.string.policy_delete_error, Toast.LENGTH_LONG).show();
-                        loadingDialog.hide();
-                    }
-                });
-            });
-
-            builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
-            });
-
-            AlertDialog dialog = builder.create();
-
-            dialog.show();
-            return false;
-        }
 
         onBackPressed();
         return true;

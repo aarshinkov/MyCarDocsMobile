@@ -60,6 +60,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
     private List<String> cars = new ArrayList<>();
 
+    private LoggedUser loggedUser;
     private SharedPreferences pref;
 
     private ArrayAdapter<String> adapter;
@@ -81,7 +82,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
         policyCreateBtn = findViewById(R.id.policyCreateBtn);
 
         pref = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        LoggedUser loggedUser = getLoggedUser(pref);
+        loggedUser = getLoggedUser(pref);
 
         loadCars(loggedUser.getUserId());
 
@@ -131,14 +132,15 @@ public class PolicyCreateActivity extends AppCompatActivity {
             }
             Retrofit retrofit = getRetrofit();
             CarsApi carsApi = retrofit.create(CarsApi.class);
-            carsApi.getCarByLicensePlate(licensePlate).enqueue(new Callback<Car>() {
+            carsApi.getCarByLicensePlate(licensePlate, loggedUser.getAuthorization()).enqueue(new Callback<Car>() {
                 @Override
-                public void onResponse(Call<Car> call, Response<Car> response) {
+                public void onResponse(@NotNull Call<Car> call, @NotNull Response<Car> response) {
                     Car car = response.body();
                     pcr.setCarId(car.getCarId());
+                    pcr.setUserId(loggedUser.getUserId());
 
                     PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
-                    policiesApi.createPolicy(pcr).enqueue(new Callback<Policy>() {
+                    policiesApi.createPolicy(pcr, loggedUser.getAuthorization()).enqueue(new Callback<Policy>() {
                         @Override
                         public void onResponse(@NotNull Call<Policy> call, @NotNull Response<Policy> response) {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -168,7 +170,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
         Retrofit retrofit = getRetrofit();
         CarsApi carsApi = retrofit.create(CarsApi.class);
 
-        carsApi.getUserCars(userId).enqueue(new Callback<List<Car>>() {
+        carsApi.getUserCars(userId, loggedUser.getAuthorization()).enqueue(new Callback<List<Car>>() {
             @Override
             public void onResponse(@NotNull Call<List<Car>> call, @NotNull Response<List<Car>> response) {
 

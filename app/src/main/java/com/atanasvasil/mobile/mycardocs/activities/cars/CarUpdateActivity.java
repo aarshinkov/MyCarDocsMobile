@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,12 +19,18 @@ import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.requests.cars.CarUpdateRequest;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
+import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+
+import org.jetbrains.annotations.NotNull;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
 
 public class CarUpdateActivity extends AppCompatActivity {
 
@@ -38,6 +45,9 @@ public class CarUpdateActivity extends AppCompatActivity {
     private Button carUpdateBtn;
 
     private LinearProgressIndicator progress;
+
+    private LoggedUser loggedUser;
+    private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +69,18 @@ public class CarUpdateActivity extends AppCompatActivity {
         carUpdateAliasET = findViewById(R.id.carUpdateAliasET);
         carUpdateBtn = findViewById(R.id.carUpdateBtn);
 
+        pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        loggedUser = getLoggedUser(pref);
+
         Retrofit retrofit = Api.getRetrofit();
 
         CarsApi carsApi = retrofit.create(CarsApi.class);
 
         String carId = getIntent().getStringExtra("carId");
 
-        carsApi.getCar(carId).enqueue(new Callback<Car>() {
+        carsApi.getCar(carId, loggedUser.getAuthorization()).enqueue(new Callback<Car>() {
             @Override
-            public void onResponse(Call<Car> call, Response<Car> response) {
+            public void onResponse(@NotNull Call<Car> call, @NotNull Response<Car> response) {
                 Car car = response.body();
                 carUpdateBrandET.setText(car.getBrand());
                 carUpdateModelET.setText(car.getModel());
@@ -80,7 +93,7 @@ public class CarUpdateActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Car> call, Throwable t) {
+            public void onFailure(@NotNull Call<Car> call, @NotNull Throwable t) {
 
             }
         });
@@ -94,22 +107,22 @@ public class CarUpdateActivity extends AppCompatActivity {
                 return;
             }
 
-            CarUpdateRequest ccr = new CarUpdateRequest();
-            ccr.setCarId(carId);
-            ccr.setBrand(carUpdateBrandET.getText().toString());
-            ccr.setModel(carUpdateModelET.getText().toString());
-            ccr.setColor(carUpdateColorET.getText().toString());
+            CarUpdateRequest cur = new CarUpdateRequest();
+            cur.setBrand(carUpdateBrandET.getText().toString());
+            cur.setModel(carUpdateModelET.getText().toString());
+            cur.setColor(carUpdateColorET.getText().toString());
             int transmission = carUpdateTransmissionSP.getSelectedItemPosition();
-            ccr.setTransmission(transmission);
+            cur.setTransmission(transmission);
             int powerType = carUpdatePowerTypeSP.getSelectedItemPosition();
-            ccr.setPowerType(powerType);
-            ccr.setYear(Integer.parseInt(carUpdateYearET.getText().toString()));
-            ccr.setLicensePlate(carUpdateLicensePlateET.getText().toString());
-            ccr.setAlias(carUpdateAliasET.getText().toString());
+            cur.setPowerType(powerType);
+            cur.setYear(Integer.parseInt(carUpdateYearET.getText().toString()));
+            cur.setLicensePlate(carUpdateLicensePlateET.getText().toString());
+            cur.setAlias(carUpdateAliasET.getText().toString());
+            cur.setUserId(loggedUser.getUserId());
 
-            carsApi.updateCar(ccr).enqueue(new Callback<Car>() {
+            carsApi.updateCar(carId, cur, loggedUser.getAuthorization()).enqueue(new Callback<Car>() {
                 @Override
-                public void onResponse(Call<Car> call, Response<Car> response) {
+                public void onResponse(@NotNull Call<Car> call, @NotNull Response<Car> response) {
 
                     Toast.makeText(getApplicationContext(), R.string.car_update_success, Toast.LENGTH_LONG).show();
                     finish();
@@ -118,7 +131,7 @@ public class CarUpdateActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<Car> call, Throwable t) {
+                public void onFailure(@NotNull Call<Car> call, @NotNull Throwable t) {
                     Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
                     progress.setVisibility(View.GONE);
                 }

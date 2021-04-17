@@ -80,7 +80,7 @@
                     android:contentDescription="@string/car_transmission_label"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carDividerOne"
-                    app:srcCompat="@drawable/ic_settings" />
+                    app:srcCompat="@drawable/ic_transmission" />
 
                 <TextView
                     android:id="@+id/carTransmissionLabelTV"

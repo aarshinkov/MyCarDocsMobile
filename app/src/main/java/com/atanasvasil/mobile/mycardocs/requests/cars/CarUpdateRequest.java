@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class CarUpdateRequest implements Serializable {
 
-    private String carId;
     private String brand;
     private String model;
     private String color;
@@ -13,14 +12,7 @@ public class CarUpdateRequest implements Serializable {
     private Integer year;
     private String licensePlate;
     private String alias;
-
-    public String getCarId() {
-        return carId;
-    }
-
-    public void setCarId(String carId) {
-        this.carId = carId;
-    }
+    private String userId;
 
     public String getBrand() {
         return brand;
@@ -84,5 +76,13 @@ public class CarUpdateRequest implements Serializable {
 
     public void setAlias(String alias) {
         this.alias = alias;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

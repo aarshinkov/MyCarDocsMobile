@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -17,23 +18,23 @@ import retrofit2.http.Path;
 public interface PoliciesApi {
 
     @GET("api/policies")
-    Call<List<Policy>> getPolicies();
+    Call<List<Policy>> getPolicies(@Header("Authorization") String authorization);
 
     @GET("api/policies/{policyId}")
-    Call<Policy> getPolicy(@Path("policyId") String policyId);
+    Call<Policy> getPolicy(@Path("policyId") String policyId, @Header("Authorization") String authorization);
 
     @GET("api/policies/user/id/{userId}")
-    Call<List<Policy>> getPoliciesByUserId(@Path("userId") String userId);
+    Call<List<Policy>> getPoliciesByUserId(@Path("userId") String userId, @Header("Authorization") String authorization);
 
     @POST("api/policies")
-    Call<Policy> createPolicy(@Body PolicyCreateRequest pcr);
+    Call<Policy> createPolicy(@Body PolicyCreateRequest pcr, @Header("Authorization") String authorization);
 
-    @PUT("api/policies")
-    Call<Policy> updatePolicy(@Body PolicyUpdateRequest pur);
+    @PUT("api/policies/{policyId}")
+    Call<Policy> updatePolicy(@Path("policyId") String policyId, @Body PolicyUpdateRequest pur, @Header("Authorization") String authorization);
 
     @DELETE("api/policies/{policyId}")
-    Call<Boolean> deletePolicy(@Path("policyId") String policyId);
+    Call<Boolean> deletePolicy(@Path("policyId") String policyId, @Header("Authorization") String authorization);
 
     @GET("api/policies/count/{userId}")
-    Call<Long> getPoliciesCountByUserId(@Path("userId") String userId);
+    Call<Long> getPoliciesCountByUserId(@Path("userId") String userId, @Header("Authorization") String authorization);
 }

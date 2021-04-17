@@ -93,7 +93,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/carItemLeftGuide"
                 app:layout_constraintTop_toBottomOf="@+id/carItemYearLabelTV"
-                tools:text="Q7" />
+                tools:text="2015" />
 
             <TextView
                 android:id="@+id/carItemLicensePlateLabelTV"

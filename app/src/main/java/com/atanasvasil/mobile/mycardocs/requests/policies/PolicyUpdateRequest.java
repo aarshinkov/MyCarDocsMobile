@@ -5,21 +5,13 @@ import java.util.Date;
 
 public class PolicyUpdateRequest implements Serializable {
 
-    private String policyId;
     private String number;
     private Integer type;
     private String insName;
     private String carId;
     private String startDate;
     private String endDate;
-
-    public String getPolicyId() {
-        return policyId;
-    }
-
-    public void setPolicyId(String policyId) {
-        this.policyId = policyId;
-    }
+    private String userId;
 
     public String getNumber() {
         return number;
@@ -67,5 +59,13 @@ public class PolicyUpdateRequest implements Serializable {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

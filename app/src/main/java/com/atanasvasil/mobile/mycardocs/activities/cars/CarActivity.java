@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
+import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
@@ -37,6 +39,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
 import static com.atanasvasil.mobile.mycardocs.utils.Utils.getStringResource;
 
 public class CarActivity extends AppCompatActivity {
@@ -62,6 +66,9 @@ public class CarActivity extends AppCompatActivity {
     private SwipeRefreshLayout carRefresh;
 
     private CircularProgressIndicator carProgress;
+
+    private LoggedUser loggedUser;
+    private SharedPreferences pref;
 
     private String carId;
 
@@ -99,6 +106,9 @@ public class CarActivity extends AppCompatActivity {
         carProgress = findViewById(R.id.carProgress);
         carProgress.setVisibility(View.VISIBLE);
 
+        pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        loggedUser = getLoggedUser(pref);
+
         getCar(carId);
 
         carRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -133,7 +143,7 @@ public class CarActivity extends AppCompatActivity {
 
         CarsApi carsApi = retrofit.create(CarsApi.class);
 
-        carsApi.getCar(carId).enqueue(new Callback<Car>() {
+        carsApi.getCar(carId, loggedUser.getAuthorization()).enqueue(new Callback<Car>() {
             @Override
             public void onResponse(@NotNull Call<Car> call, @NotNull Response<Car> response) {
 
@@ -158,6 +168,8 @@ public class CarActivity extends AppCompatActivity {
                         // ELECTRIC
                         if (car.getPowerType() == 3) {
                             carPowerTypeIV.setImageResource(R.drawable.ic_electric_station);
+                        } else {
+                            carPowerTypeIV.setImageResource(R.drawable.ic_gas_station);
                         }
                         carPowerTypeTV.setText(getStringResource(getApplicationContext(), "car_power_type_" + car.getPowerType()));
 
@@ -229,7 +241,7 @@ public class CarActivity extends AppCompatActivity {
 
             String carId = getIntent().getStringExtra("carId");
 
-            carsApi.deleteCar(carId).enqueue(new Callback<Boolean>() {
+            carsApi.deleteCar(carId, loggedUser.getAuthorization()).enqueue(new Callback<Boolean>() {
                 @Override
                 public void onResponse(@NotNull Call<Boolean> call, @NotNull Response<Boolean> response) {
 
