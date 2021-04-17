@@ -17,7 +17,10 @@ import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
+import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+
+import org.jetbrains.annotations.NotNull;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,24 +64,24 @@ public class HomeFragment extends Fragment {
 
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
-        User user = getLoggedUser(pref);
+        LoggedUser loggedUser = getLoggedUser(pref);
 
-        welcomeTV.setText(getString(R.string.home_welcome, getString(R.string.app_name), user.getFullName()));
+        welcomeTV.setText(getString(R.string.home_welcome, getString(R.string.app_name), loggedUser.getFullName()));
 
-        loadData(user.getUserId());
+        loadData(loggedUser.getUserId());
 
         carsCountCV.setOnClickListener(v -> getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_cars).performClick());
         policiesCountCV.setOnClickListener(v -> getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_policies).performClick());
 
         homeRefresh.setOnRefreshListener(() -> {
-            loadData(user.getUserId());
+            loadData(loggedUser.getUserId());
             homeRefresh.setRefreshing(false);
         });
 
         return root;
     }
 
-    private void loadData(Long userId) {
+    private void loadData(String userId) {
 
         carsCountProgress.setVisibility(View.VISIBLE);
         carsCountTV.setVisibility(View.INVISIBLE);
@@ -92,7 +95,7 @@ public class HomeFragment extends Fragment {
 
         carsApi.getCarsCountByUserId(userId).enqueue(new Callback<Long>() {
             @Override
-            public void onResponse(Call<Long> call, Response<Long> response) {
+            public void onResponse(@NotNull Call<Long> call, @NotNull Response<Long> response) {
 
                 if (response.code() == 404) {
                     carsCountTV.setVisibility(View.VISIBLE);
@@ -105,14 +108,14 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Long> call, Throwable t) {
+            public void onFailure(@NotNull Call<Long> call, @NotNull Throwable t) {
 
             }
         });
 
         policiesApi.getPoliciesCountByUserId(userId).enqueue(new Callback<Long>() {
             @Override
-            public void onResponse(Call<Long> call, Response<Long> response) {
+            public void onResponse(@NotNull Call<Long> call, @NotNull Response<Long> response) {
 
                 if (response.code() == 404) {
                     policiesCountTV.setVisibility(View.VISIBLE);
@@ -125,7 +128,7 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Long> call, Throwable t) {
+            public void onFailure(@NotNull Call<Long> call, @NotNull Throwable t) {
 
             }
         });

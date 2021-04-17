@@ -21,8 +21,11 @@ import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
+import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +52,7 @@ public class CarsFragment extends Fragment {
 
     private FloatingActionButton carCreateFBtn;
     private SharedPreferences pref;
-    private User user;
+    private LoggedUser loggedUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -77,15 +80,15 @@ public class CarsFragment extends Fragment {
         });
 
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        user = getLoggedUser(pref);
+        loggedUser = getLoggedUser(pref);
 
-        getUserCars(user.getUserId());
+        getUserCars(loggedUser.getUserId());
 
         carsRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                getUserCars(user.getUserId());
+                getUserCars(loggedUser.getUserId());
                 carsRefresh.setRefreshing(false);
             }
         });
@@ -93,14 +96,14 @@ public class CarsFragment extends Fragment {
         return root;
     }
 
-    private void getUserCars(Long userId) {
+    private void getUserCars(String userId) {
 
         Retrofit retrofit = Api.getRetrofit();
         CarsApi carsApi = retrofit.create(CarsApi.class);
 
         carsApi.getUserCars(userId).enqueue(new Callback<List<Car>>() {
             @Override
-            public void onResponse(Call<List<Car>> call, Response<List<Car>> response) {
+            public void onResponse(@NotNull Call<List<Car>> call, @NotNull Response<List<Car>> response) {
 
                 if (response.code() == 400) {
                     noCarsFoundTV.setVisibility(View.VISIBLE);
@@ -123,7 +126,7 @@ public class CarsFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Car>> call, Throwable t) {
+            public void onFailure(@NotNull Call<List<Car>> call, @NotNull Throwable t) {
                 Toast.makeText(getContext(), R.string.error_server, Toast.LENGTH_LONG).show();
                 progress.setVisibility(View.GONE);
             }
@@ -132,7 +135,7 @@ public class CarsFragment extends Fragment {
 
     @Override
     public void onResume() {
-        getUserCars(user.getUserId());
+        getUserCars(loggedUser.getUserId());
         super.onResume();
     }
 }

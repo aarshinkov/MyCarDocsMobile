@@ -22,8 +22,11 @@ import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.api.UsersApi;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
+import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +55,7 @@ public class PoliciesFragment extends Fragment {
     private TextView noActivePoliciesTV;
 
     private SharedPreferences pref;
-    private User user;
+    private LoggedUser loggedUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,14 +79,14 @@ public class PoliciesFragment extends Fragment {
         progress.setVisibility(View.VISIBLE);
 
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        user = getLoggedUser(pref);
+        loggedUser = getLoggedUser(pref);
 
-        getPoliciesByUserId(user.getUserId());
+        getPoliciesByUserId(loggedUser.getUserId());
 
         policiesRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getPoliciesByUserId(user.getUserId());
+                getPoliciesByUserId(loggedUser.getUserId());
                 policiesRefresh.setRefreshing(false);
             }
         });
@@ -96,9 +99,9 @@ public class PoliciesFragment extends Fragment {
         Retrofit retrofit = getRetrofit();
         UsersApi usersApi = retrofit.create(UsersApi.class);
 
-        usersApi.hasUserCars(user.getUserId()).enqueue(new Callback<Boolean>() {
+        usersApi.hasUserCars(loggedUser.getUserId()).enqueue(new Callback<Boolean>() {
             @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+            public void onResponse(@NotNull Call<Boolean> call, @NotNull Response<Boolean> response) {
 
                 if (response.body()) {
                     policyCreateFBtn.setVisibility(View.VISIBLE);
@@ -108,7 +111,7 @@ public class PoliciesFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
+            public void onFailure(@NotNull Call<Boolean> call, @NotNull Throwable t) {
 
             }
         });
@@ -116,14 +119,14 @@ public class PoliciesFragment extends Fragment {
         return root;
     }
 
-    public void getPoliciesByUserId(Long userId) {
+    public void getPoliciesByUserId(String userId) {
 
         Retrofit retrofit = getRetrofit();
         PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
         policiesApi.getPoliciesByUserId(userId).enqueue(new Callback<List<Policy>>() {
             @Override
-            public void onResponse(Call<List<Policy>> call, Response<List<Policy>> response) {
+            public void onResponse(@NotNull Call<List<Policy>> call, @NotNull Response<List<Policy>> response) {
 
                 if (response.code() == 400) {
 //                    Toast.makeText(getContext(), "No policies found", Toast.LENGTH_LONG).show();
@@ -147,7 +150,7 @@ public class PoliciesFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Policy>> call, Throwable t) {
+            public void onFailure(@NotNull Call<List<Policy>> call, @NotNull Throwable t) {
                 Toast.makeText(getContext(), R.string.error_server, Toast.LENGTH_SHORT).show();
                 progress.setVisibility(View.GONE);
             }
@@ -158,7 +161,7 @@ public class PoliciesFragment extends Fragment {
 
     @Override
     public void onResume() {
-        getPoliciesByUserId(user.getUserId());
+        getPoliciesByUserId(loggedUser.getUserId());
         super.onResume();
     }
 }

@@ -159,6 +159,8 @@
     <string name="policy_total_days_1">1 day in total</string>
     <string name="policy_days_remaining">%1$d days remaining</string>
     <string name="policy_days_remaining_1">1 day remaining</string>
+    <string name="policy_days_completed">%1$d days completed</string>
+    <string name="policy_days_completed_1">1 day completed</string>
 
     <string name="policy_car_info_icon">Policy car info icon</string>
     <string name="policy_car_info">Car information</string>

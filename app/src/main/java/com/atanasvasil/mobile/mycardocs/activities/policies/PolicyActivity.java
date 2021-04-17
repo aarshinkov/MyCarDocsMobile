@@ -146,8 +146,6 @@ public class PolicyActivity extends AppCompatActivity {
                             policyStatusTV.setTextColor(getApplicationContext().getResources().getColor(R.color.success));
                             policyStatusTV.setText(getString(R.string.policy_status_active));
 
-                            policyValidProgressTV.setVisibility(View.VISIBLE);
-
                             long diff = endDate.getTime() - startDate.getTime();
                             int allDays = (int) (diff / (1000 * 60 * 60 * 24));
 
@@ -170,7 +168,6 @@ public class PolicyActivity extends AppCompatActivity {
 
                             policyValidProgress.setMax(1);
                             policyValidProgress.setProgress(0);
-                            policyValidProgressTV.setVisibility(View.VISIBLE);
 
                             long diff = endDate.getTime() - startDate.getTime();
                             int allDays = (int) (diff / (1000 * 60 * 60 * 24));
@@ -188,7 +185,15 @@ public class PolicyActivity extends AppCompatActivity {
 
                             policyValidProgress.setMax(1);
                             policyValidProgress.setProgress(2);
-                            policyValidProgressTV.setVisibility(View.GONE);
+
+                            long diff = endDate.getTime() - startDate.getTime();
+                            int allDays = (int) (diff / (1000 * 60 * 60 * 24));
+
+                            if (allDays == 1) {
+                                policyValidProgressTV.setText(getString(R.string.policy_days_completed_1));
+                            } else {
+                                policyValidProgressTV.setText(getString(R.string.policy_days_completed, allDays));
+                            }
                         }
 
                         Car car = policy.getCar();
@@ -210,6 +215,7 @@ public class PolicyActivity extends AppCompatActivity {
             public void onFailure(Call<Policy> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
                 policyProgress.setVisibility(View.GONE);
+//                getPolicy(policyId);
             }
         });
     }

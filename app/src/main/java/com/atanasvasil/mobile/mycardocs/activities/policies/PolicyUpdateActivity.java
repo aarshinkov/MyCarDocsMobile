@@ -26,6 +26,7 @@ import com.atanasvasil.mobile.mycardocs.requests.policies.PolicyUpdateRequest;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
+import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.text.DateFormat;
@@ -85,9 +86,9 @@ public class PolicyUpdateActivity extends AppCompatActivity {
         policyUpdateBtn = findViewById(R.id.policyUpdateBtn);
 
         pref = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        User user = getLoggedUser(pref);
+        LoggedUser loggedUser = getLoggedUser(pref);
 
-        loadCars(user.getUserId());
+        loadCars(loggedUser.getUserId());
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
 
@@ -205,7 +206,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
         });
     }
 
-    public void loadCars(Long userId) {
+    public void loadCars(String userId) {
 
         Retrofit retrofit = getRetrofit();
         CarsApi carsApi = retrofit.create(CarsApi.class);

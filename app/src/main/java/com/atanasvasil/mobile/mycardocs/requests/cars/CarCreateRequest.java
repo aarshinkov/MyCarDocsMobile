@@ -12,7 +12,7 @@ public class CarCreateRequest implements Serializable {
     private Integer year;
     private String licensePlate;
     private String alias;
-    private Long userId;
+    private String userId;
 
     public String getBrand() {
         return brand;
@@ -78,11 +78,11 @@ public class CarCreateRequest implements Serializable {
         this.alias = alias;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

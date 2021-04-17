@@ -159,6 +159,8 @@
     <string name="policy_total_days_1">1 ден общо</string>
     <string name="policy_days_remaining">%1$d оставащи дни</string>
     <string name="policy_days_remaining_1">1 оставащ ден</string>
+    <string name="policy_days_completed">%1$d дни завършени</string>
+    <string name="policy_days_completed_1">1 ден завършен</string>
 
     <string name="policy_car_info_icon">Икона за информация за кола</string>
     <string name="policy_car_info">Информация за автомобил</string>

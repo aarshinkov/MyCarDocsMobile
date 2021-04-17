@@ -1,7 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.activities;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,7 +19,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.atanasvasil.mobile.mycardocs.R;
-import com.atanasvasil.mobile.mycardocs.responses.users.User;
+import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.navigation.NavigationView;
 
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
@@ -50,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        User user = getLoggedUser(pref);
+        LoggedUser loggedUser = getLoggedUser(pref);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
         TextView navUsername = headerView.findViewById(R.id.navNameTV);
         TextView navUserMail = headerView.findViewById(R.id.navEmailTV);
 
-        String email = user.getEmail();
+        String email = loggedUser.getEmail();
 
-        navUsername.setText(user.getFullName());
+        navUsername.setText(loggedUser.getFullName());
         navUserMail.setText(email);
 
         navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {

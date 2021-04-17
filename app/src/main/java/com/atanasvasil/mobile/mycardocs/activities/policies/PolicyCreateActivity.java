@@ -26,6 +26,9 @@ import com.atanasvasil.mobile.mycardocs.requests.policies.PolicyCreateRequest;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
+import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -78,9 +81,9 @@ public class PolicyCreateActivity extends AppCompatActivity {
         policyCreateBtn = findViewById(R.id.policyCreateBtn);
 
         pref = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        User user = getLoggedUser(pref);
+        LoggedUser loggedUser = getLoggedUser(pref);
 
-        loadCars(user.getUserId());
+        loadCars(loggedUser.getUserId());
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
 
@@ -137,7 +140,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
                     PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
                     policiesApi.createPolicy(pcr).enqueue(new Callback<Policy>() {
                         @Override
-                        public void onResponse(Call<Policy> call, Response<Policy> response) {
+                        public void onResponse(@NotNull Call<Policy> call, @NotNull Response<Policy> response) {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("fragment", "policies");
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -145,7 +148,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<Policy> call, Throwable t) {
+                        public void onFailure(@NotNull Call<Policy> call, @NotNull Throwable t) {
 
                         }
                     });
@@ -153,21 +156,21 @@ public class PolicyCreateActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<Car> call, Throwable t) {
+                public void onFailure(@NotNull Call<Car> call, @NotNull Throwable t) {
 
                 }
             });
         });
     }
 
-    public void loadCars(Long userId) {
+    public void loadCars(String userId) {
 
         Retrofit retrofit = getRetrofit();
         CarsApi carsApi = retrofit.create(CarsApi.class);
 
         carsApi.getUserCars(userId).enqueue(new Callback<List<Car>>() {
             @Override
-            public void onResponse(Call<List<Car>> call, Response<List<Car>> response) {
+            public void onResponse(@NotNull Call<List<Car>> call, @NotNull Response<List<Car>> response) {
 
                 if (response.code() == 400) {
                     return;
@@ -184,7 +187,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Car>> call, Throwable t) {
+            public void onFailure(@NotNull Call<List<Car>> call, @NotNull Throwable t) {
                 Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
             }
         });

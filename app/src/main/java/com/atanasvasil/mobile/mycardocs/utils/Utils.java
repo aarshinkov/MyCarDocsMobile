@@ -6,7 +6,11 @@ import android.content.SharedPreferences;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
 import com.google.gson.Gson;
 
-import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_AUTH;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_EMAIL;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_FIRST_NAME;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_ID;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USER_LAST_NAME;
 
 public class Utils {
 
@@ -25,25 +29,28 @@ public class Utils {
 
     public static Boolean isLoggedIn(SharedPreferences pref) {
 
-        User user = getLoggedUser(pref);
+        LoggedUser loggedUser = getLoggedUser(pref);
 
-        if (user == null) {
+        if (loggedUser == null) {
             return false;
         }
 
-        return user.getUserId() != null;
+        return loggedUser.getUserId() != null;
     }
 
-    public static User getLoggedUser(SharedPreferences pref) {
+    public static LoggedUser getLoggedUser(SharedPreferences pref) {
 
-        if (pref == null) {
+        if (pref.getString(SHARED_PREF_USER_ID, null) == null || pref.getString(SHARED_PREF_AUTH, null) == null) {
             return null;
         }
-        Gson gson = new Gson();
-        String prefUser = pref.getString(SHARED_PREF_USER, null);
-        if (prefUser == null) {
-            return null;
-        }
-        return gson.fromJson(prefUser, User.class);
+
+        LoggedUser loggedUser = new LoggedUser();
+        loggedUser.setAuthorization(pref.getString(SHARED_PREF_AUTH, null));
+        loggedUser.setUserId(pref.getString(SHARED_PREF_USER_ID, null));
+        loggedUser.setEmail(pref.getString(SHARED_PREF_USER_EMAIL, null));
+        loggedUser.setFirstName(pref.getString(SHARED_PREF_USER_FIRST_NAME, null));
+        loggedUser.setLastName(pref.getString(SHARED_PREF_USER_LAST_NAME, null));
+
+        return loggedUser;
     }
 }

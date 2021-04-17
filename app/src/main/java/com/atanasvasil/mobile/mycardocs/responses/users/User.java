@@ -2,26 +2,29 @@ package com.atanasvasil.mobile.mycardocs.responses.users;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 public class User implements Serializable {
 
-    private Long userId;
+    private String userId;
     private String email;
     private String password;
     private String firstName;
     private String lastName;
+    private String createdOn;
     private Timestamp editedOn;
+    private List<Role> roles;
 
     public String getFullName() {
         return lastName != null ? firstName + " " + lastName : firstName;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -57,12 +60,28 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
+    public String getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+    }
+
     public Timestamp getEditedOn() {
         return editedOn;
     }
 
     public void setEditedOn(Timestamp editedOn) {
         this.editedOn = editedOn;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
 

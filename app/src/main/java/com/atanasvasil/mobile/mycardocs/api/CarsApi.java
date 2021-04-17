@@ -23,7 +23,7 @@ public interface CarsApi {
     Call<Car> getCarByLicensePlate(@Path("licensePlate") String licensePlate);
 
     @GET("api/cars/user/{userId}")
-    Call<List<Car>> getUserCars(@Path("userId") Long userId);
+    Call<List<Car>> getUserCars(@Path("userId") String userId);
 
     @POST("api/cars")
     Call<Car> createCar(@Body CarCreateRequest ccr);
@@ -35,5 +35,5 @@ public interface CarsApi {
     Call<Boolean> deleteCar(@Path("carId") String carId);
 
     @GET("api/cars/count/{userId}")
-    Call<Long> getCarsCountByUserId(@Path("userId") Long userId);
+    Call<Long> getCarsCountByUserId(@Path("userId") String userId);
 }

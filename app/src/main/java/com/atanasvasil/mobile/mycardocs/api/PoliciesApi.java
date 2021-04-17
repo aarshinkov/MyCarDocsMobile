@@ -23,7 +23,7 @@ public interface PoliciesApi {
     Call<Policy> getPolicy(@Path("policyId") String policyId);
 
     @GET("api/policies/user/id/{userId}")
-    Call<List<Policy>> getPoliciesByUserId(@Path("userId") Long userId);
+    Call<List<Policy>> getPoliciesByUserId(@Path("userId") String userId);
 
     @POST("api/policies")
     Call<Policy> createPolicy(@Body PolicyCreateRequest pcr);
@@ -35,5 +35,5 @@ public interface PoliciesApi {
     Call<Boolean> deletePolicy(@Path("policyId") String policyId);
 
     @GET("api/policies/count/{userId}")
-    Call<Long> getPoliciesCountByUserId(@Path("userId") Long userId);
+    Call<Long> getPoliciesCountByUserId(@Path("userId") String userId);
 }
