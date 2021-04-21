@@ -2,11 +2,9 @@ package com.atanasvasil.mobile.mycardocs.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.api.UsersApi;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
+import com.google.android.material.button.MaterialButton;
 
 import java.io.IOException;
 
@@ -34,8 +33,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText registerConfirmPasswordЕТ;
     private EditText registerFirstNameET;
     private EditText registerLastNameET;
-    private Button registerCancelBtn;
-    private Button registerBtn;
+    private MaterialButton registerCancelBtn;
+    private MaterialButton registerBtn;
 
     private ProgressDialog dialog;
 

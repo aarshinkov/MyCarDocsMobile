@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
+            android:fontFamily="@font/nunito"
             android:hint="@string/policy_number"
             app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:entries="@array/policy_types"
+            android:fontFamily="@font/nunito"
             app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/policyUpdateNumberET" />
@@ -37,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
+            android:fontFamily="@font/nunito"
             android:hint="@string/policy_ins_name"
             app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
@@ -47,6 +50,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito"
             app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/policyUpdateInsNameET" />
@@ -57,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
+            android:fontFamily="@font/nunito"
             android:hint="@string/policy_start_date"
             android:inputType="date"
             app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
@@ -69,16 +74,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
+            android:fontFamily="@font/nunito"
             android:hint="@string/policy_end_date"
             android:inputType="date"
             app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/policyUpdateStartDateET" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/policyUpdateBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
             android:text="@string/policy_update_button"
             app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"

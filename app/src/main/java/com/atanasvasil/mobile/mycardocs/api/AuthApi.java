@@ -1,7 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.api;
 
 import com.atanasvasil.mobile.mycardocs.responses.AuthenticationResponse;
-import com.atanasvasil.mobile.mycardocs.responses.users.User;
 
 import retrofit2.Call;
 import retrofit2.http.POST;

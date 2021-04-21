@@ -1,7 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.requests.policies;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class PolicyUpdateRequest implements Serializable {
 

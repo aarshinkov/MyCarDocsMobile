@@ -15,6 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:fontFamily="@font/nunito"
             android:gravity="center"
             android:text="@string/registration_header"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -28,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:ems="10"
+            android:fontFamily="@font/nunito"
             android:hint="@string/registration_email"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
@@ -41,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
+            android:fontFamily="@font/nunito"
             android:hint="@string/registration_password"
             android:importantForAutofill="no"
             android:inputType="textPassword"
@@ -54,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
+            android:fontFamily="@font/nunito"
             android:hint="@string/registration_password_confirm"
             android:importantForAutofill="no"
             android:inputType="textPassword"
@@ -68,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
+            android:fontFamily="@font/nunito"
             android:hint="@string/registration_first_name"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
@@ -81,6 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
+            android:fontFamily="@font/nunito"
             android:hint="@string/registration_last_name"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
@@ -89,20 +95,22 @@
             app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
             app:layout_constraintTop_toBottomOf="@+id/registerFirstNameET" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/registerBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:fontFamily="@font/nunito"
             android:text="@string/registration_button"
             app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
             app:layout_constraintTop_toBottomOf="@+id/registerLastNameET" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/registerCancelBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:fontFamily="@font/nunito"
             android:text="@string/registration_cancel"
             app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
             app:layout_constraintTop_toBottomOf="@+id/registerLastNameET" />

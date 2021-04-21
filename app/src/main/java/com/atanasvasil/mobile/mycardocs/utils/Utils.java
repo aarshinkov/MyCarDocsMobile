@@ -3,9 +3,6 @@ package com.atanasvasil.mobile.mycardocs.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.atanasvasil.mobile.mycardocs.responses.users.User;
-import com.google.gson.Gson;
-
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;

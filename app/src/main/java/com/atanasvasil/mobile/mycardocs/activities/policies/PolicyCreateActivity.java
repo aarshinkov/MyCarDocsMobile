@@ -1,8 +1,5 @@
 package com.atanasvasil.mobile.mycardocs.activities.policies;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -11,12 +8,14 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.MainActivity;
@@ -25,8 +24,8 @@ import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.requests.policies.PolicyCreateRequest;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
-import com.atanasvasil.mobile.mycardocs.responses.users.User;
 import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
+import com.google.android.material.button.MaterialButton;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -56,7 +55,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
     private EditText policyCreateStartDateET;
     private EditText policyCreateEndDateET;
 
-    private Button policyCreateBtn;
+    private MaterialButton policyCreateBtn;
 
     private List<String> cars = new ArrayList<>();
 

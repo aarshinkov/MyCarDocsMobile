@@ -101,6 +101,7 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:contentDescription="@string/policy_create_button_descr"
+        android:fontFamily="@font/nunito"
         android:src="@drawable/ic_add_car"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

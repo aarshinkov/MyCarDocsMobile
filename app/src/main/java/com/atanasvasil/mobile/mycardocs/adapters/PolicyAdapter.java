@@ -16,7 +16,6 @@ import androidx.core.util.Pair;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.atanasvasil.mobile.mycardocs.R;
-import com.atanasvasil.mobile.mycardocs.activities.cars.CarActivity;
 import com.atanasvasil.mobile.mycardocs.activities.policies.PolicyActivity;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 

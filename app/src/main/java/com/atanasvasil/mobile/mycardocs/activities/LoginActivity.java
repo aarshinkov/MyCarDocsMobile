@@ -1,7 +1,5 @@
 package com.atanasvasil.mobile.mycardocs.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,12 +9,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.AuthApi;
 import com.atanasvasil.mobile.mycardocs.responses.AuthenticationResponse;
-import com.atanasvasil.mobile.mycardocs.responses.users.User;
 import com.google.gson.Gson;
+
+import org.jetbrains.annotations.NotNull;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -90,7 +91,8 @@ public class LoginActivity extends AppCompatActivity {
             AuthApi authApi = retrofit.create(AuthApi.class);
             authApi.login(email, password).enqueue(new Callback<AuthenticationResponse>() {
                 @Override
-                public void onResponse(Call<AuthenticationResponse> call, Response<AuthenticationResponse> response) {
+                public void onResponse(@NotNull Call<AuthenticationResponse> call, @NotNull Response<AuthenticationResponse> response) {
+
                     if (response.code() == 400) {
                         Toast.makeText(getApplicationContext(), "Invalid email/password!", Toast.LENGTH_LONG).show();
                         loginEmailET.setError("Invalid email/password!");
@@ -102,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                     AuthenticationResponse auth = response.body();
 
                     if (auth == null) {
+                        progress.hide();
                         return;
                     }
 
