@@ -193,6 +193,12 @@
     <string name="policy_get_error">Грешка при вземане на полица</string>
     <string name="policy_not_found">Полицата не е намерена</string>
 
+    <string name="fuel_label">Гориво</string>
+    <string name="fuel_expense_title">Разход гориво</string>
+
+    <string name="service_label">Сервиз</string>
+    <string name="service_expense_title">Разход сервиз</string>
+
     <string name="error_server">Грешка в комуникацията със сървъра. Опитайте отново!</string>
 
     <string name="action_edit">Редактиране</string>

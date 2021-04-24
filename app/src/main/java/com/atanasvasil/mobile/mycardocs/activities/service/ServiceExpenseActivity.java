@@ -16,7 +16,7 @@ public class ServiceExpenseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_expense);
 
-        getSupportActionBar().setTitle("Service expense");
+        getSupportActionBar().setTitle(R.string.service_expense_title);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuel_expense);
 
-        getSupportActionBar().setTitle("Fuel expense");
+        getSupportActionBar().setTitle(R.string.fuel_expense_title);
     }
 
     @Override

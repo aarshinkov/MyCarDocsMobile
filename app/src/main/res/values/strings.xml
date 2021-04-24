@@ -193,6 +193,12 @@
     <string name="policy_get_error">Error getting policy</string>
     <string name="policy_not_found">Policy not found</string>
 
+    <string name="fuel_label">Fuel</string>
+    <string name="fuel_expense_title">Fuel expense</string>
+
+    <string name="service_label">Label</string>
+    <string name="service_expense_title">Service expense</string>
+
     <string name="error_server">Error communicating with the server. Try again!</string>
 
     <string name="action_edit">Edit</string>
