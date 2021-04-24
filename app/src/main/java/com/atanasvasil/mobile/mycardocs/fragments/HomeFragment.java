@@ -1,5 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.fragments;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
@@ -14,9 +15,12 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.atanasvasil.mobile.mycardocs.R;
+import com.atanasvasil.mobile.mycardocs.activities.fuel.FuelExpenseActivity;
+import com.atanasvasil.mobile.mycardocs.activities.service.ServiceExpenseActivity;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
+import com.github.clans.fab.FloatingActionButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import org.jetbrains.annotations.NotNull;
@@ -45,6 +49,9 @@ public class HomeFragment extends Fragment {
     private TextView policiesCountTV;
     private CircularProgressIndicator policiesCountProgress;
 
+    private FloatingActionButton fuelExpenseBtn;
+    private FloatingActionButton serviceExpenseBtn;
+
     private LoggedUser loggedUser;
     private SharedPreferences pref;
 
@@ -63,6 +70,9 @@ public class HomeFragment extends Fragment {
         policiesCountTV = root.findViewById(R.id.policiesCountTV);
         policiesCountProgress = root.findViewById(R.id.policiesCountProgress);
 
+        fuelExpenseBtn = root.findViewById(R.id.fuelExpenseBtn);
+        serviceExpenseBtn = root.findViewById(R.id.serviceExpenseBtn);
+
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
         loggedUser = getLoggedUser(pref);
@@ -77,6 +87,16 @@ public class HomeFragment extends Fragment {
         homeRefresh.setOnRefreshListener(() -> {
             loadData();
             homeRefresh.setRefreshing(false);
+        });
+
+        fuelExpenseBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), FuelExpenseActivity.class);
+            startActivity(intent);
+        });
+
+        serviceExpenseBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), ServiceExpenseActivity.class);
+            startActivity(intent);
         });
 
         return root;

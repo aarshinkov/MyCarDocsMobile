@@ -13,6 +13,12 @@
         android:theme="@style/Theme.MyCarDocs"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.fuel.FuelExpenseActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.service.ServiceExpenseActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
             android:name=".activities.policies.PolicyActivity"
             android:parentActivityName=".activities.MainActivity" />
         <activity
@@ -30,7 +36,8 @@
         <activity
             android:name=".activities.cars.CarCreateActivity"
             android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.StartupActivity"
+        <activity
+            android:name=".activities.StartupActivity"
             android:theme="@style/MyCarDocs.ThemeNo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
