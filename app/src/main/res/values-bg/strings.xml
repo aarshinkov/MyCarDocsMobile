@@ -197,8 +197,11 @@
     <string name="fuel_expense_title">Разход гориво</string>
     <string name="fuel_expense_price_per_litre">Цена на литър</string>
     <string name="fuel_expense_litres">Литри</string>
+    <string name="fuel_expense_subtotal">Междинна сума</string>
     <string name="fuel_expense_discount">Отстъпка</string>
+    <string name="fuel_expense_discount_placeholder">Отстъпка (опционално)</string>
     <string name="fuel_expense_total">Общо</string>
+    <string name="fuel_expense_mileage">Километраж (опционално)</string>
 
     <string name="service_label">Сервиз</string>
     <string name="service_expense_title">Разход сервиз</string>

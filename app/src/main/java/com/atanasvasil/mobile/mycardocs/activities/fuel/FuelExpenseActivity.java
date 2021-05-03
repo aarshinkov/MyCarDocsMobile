@@ -1,6 +1,7 @@
 package com.atanasvasil.mobile.mycardocs.activities.fuel;
 
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,6 +26,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
 
     private TextView fuelExpensePricePerLitreSummaryTV;
     private TextView fuelExpenseLitresSummaryTV;
+    private TextView fuelExpenseSubtotalSummaryTV;
     private TextView fuelExpenseDiscountSummaryTV;
     private TextView fuelExpenseTotalSummaryTV;
 
@@ -34,6 +36,8 @@ public class FuelExpenseActivity extends AppCompatActivity {
     private Double total = null;
 
     private Boolean isFromUser = true;
+
+    private ColorStateList defaultTextColor;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,13 +55,17 @@ public class FuelExpenseActivity extends AppCompatActivity {
 
         fuelExpensePricePerLitreSummaryTV = findViewById(R.id.fuelExpensePricePerLitreSummaryTV);
         fuelExpenseLitresSummaryTV = findViewById(R.id.fuelExpenseLitresSummaryTV);
+        fuelExpenseSubtotalSummaryTV = findViewById(R.id.fuelExpenseSubtotalSummaryTV);
         fuelExpenseDiscountSummaryTV = findViewById(R.id.fuelExpenseDiscountSummaryTV);
         fuelExpenseTotalSummaryTV = findViewById(R.id.fuelExpenseTotalSummaryTV);
 
         fuelExpensePricePerLitreSummaryTV.setText(zeroFormatted);
         fuelExpenseLitresSummaryTV.setText(zeroFormatted);
+        fuelExpenseSubtotalSummaryTV.setText(zeroFormatted);
         fuelExpenseDiscountSummaryTV.setText(zeroFormatted);
         fuelExpenseTotalSummaryTV.setText(zeroFormatted);
+
+        defaultTextColor = fuelExpenseDiscountSummaryTV.getTextColors();
 
         fuelExpensePricePerLitreET.addTextChangedListener(new TextWatcher() {
             @Override
@@ -95,6 +103,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                             isFromUser = false;
                             fuelExpenseTotalET.setText("");
                             fuelExpenseTotalSummaryTV.setText(zeroFormatted);
+                            fuelExpenseSubtotalSummaryTV.setText(zeroFormatted);
                             isFromUser = true;
                         }
 
@@ -151,6 +160,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                             isFromUser = false;
                             fuelExpenseTotalET.setText("");
                             fuelExpenseTotalSummaryTV.setText(zeroFormatted);
+                            fuelExpenseSubtotalSummaryTV.setText(zeroFormatted);
                             isFromUser = true;
                         }
 
@@ -212,7 +222,8 @@ public class FuelExpenseActivity extends AppCompatActivity {
                     if (!s.toString().isEmpty()) {
                         total = Double.parseDouble(s.toString());
                         final String formattedPrice = String.format(Locale.getDefault(), "%.2f", total);
-                        fuelExpenseTotalSummaryTV.setText(formattedPrice);
+//                        fuelExpenseTotalSummaryTV.setText(formattedPrice);
+                        fuelExpenseSubtotalSummaryTV.setText(formattedPrice);
 
                         if (isPricePerLitreActive) {
                             calculateLitres();
@@ -224,6 +235,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                     } else {
                         total = null;
                         fuelExpenseTotalSummaryTV.setText(zeroFormatted);
+                        fuelExpenseSubtotalSummaryTV.setText(zeroFormatted);
                         fuelExpensePricePerLitreET.setEnabled(true);
                         fuelExpenseLitresET.setEnabled(true);
 
@@ -287,17 +299,27 @@ public class FuelExpenseActivity extends AppCompatActivity {
     private void calculateTotal() {
         total = pricePerLitre * litres;
 
-        if (discount != null) {
-            if (discount != 0.00) {
-                total = total - discount;
-            }
-        }
+        final boolean hasDiscount = discount != null;
 
         isFromUser = false;
         fuelExpenseTotalET.setEnabled(false);
         fuelExpenseTotalET.setText(total.toString());
         final String formattedPrice = String.format(Locale.getDefault(), "%.2f", total);
-        fuelExpenseTotalSummaryTV.setText(formattedPrice);
+
+        if (!hasDiscount) {
+            fuelExpenseTotalSummaryTV.setText(formattedPrice);
+            fuelExpenseDiscountSummaryTV.setTextColor(defaultTextColor);
+        } else {
+            if (discount > 0) {
+                fuelExpenseDiscountSummaryTV.setTextColor(getResources().getColor(R.color.success, null));
+            } else {
+                fuelExpenseDiscountSummaryTV.setTextColor(defaultTextColor);
+            }
+            final String formattedTotal = String.format(Locale.getDefault(), "%.2f", total - discount);
+            fuelExpenseTotalSummaryTV.setText(formattedTotal);
+        }
+
+        fuelExpenseSubtotalSummaryTV.setText(formattedPrice);
         isFromUser = true;
     }
 
