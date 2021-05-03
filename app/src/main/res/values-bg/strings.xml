@@ -205,6 +205,23 @@
     <string name="action_delete">Изтриване</string>
     <string name="action_settings">Настройки</string>
 
+    <string name="currency_eur">€</string>
+    <string name="currency_usd">$</string>
+    <string name="currency_bgn">лв.</string>
+
+    <string name="JAN">Яну</string>
+    <string name="FEB">Фев</string>
+    <string name="MAR">Мар</string>
+    <string name="APR">Апр</string>
+    <string name="MAY">Май</string>
+    <string name="JUN">Юни</string>
+    <string name="JUL">Юли</string>
+    <string name="AUG">Авг</string>
+    <string name="SEP">Сеп</string>
+    <string name="OCT">Окт</string>
+    <string name="NOV">Ное</string>
+    <string name="DEC">Дек</string>
+
     <string name="yes">Да</string>
     <string name="no">Не</string>
     <string name="cancel">Отказ</string>

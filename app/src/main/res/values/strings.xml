@@ -205,6 +205,23 @@
     <string name="action_delete">Delete</string>
     <string name="action_settings">Settings</string>
 
+    <string name="currency_eur">€</string>
+    <string name="currency_usd">$</string>
+    <string name="currency_bgn">lv.</string>
+
+    <string name="JAN">Jan</string>
+    <string name="FEB">Feb</string>
+    <string name="MAR">Mar</string>
+    <string name="APR">Apr</string>
+    <string name="MAY">May</string>
+    <string name="JUN">Jun</string>
+    <string name="JUL">Jul</string>
+    <string name="AUG">Aug</string>
+    <string name="SEP">Sep</string>
+    <string name="OCT">Oct</string>
+    <string name="NOV">Nov</string>
+    <string name="DEC">Dec</string>
+
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="cancel">Cancel</string>

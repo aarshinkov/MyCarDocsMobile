@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.atanasvasil.mobile.mycardocs.R;
+import com.atanasvasil.mobile.mycardocs.activities.ChartActivity;
 import com.atanasvasil.mobile.mycardocs.activities.fuel.FuelExpenseActivity;
 import com.atanasvasil.mobile.mycardocs.activities.service.ServiceExpenseActivity;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
@@ -49,6 +50,7 @@ public class HomeFragment extends Fragment {
     private TextView policiesCountTV;
     private CircularProgressIndicator policiesCountProgress;
 
+    private FloatingActionButton chart;
     private FloatingActionButton fuelExpenseBtn;
     private FloatingActionButton serviceExpenseBtn;
 
@@ -70,6 +72,7 @@ public class HomeFragment extends Fragment {
         policiesCountTV = root.findViewById(R.id.policiesCountTV);
         policiesCountProgress = root.findViewById(R.id.policiesCountProgress);
 
+        chart = root.findViewById(R.id.chart);
         fuelExpenseBtn = root.findViewById(R.id.fuelExpenseBtn);
         serviceExpenseBtn = root.findViewById(R.id.serviceExpenseBtn);
 
@@ -87,6 +90,11 @@ public class HomeFragment extends Fragment {
         homeRefresh.setOnRefreshListener(() -> {
             loadData();
             homeRefresh.setRefreshing(false);
+        });
+
+        chart.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), ChartActivity.class);
+            startActivity(intent);
         });
 
         fuelExpenseBtn.setOnClickListener(v -> {
