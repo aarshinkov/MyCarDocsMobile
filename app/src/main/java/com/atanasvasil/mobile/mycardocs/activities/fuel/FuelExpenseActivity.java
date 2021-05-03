@@ -65,7 +65,6 @@ public class FuelExpenseActivity extends AppCompatActivity {
 
             }
 
-            @SuppressLint("SetTextI18n")
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
@@ -122,7 +121,6 @@ public class FuelExpenseActivity extends AppCompatActivity {
 
             }
 
-            @SuppressLint("SetTextI18n")
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
@@ -185,12 +183,11 @@ public class FuelExpenseActivity extends AppCompatActivity {
                     discount = Double.parseDouble(s.toString());
                     final String formattedPrice = String.format(Locale.getDefault(), "%.2f", discount);
                     fuelExpenseDiscountSummaryTV.setText(formattedPrice);
-                    calculateTotal();
                 } else {
                     discount = null;
                     fuelExpenseDiscountSummaryTV.setText(zeroFormatted);
-                    calculateTotal();
                 }
+                calculateTotal();
             }
 
             @Override
@@ -205,7 +202,6 @@ public class FuelExpenseActivity extends AppCompatActivity {
 
             }
 
-            @SuppressLint("SetTextI18n")
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
