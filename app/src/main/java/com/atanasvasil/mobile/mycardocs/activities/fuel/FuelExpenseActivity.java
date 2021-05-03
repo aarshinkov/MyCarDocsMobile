@@ -61,6 +61,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                 if (isFromUser) {
                     if (!s.toString().isEmpty()) {
                         pricePerLitre = Double.parseDouble(s.toString());
+                        fuelExpensePricePerLitreSummaryET.setText(pricePerLitre.toString());
 
                         if (isLitresActive) {
                             calculateTotal();
@@ -71,6 +72,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                         }
                     } else {
                         pricePerLitre = null;
+                        fuelExpensePricePerLitreSummaryET.setText("0.00");
                         fuelExpenseLitresET.setEnabled(true);
                         fuelExpenseTotalET.setEnabled(true);
 
@@ -78,6 +80,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                             total = null;
                             isFromUser = false;
                             fuelExpenseTotalET.setText("");
+                            fuelExpenseTotalSummaryET.setText("0.00");
                             isFromUser = true;
                         }
 
@@ -85,6 +88,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                             litres = null;
                             isFromUser = false;
                             fuelExpenseLitresET.setText("");
+                            fuelExpenseLitresSummaryET.setText("0.00");
                             isFromUser = true;
                         }
                     }
@@ -113,6 +117,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                 if (isFromUser) {
                     if (!s.toString().isEmpty()) {
                         litres = Double.parseDouble(s.toString());
+                        fuelExpenseLitresSummaryET.setText(litres.toString());
 
                         if (isPricePerLitreActive) {
                             calculateTotal();
@@ -123,6 +128,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                         }
                     } else {
                         litres = null;
+                        fuelExpenseLitresSummaryET.setText("0.00");
                         fuelExpensePricePerLitreET.setEnabled(true);
                         fuelExpenseTotalET.setEnabled(true);
 
@@ -130,6 +136,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                             total = null;
                             isFromUser = false;
                             fuelExpenseTotalET.setText("");
+                            fuelExpenseTotalSummaryET.setText("0.00");
                             isFromUser = true;
                         }
 
@@ -137,6 +144,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                             pricePerLitre = null;
                             isFromUser = false;
                             fuelExpensePricePerLitreET.setText("");
+                            fuelExpensePricePerLitreSummaryET.setText("0.00");
                             isFromUser = true;
                         }
                     }
@@ -165,6 +173,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                 if (isFromUser) {
                     if (!s.toString().isEmpty()) {
                         total = Double.parseDouble(s.toString());
+                        fuelExpenseTotalSummaryET.setText(total.toString());
 
                         if (isPricePerLitreActive) {
                             calculateLitres();
@@ -175,6 +184,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                         }
                     } else {
                         total = null;
+                        fuelExpenseTotalSummaryET.setText("0.00");
                         fuelExpensePricePerLitreET.setEnabled(true);
                         fuelExpenseLitresET.setEnabled(true);
 
@@ -182,6 +192,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                             litres = null;
                             isFromUser = false;
                             fuelExpenseLitresET.setText("");
+                            fuelExpenseLitresSummaryET.setText("0.00");
                             isFromUser = true;
                         }
 
@@ -189,6 +200,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
                             pricePerLitre = null;
                             isFromUser = false;
                             fuelExpensePricePerLitreET.setText("");
+                            fuelExpensePricePerLitreSummaryET.setText("0.00");
                             isFromUser = true;
                         }
                     }
@@ -212,6 +224,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
         isFromUser = false;
         fuelExpensePricePerLitreET.setEnabled(false);
         fuelExpensePricePerLitreET.setText(pricePerLitre.toString());
+        fuelExpensePricePerLitreSummaryET.setText(pricePerLitre.toString());
         isFromUser = true;
     }
 
@@ -225,6 +238,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
         isFromUser = false;
         fuelExpenseLitresET.setEnabled(false);
         fuelExpenseLitresET.setText(litres.toString());
+        fuelExpenseLitresSummaryET.setText(litres.toString());
         isFromUser = true;
     }
 
@@ -234,6 +248,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
         isFromUser = false;
         fuelExpenseTotalET.setEnabled(false);
         fuelExpenseTotalET.setText(total.toString());
+        fuelExpenseTotalSummaryET.setText(total.toString());
         isFromUser = true;
     }
 

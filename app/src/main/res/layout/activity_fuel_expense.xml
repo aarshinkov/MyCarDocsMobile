@@ -48,71 +48,152 @@
             app:layout_constraintStart_toStartOf="@id/fuelExpenseGuideLeft"
             app:layout_constraintTop_toBottomOf="@+id/fuelExpenseLitresET" />
 
-        <TextView
-            android:id="@+id/fuelExpensePricePerLitreLabelSummaryET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/nunito"
-            android:text="@string/fuel_expense_price_per_litre"
-            app:layout_constraintEnd_toStartOf="@+id/summaryGuide"
-            app:layout_constraintTop_toBottomOf="@id/fuelExpenseTotalET" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/fuelExpensePricePerLitreLabelSummaryET"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:layout_marginEnd="16dp"-->
+        <!--            android:fontFamily="@font/nunito"-->
+        <!--            android:text="@string/fuel_expense_price_per_litre"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/fuelExpenseGuideLeft"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/fuelExpenseTotalET" />-->
 
-        <TextView
-            android:id="@+id/fuelExpensePricePerLitreSummaryET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <!--        <TextView-->
+        <!--            android:id="@+id/fuelExpensePricePerLitreSummaryET"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="8dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:fontFamily="@font/nunito"-->
+        <!--            android:text="0.00"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/fuelExpensePricePerLitreLabelSummaryET"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/fuelExpenseTotalET"-->
+        <!--            tools:text="2.5" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/fuelExpenseLitresLabelSummaryET"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:layout_marginEnd="16dp"-->
+        <!--            android:fontFamily="@font/nunito"-->
+        <!--            android:text="@string/fuel_expense_litres"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/fuelExpenseGuideLeft"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/fuelExpensePricePerLitreLabelSummaryET" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/fuelExpenseLitresSummaryET"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="8dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:fontFamily="@font/nunito"-->
+        <!--            android:text="0.00"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/fuelExpenseLitresLabelSummaryET"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/fuelExpensePricePerLitreSummaryET"-->
+        <!--            tools:text="20.00" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/fuelExpenseTotalLabelSummaryET"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:fontFamily="@font/nunito"-->
+        <!--            android:text="@string/fuel_expense_total"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/fuelExpenseGuideLeft"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/fuelExpenseLitresLabelSummaryET" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/fuelExpenseTotalSummaryET"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="8dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:fontFamily="@font/nunito"-->
+        <!--            android:text="0.00"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/fuelExpenseTotalLabelSummaryET"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/fuelExpenseLitresSummaryET"-->
+        <!--            tools:text="542.00" />-->
+
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/nunito"
-            android:text="0.00"
             app:layout_constraintEnd_toEndOf="@id/fuelExpenseGuideRight"
-            app:layout_constraintTop_toBottomOf="@id/fuelExpenseTotalET"
-            tools:text="2.5" />
+            app:layout_constraintStart_toStartOf="@id/fuelExpenseGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fuelExpenseTotalET">
 
-        <TextView
-            android:id="@+id/fuelExpenseLitresLabelSummaryET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/nunito"
-            android:text="@string/fuel_expense_litres"
-            app:layout_constraintEnd_toStartOf="@+id/summaryGuide"
-            app:layout_constraintTop_toBottomOf="@id/fuelExpensePricePerLitreLabelSummaryET" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="10">
 
-        <TextView
-            android:id="@+id/fuelExpenseLitresSummaryET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/nunito"
-            android:text="0.00"
-            app:layout_constraintEnd_toEndOf="@id/fuelExpenseGuideRight"
-            app:layout_constraintTop_toBottomOf="@id/fuelExpensePricePerLitreSummaryET"
-            tools:text="20.00" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_price_per_litre"
+                    android:textAlignment="textEnd" />
 
-        <TextView
-            android:id="@+id/fuelExpenseTotalLabelSummaryET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/nunito"
-            android:text="@string/fuel_expense_total"
-            app:layout_constraintEnd_toStartOf="@+id/summaryGuide"
-            app:layout_constraintTop_toBottomOf="@id/fuelExpenseLitresLabelSummaryET" />
+                <TextView
+                    android:id="@+id/fuelExpensePricePerLitreSummaryET"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:text="0.00"
+                    android:textAlignment="textEnd" />
+            </TableRow>
 
-        <TextView
-            android:id="@+id/fuelExpenseTotalSummaryET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/nunito"
-            android:text="0.00"
-            app:layout_constraintEnd_toEndOf="@id/fuelExpenseGuideRight"
-            app:layout_constraintTop_toBottomOf="@id/fuelExpenseLitresSummaryET"
-            tools:text="542.00" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_litres"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/fuelExpenseLitresSummaryET"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:text="0.00"
+                    android:textAlignment="textEnd" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_total"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/fuelExpenseTotalSummaryET"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:text="0.00"
+                    android:textAlignment="textEnd" />
+            </TableRow>
+
+        </TableLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/fuelExpenseGuideLeft"
@@ -127,12 +208,5 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="16dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/summaryGuide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/fuelExpenseTotalSummaryET" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
