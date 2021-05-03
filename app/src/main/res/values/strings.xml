@@ -195,6 +195,9 @@
 
     <string name="fuel_label">Fuel</string>
     <string name="fuel_expense_title">Fuel expense</string>
+    <string name="fuel_expense_price_per_litre">Price per litre</string>
+    <string name="fuel_expense_litres">Litres</string>
+    <string name="fuel_expense_total">Total</string>
 
     <string name="service_label">Label</string>
     <string name="service_expense_title">Service expense</string>
