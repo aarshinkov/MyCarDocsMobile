@@ -71,6 +71,18 @@
             app:layout_constraintStart_toStartOf="@id/fuelExpenseGuideLeft"
             app:layout_constraintTop_toBottomOf="@+id/fuelExpenseHorizontalDivider" />
 
+        <Spinner
+            android:id="@+id/fuelExpenseCarsSP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito"
+            android:prompt="@string/fuel_expense_car_prompt"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toStartOf="@+id/fuelExpenseGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fuelExpenseGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fuelExpenseDiscountET" />
+
         <EditText
             android:id="@+id/fuelExpenseMileageET"
             android:layout_width="0dp"
@@ -82,7 +94,7 @@
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="@id/fuelExpenseGuideRight"
             app:layout_constraintStart_toStartOf="@id/fuelExpenseGuideLeft"
-            app:layout_constraintTop_toBottomOf="@+id/fuelExpenseDiscountET" />
+            app:layout_constraintTop_toBottomOf="@+id/fuelExpenseCarsSP" />
 
         <TableLayout
             android:id="@+id/fuelExpenseSummaryTable"
@@ -221,6 +233,7 @@
         </TableLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/fuelExpenseSaveBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

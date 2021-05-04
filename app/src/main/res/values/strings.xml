@@ -130,7 +130,7 @@
     <string name="policy_create_title">Create a policy</string>
     <string name="policy_create_button">Create policy</string>
     <string name="policy_create_type_prompt">Policy type</string>
-    <string name="policy_create_car_prompt">Car</string>
+    <string name="policy_create_car_prompt">Cars</string>
     <string name="policy_create_button_descr">Policy create button</string>
 
     <!-- Policy view -->
@@ -202,6 +202,10 @@
     <string name="fuel_expense_discount_placeholder">Discount (optional)</string>
     <string name="fuel_expense_total">Total</string>
     <string name="fuel_expense_mileage">Mileage (optional)</string>
+    <string name="fuel_expense_car_prompt">Cars</string>
+    <string name="fuel_expense_create_progress">Creating fuel expense…</string>
+    <string name="fuel_expense_create_successful">Fuel expense added successfully!</string>
+    <string name="fuel_expense_create_error">Error adding fuel expense!</string>
 
     <string name="service_label">Label</string>
     <string name="service_expense_title">Service expense</string>

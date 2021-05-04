@@ -202,6 +202,10 @@
     <string name="fuel_expense_discount_placeholder">Отстъпка (опционално)</string>
     <string name="fuel_expense_total">Общо</string>
     <string name="fuel_expense_mileage">Километраж (опционално)</string>
+    <string name="fuel_expense_car_prompt">Автомобили</string>
+    <string name="fuel_expense_create_progress">Създаване на разход за гориво…</string>
+    <string name="fuel_expense_create_successful">Разходът на гориво е добавен успешно!</string>
+    <string name="fuel_expense_create_error">Грешка при добавяне на разход на гориво!</string>
 
     <string name="service_label">Сервиз</string>
     <string name="service_expense_title">Разход сервиз</string>

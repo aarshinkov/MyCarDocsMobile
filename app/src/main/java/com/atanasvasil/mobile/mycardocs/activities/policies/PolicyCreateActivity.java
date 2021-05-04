@@ -83,7 +83,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
         pref = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
 
-        loadCars(loggedUser.getUserId());
+        loadCars();
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
 
@@ -164,12 +164,12 @@ public class PolicyCreateActivity extends AppCompatActivity {
         });
     }
 
-    public void loadCars(String userId) {
+    public void loadCars() {
 
         Retrofit retrofit = getRetrofit();
         CarsApi carsApi = retrofit.create(CarsApi.class);
 
-        carsApi.getUserCars(userId, loggedUser.getAuthorization()).enqueue(new Callback<List<Car>>() {
+        carsApi.getUserCars(loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Car>>() {
             @Override
             public void onResponse(@NotNull Call<List<Car>> call, @NotNull Response<List<Car>> response) {
 
