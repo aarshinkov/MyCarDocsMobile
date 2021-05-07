@@ -145,13 +145,12 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
             final String carPId = userCarsMap.get(licensePlate);
 
             fecr.setCarId(carPId);
-            fecr.setUserId(loggedUser.getUserId());
 
             Retrofit retrofit = getRetrofit();
 
             ExpensesApi expensesApi = retrofit.create(ExpensesApi.class);
 
-            expensesApi.createFuelExpense(fecr, loggedUser.getAuthorization()).enqueue(new Callback<FuelExpense>() {
+            expensesApi.createFuelExpense(fecr, loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<FuelExpense>() {
                 @Override
                 public void onResponse(@NotNull Call<FuelExpense> call, @NotNull Response<FuelExpense> response) {
 

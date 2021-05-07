@@ -1,7 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.responses.expenses.fuel;
 
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
-import com.atanasvasil.mobile.mycardocs.responses.users.User;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -14,7 +13,6 @@ public class FuelExpense implements Serializable {
     private Double discount;
     private Long mileage;
     private Car car;
-    private User user;
     private Timestamp createdOn;
     private Timestamp editedOn;
 
@@ -64,14 +62,6 @@ public class FuelExpense implements Serializable {
 
     public void setCar(Car car) {
         this.car = car;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Timestamp getCreatedOn() {
