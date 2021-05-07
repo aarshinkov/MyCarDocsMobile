@@ -5,12 +5,12 @@
     <string name="nav_home">Начало</string>
 
     <string name="home_welcome">Добре дошли в %1$s, <![CDATA[<br/><b>%2$s</b>]]>!</string>
-    <string name="home_manage">Управлявайте вашите автомобили и полици.</string>
+    <string name="home_manage">Управлявайте вашите автомобили, полици и разходи.</string>
     <string name="home_cars">Автомобили</string>
     <string name="home_policies">Полици</string>
 
     <string name="login">Вход</string>
-    <string name="login_header">Влезте във вашия акаунт за да управлявате вашите автомобили и полици.</string>
+    <string name="login_header">Влезте във вашия акаунт за да управлявате вашите автомобили, полици и разходи.</string>
     <string name="login_email">Имейл</string>
     <string name="login_password">Парола</string>
     <string name="login_button">Вход</string>
@@ -25,7 +25,7 @@
     <string name="login_error">Грешка при вписване!</string>
 
     <string name="registration_title">Регистрация</string>
-    <string name="registration_header">Регистрирайте се за да управлявате вашите автомобили и полици.</string>
+    <string name="registration_header">Регистрирайте се за да управлявате вашите автомобили и полици и разходи.</string>
     <string name="registration_first_name">Име</string>
     <string name="registration_last_name">Фамилия</string>
     <string name="registration_email">Имейл</string>
@@ -51,6 +51,9 @@
     <string name="menu_home">Начало</string>
     <string name="menu_cars">Автомобили</string>
     <string name="menu_policies">Полици</string>
+    <string name="menu_expenses">Разходи</string>
+    <string name="menu_fuel_expense">Гориво</string>
+    <string name="menu_service_expense">Сервиз</string>
     <string name="menu_logout">Изход</string>
 
     <!-- Cars lists -->
@@ -137,7 +140,7 @@
     <string name="policy_view_title">Информация за полица</string>
 
     <string name="policy_no">Номер полица</string>
-    <string name="policy_number">Номера полица</string>
+    <string name="policy_number">Номер на полица</string>
     <string name="policy_ins_name">Име на изпълнител</string>
     <string name="policy_start_date">Начална дата</string>
     <string name="policy_end_date">Крайна дата</string>
@@ -146,10 +149,12 @@
     <string name="policy_type_1">Застраховка</string>
     <string name="policy_type_2">Каско</string>
     <string name="policy_type_3">Винетка</string>
+    <string name="policy_type_4">Годишен технически преглед</string>
     <string-array name="policy_types">
         <item>Застраховка</item>
         <item>Каско</item>
         <item>Винетка</item>
+        <item>Годишен технически преглед</item>
     </string-array>
 
     <string name="policy_status">Статус</string>
@@ -202,15 +207,33 @@
     <string name="fuel_expense_discount_placeholder">Отстъпка (опционално)</string>
     <string name="fuel_expense_total">Общо</string>
     <string name="fuel_expense_mileage">Километраж (опционално)</string>
-    <string name="fuel_expense_car_prompt">Автомобили</string>
+    <string name="fuel_expense_car_prompt">Автомобил</string>
     <string name="fuel_expense_create_progress">Създаване на разход за гориво…</string>
     <string name="fuel_expense_create_successful">Разходът на гориво е добавен успешно!</string>
     <string name="fuel_expense_create_error">Грешка при добавяне на разход на гориво!</string>
+
+    <string name="fuel_expense_details">Детайли за разхода</string>
+    <string name="fuel_expense_price_per_litre_data">%1$s лв/л.</string>
+    <string name="fuel_expense_litres_data">%1$s л.</string>
+    <string name="fuel_expense_car_details">Детайли за автомобила</string>
+    <string name="fuel_expense_car_brand_model">Марка и модел</string>
+    <string name="fuel_expense_car_license_plate">Регистрационен номер</string>
+    <string name="fuel_expense_car_mileage">Километраж по време на зареждане</string>
+    <string name="fuel_expense_car_mileage_data">%1$d км.</string>
+    <string name="fuel_expense_car_mileage_unknown">Няма информация</string>
+
+    <string name="fuel_expenses_not_found">Разходи за гориво не бяха намерени!</string>
+
+    <string name="fuel_expense_create_ppl_empty">Цената за литър не може да е празна!</string>
+    <string name="fuel_expense_create_litres_empty">Литрите не може да са празни!</string>
+    <string name="fuel_expense_create_discount_invalid">Отстъпката не може да е повече от общата сума!</string>
 
     <string name="service_label">Сервиз</string>
     <string name="service_expense_title">Разход сервиз</string>
 
     <string name="error_server">Грешка в комуникацията със сървъра. Опитайте отново!</string>
+
+    <string name="expense_save">Добавяне на разход</string>
 
     <string name="action_edit">Редактиране</string>
     <string name="action_delete">Изтриване</string>
@@ -237,7 +260,14 @@
     <string name="no">Не</string>
     <string name="cancel">Отказ</string>
 
+    <string name="negative_number">- %1$s</string>
+
+    <string name="price_eur">€ %1$s</string>
+    <string name="price_usd">$ %1$s</string>
+    <string name="price_bgn">%1$s лв.</string>
+
     <string name="date_1">dd.MM.yyyy</string>
     <string name="date_time_1">dd.MM.yyyy HH:mm</string>
+    <string name="date_time_2">dd.MM.yyyy, HH:mm</string>
     <string name="date_time_default">yyyy-MM-dd\'T\'HH:mm:ss.SSSX</string>
 </resources>

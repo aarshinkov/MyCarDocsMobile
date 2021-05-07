@@ -18,6 +18,26 @@
             android:icon="@drawable/ic_policies"
             android:title="@string/menu_policies" />
 
+        <item
+            android:id="@+id/nav_dashboard_group"
+            android:title="@string/menu_expenses">
+
+            <menu>
+                <group android:checkableBehavior="single">
+
+                    <item
+                        android:id="@+id/nav_fuel_expense"
+                        android:icon="@drawable/ic_gas_station"
+                        android:title="@string/menu_fuel_expense" />
+
+                    <item
+                        android:id="@+id/nav_service_expense"
+                        android:icon="@drawable/ic_service"
+                        android:title="@string/menu_service_expense" />
+                </group>
+            </menu>
+        </item>
+
         <group
             android:id="@+id/nav_system_group"
             android:checkableBehavior="none">

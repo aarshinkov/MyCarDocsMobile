@@ -16,7 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.ChartActivity;
-import com.atanasvasil.mobile.mycardocs.activities.fuel.FuelExpenseActivity;
+import com.atanasvasil.mobile.mycardocs.activities.fuel.FuelExpenseCreateActivity;
 import com.atanasvasil.mobile.mycardocs.activities.service.ServiceExpenseActivity;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment {
         });
 
         fuelExpenseBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), FuelExpenseActivity.class);
+            Intent intent = new Intent(getContext(), FuelExpenseCreateActivity.class);
             startActivity(intent);
         });
 

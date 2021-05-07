@@ -15,6 +15,7 @@ import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.AuthApi;
 import com.atanasvasil.mobile.mycardocs.responses.AuthenticationResponse;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;
@@ -94,9 +95,9 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(@NotNull Call<AuthenticationResponse> call, @NotNull Response<AuthenticationResponse> response) {
 
                     if (response.code() == 400) {
-                        Toast.makeText(getApplicationContext(), "Invalid email/password!", Toast.LENGTH_LONG).show();
-                        loginEmailET.setError("Invalid email/password!");
-                        loginPasswordET.setError("Invalid email/password!");
+                        Snackbar.make(v, R.string.login_invalid_credentials, Snackbar.LENGTH_LONG).show();
+                        loginEmailET.setError(getString(R.string.login_invalid_credentials));
+                        loginPasswordET.setError(getString(R.string.login_invalid_credentials));
                         progress.hide();
                         return;
                     }
@@ -131,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<AuthenticationResponse> call, Throwable t) {
+                public void onFailure(@NotNull Call<AuthenticationResponse> call, @NotNull Throwable t) {
                     Toast.makeText(getApplicationContext(), R.string.login_error, Toast.LENGTH_LONG).show();
                     progress.hide();
                 }

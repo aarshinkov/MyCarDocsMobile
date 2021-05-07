@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/fecPricePerLitreLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/fecPricePerLitreET"
+            android:text="@string/fuel_expense_price_per_litre"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/fecPricePerLitreET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="Price per litre"
+            android:fontFamily="@font/nunito"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecPricePerLitreLabelTV" />
+
+        <TextView
+            android:id="@+id/fecLitresLabelET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/fecLitresET"
+            android:text="@string/fuel_expense_litres"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecPricePerLitreET" />
+
+        <EditText
+            android:id="@+id/fecLitresET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="Litres"
+            android:fontFamily="@font/nunito"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecLitresLabelET" />
+
+        <TextView
+            android:id="@+id/fecTotalLabelET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/fecTotalET"
+            android:text="@string/fuel_expense_total"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecLitresET" />
+
+        <EditText
+            android:id="@+id/fecTotalET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="Litres"
+            android:fontFamily="@font/nunito"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecTotalLabelET" />
+
+        <View
+            android:id="@+id/fecHorizontalDivider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fecTotalET" />
+
+        <TextView
+            android:id="@+id/fecDiscountLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/fecDiscountET"
+            android:text="@string/fuel_expense_discount_placeholder"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecHorizontalDivider" />
+
+        <EditText
+            android:id="@+id/fecDiscountET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="Litres"
+            android:enabled="false"
+            android:fontFamily="@font/nunito"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecDiscountLabelTV" />
+
+        <TextView
+            android:id="@+id/fecCarsLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/fecCarsSP"
+            android:text="@string/fuel_expense_car_prompt"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecDiscountET" />
+
+        <Spinner
+            android:id="@+id/fecCarsSP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
+            android:prompt="@string/fuel_expense_car_prompt"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toStartOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecCarsLabelTV" />
+
+        <TextView
+            android:id="@+id/fecMileageLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/fecMileageET"
+            android:text="@string/fuel_expense_mileage"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecCarsSP" />
+
+        <EditText
+            android:id="@+id/fecMileageET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="Litres"
+            android:fontFamily="@font/nunito"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecMileageLabelTV" />
+
+        <TableLayout
+            android:id="@+id/fecSummaryTable"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecMileageET">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_price_per_litre"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/fecPricePerLitreSummaryTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
+                    tools:text="0.00" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_litres"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/fecLitresSummaryTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
+                    tools:text="0.00" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_subtotal"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/soft_black" />
+
+                <TextView
+                    android:id="@+id/fecSubtotalSummaryTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/soft_black"
+                    tools:text="0.00" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_discount"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/fecDiscountSummaryTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
+                    tools:text="0.00" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_total"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/fecTotalSummaryTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    tools:text="0.00" />
+            </TableRow>
+
+        </TableLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fecSaveBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/expense_save"
+            app:icon="@drawable/ic_expense"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecSummaryTable" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/fecGuideLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/fecGuideRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

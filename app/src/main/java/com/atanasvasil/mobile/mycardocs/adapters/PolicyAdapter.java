@@ -41,7 +41,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.policy_item, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_policy, parent, false);
         return new ViewHolder(view);
     }
 

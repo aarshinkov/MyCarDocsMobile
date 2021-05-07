@@ -5,12 +5,12 @@
     <string name="nav_home">Home</string>
 
     <string name="home_welcome">Welcome to %1$s, %2$s!</string>
-    <string name="home_manage">Manage your cars and policies.</string>
+    <string name="home_manage">Manage your cars, policies and expenses.</string>
     <string name="home_cars">Cars</string>
     <string name="home_policies">Policies</string>
 
     <string name="login">Login</string>
-    <string name="login_header">Log in to your account to manage your documents and car expenses.</string>
+    <string name="login_header">Log in to your account to manage your documents, cars and expenses.</string>
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
     <string name="login_button">Login</string>
@@ -51,6 +51,9 @@
     <string name="menu_home">Home</string>
     <string name="menu_cars">Cars</string>
     <string name="menu_policies">Policies</string>
+    <string name="menu_expenses">Expenses</string>
+    <string name="menu_fuel_expense">Fuel</string>
+    <string name="menu_service_expense">Service</string>
     <string name="menu_logout">Logout</string>
 
     <!-- Cars lists -->
@@ -146,10 +149,12 @@
     <string name="policy_type_1">Insurance</string>
     <string name="policy_type_2">Casco</string>
     <string name="policy_type_3">Vignette</string>
+    <string name="policy_type_4">Yearly technical check</string>
     <string-array name="policy_types">
         <item>Insurance</item>
         <item>Casco</item>
         <item>Vignette</item>
+        <item>Yearly technical check</item>
     </string-array>
 
     <string name="policy_status">Status</string>
@@ -202,15 +207,34 @@
     <string name="fuel_expense_discount_placeholder">Discount (optional)</string>
     <string name="fuel_expense_total">Total</string>
     <string name="fuel_expense_mileage">Mileage (optional)</string>
-    <string name="fuel_expense_car_prompt">Cars</string>
+    <string name="fuel_expense_car_prompt">Car</string>
+
     <string name="fuel_expense_create_progress">Creating fuel expense…</string>
     <string name="fuel_expense_create_successful">Fuel expense added successfully!</string>
     <string name="fuel_expense_create_error">Error adding fuel expense!</string>
+
+    <string name="fuel_expense_details">Expense details</string>
+    <string name="fuel_expense_price_per_litre_data">%1$s lv/l.</string>
+    <string name="fuel_expense_litres_data">%1$s l.</string>
+    <string name="fuel_expense_car_details">Car details</string>
+    <string name="fuel_expense_car_brand_model">Brand and model</string>
+    <string name="fuel_expense_car_license_plate">License plate</string>
+    <string name="fuel_expense_car_mileage">Car mileage at the time of refuel</string>
+    <string name="fuel_expense_car_mileage_data">%1$d km.</string>
+    <string name="fuel_expense_car_mileage_unknown">No information</string>
+
+    <string name="fuel_expenses_not_found">Fuel expenses not found!</string>
+
+    <string name="fuel_expense_create_ppl_empty">Price per litre must not be empty!</string>
+    <string name="fuel_expense_create_litres_empty">Litres must not be empty!</string>
+    <string name="fuel_expense_create_discount_invalid">Discount must not be more than the subtotal!</string>
 
     <string name="service_label">Label</string>
     <string name="service_expense_title">Service expense</string>
 
     <string name="error_server">Error communicating with the server. Try again!</string>
+
+    <string name="expense_save">Add an expense</string>
 
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
@@ -237,7 +261,14 @@
     <string name="no">No</string>
     <string name="cancel">Cancel</string>
 
+    <string name="negative_number">- %1$s</string>
+
+    <string name="price_eur">€ %1$s</string>
+    <string name="price_usd">$ %1$s</string>
+    <string name="price_bgn">%1$s lv.</string>
+
     <string name="date_1">dd.MM.yyyy</string>
     <string name="date_time_1">dd.MM.yyyy HH:mm</string>
+    <string name="date_time_2">dd.MM.yyyy, HH:mm</string>
     <string name="date_time_default">yyyy-MM-dd\'T\'HH:mm:ss.SSSX</string>
 </resources>

@@ -12,4 +12,5 @@
     <color name="bg">#EDEDED</color>
     <color name="policy_header">#E17949</color>
     <color name="soft_black">#5A5A5A</color>
+    <color name="text_muted">#6c757d</color>
 </resources>
