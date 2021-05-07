@@ -2,6 +2,8 @@ package com.atanasvasil.mobile.mycardocs.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 
 import com.atanasvasil.mobile.mycardocs.R;
 
@@ -99,5 +101,13 @@ public class Utils {
         loggedUser.setLastName(pref.getString(SHARED_PREF_USER_LAST_NAME, null));
 
         return loggedUser;
+    }
+
+    public static void setAppLocale(Resources res, String localeCode) {
+        Locale locale = new Locale(localeCode);
+        Locale.setDefault(locale);
+        Configuration config = res.getConfiguration();
+        config.setLocale(locale);
+        res.updateConfiguration(config, res.getDisplayMetrics());
     }
 }
