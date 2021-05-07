@@ -206,6 +206,7 @@
     <string name="fuel_expense_subtotal">Subtotal</string>
     <string name="fuel_expense_discount">Discount</string>
     <string name="fuel_expense_discount_placeholder">Discount (optional)</string>
+    <string name="fuel_expense_discount_price_per_litre">Discount price per litre</string>
     <string name="fuel_expense_total">Total</string>
     <string name="fuel_expense_mileage">Mileage (optional)</string>
     <string name="fuel_expense_car_prompt">Car</string>
@@ -232,6 +233,8 @@
 
     <string name="service_label">Label</string>
     <string name="service_expense_title">Service expense</string>
+
+    <string name="service_expenses_not_found">Service expenses not found!</string>
 
     <string name="error_server">Error communicating with the server. Try again!</string>
 
@@ -274,9 +277,19 @@
     <string name="NOV">Nov</string>
     <string name="DEC">Dec</string>
 
+    <string name="week_monday">Monday</string>
+    <string name="week_tuesday">Tuesday</string>
+    <string name="week_wednesday">Wednesday</string>
+    <string name="week_thursday">Thursday</string>
+    <string name="week_friday">Friday</string>
+    <string name="week_saturday">Saturday</string>
+    <string name="week_sunday">Sunday</string>
+
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="cancel">Cancel</string>
+
+    <string name="btn_close">Close</string>
 
     <string name="negative_number">- %1$s</string>
 
@@ -284,6 +297,7 @@
     <string name="price_usd">$ %1$s</string>
     <string name="price_bgn">%1$s lv.</string>
 
+    <string name="date_with_week">%1$s, %2$s</string>
     <string name="date_1">dd.MM.yyyy</string>
     <string name="date_time_1">dd.MM.yyyy HH:mm</string>
     <string name="date_time_2">dd.MM.yyyy, HH:mm</string>

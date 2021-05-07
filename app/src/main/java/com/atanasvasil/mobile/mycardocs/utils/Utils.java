@@ -52,6 +52,28 @@ public class Utils {
         }
     }
 
+    public static String getDayOfWeek(Context context, Integer dayOfWeek) {
+
+        switch (dayOfWeek) {
+            case 1:
+                return context.getString(R.string.week_sunday);
+            case 2:
+                return context.getString(R.string.week_monday);
+            case 3:
+                return context.getString(R.string.week_tuesday);
+            case 4:
+                return context.getString(R.string.week_wednesday);
+            case 5:
+                return context.getString(R.string.week_thursday);
+            case 6:
+                return context.getString(R.string.week_friday);
+            case 7:
+                return context.getString(R.string.week_saturday);
+        }
+
+        return "";
+    }
+
     public static String getStringResource(Context context, String resource) {
 
         try {

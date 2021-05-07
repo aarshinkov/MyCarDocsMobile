@@ -206,6 +206,7 @@
     <string name="fuel_expense_subtotal">Междинна сума</string>
     <string name="fuel_expense_discount">Отстъпка</string>
     <string name="fuel_expense_discount_placeholder">Отстъпка (опционално)</string>
+    <string name="fuel_expense_discount_price_per_litre">Цена на литър с остъпката</string>
     <string name="fuel_expense_total">Общо</string>
     <string name="fuel_expense_mileage">Километраж (опционално)</string>
     <string name="fuel_expense_car_prompt">Автомобил</string>
@@ -231,6 +232,8 @@
 
     <string name="service_label">Сервиз</string>
     <string name="service_expense_title">Разход сервиз</string>
+
+    <string name="service_expenses_not_found">Разходи за сервиз не бяха намерени!</string>
 
     <string name="error_server">Грешка в комуникацията със сървъра. Опитайте отново!</string>
 
@@ -273,9 +276,19 @@
     <string name="NOV">Ное</string>
     <string name="DEC">Дек</string>
 
+    <string name="week_monday">Понеделник</string>
+    <string name="week_tuesday">Вторник</string>
+    <string name="week_wednesday">Сряда</string>
+    <string name="week_thursday">Четвъртък</string>
+    <string name="week_friday">Петък</string>
+    <string name="week_saturday">Събота</string>
+    <string name="week_sunday">Неделя</string>
+
     <string name="yes">Да</string>
     <string name="no">Не</string>
     <string name="cancel">Отказ</string>
+
+    <string name="btn_close">Затвори</string>
 
     <string name="negative_number">- %1$s</string>
 
@@ -283,6 +296,7 @@
     <string name="price_usd">$ %1$s</string>
     <string name="price_bgn">%1$s лв.</string>
 
+    <string name="date_with_week">%1$s, %2$s</string>
     <string name="date_1">dd.MM.yyyy</string>
     <string name="date_time_1">dd.MM.yyyy HH:mm</string>
     <string name="date_time_2">dd.MM.yyyy, HH:mm</string>

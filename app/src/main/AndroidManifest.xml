@@ -20,6 +20,9 @@
             android:name=".activities.fuel.FuelExpenseActivity"
             android:parentActivityName=".activities.MainActivity" />
         <activity
+            android:name=".activities.service.ServiceExpenseCreateActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
             android:name=".activities.service.ServiceExpenseActivity"
             android:parentActivityName=".activities.MainActivity" />
         <activity

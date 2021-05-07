@@ -132,7 +132,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/fuelExpenseDetailsLabelTV" />
 
             <TextView
-                android:id="@+id/fuelExpensePricePerLitreLabelTV"
+                android:id="@+id/fuelExpensePricePerLitreDetailsLabelTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -143,16 +143,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/fuelExpenseDivider" />
 
             <TextView
-                android:id="@+id/fuelExpensePricePerLitreTV"
+                android:id="@+id/fuelExpensePricePerLitreDetailsTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito"
                 app:layout_constraintStart_toStartOf="@+id/fuelExpenseGuideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/fuelExpensePricePerLitreLabelTV"
+                app:layout_constraintTop_toBottomOf="@+id/fuelExpensePricePerLitreDetailsLabelTV"
                 tools:text="1.95 лв/л" />
 
             <TextView
-                android:id="@+id/fuelExpenseLitresLabelTV"
+                android:id="@+id/fuelExpenseLitresDetailsLabelTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -163,13 +163,53 @@
                 app:layout_constraintTop_toBottomOf="@+id/fuelExpenseDivider" />
 
             <TextView
-                android:id="@+id/fuelExpenseLitresTV"
+                android:id="@+id/fuelExpenseLitresDetailsTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito"
                 app:layout_constraintEnd_toEndOf="@+id/fuelExpenseGuideRight"
-                app:layout_constraintTop_toBottomOf="@+id/fuelExpenseLitresLabelTV"
+                app:layout_constraintTop_toBottomOf="@+id/fuelExpenseLitresDetailsLabelTV"
                 tools:text="20 л." />
+
+            <TextView
+                android:id="@+id/fuelExpenseDiscountDetailsLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/fuel_expense_discount"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/fuelExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/fuelExpensePricePerLitreDetailsTV" />
+
+            <TextView
+                android:id="@+id/fuelExpenseDiscountDetailsTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                app:layout_constraintStart_toStartOf="@+id/fuelExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/fuelExpenseDiscountDetailsLabelTV"
+                tools:text="20 л." />
+
+            <TextView
+                android:id="@+id/fuelExpenseDiscountPricePerLitreDetailsLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/fuel_expense_discount_price_per_litre"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/fuelExpenseGuideRight"
+                app:layout_constraintTop_toBottomOf="@+id/fuelExpenseLitresDetailsTV" />
+
+            <TextView
+                android:id="@+id/fuelExpenseDiscountPricePerDetailsLitreTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                app:layout_constraintEnd_toEndOf="@+id/fuelExpenseGuideRight"
+                app:layout_constraintTop_toBottomOf="@+id/fuelExpenseDiscountPricePerLitreDetailsLabelTV"
+                tools:text="1.95 лв/л" />
 
             <TextView
                 android:id="@+id/fuelExpenseCarDetailsLabelTV"
@@ -182,7 +222,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/fuelExpenseGuideRight"
                 app:layout_constraintStart_toStartOf="@+id/fuelExpenseGuideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/fuelExpensePricePerLitreTV" />
+                app:layout_constraintTop_toBottomOf="@+id/fuelExpenseDiscountDetailsTV" />
 
             <View
                 android:id="@+id/fuelExpenseCarDivider"
@@ -236,12 +276,13 @@
 
             <TextView
                 android:id="@+id/fuelExpenseCarMileageLabelTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/nunito"
                 android:text="@string/fuel_expense_car_mileage"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/fuelExpenseGuideRight"
                 app:layout_constraintStart_toStartOf="@+id/fuelExpenseGuideLeft"
                 app:layout_constraintTop_toBottomOf="@+id/fuelExpenseCarBrandModelTV" />
 
@@ -253,6 +294,30 @@
                 app:layout_constraintStart_toStartOf="@+id/fuelExpenseGuideLeft"
                 app:layout_constraintTop_toBottomOf="@+id/fuelExpenseCarMileageLabelTV"
                 tools:text="200000" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fuelExpenseBackBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/btn_close"
+                app:icon="@drawable/ic_close"
+                app:iconGravity="textStart"
+                app:layout_constraintEnd_toEndOf="@+id/fuelExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/fuelExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/fuelExpenseCarMileageTV" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/fuelExpenseProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/fuelExpenseGuideLeft"

@@ -6,6 +6,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,11 +18,14 @@ import com.atanasvasil.mobile.mycardocs.api.ExpensesApi;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.expenses.fuel.FuelExpense;
 import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -32,6 +36,7 @@ import retrofit2.Retrofit;
 
 import static com.atanasvasil.mobile.mycardocs.api.Api.getRetrofit;
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getDayOfWeek;
 import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
 
 public class FuelExpenseActivity extends AppCompatActivity {
@@ -42,11 +47,17 @@ public class FuelExpenseActivity extends AppCompatActivity {
 
     private TextView fuelExpenseCreatedOnTV;
 
-    private TextView fuelExpensePricePerLitreTV;
-    private TextView fuelExpenseLitresTV;
+    private TextView fuelExpensePricePerLitreDetailsTV;
+    private TextView fuelExpenseLitresDetailsTV;
+    private TextView fuelExpenseDiscountDetailsTV;
+    private TextView fuelExpenseDiscountPricePerDetailsLitreTV;
+
     private TextView fuelExpenseCarBrandModelTV;
     private TextView fuelExpenseCarLicensePlateTV;
     private TextView fuelExpenseCarMileageTV;
+    private MaterialButton fuelExpenseBackBtn;
+
+    private CircularProgressIndicator fuelExpenseProgress;
 
     private ColorStateList defaultTextColor;
 
@@ -70,13 +81,19 @@ public class FuelExpenseActivity extends AppCompatActivity {
         fuelExpenseTotalTV = findViewById(R.id.fuelExpenseTotalTV);
         fuelExpenseCreatedOnTV = findViewById(R.id.fuelExpenseCreatedOnTV);
 
-        fuelExpensePricePerLitreTV = findViewById(R.id.fuelExpensePricePerLitreTV);
-        fuelExpenseLitresTV = findViewById(R.id.fuelExpenseLitresTV);
+        fuelExpensePricePerLitreDetailsTV = findViewById(R.id.fuelExpensePricePerLitreDetailsTV);
+        fuelExpenseLitresDetailsTV = findViewById(R.id.fuelExpenseLitresDetailsTV);
+        fuelExpenseDiscountDetailsTV = findViewById(R.id.fuelExpenseDiscountDetailsTV);
+        fuelExpenseDiscountPricePerDetailsLitreTV = findViewById(R.id.fuelExpenseDiscountPricePerDetailsLitreTV);
         fuelExpenseCarBrandModelTV = findViewById(R.id.fuelExpenseCarBrandModelTV);
         fuelExpenseCarLicensePlateTV = findViewById(R.id.fuelExpenseCarLicensePlateTV);
         fuelExpenseCarMileageTV = findViewById(R.id.fuelExpenseCarMileageTV);
+        fuelExpenseBackBtn = findViewById(R.id.fuelExpenseBackBtn);
+        fuelExpenseProgress = findViewById(R.id.fuelExpenseProgress);
 
         defaultTextColor = fuelExpenseDiscountTV.getTextColors();
+
+        fuelExpenseProgress.setVisibility(View.VISIBLE);
 
         Intent intent = getIntent();
         fuelExpenseId = intent.getStringExtra("fuelExpenseId");
@@ -92,10 +109,17 @@ public class FuelExpenseActivity extends AppCompatActivity {
             public void onResponse(@NotNull Call<FuelExpense> call, @NotNull Response<FuelExpense> response) {
                 if (!response.isSuccessful()) {
                     finish();
+                    fuelExpenseProgress.setVisibility(View.INVISIBLE);
                     return;
                 }
 
                 FuelExpense fuelExpense = response.body();
+
+                if (fuelExpense == null) {
+                    fuelExpenseProgress.setVisibility(View.INVISIBLE);
+                    finish();
+                    return;
+                }
 
                 final Double subtotal = fuelExpense.getPricePerLitre() * fuelExpense.getLitres();
                 final Double discount = fuelExpense.getDiscount() != null ? fuelExpense.getDiscount() : 0.00;
@@ -107,7 +131,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
 
                 if (discount != 0.00) {
                     fuelExpenseDiscountTV.setTextColor(getResources().getColor(R.color.success, null));
-                    fuelExpenseDiscountTV.setText("-" + discountFormatted);
+                    fuelExpenseDiscountTV.setText(getString(R.string.negative_number, discountFormatted));
                 } else {
                     fuelExpenseDiscountTV.setText(discountFormatted);
                     fuelExpenseDiscountTV.setTextColor(defaultTextColor);
@@ -118,13 +142,26 @@ public class FuelExpenseActivity extends AppCompatActivity {
 
                 Date date = new Date();
                 date.setTime(fuelExpense.getCreatedOn().getTime());
-                fuelExpenseCreatedOnTV.setText(sdf.format(date));
+
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                int dow = cal.get(Calendar.DAY_OF_WEEK);
+
+                final String dayOfWeek = getDayOfWeek(getApplicationContext(), dow);
+
+                fuelExpenseCreatedOnTV.setText(getString(R.string.date_with_week, dayOfWeek, sdf.format(date)));
 
                 final String pricePerLitre = String.format(Locale.getDefault(), "%.2f", fuelExpense.getPricePerLitre());
-                fuelExpensePricePerLitreTV.setText(getString(R.string.fuel_expense_price_per_litre_data, pricePerLitre));
+                fuelExpensePricePerLitreDetailsTV.setText(getString(R.string.fuel_expense_price_per_litre_data, pricePerLitre));
 
                 final String litres = String.format(Locale.getDefault(), "%.2f", fuelExpense.getLitres());
-                fuelExpenseLitresTV.setText(getString(R.string.fuel_expense_litres_data, litres));
+                fuelExpenseLitresDetailsTV.setText(getString(R.string.fuel_expense_litres_data, litres));
+
+                fuelExpenseDiscountDetailsTV.setText(getString(R.string.price_bgn, discountFormatted));
+
+                final String discountPricePerLitre = String.format(Locale.getDefault(), "%.2f", (total / fuelExpense.getLitres()));
+
+                fuelExpenseDiscountPricePerDetailsLitreTV.setText(getString(R.string.price_bgn, discountPricePerLitre));
 
                 final Car car = fuelExpense.getCar();
 
@@ -138,12 +175,18 @@ public class FuelExpenseActivity extends AppCompatActivity {
                     fuelExpenseCarMileageTV.setTypeface(null, Typeface.ITALIC);
                     fuelExpenseCarMileageTV.setText(R.string.fuel_expense_car_mileage_unknown);
                 }
+
+                fuelExpenseProgress.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onFailure(@NotNull Call<FuelExpense> call, @NotNull Throwable t) {
-
+                fuelExpenseProgress.setVisibility(View.INVISIBLE);
             }
+        });
+
+        fuelExpenseBackBtn.setOnClickListener(v -> {
+            onBackPressed();
         });
     }
 

@@ -82,7 +82,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.ViewHolder
         if (now.after(date)) {
             holder.getStatus().setBackgroundColor(context.getResources().getColor(R.color.danger));
             holder.getStatus().setTooltipText(context.getString(R.string.policy_status_expired));
-            holder.getStatusIcon().setImageResource(R.drawable.ic_close);
+            holder.getStatusIcon().setImageResource(R.drawable.ic_close_x);
         }
 
         holder.getCardView().setOnClickListener(v -> {
