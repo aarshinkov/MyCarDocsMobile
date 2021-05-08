@@ -161,7 +161,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
 
                 final String discountPricePerLitre = String.format(Locale.getDefault(), "%.2f", (total / fuelExpense.getLitres()));
 
-                fuelExpenseDiscountPricePerDetailsLitreTV.setText(getString(R.string.price_bgn, discountPricePerLitre));
+                fuelExpenseDiscountPricePerDetailsLitreTV.setText(getString(R.string.fuel_expense_price_per_litre_data, discountPricePerLitre));
 
                 final Car car = fuelExpense.getCar();
 
