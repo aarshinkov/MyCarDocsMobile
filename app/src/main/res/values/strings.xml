@@ -239,7 +239,20 @@
     <string name="service_expense_price">Price</string>
     <string name="service_expense_notes">Notes (optional)</string>
 
-    <string-array name="service_types">
+    <string name="service_type_1">Scheduled maintenance</string>
+    <string name="service_type_2">Engine repair</string>
+    <string name="service_type_3">Tyres change</string>
+    <string name="service_type_4">Oil change</string>
+    <string name="service_type_5">Oil filter change</string>
+    <string name="service_type_6">Air filter change</string>
+    <string name="service_type_7">Battery replacement</string>
+    <string name="service_type_8">Wheels balance</string>
+    <string name="service_type_9">Belt replacement</string>
+    <string name="service_type_10">Tow</string>
+    <string name="service_type_11">Lights replacement</string>
+    <string name="service_type_12">Part/s change</string>
+
+    <string-array name="service_type_options">
         <item>Scheduled maintenance</item>
         <item>Engine repair</item>
         <item>Tyres change</item>

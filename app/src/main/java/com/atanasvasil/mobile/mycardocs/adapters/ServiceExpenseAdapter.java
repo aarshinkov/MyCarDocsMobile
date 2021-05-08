@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.fuel.FuelExpenseActivity;
+import com.atanasvasil.mobile.mycardocs.activities.service.ServiceExpenseActivity;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.expenses.fuel.FuelExpense;
 import com.atanasvasil.mobile.mycardocs.responses.expenses.service.ServiceExpense;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static com.atanasvasil.mobile.mycardocs.utils.Utils.getMonthName;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getStringResource;
 
 public class ServiceExpenseAdapter extends RecyclerView.Adapter<ServiceExpenseAdapter.ViewHolder> {
 
@@ -67,12 +70,53 @@ public class ServiceExpenseAdapter extends RecyclerView.Adapter<ServiceExpenseAd
 //        holder.getSeiPriceTV().setText(context.getString(R.string.negative_number, context.getString(R.string.price_bgn, totalFormatted)));
         holder.getSeiPriceTV().setText(context.getString(R.string.price_bgn, priceFormatted));
 
+        final Integer type = serviceExpense.getType().getType();
+
+        holder.getSeiExpenseTypeTV().setText(getStringResource(context, "service_type_" + type));
+
+        switch (type) {
+            case 1:
+                holder.getSeiTypeIV().setImageResource(R.drawable.ic_service);
+                break;
+            case 2:
+                holder.getSeiTypeIV().setImageResource(R.drawable.ic_engine);
+                break;
+            case 3:
+                holder.getSeiTypeIV().setImageResource(R.drawable.ic_tyre);
+                break;
+            case 4:
+                holder.getSeiTypeIV().setImageResource(R.drawable.ic_oil);
+                break;
+            case 5:
+            case 6:
+                holder.getSeiTypeIV().setImageResource(R.drawable.ic_filter);
+                break;
+            case 7:
+                holder.getSeiTypeIV().setImageResource(R.drawable.ic_battery);
+                break;
+            case 8:
+                holder.getSeiTypeIV().setImageResource(R.drawable.ic_balance);
+                break;
+            case 9:
+                holder.getSeiTypeIV().setImageResource(R.drawable.ic_belt);
+                break;
+            case 10:
+                holder.getSeiTypeIV().setImageResource(R.drawable.ic_tow);
+                break;
+            case 11:
+                holder.getSeiTypeIV().setImageResource(R.drawable.ic_lights);
+                break;
+            case 12:
+                holder.getSeiTypeIV().setImageResource(R.drawable.ic_repair);
+                break;
+        }
+
         final Car car = serviceExpense.getCar();
 
         holder.getSeiCarTV().setText(car.getBrand() + " " + car.getModel() + " (" + car.getLicensePlate() + ")");
 
         holder.getSeiCardView().setOnClickListener(v -> {
-            Intent intent = new Intent(context.getApplicationContext(), FuelExpenseActivity.class);
+            Intent intent = new Intent(context.getApplicationContext(), ServiceExpenseActivity.class);
             intent.putExtra("serviceExpenseId", serviceExpense.getServiceExpenseId());
             context.startActivity(intent);
         });
@@ -90,6 +134,7 @@ public class ServiceExpenseAdapter extends RecyclerView.Adapter<ServiceExpenseAd
         private final TextView seiMonthTV;
         private final TextView seiYearTV;
         private final TextView seiPriceTV;
+        private final ImageView seiTypeIV;
         private final TextView seiExpenseTypeTV;
         private final TextView seiCarTV;
 
@@ -101,6 +146,7 @@ public class ServiceExpenseAdapter extends RecyclerView.Adapter<ServiceExpenseAd
             seiMonthTV = itemView.findViewById(R.id.seiMonthTV);
             seiYearTV = itemView.findViewById(R.id.seiYearTV);
             seiPriceTV = itemView.findViewById(R.id.seiPriceTV);
+            seiTypeIV = itemView.findViewById(R.id.seiTypeIV);
             seiExpenseTypeTV = itemView.findViewById(R.id.seiExpenseTypeTV);
             seiCarTV = itemView.findViewById(R.id.seiCarTV);
         }
@@ -123,6 +169,10 @@ public class ServiceExpenseAdapter extends RecyclerView.Adapter<ServiceExpenseAd
 
         public TextView getSeiPriceTV() {
             return seiPriceTV;
+        }
+
+        public ImageView getSeiTypeIV() {
+            return seiTypeIV;
         }
 
         public TextView getSeiExpenseTypeTV() {

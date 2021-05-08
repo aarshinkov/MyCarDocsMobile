@@ -28,7 +28,7 @@
             android:id="@+id/secTypeSP"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:entries="@array/service_types"
+            android:entries="@array/service_type_options"
             android:spinnerMode="dialog"
             app:layout_constraintEnd_toStartOf="@+id/secGuideRight"
             app:layout_constraintStart_toStartOf="@+id/secGuideLeft"

@@ -1,6 +1,338 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/serviceExpenseSubtotalLabelTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                android:text="@string/fuel_expense_subtotal"
+                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/serviceExpenseSubtotalTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseSubtotalLabelTV"
+                tools:text="25.60" />
+
+            <TextView
+                android:id="@+id/serviceExpenseDiscountLabelTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                android:text="@string/fuel_expense_discount"
+                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseSubtotalTV" />
+
+            <TextView
+                android:id="@+id/serviceExpenseDiscountTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDiscountLabelTV"
+                tools:text="-8.50" />
+
+            <TextView
+                android:id="@+id/serviceExpenseTotalTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDiscountTV"
+                tools:text="17.10" />
+
+            <TextView
+                android:id="@+id/serviceExpenseCreatedOnTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                android:textColor="@color/text_muted"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseTotalTV"
+                tools:text="02 December 2020, 15:43" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/profileAdminRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:clickable="false"
+                android:fontFamily="@font/nunito"
+                android:text="@string/fuel_expense_title"
+                android:textAlignment="center"
+                android:textColor="@color/danger"
+                app:chipIcon="@drawable/ic_gas_station"
+                app:chipIconTint="@color/danger"
+                app:chipStartPadding="10dp"
+                app:chipStrokeColor="@color/danger"
+                app:chipStrokeWidth="1dp"
+                app:chipSurfaceColor="#FFD9DD"
+                app:iconEndPadding="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseCreatedOnTV"
+                app:textStartPadding="0dp" />
+
+            <TextView
+                android:id="@+id/serviceExpenseDetailsLabelTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/fuel_expense_details"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/profileAdminRole" />
+
+            <View
+                android:id="@+id/serviceExpenseDivider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="@id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDetailsLabelTV" />
+
+            <TextView
+                android:id="@+id/serviceExpensePricePerLitreDetailsLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/fuel_expense_price_per_litre"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDivider" />
+
+            <TextView
+                android:id="@+id/serviceExpensePricePerLitreDetailsTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpensePricePerLitreDetailsLabelTV"
+                tools:text="1.95 лв/л" />
+
+            <TextView
+                android:id="@+id/serviceExpenseLitresDetailsLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/fuel_expense_litres"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDivider" />
+
+            <TextView
+                android:id="@+id/serviceExpenseLitresDetailsTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                app:layout_constraintEnd_toEndOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseLitresDetailsLabelTV"
+                tools:text="20 л." />
+
+            <TextView
+                android:id="@+id/serviceExpenseDiscountDetailsLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/fuel_expense_discount"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpensePricePerLitreDetailsTV" />
+
+            <TextView
+                android:id="@+id/serviceExpenseDiscountDetailsTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDiscountDetailsLabelTV"
+                tools:text="20 л." />
+
+            <TextView
+                android:id="@+id/serviceExpenseDiscountPricePerLitreDetailsLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/fuel_expense_discount_price_per_litre"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseLitresDetailsTV" />
+
+            <TextView
+                android:id="@+id/serviceExpenseDiscountPricePerDetailsLitreTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                app:layout_constraintEnd_toEndOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDiscountPricePerLitreDetailsLabelTV"
+                tools:text="1.95 лв/л" />
+
+            <TextView
+                android:id="@+id/serviceExpenseCarDetailsLabelTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/fuel_expense_car_details"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDiscountDetailsTV" />
+
+            <View
+                android:id="@+id/serviceExpenseCarDivider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="@id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseCarDetailsLabelTV" />
+
+            <TextView
+                android:id="@+id/serviceExpenseCarBrandModelLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/fuel_expense_car_brand_model"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseCarDivider" />
+
+            <TextView
+                android:id="@+id/serviceExpenseCarBrandModelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseCarBrandModelLabelTV"
+                tools:text="Mercedes Benz" />
+
+            <TextView
+                android:id="@+id/serviceExpenseCarLicensePlateLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/fuel_expense_car_license_plate"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseCarDivider" />
+
+            <TextView
+                android:id="@+id/serviceExpenseCarLicensePlateTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                app:layout_constraintEnd_toEndOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseCarBrandModelLabelTV"
+                tools:text="PB8765AB" />
+
+            <TextView
+                android:id="@+id/serviceExpenseCarMileageLabelTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/fuel_expense_car_mileage"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseCarBrandModelTV" />
+
+            <TextView
+                android:id="@+id/serviceExpenseCarMileageTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseCarMileageLabelTV"
+                tools:text="200000" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/serviceExpenseBackBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/btn_close"
+                app:icon="@drawable/ic_close"
+                app:iconGravity="textStart"
+                app:layout_constraintEnd_toEndOf="@+id/serviceExpenseGuideRight"
+                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseCarMileageTV" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/serviceExpenseProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/serviceExpenseGuideLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/serviceExpenseGuideRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

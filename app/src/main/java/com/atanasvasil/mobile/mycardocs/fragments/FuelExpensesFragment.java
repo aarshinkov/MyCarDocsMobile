@@ -57,6 +57,7 @@ public class FuelExpensesFragment extends Fragment {
     private CircularProgressIndicator fuelExpensesProgress;
 
     private Integer page = 1;
+    private final Integer startLimit = 15;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,10 +68,10 @@ public class FuelExpensesFragment extends Fragment {
         loggedUser = getLoggedUser(pref);
 
         recyclerView = root.findViewById(R.id.fuelExpenses);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         fuelExpenses = new ArrayList<>();
-        fuelExpensesAdapter = new FuelExpenseAdapter(getContext(), fuelExpenses);
+        fuelExpensesAdapter = new FuelExpenseAdapter(requireContext(), fuelExpenses);
         recyclerView.setAdapter(fuelExpensesAdapter);
 
         fuelExpensesNoItemsRefresh = root.findViewById(R.id.fuelExpensesNoItemsRefresh);
@@ -81,13 +82,13 @@ public class FuelExpensesFragment extends Fragment {
         fuelExpensesProgress = root.findViewById(R.id.fuelExpensesProgress);
         fuelExpensesProgress.setVisibility(View.VISIBLE);
 
-        getFuelExpenses(page, 50);
+        getFuelExpenses(page, startLimit);
 
         fuelExpensesNoItemsRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 page = 1;
-                getFuelExpenses(page, 50);
+                getFuelExpenses(page, startLimit);
                 fuelExpensesNoItemsRefresh.setRefreshing(false);
             }
         });
@@ -96,7 +97,7 @@ public class FuelExpensesFragment extends Fragment {
             @Override
             public void onRefresh() {
                 page = 1;
-                getFuelExpenses(page, 50);
+                getFuelExpenses(page, startLimit);
                 fuelExpensesRefresh.setRefreshing(false);
             }
         });
@@ -158,6 +159,6 @@ public class FuelExpensesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        getFuelExpenses(1, 6);
+        getFuelExpenses(1, startLimit);
     }
 }

@@ -239,7 +239,20 @@
     <string name="service_expense_price">Цена</string>
     <string name="service_expense_notes">Бележки (опционално)</string>
 
-    <string-array name="service_types">
+    <string name="service_type_1">Сервизно обслужване</string>
+    <string name="service_type_2">Ремонт на двигател</string>
+    <string name="service_type_3">Смяна на гуми</string>
+    <string name="service_type_4">Смяна на масло</string>
+    <string name="service_type_5">Смяна на маслен филтър</string>
+    <string name="service_type_6">Смяна на въздушен филтър</string>
+    <string name="service_type_7">Смяна на акумулатор</string>
+    <string name="service_type_8">Баланс на гуми</string>
+    <string name="service_type_9">Смяна на ремък</string>
+    <string name="service_type_10">Пътна помощ</string>
+    <string name="service_type_11">Смяна светлини</string>
+    <string name="service_type_12">Смяна на част/и</string>
+
+    <string-array name="service_type_options">
         <item>Сервизно обслужване</item>
         <item>Ремонт на двигател</item>
         <item>Смяна на гуми</item>
