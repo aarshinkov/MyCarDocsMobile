@@ -237,7 +237,7 @@
     <string name="service_expense_types">Тип разход</string>
     <string name="service_expense_cars">Автомобили</string>
     <string name="service_expense_price">Цена</string>
-    <string name="service_expense_notes">Бележки</string>
+    <string name="service_expense_notes">Бележки (опционално)</string>
 
     <string-array name="service_types">
         <item>Сервизно обслужване</item>

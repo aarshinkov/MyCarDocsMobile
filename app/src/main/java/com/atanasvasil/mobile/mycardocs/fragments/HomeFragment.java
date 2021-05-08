@@ -18,6 +18,7 @@ import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.ChartActivity;
 import com.atanasvasil.mobile.mycardocs.activities.fuel.FuelExpenseCreateActivity;
 import com.atanasvasil.mobile.mycardocs.activities.service.ServiceExpenseActivity;
+import com.atanasvasil.mobile.mycardocs.activities.service.ServiceExpenseCreateActivity;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
@@ -103,7 +104,7 @@ public class HomeFragment extends Fragment {
         });
 
         serviceExpenseBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), ServiceExpenseActivity.class);
+            Intent intent = new Intent(getContext(), ServiceExpenseCreateActivity.class);
             startActivity(intent);
         });
 

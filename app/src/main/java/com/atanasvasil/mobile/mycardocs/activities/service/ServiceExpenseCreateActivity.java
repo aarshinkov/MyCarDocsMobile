@@ -2,10 +2,12 @@ package com.atanasvasil.mobile.mycardocs.activities.service;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -61,6 +63,7 @@ public class ServiceExpenseCreateActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
     }
+
     public void loadCars() {
 
         Retrofit retrofit = getRetrofit();
@@ -92,4 +95,10 @@ public class ServiceExpenseCreateActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        onBackPressed();
+        return true;
+    }
 }
