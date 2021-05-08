@@ -1,9 +1,12 @@
 package com.atanasvasil.mobile.mycardocs.activities.service;
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -12,9 +15,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.atanasvasil.mobile.mycardocs.R;
+import com.atanasvasil.mobile.mycardocs.activities.fuel.FuelExpenseCreateActivity;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
+import com.atanasvasil.mobile.mycardocs.api.ExpensesApi;
+import com.atanasvasil.mobile.mycardocs.requests.expenses.service.ServiceExpenseCreateRequest;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
+import com.atanasvasil.mobile.mycardocs.responses.expenses.service.ServiceExpense;
 import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -34,7 +43,13 @@ import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NA
 import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
 
 public class ServiceExpenseCreateActivity extends AppCompatActivity {
-    private Spinner seCarsSP;
+
+    private Spinner secTypeSP;
+    private Spinner secCarsSP;
+    private EditText secPriceET;
+    private EditText secNotesET;
+    private MaterialButton secSaveBtn;
+
     private SharedPreferences pref;
     private LoggedUser loggedUser;
 
@@ -53,15 +68,71 @@ public class ServiceExpenseCreateActivity extends AppCompatActivity {
         pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
 
-        seCarsSP = findViewById(R.id.seCarsSP);
+        secTypeSP = findViewById(R.id.secTypeSP);
+        secCarsSP = findViewById(R.id.secCarsSP);
+        secPriceET = findViewById(R.id.secPriceET);
+        secNotesET = findViewById(R.id.secNotesET);
+        secSaveBtn = findViewById(R.id.secSaveBtn);
 
         final String zeroFormatted = String.format(Locale.getDefault(), "%.2f", 0.00);
 
         loadCars();
+
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        ProgressDialog progress = new ProgressDialog(ServiceExpenseCreateActivity.this);
+        progress.setMessage(getString(R.string.service_expense_create_progress));
+        progress.setCanceledOnTouchOutside(false);
+        progress.setCancelable(false);
+
+        secSaveBtn.setOnClickListener(v -> {
+            progress.show();
+
+            if (hasErrors()) {
+                progress.hide();
+                return;
+            }
+
+            Integer type = secTypeSP.getSelectedItemPosition() + 1;
+
+            final String licensePlate = secCarsSP.getSelectedItem().toString();
+            final String carId = userCarsMap.get(licensePlate);
+
+            ServiceExpenseCreateRequest secr = new ServiceExpenseCreateRequest();
+            secr.setType(type);
+            secr.setCarId(carId);
+            secr.setPrice(Double.parseDouble(secPriceET.getText().toString()));
+            secr.setNotes(secNotesET.getText().toString());
+
+            Retrofit retrofit = getRetrofit();
+            ExpensesApi expensesApi = retrofit.create(ExpensesApi.class);
+
+            expensesApi.createServiceExpense(secr, loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<ServiceExpense>() {
+                @Override
+                public void onResponse(@NotNull Call<ServiceExpense> call, @NotNull Response<ServiceExpense> response) {
+
+                    if (!response.isSuccessful()) {
+                        Snackbar.make(v, R.string.service_expense_create_error, Snackbar.LENGTH_LONG).show();
+                        progress.hide();
+                        return;
+                    }
+
+                    Toast.makeText(getApplicationContext(), R.string.service_expense_create_successful, Toast.LENGTH_LONG).show();
+                    progress.hide();
+
+                    finish();
+                }
+
+                @Override
+                public void onFailure(@NotNull Call<ServiceExpense> call, @NotNull Throwable t) {
+                    Log.e("SERVICE_EXPENSE_CREATE", t.getMessage());
+                    Snackbar.make(v, R.string.service_expense_create_error, Snackbar.LENGTH_LONG).show();
+                    progress.hide();
+                }
+            });
+        });
     }
 
     public void loadCars() {
@@ -85,7 +156,7 @@ public class ServiceExpenseCreateActivity extends AppCompatActivity {
                 }
 
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                seCarsSP.setAdapter(adapter);
+                secCarsSP.setAdapter(adapter);
             }
 
             @Override
@@ -93,6 +164,18 @@ public class ServiceExpenseCreateActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private boolean hasErrors() {
+
+        boolean hasErrors = false;
+
+        if (secPriceET.getText().toString().isEmpty()) {
+            secPriceET.setError(getString(R.string.service_expense_create_price_empty));
+            hasErrors = true;
+        }
+
+        return hasErrors;
     }
 
     @Override

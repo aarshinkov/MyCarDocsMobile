@@ -254,8 +254,13 @@
         <item>Part/s change</item>
     </string-array>
 
+    <string name="service_expense_create_progress">Creating service expense…</string>
+    <string name="service_expense_create_successful">Service expense added successfully!</string>
+    <string name="service_expense_create_error">Error adding service expense!</string>
 
-    <string name="service_expenses_not_found">Service expenses not found!</string>
+    <string name="service_expenses_not_found">Service expenses not found!</string>0
+
+    <string name="service_expense_create_price_empty">Price must not be empty!</string>
 
     <string name="error_server">Error communicating with the server. Try again!</string>
 

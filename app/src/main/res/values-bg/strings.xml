@@ -254,8 +254,13 @@
         <item>Смяна на част/и</item>
     </string-array>
 
+    <string name="service_expense_create_progress">Създаване на разход за сервиз…</string>
+    <string name="service_expense_create_successful">Разходът на сервиз е добавен успешно!</string>
+    <string name="service_expense_create_error">Грешка при добавяне на разход на сервиз!</string>
 
     <string name="service_expenses_not_found">Разходи за сервиз не бяха намерени!</string>
+
+    <string name="service_expense_create_price_empty">Цената не може да бъде празна!</string>
 
     <string name="error_server">Грешка в комуникацията със сървъра. Опитайте отново!</string>
 

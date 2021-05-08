@@ -27,6 +27,7 @@ import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.expenses.fuel.FuelExpense;
 import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -142,9 +143,9 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
             }
 
             final String licensePlate = fecCarsSP.getSelectedItem().toString();
-            final String carPId = userCarsMap.get(licensePlate);
+            final String carId = userCarsMap.get(licensePlate);
 
-            fecr.setCarId(carPId);
+            fecr.setCarId(carId);
 
             Retrofit retrofit = getRetrofit();
 
@@ -155,12 +156,12 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
                 public void onResponse(@NotNull Call<FuelExpense> call, @NotNull Response<FuelExpense> response) {
 
                     if (!response.isSuccessful()) {
-                        Toast.makeText(getApplicationContext(), R.string.fuel_expense_create_error, Toast.LENGTH_LONG).show();
+                        Snackbar.make(v, R.string.fuel_expense_create_error, Snackbar.LENGTH_LONG).show();
                         progress.hide();
                         return;
                     }
 
-                    Toast.makeText(getApplicationContext(), R.string.fuel_expense_create_successful, Toast.LENGTH_LONG).show();
+                    Snackbar.make(v, R.string.fuel_expense_create_successful, Snackbar.LENGTH_LONG).show();
                     progress.hide();
 
                     finish();

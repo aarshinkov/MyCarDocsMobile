@@ -1,125 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/seGuideLeft"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        android:paddingBottom="8dp">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/seGuideRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        <TextView
+            android:id="@+id/secTypeLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/secTypeSP"
+            android:text="@string/service_expense_types"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/seTypeLabelTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="3dp"
-        android:fontFamily="@font/nunito"
-        android:labelFor="@+id/seTypeSP"
-        android:text="@string/service_expense_types"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/seGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/seGuideLeft"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Spinner
+            android:id="@+id/secTypeSP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/service_types"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toStartOf="@+id/secGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/secTypeLabelTV" />
 
-    <Spinner
-        android:id="@+id/seTypeSP"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:entries="@array/service_types"
-        android:spinnerMode="dialog"
-        app:layout_constraintEnd_toStartOf="@+id/seGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/seGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/seTypeLabelTV" />
-
-    <TextView
-        android:id="@+id/seCarsLabelTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="3dp"
-        android:fontFamily="@font/nunito"
-        android:labelFor="@+id/seCarsSP"
-        android:text="@string/service_expense_cars"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/seGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/seGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/seTypeSP" />
+        <TextView
+            android:id="@+id/secCarsLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/secCarsSP"
+            android:text="@string/service_expense_cars"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/secTypeSP" />
 
 
-    <Spinner
-        android:id="@+id/seCarsSP"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
-        app:layout_constraintEnd_toStartOf="@+id/seGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/seGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/seCarsLabelTV" />
+        <Spinner
+            android:id="@+id/secCarsSP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toStartOf="@+id/secGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/secCarsLabelTV" />
 
-    <TextView
-        android:id="@+id/sePriceLabelTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="3dp"
-        android:fontFamily="@font/nunito"
-        android:labelFor="@+id/sePriceET"
-        android:text="@string/service_expense_price"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/seGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/seGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/seCarsSP" />
+        <TextView
+            android:id="@+id/secPriceLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/secPriceET"
+            android:text="@string/service_expense_price"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/secCarsSP" />
 
-    <EditText
-        android:id="@+id/sePriceET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:fontFamily="@font/nunito"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toStartOf="@+id/seGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/seGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/sePriceLabelTV" />
+        <EditText
+            android:id="@+id/secPriceET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/nunito"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toStartOf="@+id/secGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/secPriceLabelTV" />
 
-    <TextView
-        android:id="@+id/seNotesLabelTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="3dp"
-        android:fontFamily="@font/nunito"
-        android:labelFor="@+id/seNotesET"
-        android:text="@string/service_expense_notes"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/seGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/seGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/sePriceET" />
+        <TextView
+            android:id="@+id/secNotesLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/secNotesET"
+            android:text="@string/service_expense_notes"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/secPriceET" />
 
-    <EditText
-        android:id="@+id/seNotesET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:fontFamily="@font/nunito"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toStartOf="@+id/seGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/seGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/seNotesLabelTV" />
+        <EditText
+            android:id="@+id/secNotesET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/nunito"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toStartOf="@+id/secGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/secNotesLabelTV" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/secSaveBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/expense_save"
+            app:icon="@drawable/ic_expense"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/secNotesET" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/secGuideLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/secGuideRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
