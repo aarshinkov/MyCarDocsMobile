@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/feiCardView"
+        android:id="@+id/seiCardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
@@ -20,17 +20,17 @@
             android:paddingBottom="8dp">
 
             <LinearLayout
-                android:id="@+id/feiDateContainer"
+                android:id="@+id/seiDateContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/feiGuideLeft"
+                app:layout_constraintStart_toStartOf="@+id/seiGuideLeft"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/feiDateTV"
+                    android:id="@+id/seiDateTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito"
@@ -40,7 +40,7 @@
                     tools:text="5" />
 
                 <TextView
-                    android:id="@+id/feiMonthTV"
+                    android:id="@+id/seiMonthTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito"
@@ -48,7 +48,7 @@
                     tools:text="APR" />
 
                 <TextView
-                    android:id="@+id/feiYearTV"
+                    android:id="@+id/seiYearTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito"
@@ -61,31 +61,40 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/ic_gas_station"
+                android:src="@drawable/ic_service"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/feiDateContainer"
+                app:layout_constraintStart_toEndOf="@+id/seiDateContainer"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/danger" />
 
             <LinearLayout
-                android:id="@+id/feiContentContainer"
+                android:id="@+id/seiContentContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/feiGuideRight"
+                app:layout_constraintEnd_toStartOf="@+id/seiGuideRight"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/feiCarTV"
+                    android:id="@+id/seiExpenseTypeTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    app:layout_constraintEnd_toStartOf="@+id/seiGuideRight"
+                    app:layout_constraintTop_toTopOf="@+id/imageView"
+                    tools:text="Expense type" />
+
+                <TextView
+                    android:id="@+id/seiCarTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito"
                     tools:text="Car license plate" />
 
                 <TextView
-                    android:id="@+id/feiTotalTV"
+                    android:id="@+id/seiTotalTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito"
@@ -97,14 +106,14 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/feiGuideLeft"
+                android:id="@+id/seiGuideLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="16dp" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/feiGuideRight"
+                android:id="@+id/seiGuideRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
