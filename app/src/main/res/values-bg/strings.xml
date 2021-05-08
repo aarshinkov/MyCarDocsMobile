@@ -233,6 +233,11 @@
     <string name="service_label">Сервиз</string>
     <string name="service_expense_title">Разход сервиз</string>
 
+    <string name="service_expense_type">Тип разход</string>
+    <string name="service_expense_cars">Автомобили</string>
+    <string name="service_expense_price">Цена</string>
+    <string name="service_expense_notes">Бележки</string>
+
     <string name="service_expenses_not_found">Разходи за сервиз не бяха намерени!</string>
 
     <string name="error_server">Грешка в комуникацията със сървъра. Опитайте отново!</string>
