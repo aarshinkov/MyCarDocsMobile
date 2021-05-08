@@ -129,12 +129,11 @@ public class ServiceExpensesFragment extends Fragment {
                     serviceExpenses.clear();
                 }
 
-
                 if (storedServiceExpenses != null) {
                     serviceExpenses.addAll(storedServiceExpenses.getData());
 
-                    Long sightsCount = storedServiceExpenses.getPage().getGlobalTotalElements();
-                    if (sightsCount <= 0) {
+                    Long serviceExpensesCount = storedServiceExpenses.getPage().getGlobalTotalElements();
+                    if (serviceExpensesCount <= 0) {
                         serviceExpensesNoItemsRefresh.setVisibility(View.VISIBLE);
                         serviceExpensesRefresh.setVisibility(View.INVISIBLE);
                     } else {

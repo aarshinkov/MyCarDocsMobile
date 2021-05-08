@@ -133,8 +133,8 @@ public class FuelExpensesFragment extends Fragment {
                 if (storedFuelExpenses != null) {
                     fuelExpenses.addAll(storedFuelExpenses.getData());
 
-                    Long sightsCount = storedFuelExpenses.getPage().getGlobalTotalElements();
-                    if (sightsCount <= 0) {
+                    Long fuelExpensesCount = storedFuelExpenses.getPage().getGlobalTotalElements();
+                    if (fuelExpensesCount <= 0) {
                         fuelExpensesNoItemsRefresh.setVisibility(View.VISIBLE);
                         fuelExpensesRefresh.setVisibility(View.INVISIBLE);
                     } else {
