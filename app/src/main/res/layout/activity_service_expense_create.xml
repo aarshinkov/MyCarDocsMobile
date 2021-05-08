@@ -38,6 +38,8 @@
         android:id="@+id/seTypeSP"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:entries="@array/service_types"
+        android:spinnerMode="dialog"
         app:layout_constraintEnd_toStartOf="@+id/seGuideRight"
         app:layout_constraintStart_toStartOf="@+id/seGuideLeft"
         app:layout_constraintTop_toBottomOf="@+id/seTypeLabelTV" />

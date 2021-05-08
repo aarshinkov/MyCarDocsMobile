@@ -239,6 +239,22 @@
     <string name="service_expense_price">Price</string>
     <string name="service_expense_notes">Notes</string>
 
+    <string-array name="service_types">
+        <item>Scheduled maintenance</item>
+        <item>Engine repair</item>
+        <item>Tyres change</item>
+        <item>Oil change</item>
+        <item>Oil filter change</item>
+        <item>Air filter change</item>
+        <item>Battery replacement</item>
+        <item>Wheels balance</item>
+        <item>Belt replacement</item>
+        <item>Tow</item>
+        <item>Lights replacement</item>
+        <item>Part/s change</item>
+    </string-array>
+
+
     <string name="service_expenses_not_found">Service expenses not found!</string>
 
     <string name="error_server">Error communicating with the server. Try again!</string>

@@ -210,6 +210,7 @@
     <string name="fuel_expense_total">Общо</string>
     <string name="fuel_expense_mileage">Километраж (опционално)</string>
     <string name="fuel_expense_car_prompt">Автомобил</string>
+
     <string name="fuel_expense_create_progress">Създаване на разход за гориво…</string>
     <string name="fuel_expense_create_successful">Разходът на гориво е добавен успешно!</string>
     <string name="fuel_expense_create_error">Грешка при добавяне на разход на гориво!</string>
@@ -237,6 +238,22 @@
     <string name="service_expense_cars">Автомобили</string>
     <string name="service_expense_price">Цена</string>
     <string name="service_expense_notes">Бележки</string>
+
+    <string-array name="service_types">
+        <item>Сервизно обслужване</item>
+        <item>Ремонт на двигател</item>
+        <item>Смяна на гуми</item>
+        <item>Смяна на масло</item>
+        <item>Смяна на маслен филтър</item>
+        <item>Смяна на въздушен филтър</item>
+        <item>Смяна на акумулатор</item>
+        <item>Баланс на гуми</item>
+        <item>Смяна на ремък</item>
+        <item>Пътна помощ</item>
+        <item>Смяна светлини</item>
+        <item>Смяна на част/и</item>
+    </string-array>
+
 
     <string name="service_expenses_not_found">Разходи за сервиз не бяха намерени!</string>
 
