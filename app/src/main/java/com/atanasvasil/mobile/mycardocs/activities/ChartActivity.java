@@ -1,9 +1,12 @@
 package com.atanasvasil.mobile.mycardocs.activities;
 
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -12,29 +15,88 @@ import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Cartesian;
 import com.anychart.core.axes.Linear;
 import com.anychart.core.cartesian.series.Bar;
-import com.anychart.core.cartesian.series.Column;
 import com.anychart.data.Mapping;
 import com.anychart.data.Set;
 import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
 import com.anychart.enums.LabelsOverlapMode;
 import com.anychart.enums.Orientation;
-import com.anychart.enums.Position;
 import com.anychart.enums.ScaleStackMode;
 import com.anychart.enums.TooltipDisplayMode;
 import com.anychart.enums.TooltipPositionMode;
 import com.atanasvasil.mobile.mycardocs.R;
+import com.atanasvasil.mobile.mycardocs.api.ExpensesApi;
+import com.atanasvasil.mobile.mycardocs.responses.expenses.ExpenseSummaryItem;
+import com.atanasvasil.mobile.mycardocs.responses.expenses.ExpensesSummaryResponse;
+import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static com.atanasvasil.mobile.mycardocs.api.Api.getRetrofit;
+import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
 
 public class ChartActivity extends AppCompatActivity {
+
+    private SharedPreferences pref;
+    private LoggedUser loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart);
 
+        pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        loggedUser = getLoggedUser(pref);
+
+        Retrofit retrofit = getRetrofit();
+        ExpensesApi expensesApi = retrofit.create(ExpensesApi.class);
+
+        final String userId = loggedUser.getUserId();
+        final String carId = null;
+        final Integer year = null;
+
+        expensesApi.getExpensesSummary(userId, carId, year, loggedUser.getAuthorization()).enqueue(new Callback<ExpensesSummaryResponse>() {
+            @Override
+            public void onResponse(@NotNull Call<ExpensesSummaryResponse> call, @NotNull Response<ExpensesSummaryResponse> response) {
+
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Error getting expenses summary", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                ExpensesSummaryResponse summary = response.body();
+
+                if (summary == null) {
+                    return;
+                }
+
+                generateChart(summary);
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<ExpensesSummaryResponse> call, @NotNull Throwable t) {
+                Log.e("EXPENSES_SUMMARY", t.getMessage());
+                Toast.makeText(getApplicationContext(), "Error getting expenses summary", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void generateChart(ExpensesSummaryResponse summary) {
         AnyChartView anyChartView = findViewById(R.id.anyChartView);
         anyChartView.setProgressBar(findViewById(R.id.progress_bar));
 
@@ -51,7 +113,7 @@ public class ChartActivity extends AppCompatActivity {
                         "    return Math.abs(this.value).toLocaleString();\n" +
                         "  }");
 
-        barChart.yAxis(0d).title("Revenue in Dollars");
+        barChart.yAxis(0d).title("Expenses in lv.");
 
         barChart.xAxis(0d).overlapMode(LabelsOverlapMode.ALLOW_OVERLAP);
 
@@ -60,7 +122,10 @@ public class ChartActivity extends AppCompatActivity {
         xAxis1.orientation(Orientation.RIGHT);
         xAxis1.overlapMode(LabelsOverlapMode.ALLOW_OVERLAP);
 
-        barChart.title("Cosmetic Sales by Gender");
+        Calendar calendar = Calendar.getInstance();
+        final int currentYear = calendar.get(Calendar.YEAR);
+
+        barChart.title("Expenses for " + currentYear);
 
         barChart.interactivity().hoverMode(HoverMode.BY_X);
 
@@ -79,33 +144,40 @@ public class ChartActivity extends AppCompatActivity {
                                 "    }");
 
         List<DataEntry> seriesData = new ArrayList<>();
-        seriesData.add(new CustomDataEntry(getString(R.string.JAN), 5376, -229));
-        seriesData.add(new CustomDataEntry(getString(R.string.FEB), 10987, -932));
-        seriesData.add(new CustomDataEntry(getString(R.string.MAR), 7624, -5221));
-        seriesData.add(new CustomDataEntry(getString(R.string.APR), 8814, -256));
-        seriesData.add(new CustomDataEntry(getString(R.string.MAY), 8998, -308));
-        seriesData.add(new CustomDataEntry(getString(R.string.JUN), 9321, -432));
-        seriesData.add(new CustomDataEntry(getString(R.string.JUL), 8342, -701));
-        seriesData.add(new CustomDataEntry(getString(R.string.AUG), 6998, -908));
-        seriesData.add(new CustomDataEntry(getString(R.string.SEP), 9261, -712));
-        seriesData.add(new CustomDataEntry(getString(R.string.OCT), 5376, -9229));
-        seriesData.add(new CustomDataEntry(getString(R.string.NOV), 10987, -13932));
-        seriesData.add(new CustomDataEntry(getString(R.string.DEC), 7624, -10221));
+
+        Map<String, CustomDataEntry> entries = initData(summary.getFuel());
+
+        for (ExpenseSummaryItem serviceItem : summary.getService()) {
+            final double negative = serviceItem.getTotal() * -1;
+            entries.get(getMonth(serviceItem.getMonth())).setService(negative);
+        }
+
+        for (Map.Entry<String, CustomDataEntry> entry : entries.entrySet()) {
+            // If you want all 12 months to be shown remove this IF statement and keep only the body
+//            if (!entry.getValue().getFuel().equals(0) || !entry.getValue().getService().equals(0)) {
+            seriesData.add(entry.getValue());
+//            }
+        }
 
         Set set = Set.instantiate();
         set.data(seriesData);
         Mapping series1Data = set.mapAs("{ x: 'x', value: 'value' }");
         Mapping series2Data = set.mapAs("{ x: 'x', value: 'value2' }");
 
+        final String fuelColor = String.format("#%06x", ContextCompat.getColor(this, R.color.danger) & 0xffffff);
+
         Bar series1 = barChart.bar(series1Data);
         series1.name(getString(R.string.fuel_label))
-                .color("Red");
+                .color(fuelColor);
         series1.tooltip()
                 .position("right")
                 .anchor(Anchor.LEFT_CENTER);
 
+        final String serviceColor = String.format("#%06x", ContextCompat.getColor(this, R.color.colorAccent) & 0xffffff);
+
         Bar series2 = barChart.bar(series2Data);
-        series2.name(getString(R.string.service_label));
+        series2.name(getString(R.string.service_label))
+                .color(serviceColor);
         series2.tooltip()
                 .position("left")
                 .anchor(Anchor.RIGHT_CENTER);
@@ -118,13 +190,85 @@ public class ChartActivity extends AppCompatActivity {
         anyChartView.setChart(barChart);
     }
 
-    private class CustomDataEntry extends ValueDataEntry {
-        CustomDataEntry(String x, Number value, Number value2) {
-            super(x, value);
-            setValue("value2", value2);
+    private Map<String, CustomDataEntry> initData(List<ExpenseSummaryItem> fuel) {
+
+        // LinkedHashMap is used because it keeps the insertion order
+        Map<String, CustomDataEntry> entries = new LinkedHashMap<>();
+
+        final int elementsNum = fuel.size() - 1;
+        for (int i = 1, j = 0; i <= 12; i++) {
+            ExpenseSummaryItem item = fuel.get(j);
+            if (item.getMonth().equals(i)) {
+                CustomDataEntry entry = new CustomDataEntry(getMonth(i), item.getTotal());
+                entry.setService(0);
+                entries.put(getMonth(i), entry);
+                if (j < elementsNum) {
+                    j++;
+                }
+            } else {
+                CustomDataEntry entry = new CustomDataEntry(getMonth(i), 0);
+                entry.setService(0);
+                entries.put(getMonth(i), entry);
+            }
+        }
+
+        return entries;
+    }
+
+    private String getMonth(Integer month) {
+        switch (month) {
+            case 1:
+                return getString(R.string.JAN);
+            case 2:
+                return getString(R.string.FEB);
+            case 3:
+                return getString(R.string.MAR);
+            case 4:
+                return getString(R.string.APR);
+            case 5:
+                return getString(R.string.MAY);
+            case 6:
+                return getString(R.string.JUN);
+            case 7:
+                return getString(R.string.JUL);
+            case 8:
+                return getString(R.string.AUG);
+            case 9:
+                return getString(R.string.SEP);
+            case 10:
+                return getString(R.string.OCT);
+            case 11:
+                return getString(R.string.NOV);
+            default:
+                return getString(R.string.DEC);
         }
     }
-//
+
+    private static class CustomDataEntry extends ValueDataEntry {
+
+        private String label;
+        private final Number fuel;
+        private Number service;
+
+        public CustomDataEntry(final String label, final Number fuel) {
+            super(label, fuel);
+            this.fuel = fuel;
+        }
+
+        public void setService(Number service) {
+            this.service = service;
+            super.setValue("value2", service);
+        }
+
+        public Number getFuel() {
+            return fuel;
+        }
+
+        public Number getService() {
+            return service;
+        }
+    }
+
 //        AnyChartView anyChartView = findViewById(R.id.anyChartView);
 //        anyChartView.setProgressBar(findViewById(R.id.progress_bar));
 //

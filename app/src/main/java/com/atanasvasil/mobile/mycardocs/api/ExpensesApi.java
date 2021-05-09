@@ -4,6 +4,7 @@ import com.atanasvasil.mobile.mycardocs.collections.FuelExpensesCollection;
 import com.atanasvasil.mobile.mycardocs.collections.ServiceExpensesCollection;
 import com.atanasvasil.mobile.mycardocs.requests.expenses.fuel.FuelExpenseCreateRequest;
 import com.atanasvasil.mobile.mycardocs.requests.expenses.service.ServiceExpenseCreateRequest;
+import com.atanasvasil.mobile.mycardocs.responses.expenses.ExpensesSummaryResponse;
 import com.atanasvasil.mobile.mycardocs.responses.expenses.fuel.FuelExpense;
 import com.atanasvasil.mobile.mycardocs.responses.expenses.service.ServiceExpense;
 
@@ -16,6 +17,9 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ExpensesApi {
+
+    @GET("api/expenses/summary")
+    Call<ExpensesSummaryResponse> getExpensesSummary(@Query("userId") String userId, @Query("carId") String carId, @Query("year") Integer year, @Header("Authorization") String authorization);
 
     // FUEL
     @GET("api/expenses/fuel")

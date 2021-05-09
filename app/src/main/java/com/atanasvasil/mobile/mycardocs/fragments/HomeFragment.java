@@ -1,5 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.fragments;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -17,7 +20,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.ChartActivity;
 import com.atanasvasil.mobile.mycardocs.activities.fuel.FuelExpenseCreateActivity;
-import com.atanasvasil.mobile.mycardocs.activities.service.ServiceExpenseActivity;
 import com.atanasvasil.mobile.mycardocs.activities.service.ServiceExpenseCreateActivity;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
@@ -77,7 +79,7 @@ public class HomeFragment extends Fragment {
         fuelExpenseBtn = root.findViewById(R.id.fuelExpenseBtn);
         serviceExpenseBtn = root.findViewById(R.id.serviceExpenseBtn);
 
-        pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        pref = requireContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
         loggedUser = getLoggedUser(pref);
 
@@ -85,8 +87,8 @@ public class HomeFragment extends Fragment {
 
         loadData();
 
-        carsCountCV.setOnClickListener(v -> getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_cars).performClick());
-        policiesCountCV.setOnClickListener(v -> getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_policies).performClick());
+        carsCountCV.setOnClickListener(v -> requireActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_cars).performClick());
+        policiesCountCV.setOnClickListener(v -> requireActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_policies).performClick());
 
         homeRefresh.setOnRefreshListener(() -> {
             loadData();
@@ -96,6 +98,10 @@ public class HomeFragment extends Fragment {
         chart.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), ChartActivity.class);
             startActivity(intent);
+
+            // TESTING TIME PICKER
+//            DialogFragment newFragment = new TimePickerFragment(timeSetListener);
+//            newFragment.show(getParentFragmentManager(), "timePicker");
         });
 
         fuelExpenseBtn.setOnClickListener(v -> {
@@ -110,6 +116,13 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
+
+    private final TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            Toast.makeText(getContext(), "Helllowww", Toast.LENGTH_SHORT).show();
+        }
+    };
 
     private void loadData() {
 

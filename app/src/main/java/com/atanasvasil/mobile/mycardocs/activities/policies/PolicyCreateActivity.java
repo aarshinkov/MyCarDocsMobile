@@ -1,5 +1,6 @@
 package com.atanasvasil.mobile.mycardocs.activities.policies;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -64,6 +65,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
     private ArrayAdapter<String> adapter;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,12 +94,16 @@ public class PolicyCreateActivity extends AppCompatActivity {
         policyCreateStartDateET.setInputType(InputType.TYPE_NULL);
         policyCreateEndDateET.setInputType(InputType.TYPE_NULL);
 
-        policyCreateStartDateET.setOnClickListener(v -> {
-            showDateTimeDialog(policyCreateStartDateET);
+        policyCreateStartDateET.setOnFocusChangeListener((view, hasFocus) -> {
+            if (hasFocus) {
+                showDateTimeDialog(policyCreateStartDateET);
+            }
         });
 
-        policyCreateEndDateET.setOnClickListener(v -> {
-            showDateTimeDialog(policyCreateEndDateET);
+        policyCreateEndDateET.setOnFocusChangeListener((view, hasFocus) -> {
+            if (hasFocus) {
+                showDateTimeDialog(policyCreateEndDateET);
+            }
         });
 
         policyCreateBtn.setOnClickListener(v -> {
@@ -222,7 +228,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
                     }
                 };
 
-                new TimePickerDialog(PolicyCreateActivity.this, timeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false).show();
+                new TimePickerDialog(PolicyCreateActivity.this, timeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
             }
         };
 
