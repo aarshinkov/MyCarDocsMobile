@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCarDocs"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.ChartActivity" />
+        <activity
+            android:name=".activities.ChartActivity"
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.fuel.FuelExpenseCreateActivity"
             android:parentActivityName=".activities.MainActivity" />

@@ -24,6 +24,12 @@
         tools:layout="@layout/fragment_policies" />
 
     <fragment
+        android:id="@+id/nav_expenses"
+        android:name="com.atanasvasil.mobile.mycardocs.fragments.ExpensesFragment"
+        android:label="@string/menu_expenses"
+        tools:layout="@layout/fragment_expenses" />
+
+    <fragment
         android:id="@+id/nav_fuel_expense"
         android:name="com.atanasvasil.mobile.mycardocs.fragments.FuelExpensesFragment"
         android:label="@string/menu_fuel_expense"

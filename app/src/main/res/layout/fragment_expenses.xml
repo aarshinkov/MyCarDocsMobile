@@ -7,7 +7,7 @@
     tools:context=".activities.ChartActivity">
 
     <Spinner
-        android:id="@+id/jgjg"
+        android:id="@+id/expensesCarsSP"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -16,16 +16,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/someID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TEST"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.anychart.AnyChartView
-        android:id="@+id/anyChartView"
+        android:id="@+id/expensesChart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jgjg" />
+        app:layout_constraintTop_toBottomOf="@+id/expensesCarsSP" />
 
     <ProgressBar
-        android:id="@+id/progress_bar"
+        android:id="@+id/expensesProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

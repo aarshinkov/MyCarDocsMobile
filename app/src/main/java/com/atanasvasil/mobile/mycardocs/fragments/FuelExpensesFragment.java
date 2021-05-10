@@ -64,7 +64,7 @@ public class FuelExpensesFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_fuel_expenses, container, false);
 
-        pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        pref = requireContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
 
         recyclerView = root.findViewById(R.id.fuelExpenses);
