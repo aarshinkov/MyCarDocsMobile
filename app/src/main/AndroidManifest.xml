@@ -56,6 +56,7 @@
         </activity>
         <activity
             android:name=".activities.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.MyCarDocs.NoActionBar" />
         <activity
             android:name=".activities.RegisterActivity"

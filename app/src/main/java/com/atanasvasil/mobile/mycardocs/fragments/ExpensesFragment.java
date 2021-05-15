@@ -176,7 +176,7 @@ public class ExpensesFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_expenses, container, false);
 
         expensesCarsSP = root.findViewById(R.id.expensesCarsSP);
-        someID = root.findViewById(R.id.someID);
+//        someID = root.findViewById(R.id.someID);
 
         pref = requireContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
@@ -210,19 +210,19 @@ public class ExpensesFragment extends Fragment {
             }
         });
 
-        someID.setOnClickListener(v -> {
-            int position = expensesCarsSP.getSelectedItemPosition();
-
-            if (position == 0) {
-                reloadData(loggedUser.getUserId(), null, null);
-                return;
-            }
-
-            final String licensePlate = expensesCarsSP.getSelectedItem().toString();
-            final String carId = userCarsMap.get(licensePlate);
-
-            reloadData(loggedUser.getUserId(), carId, null);
-        });
+//        someID.setOnClickListener(v -> {
+//            int position = expensesCarsSP.getSelectedItemPosition();
+//
+//            if (position == 0) {
+//                reloadData(loggedUser.getUserId(), null, null);
+//                return;
+//            }
+//
+//            final String licensePlate = expensesCarsSP.getSelectedItem().toString();
+//            final String carId = userCarsMap.get(licensePlate);
+//
+//            reloadData(loggedUser.getUserId(), carId, null);
+//        });
 
         return root;
     }
