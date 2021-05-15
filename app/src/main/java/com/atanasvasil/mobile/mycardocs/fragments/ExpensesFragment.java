@@ -250,12 +250,27 @@ public class ExpensesFragment extends Fragment {
             entries.get(getMonth(serviceItem.getMonth())).setService(negative);
         }
 
+        List<DataEntry> fuelData = new ArrayList<>();
+        List<DataEntry> serviceData = new ArrayList<>();
+
         for (Map.Entry<String, CustomDataEntry> entry : entries.entrySet()) {
             // If you want all 12 months to be shown remove this IF statement and keep only the body
 //            if (!entry.getValue().getFuel().equals(0) || !entry.getValue().getService().equals(0)) {
-            seriesData.add(entry.getValue());
+            Log.d("Test", "" + entry.getValue().getLabel());
+
+            DataEntry fuel = new DataEntry();
+            fuel.setValue(entry.getKey(), entry.getValue().fuel);
+            fuelData.add(fuel);
+
+            DataEntry service = new DataEntry();
+            service.setValue(entry.getKey(), entry.getValue().service);
+            seriesData.add(service);
+//            CustomDataEntry dataEntry = entry.getValue().;
+
+//            seriesData.add(dataEntry);
 //            }
         }
+
 
         Set set = Set.instantiate();
         set.data(seriesData);
@@ -264,7 +279,7 @@ public class ExpensesFragment extends Fragment {
 
         final String fuelColor = String.format("#%06x", ContextCompat.getColor(requireContext(), R.color.danger) & 0xffffff);
 
-        Bar series1 = barChart.bar(series1Data);
+        Bar series1 = barChart.bar(fuelData);
         series1.name(getString(R.string.fuel_label))
                 .color(fuelColor);
         series1.tooltip()
@@ -273,7 +288,7 @@ public class ExpensesFragment extends Fragment {
 
         final String serviceColor = String.format("#%06x", ContextCompat.getColor(requireContext(), R.color.colorAccent) & 0xffffff);
 
-        Bar series2 = barChart.bar(series2Data);
+        Bar series2 = barChart.bar(seriesData);
         series2.name(getString(R.string.service_label))
                 .color(serviceColor);
         series2.tooltip()
@@ -361,11 +376,16 @@ public class ExpensesFragment extends Fragment {
         public CustomDataEntry(final String label, final Number fuel) {
             super(label, fuel);
             this.fuel = fuel;
+            this.label = label;
         }
 
         public void setService(Number service) {
             this.service = service;
             super.setValue("value2", service);
+        }
+
+        public String getLabel() {
+            return label;
         }
 
         public Number getFuel() {
