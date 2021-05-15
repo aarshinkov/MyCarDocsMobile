@@ -1,17 +1,28 @@
 package com.atanasvasil.mobile.mycardocs.fragments;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.anychart.AnyChart;
@@ -37,11 +48,13 @@ import com.atanasvasil.mobile.mycardocs.responses.expenses.ExpensesSummaryRespon
 import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,7 +72,11 @@ import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
 public class ExpensesFragment extends Fragment {
 
     private Spinner expensesCarsSP;
+    private TextView expensesYearsTV;
     private MaterialButton expensesFilterBtn;
+    private TextView expensesActiveYear;
+    private TextView expensesActiveCar;
+    private MaterialButton expensesApplyBtn;
 
     private SharedPreferences pref;
     private LoggedUser loggedUser;
@@ -75,12 +92,18 @@ public class ExpensesFragment extends Fragment {
 
     private boolean isSetup;
 
+    private String selectedCarLicensePlate;
+    private String selectedCarId;
+    private int selectedYear;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.fragment_expenses, container, false);
 
         expensesFilterBtn = root.findViewById(R.id.expensesFilterBtn);
+        expensesActiveYear = root.findViewById(R.id.expensesActiveYear);
+        expensesActiveCar = root.findViewById(R.id.expensesActiveCar);
 
         pref = requireContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
@@ -88,12 +111,21 @@ public class ExpensesFragment extends Fragment {
         adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, cars);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        Calendar calendar = Calendar.getInstance();
+        selectedYear = calendar.get(Calendar.YEAR);
+
+        expensesActiveYear.setText(requireContext().getString(R.string.expenses_active_year, String.valueOf(selectedYear)));
+
+        expensesActiveCar.setText(requireContext().getString(R.string.expenses_no_active_car));
+
         initData(loggedUser.getUserId());
 
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme);
 
         final View bottomSheetView = LayoutInflater.from(requireContext()).inflate(R.layout.bottom_sheet_dialog, root.findViewById(R.id.bottomSheetContainer));
         expensesCarsSP = bottomSheetView.findViewById(R.id.expensesCarsSP);
+        expensesYearsTV = bottomSheetView.findViewById(R.id.expensesYearsTV);
+        expensesApplyBtn = bottomSheetView.findViewById(R.id.expensesApplyBtn);
 
         loadCars();
         bottomSheetDialog.setContentView(bottomSheetView);
@@ -116,24 +148,79 @@ public class ExpensesFragment extends Fragment {
                 }
 
                 if (position == 0) {
-                    reloadData(loggedUser.getUserId(), null, null);
-                    bottomSheetDialog.setDismissWithAnimation(true);
-                    bottomSheetDialog.dismiss();
+                    selectedCarLicensePlate = null;
+                    selectedCarId = null;
+//                    reloadData(loggedUser.getUserId(), carId, null);
+//                    bottomSheetDialog.setDismissWithAnimation(true);
+//                    bottomSheetDialog.dismiss();
                     return;
                 }
 
-                final String licensePlate = expensesCarsSP.getSelectedItem().toString();
-                final String carId = userCarsMap.get(licensePlate);
+                selectedCarLicensePlate = expensesCarsSP.getSelectedItem().toString();
+                selectedCarId = userCarsMap.get(selectedCarLicensePlate);
 
-                reloadData(loggedUser.getUserId(), carId, null);
-                bottomSheetDialog.setDismissWithAnimation(true);
-                bottomSheetDialog.dismiss();
+//                reloadData(loggedUser.getUserId(), carId, null);
+//                bottomSheetDialog.setDismissWithAnimation(true);
+//                bottomSheetDialog.dismiss();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
+        });
+
+        expensesYearsTV.setOnClickListener(v -> {
+
+            Calendar today = Calendar.getInstance();
+
+//                DialogFragment newFragment = new DatePickerFragment();
+//                newFragment.show(getParentFragmentManager(), "datePicker");
+
+            int realYear = today.get(Calendar.YEAR);
+
+            MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(requireContext(), (selectedMonth, selectedYear) -> {
+
+            }, today.get(Calendar.YEAR), today.get(Calendar.MONTH));
+
+            builder
+//                        .setActivatedMonth(Calendar.JULY)
+                    .setMinYear(realYear - 10)
+                    .setMaxYear(realYear + 10)
+                    .setActivatedYear(selectedYear)
+                    .setMinMonth(Calendar.FEBRUARY)
+                    .setTitle(requireContext().getString(R.string.expenses_year))
+//                        .setMonthRange(Calendar.FEBRUARY, Calendar.NOVEMBER)
+                    // .setMaxMonth(Calendar.OCTOBER)
+                    // .setYearRange(1890, 1890)
+                    // .setMonthAndYearRange(Calendar.FEBRUARY, Calendar.OCTOBER, 1890, 1890)
+                    //.showMonthOnly()
+                    .showYearOnly()
+                    .setOnYearChangedListener(new MonthPickerDialog.OnYearChangedListener() {
+                        @Override
+                        public void onYearChanged(int year) {
+//                            Toast.makeText(getContext(), "Year: " + year, Toast.LENGTH_LONG).show();
+                            selectedYear = year;
+                            expensesYearsTV.setText(String.valueOf(selectedYear));
+                        }
+                    })
+                    .build()
+                    .show();
+        });
+
+        expensesApplyBtn.setOnClickListener(v -> {
+            reloadData(loggedUser.getUserId(), selectedCarId, selectedYear);
+
+            if (selectedCarId != null && selectedCarLicensePlate != null) {
+                expensesActiveCar.setText(requireContext().getString(R.string.expenses_active_car, selectedCarLicensePlate));
+            } else {
+                expensesActiveCar.setText(requireContext().getString(R.string.expenses_no_active_car));
+            }
+
+            expensesActiveYear.setText(requireContext().getString(R.string.expenses_active_year, String.valueOf(selectedYear)));
+
+            bottomSheetDialog.setDismissWithAnimation(true);
+            bottomSheetDialog.dismiss();
         });
 
         return root;
@@ -263,7 +350,8 @@ public class ExpensesFragment extends Fragment {
                         "    return Math.abs(this.value).toLocaleString();\n" +
                         "  }");
 
-        barChart.yAxis(0d).title("Expenses in lv.");
+        // To be changed in currency is different
+        barChart.yAxis(0d).title(requireContext().getString(R.string.expenses_in, requireContext().getString(R.string.currency_bgn)));
 
         barChart.xAxis(0d).overlapMode(LabelsOverlapMode.ALLOW_OVERLAP);
 
@@ -272,11 +360,7 @@ public class ExpensesFragment extends Fragment {
         xAxis1.orientation(Orientation.RIGHT);
         xAxis1.overlapMode(LabelsOverlapMode.ALLOW_OVERLAP);
 
-        Calendar calendar = Calendar.getInstance();
-        final int currentYear = calendar.get(Calendar.YEAR);
-
-
-        barChart.title("Expenses for " + currentYear);
+//        barChart.title("Expenses for " + selectedYear);
 
         barChart.interactivity().hoverMode(HoverMode.BY_X);
 
@@ -447,6 +531,25 @@ public class ExpensesFragment extends Fragment {
 
         public Number getService() {
             return service;
+        }
+    }
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            // Do something with the date chosen by the user
         }
     }
 }

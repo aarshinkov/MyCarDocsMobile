@@ -89,7 +89,7 @@ public class ServiceExpenseAdapter extends RecyclerView.Adapter<ServiceExpenseAd
                 break;
             case 5:
             case 6:
-                holder.getSeiTypeIV().setImageResource(R.drawable.ic_filter);
+                holder.getSeiTypeIV().setImageResource(R.drawable.ic_car_filter);
                 break;
             case 7:
                 holder.getSeiTypeIV().setImageResource(R.drawable.ic_battery);

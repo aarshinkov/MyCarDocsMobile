@@ -279,11 +279,17 @@
 
     <string name="expense_save">Добавяне на разход</string>
 
+    <string name="expenses_in">Разходи в %1$s</string>
     <string name="expenses_filter">Филтър</string>
+    <string name="expenses_active_year">Година %1$s</string>
+    <string name="expenses_active_car">Автомобил - %1$s</string>
+    <string name="expenses_no_active_car">Няма активен автомобил</string>
     <string name="expenses_car">Автомобил</string>
     <string name="expenses_year">Година</string>
 
     <string name="expenses_cars_any">Всички автомобили</string>
+
+    <string name="expenses_apply">Приложи филтър</string>
 
     <string name="settings_title">Настройки</string>
     <string name="settings_category_system">Системни</string>

@@ -58,25 +58,28 @@
         app:layout_constraintStart_toStartOf="@+id/expensesLeftGuide"
         app:layout_constraintTop_toBottomOf="@+id/expensesCarsSP" />
 
-    <EditText
-        android:id="@+id/expensesYearsSP"
+    <TextView
+        android:id="@+id/expensesYearsTV"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:text="2021"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="@+id/expensesRightGuide"
         app:layout_constraintStart_toStartOf="@+id/expensesLeftGuide"
         app:layout_constraintTop_toBottomOf="@+id/expensesYearsLabelTV" />
 
-    <!--    <com.google.android.material.button.MaterialButton-->
-    <!--        android:id="@+id/expensesApplyBtn"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:fontFamily="@font/nunito"-->
-    <!--        android:text="Apply"-->
-    <!--        app:icon="@drawable/ic_check"-->
-    <!--        app:layout_constraintEnd_toEndOf="@+id/expensesRightGuide"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/expensesYearsSP" />-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/expensesApplyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito"
+        android:text="@string/expenses_apply"
+        app:icon="@drawable/ic_check"
+        app:layout_constraintEnd_toEndOf="@+id/expensesRightGuide"
+        app:layout_constraintTop_toBottomOf="@id/expensesYearsTV" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/expensesLeftGuide"
