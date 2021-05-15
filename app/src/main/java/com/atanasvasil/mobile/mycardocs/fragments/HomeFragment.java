@@ -23,8 +23,10 @@ import com.atanasvasil.mobile.mycardocs.activities.fuel.FuelExpenseCreateActivit
 import com.atanasvasil.mobile.mycardocs.activities.service.ServiceExpenseCreateActivity;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
+import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import org.jetbrains.annotations.NotNull;
@@ -53,6 +55,8 @@ public class HomeFragment extends Fragment {
     private TextView policiesCountTV;
     private CircularProgressIndicator policiesCountProgress;
 
+    private FloatingActionMenu menu;
+
     private FloatingActionButton fuelExpenseBtn;
     private FloatingActionButton serviceExpenseBtn;
 
@@ -74,11 +78,12 @@ public class HomeFragment extends Fragment {
         policiesCountTV = root.findViewById(R.id.policiesCountTV);
         policiesCountProgress = root.findViewById(R.id.policiesCountProgress);
 
+        menu = root.findViewById(R.id.menu);
+
         fuelExpenseBtn = root.findViewById(R.id.fuelExpenseBtn);
         serviceExpenseBtn = root.findViewById(R.id.serviceExpenseBtn);
 
         pref = requireContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-
         loggedUser = getLoggedUser(pref);
 
         welcomeTV.setText(Html.fromHtml(getString(R.string.home_welcome, getString(R.string.app_name), loggedUser.getFullName()), 0));
@@ -91,6 +96,36 @@ public class HomeFragment extends Fragment {
         homeRefresh.setOnRefreshListener(() -> {
             loadData();
             homeRefresh.setRefreshing(false);
+        });
+
+        Retrofit retrofit = getRetrofit();
+        CarsApi carsApi = retrofit.create(CarsApi.class);
+
+        carsApi.hasUserCars(loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(@NotNull Call<Boolean> call, @NotNull Response<Boolean> response) {
+
+                if (!response.isSuccessful()) {
+                    return;
+                }
+
+                Boolean hasCars = response.body();
+
+                if (hasCars == null) {
+                    return;
+                }
+
+                if (hasCars) {
+                    menu.setVisibility(View.VISIBLE);
+                } else {
+                    menu.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<Boolean> call, @NotNull Throwable t) {
+
+            }
         });
 
         fuelExpenseBtn.setOnClickListener(v -> {

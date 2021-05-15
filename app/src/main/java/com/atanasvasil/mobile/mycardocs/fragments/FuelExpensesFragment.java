@@ -15,6 +15,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.fuel.FuelExpenseCreateActivity;
 import com.atanasvasil.mobile.mycardocs.adapters.FuelExpenseAdapter;
+import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.api.ExpensesApi;
 import com.atanasvasil.mobile.mycardocs.collections.FuelExpensesCollection;
 import com.atanasvasil.mobile.mycardocs.responses.expenses.fuel.FuelExpense;
@@ -99,6 +100,36 @@ public class FuelExpensesFragment extends Fragment {
                 page = 1;
                 getFuelExpenses(page, startLimit);
                 fuelExpensesRefresh.setRefreshing(false);
+            }
+        });
+
+        Retrofit retrofit = getRetrofit();
+        CarsApi carsApi = retrofit.create(CarsApi.class);
+
+        carsApi.hasUserCars(loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(@NotNull Call<Boolean> call, @NotNull Response<Boolean> response) {
+
+                if (!response.isSuccessful()) {
+                    return;
+                }
+
+                Boolean hasCars = response.body();
+
+                if (hasCars == null) {
+                    return;
+                }
+
+                if (hasCars) {
+                    fuelExpenseCreateBtn.setVisibility(View.VISIBLE);
+                } else {
+                    fuelExpenseCreateBtn.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<Boolean> call, @NotNull Throwable t) {
+
             }
         });
 

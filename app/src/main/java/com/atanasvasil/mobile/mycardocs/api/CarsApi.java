@@ -37,4 +37,7 @@ public interface CarsApi {
 
     @GET("api/cars/count/{userId}")
     Call<Long> getCarsCountByUserId(@Path("userId") String userId, @Header("Authorization") String authorization);
+
+    @GET("api/cars/{userId}/has")
+    Call<Boolean> hasUserCars(@Path("userId") String userId, @Header("Authorization") String authorization);
 }

@@ -118,8 +118,10 @@
         android:clickable="true"
         android:fontFamily="@font/nunito"
         android:src="@drawable/ic_gas_station_white"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/fuelExpensesProgress"

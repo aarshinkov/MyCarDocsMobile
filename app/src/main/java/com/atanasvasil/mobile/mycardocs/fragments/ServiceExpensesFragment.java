@@ -15,6 +15,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.service.ServiceExpenseCreateActivity;
 import com.atanasvasil.mobile.mycardocs.adapters.ServiceExpenseAdapter;
+import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.api.ExpensesApi;
 import com.atanasvasil.mobile.mycardocs.collections.ServiceExpensesCollection;
 import com.atanasvasil.mobile.mycardocs.responses.expenses.service.ServiceExpense;
@@ -99,6 +100,36 @@ public class ServiceExpensesFragment extends Fragment {
                 page = 1;
                 getServiceExpenses(page, startLimit);
                 serviceExpensesRefresh.setRefreshing(false);
+            }
+        });
+
+        Retrofit retrofit = getRetrofit();
+        CarsApi carsApi = retrofit.create(CarsApi.class);
+
+        carsApi.hasUserCars(loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(@NotNull Call<Boolean> call, @NotNull Response<Boolean> response) {
+
+                if (!response.isSuccessful()) {
+                    return;
+                }
+
+                Boolean hasCars = response.body();
+
+                if (hasCars == null) {
+                    return;
+                }
+
+                if (hasCars) {
+                    serviceExpenseCreateBtn.setVisibility(View.VISIBLE);
+                } else {
+                    serviceExpenseCreateBtn.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<Boolean> call, @NotNull Throwable t) {
+
             }
         });
 

@@ -185,8 +185,8 @@ public class ExpensesFragment extends Fragment {
 
             builder
 //                        .setActivatedMonth(Calendar.JULY)
-                    .setMinYear(realYear - 10)
-                    .setMaxYear(realYear + 10)
+                    .setMinYear(2000)
+                    .setMaxYear(realYear + 5)
                     .setActivatedYear(selectedYear)
                     .setMinMonth(Calendar.FEBRUARY)
                     .setTitle(requireContext().getString(R.string.expenses_year))
