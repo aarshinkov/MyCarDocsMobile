@@ -21,8 +21,6 @@ import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Cartesian;
 import com.anychart.core.axes.Linear;
 import com.anychart.core.cartesian.series.Bar;
-import com.anychart.data.Mapping;
-import com.anychart.data.Set;
 import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
 import com.anychart.enums.LabelsOverlapMode;
@@ -31,7 +29,6 @@ import com.anychart.enums.ScaleStackMode;
 import com.anychart.enums.TooltipDisplayMode;
 import com.anychart.enums.TooltipPositionMode;
 import com.atanasvasil.mobile.mycardocs.R;
-import com.atanasvasil.mobile.mycardocs.activities.ChartActivity;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.api.ExpensesApi;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
@@ -45,7 +42,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -73,6 +69,107 @@ public class ExpensesFragment extends Fragment {
 
     private View root;
 
+    private Bar fuelBar;
+    private Bar serviceBar;
+
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//
+//        root = inflater.inflate(R.layout.fragment_expenses, container, false);
+//
+//        AnyChartView anyChartView = root.findViewById(R.id.expensesChart);
+//        anyChartView.setProgressBar(root.findViewById(R.id.expensesProgress));
+//
+//        Cartesian barChart = AnyChart.bar();
+//
+//        barChart.animation(true);
+//
+//        barChart.padding(10d, 20d, 5d, 20d);
+//
+//        barChart.yScale().stackMode(ScaleStackMode.VALUE);
+//
+//        barChart.yAxis(0).labels().format(
+//                "function() {\n" +
+//                        "    return Math.abs(this.value).toLocaleString();\n" +
+//                        "  }");
+//
+//        barChart.yAxis(0d).title("Revenue in Dollars");
+//
+//        barChart.xAxis(0d).overlapMode(LabelsOverlapMode.ALLOW_OVERLAP);
+//
+//        Linear xAxis1 = barChart.xAxis(1d);
+//        xAxis1.enabled(true);
+//        xAxis1.orientation(Orientation.RIGHT);
+//        xAxis1.overlapMode(LabelsOverlapMode.ALLOW_OVERLAP);
+//
+//        barChart.title("Cosmetic Sales by Gender");
+//
+//        barChart.interactivity().hoverMode(HoverMode.BY_X);
+//
+//        barChart.tooltip()
+//                .title(false)
+//                .separator(false)
+//                .displayMode(TooltipDisplayMode.SEPARATED)
+//                .positionMode(TooltipPositionMode.POINT)
+//                .useHtml(true)
+//                .fontSize(12d)
+//                .offsetX(5d)
+//                .offsetY(0d)
+//                .format(
+//                        "function() {\n" +
+//                                "      return '<span style=\"color: #D9D9D9\">$</span>' + Math.abs(this.value).toLocaleString();\n" +
+//                                "    }");
+//
+//        List<DataEntry> fuelData = new ArrayList<>();
+//        List<DataEntry> serviceData = new ArrayList<>();
+//
+//        CustomDataEntry fuelEntry = new CustomDataEntry("Test1", 3454, true);
+//        CustomDataEntry serviceEntry = new CustomDataEntry("Test1", -6543, false);
+//
+//        fuelData.add(fuelEntry);
+//        serviceData.add(serviceEntry);
+//
+//        Bar series1 = barChart.bar(fuelData);
+//        series1.name("Females")
+//                .color("HotPink");
+//        series1.tooltip()
+//                .position("right")
+//                .anchor(Anchor.LEFT_CENTER);
+//
+//        Bar series2 = barChart.bar(serviceData);
+//        series2.name("Males");
+//        series2.tooltip()
+//                .position("left")
+//                .anchor(Anchor.RIGHT_CENTER);
+//
+//        barChart.legend().enabled(true);
+//        barChart.legend().inverted(true);
+//        barChart.legend().fontSize(13d);
+//        barChart.legend().padding(0d, 0d, 20d, 0d);
+//
+//        anyChartView.setChart(barChart);
+//
+////        new Thread(new Runnable() {
+////            @Override
+////            public void run() {
+////                try {
+////                    Thread.sleep(5 * 1000);
+////                    Log.d("NOW", "Heere");
+////                    CustomDataEntry fuelEntry = new CustomDataEntry("Test1", 9999, true);
+////                    fuelData.add(fuelEntry);
+////                    series1.data(fuelData);
+//////                    seriesData.add(new CustomDataEntry("Nail polish", 9999, -9999));
+//////                    series1.data(seriesData);
+//////                    series2.data(seriesData);
+////                } catch (InterruptedException ie) {
+////                    Thread.currentThread().interrupt();
+////                }
+////            }
+////        }).start();
+//
+//        return root;
+//    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -92,42 +189,76 @@ public class ExpensesFragment extends Fragment {
 
         getData(loggedUser.getUserId(), null, null);
 
-//        expensesCarsSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//
-//                if (position == 0) {
-//                    getData(loggedUser.getUserId(), null, null);
-//                    return;
-//                }
-//
-//                final String licensePlate = expensesCarsSP.getSelectedItem().toString();
-//                final String carId = userCarsMap.get(licensePlate);
-//
-//                getData(loggedUser.getUserId(), carId, null);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+        expensesCarsSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position == 0) {
+                    reloadData(loggedUser.getUserId(), null, null);
+                    return;
+                }
+
+                final String licensePlate = expensesCarsSP.getSelectedItem().toString();
+                final String carId = userCarsMap.get(licensePlate);
+
+                reloadData(loggedUser.getUserId(), carId, null);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         someID.setOnClickListener(v -> {
             int position = expensesCarsSP.getSelectedItemPosition();
 
             if (position == 0) {
-                getData(loggedUser.getUserId(), null, null);
+                reloadData(loggedUser.getUserId(), null, null);
                 return;
             }
 
             final String licensePlate = expensesCarsSP.getSelectedItem().toString();
             final String carId = userCarsMap.get(licensePlate);
 
-            getData(loggedUser.getUserId(), carId, null);
+            reloadData(loggedUser.getUserId(), carId, null);
         });
 
         return root;
+    }
+
+    private void reloadData(String userId, String carId, Integer year) {
+        Retrofit retrofit = getRetrofit();
+        ExpensesApi expensesApi = retrofit.create(ExpensesApi.class);
+
+        expensesApi.getExpensesSummary(userId, carId, year, loggedUser.getAuthorization()).enqueue(new Callback<ExpensesSummaryResponse>() {
+            @Override
+            public void onResponse(@NotNull Call<ExpensesSummaryResponse> call, @NotNull Response<ExpensesSummaryResponse> response) {
+
+                if (!response.isSuccessful()) {
+                    Toast.makeText(requireContext(), "Error getting expenses summary", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                ExpensesSummaryResponse summary = response.body();
+
+                if (summary == null) {
+                    return;
+                }
+
+                List<DataEntry> fuelEntries = initFuelData(summary.getFuel());
+                List<DataEntry> serviceEntries = initServiceData(summary.getService());
+
+                fuelBar.data(fuelEntries);
+                serviceBar.data(serviceEntries);
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<ExpensesSummaryResponse> call, @NotNull Throwable t) {
+                Log.e("EXPENSES_SUMMARY", t.getMessage());
+                Toast.makeText(requireContext(), "Error getting expenses summary", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void loadCars() {
@@ -241,57 +372,49 @@ public class ExpensesFragment extends Fragment {
                                 "      return Math.abs(this.value).toLocaleString() + ' <span style=\"color: #D9D9D9\">" + getString(R.string.currency_bgn) + "</span>'\n" +
                                 "    }");
 
-        List<DataEntry> seriesData = new ArrayList<>();
+//        Map<String, CustomDataEntry> entries = initData(summary.getFuel());
+//
+//        for (ExpenseSummaryItem serviceItem : summary.getService()) {
+//            final double negative = serviceItem.getTotal() * -1;
+//            entries.get(getMonth(serviceItem.getMonth())).setService(negative);
+//        }
 
-        Map<String, CustomDataEntry> entries = initData(summary.getFuel());
+        List<DataEntry> fuelData = initFuelData(summary.getFuel());
 
-        for (ExpenseSummaryItem serviceItem : summary.getService()) {
-            final double negative = serviceItem.getTotal() * -1;
-            entries.get(getMonth(serviceItem.getMonth())).setService(negative);
-        }
+//        for (ExpenseSummaryItem fuelItem : summary.getFuel()) {
+//            fuelData.add(new CustomDataEntry(fuelItem.getMonth().toString(), fuelItem.getTotal(), true));
+//        }
 
-        List<DataEntry> fuelData = new ArrayList<>();
-        List<DataEntry> serviceData = new ArrayList<>();
+        List<DataEntry> serviceData = initServiceData(summary.getService());
 
-        for (Map.Entry<String, CustomDataEntry> entry : entries.entrySet()) {
-            // If you want all 12 months to be shown remove this IF statement and keep only the body
-//            if (!entry.getValue().getFuel().equals(0) || !entry.getValue().getService().equals(0)) {
-            Log.d("Test", "" + entry.getValue().getLabel());
-
-            DataEntry fuel = new DataEntry();
-            fuel.setValue(entry.getKey(), entry.getValue().fuel);
-            fuelData.add(fuel);
-
-            DataEntry service = new DataEntry();
-            service.setValue(entry.getKey(), entry.getValue().service);
-            seriesData.add(service);
-//            CustomDataEntry dataEntry = entry.getValue().;
-
-//            seriesData.add(dataEntry);
-//            }
-        }
-
-
-        Set set = Set.instantiate();
-        set.data(seriesData);
-        Mapping series1Data = set.mapAs("{ x: 'x', value: 'value' }");
-        Mapping series2Data = set.mapAs("{ x: 'x', value: 'value2' }");
+//        for (Map.Entry<String, CustomDataEntry> entry : entries.entrySet()) {
+//            // If you want all 12 months to be shown remove this IF statement and keep only the body
+////            if (!entry.getValue().getFuel().equals(0) || !entry.getValue().getService().equals(0)) {
+//            Log.d("Test", "" + entry.getValue().getLabel());
+//
+//            DataEntry fuel = new CustomDataEntry(entry.getKey(), entry.getValue().fuel, true);
+//            fuelData.add(fuel);
+//
+//            DataEntry service = new CustomDataEntry(entry.getKey(), entry.getValue().service, false);
+//            serviceData.add(service);
+////            }
+//        }
 
         final String fuelColor = String.format("#%06x", ContextCompat.getColor(requireContext(), R.color.danger) & 0xffffff);
 
-        Bar series1 = barChart.bar(fuelData);
-        series1.name(getString(R.string.fuel_label))
+        fuelBar = barChart.bar(fuelData);
+        fuelBar.name(getString(R.string.fuel_label))
                 .color(fuelColor);
-        series1.tooltip()
+        fuelBar.tooltip()
                 .position("right")
                 .anchor(Anchor.LEFT_CENTER);
 
         final String serviceColor = String.format("#%06x", ContextCompat.getColor(requireContext(), R.color.colorAccent) & 0xffffff);
 
-        Bar series2 = barChart.bar(seriesData);
-        series2.name(getString(R.string.service_label))
+        serviceBar = barChart.bar(serviceData);
+        serviceBar.name(getString(R.string.service_label))
                 .color(serviceColor);
-        series2.tooltip()
+        serviceBar.tooltip()
                 .position("left")
                 .anchor(Anchor.RIGHT_CENTER);
 
@@ -303,16 +426,14 @@ public class ExpensesFragment extends Fragment {
         anyChartView.setChart(barChart);
     }
 
-    private Map<String, CustomDataEntry> initData(List<ExpenseSummaryItem> fuel) {
+    private List<DataEntry> initFuelData(List<ExpenseSummaryItem> fuel) {
 
-        // LinkedHashMap is used because it keeps the insertion order
-        Map<String, CustomDataEntry> entries = new LinkedHashMap<>();
+        List<DataEntry> entries = new ArrayList<>();
 
         if (fuel.size() == 0) {
-            for (int i = 1, j = 0; i <= 12; i++) {
-                CustomDataEntry entry = new CustomDataEntry(getMonth(i), 0);
-                entry.setService(0);
-                entries.put(getMonth(i), entry);
+            for (int i = 1; i <= 12; i++) {
+                CustomDataEntry entry = new CustomDataEntry(getMonth(i), 0, true);
+                entries.add(entry);
             }
 
             return entries;
@@ -322,16 +443,45 @@ public class ExpensesFragment extends Fragment {
         for (int i = 1, j = 0; i <= 12; i++) {
             ExpenseSummaryItem item = fuel.get(j);
             if (item.getMonth().equals(i)) {
-                CustomDataEntry entry = new CustomDataEntry(getMonth(i), item.getTotal());
-                entry.setService(0);
-                entries.put(getMonth(i), entry);
+                CustomDataEntry entry = new CustomDataEntry(getMonth(i), item.getTotal(), true);
+                entries.add(entry);
                 if (j < elementsNum) {
                     j++;
                 }
             } else {
-                CustomDataEntry entry = new CustomDataEntry(getMonth(i), 0);
-                entry.setService(0);
-                entries.put(getMonth(i), entry);
+                CustomDataEntry entry = new CustomDataEntry(getMonth(i), 0, true);
+                entries.add(entry);
+            }
+        }
+
+        return entries;
+    }
+
+    private List<DataEntry> initServiceData(List<ExpenseSummaryItem> service) {
+
+        List<DataEntry> entries = new ArrayList<>();
+
+        if (service.size() == 0) {
+            for (int i = 1; i <= 12; i++) {
+                CustomDataEntry entry = new CustomDataEntry(getMonth(i), 0, false);
+                entries.add(entry);
+            }
+
+            return entries;
+        }
+
+        final int elementsNum = service.size() - 1;
+        for (int i = 1, j = 0; i <= 12; i++) {
+            ExpenseSummaryItem item = service.get(j);
+            if (item.getMonth().equals(i)) {
+                CustomDataEntry entry = new CustomDataEntry(getMonth(i), item.getTotal() * -1, false);
+                entries.add(entry);
+                if (j < elementsNum) {
+                    j++;
+                }
+            } else {
+                CustomDataEntry entry = new CustomDataEntry(getMonth(i), 0, false);
+                entries.add(entry);
             }
         }
 
@@ -370,13 +520,24 @@ public class ExpensesFragment extends Fragment {
     private static class CustomDataEntry extends ValueDataEntry {
 
         private String label;
-        private final Number fuel;
+        private Number fuel;
         private Number service;
 
-        public CustomDataEntry(final String label, final Number fuel) {
-            super(label, fuel);
-            this.fuel = fuel;
+//        public CustomDataEntry(String label, final Number fuel) {
+//            super(label, fuel);
+//            this.label = label;
+//            this.fuel = fuel;
+//        }
+
+        public CustomDataEntry(String label, Number expense, boolean isFuel) {
+            super(label, expense);
             this.label = label;
+
+            if (isFuel) {
+                this.fuel = expense;
+            } else {
+                this.service = expense;
+            }
         }
 
         public void setService(Number service) {
