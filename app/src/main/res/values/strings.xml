@@ -279,6 +279,12 @@
 
     <string name="expense_save">Add an expense</string>
 
+    <string name="expenses_filter">Filter</string>
+    <string name="expenses_car">Car</string>
+    <string name="expenses_year">Year</string>
+
+    <string name="expenses_cars_any">All cars</string>
+
     <string name="settings_title">Settings</string>
     <string name="settings_category_system">System</string>
 

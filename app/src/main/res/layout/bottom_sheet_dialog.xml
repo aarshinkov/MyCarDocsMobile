@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/expensesFilterTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito"
+        android:text="@string/expenses_filter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="@+id/expensesRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/expensesLeftGuide"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/expensesCarsLabelTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="3dp"
+        android:fontFamily="@font/nunito"
+        android:labelFor="@+id/fecCarsSP"
+        android:text="@string/expenses_car"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/expensesRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/expensesLeftGuide"
+        app:layout_constraintTop_toBottomOf="@+id/expensesFilterTV" />
+
+    <Spinner
+        android:id="@+id/expensesCarsSP"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:prompt="@string/expenses_car"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="@+id/expensesRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/expensesLeftGuide"
+        app:layout_constraintTop_toBottomOf="@+id/expensesCarsLabelTV" />
+
+    <TextView
+        android:id="@+id/expensesYearsLabelTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="3dp"
+        android:fontFamily="@font/nunito"
+        android:labelFor="@+id/fecCarsSP"
+        android:text="@string/expenses_year"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/expensesRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/expensesLeftGuide"
+        app:layout_constraintTop_toBottomOf="@+id/expensesCarsSP" />
+
+    <EditText
+        android:id="@+id/expensesYearsSP"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="@+id/expensesRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/expensesLeftGuide"
+        app:layout_constraintTop_toBottomOf="@+id/expensesYearsLabelTV" />
+
+    <!--    <com.google.android.material.button.MaterialButton-->
+    <!--        android:id="@+id/expensesApplyBtn"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:fontFamily="@font/nunito"-->
+    <!--        android:text="Apply"-->
+    <!--        app:icon="@drawable/ic_check"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/expensesRightGuide"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/expensesYearsSP" />-->
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/expensesLeftGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/expensesRightGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

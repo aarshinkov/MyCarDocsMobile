@@ -36,6 +36,15 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <!--        <item name="android:background">@android:color/transparent</item>-->
+        <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
+
     <style name="Theme.MyCarDocs.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MyCarDocs.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

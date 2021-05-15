@@ -6,23 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".activities.ChartActivity">
 
-    <Spinner
-        android:id="@+id/expensesCarsSP"
-        android:layout_width="0dp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/expensesFilterBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:spinnerMode="dialog"
-        app:layout_constraintEnd_toEndOf="@+id/expensesRightGuide"
-        app:layout_constraintStart_toStartOf="@+id/expensesLeftGuide"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/nunito"
+        android:text="@string/expenses_filter"
+        app:icon="@drawable/ic_filter"
+        app:iconGravity="textStart"
+        app:iconPadding="4dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!--    <com.google.android.material.button.MaterialButton-->
-    <!--        android:id="@+id/someID"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="TEST"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <com.anychart.AnyChartView
         android:id="@+id/expensesChart"
@@ -30,7 +25,9 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expensesCarsSP" />
+        app:layout_constraintTop_toBottomOf="@+id/expensesFilterBtn"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp" />
 
     <ProgressBar
         android:id="@+id/expensesProgress"
@@ -40,19 +37,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/expensesLeftGuide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="8dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/expensesRightGuide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
