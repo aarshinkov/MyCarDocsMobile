@@ -333,7 +333,7 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
                     if (!s.toString().isEmpty()) {
                         total = Double.parseDouble(s.toString());
                         final String formattedPrice = String.format(Locale.getDefault(), "%.2f", total);
-//                        fecTotalSummaryTV.setText(formattedPrice);
+                        fecTotalSummaryTV.setText(formattedPrice);
                         fecDiscountET.setEnabled(true);
                         fecSubtotalSummaryTV.setText(formattedPrice);
 
