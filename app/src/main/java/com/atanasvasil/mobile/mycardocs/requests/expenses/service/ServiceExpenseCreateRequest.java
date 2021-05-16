@@ -8,6 +8,7 @@ public class ServiceExpenseCreateRequest implements Serializable {
     private String carId;
     private Double price;
     private String notes;
+    private Long mileage;
 
     public Integer getType() {
         return type;
@@ -39,5 +40,13 @@ public class ServiceExpenseCreateRequest implements Serializable {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public Long getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(Long mileage) {
+        this.mileage = mileage;
     }
 }

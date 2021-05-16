@@ -219,7 +219,8 @@
     <string name="fuel_expense_price_per_litre_data">%1$s lv/l.</string>
     <string name="fuel_expense_litres_data">%1$s l.</string>
     <string name="fuel_expense_car_details">Car details</string>
-    <string name="fuel_expense_car_brand_model">Brand and model</string>
+    <string name="fuel_expense_car_brand_model_label">Brand and model</string>
+    <string name="fuel_expense_car_brand_model">%1$s %2$s</string>
     <string name="fuel_expense_car_license_plate">License plate</string>
     <string name="fuel_expense_car_mileage">Car mileage at the time of refuel</string>
     <string name="fuel_expense_car_mileage_data">%1$d km.</string>
@@ -234,10 +235,11 @@
     <string name="service_label">Label</string>
     <string name="service_expense_title">Service expense</string>
 
-    <string name="service_expense_types">Expense type</string>
-    <string name="service_expense_cars">Cars</string>
+    <string name="service_expense_type">Expense type</string>
+    <string name="service_expense_car">Car</string>
     <string name="service_expense_price">Price</string>
     <string name="service_expense_notes">Notes (optional)</string>
+    <string name="service_expense_mileage">Mileage (optional)</string>
 
     <string name="service_type_1">Scheduled maintenance</string>
     <string name="service_type_2">Engine repair</string>
@@ -271,9 +273,19 @@
     <string name="service_expense_create_successful">Service expense added successfully!</string>
     <string name="service_expense_create_error">Error adding service expense!</string>
 
-    <string name="service_expenses_not_found">Service expenses not found!</string>0
+    <string name="service_expenses_not_found">Service expenses not found!</string>
 
     <string name="service_expense_create_price_empty">Price must not be empty!</string>
+
+    <string name="service_expense_notes_label">Notes</string>
+    <string name="service_expense_notes_not_found">No notes</string>
+    <string name="service_expense_car_brand_model_label">Brand and model</string>
+    <string name="service_expense_car_mileage">Car mileage at the time of service</string>
+    <string name="service_expense_car_brand_model">%1$s %2$s</string>
+    <string name="service_expense_car_mileage_data">%1$d km.</string>
+    <string name="service_expense_car_mileage_unknown">No information</string>
+
+    <string name="service_expense_details">Service expense details</string>
 
     <string name="error_server">Error communicating with the server. Try again!</string>
 

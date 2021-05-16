@@ -12,6 +12,7 @@ public class ServiceExpense implements Serializable {
     private Car car;
     private Double price;
     private String notes;
+    private Long mileage;
     private Timestamp createdOn;
     private Timestamp editedOn;
 
@@ -53,6 +54,14 @@ public class ServiceExpense implements Serializable {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public Long getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(Long mileage) {
+        this.mileage = mileage;
     }
 
     public Timestamp getCreatedOn() {

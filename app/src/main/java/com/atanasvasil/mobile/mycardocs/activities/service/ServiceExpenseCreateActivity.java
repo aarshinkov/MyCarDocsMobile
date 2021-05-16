@@ -48,6 +48,7 @@ public class ServiceExpenseCreateActivity extends AppCompatActivity {
     private Spinner secCarsSP;
     private EditText secPriceET;
     private EditText secNotesET;
+    private EditText secMileageET;
     private MaterialButton secSaveBtn;
 
     private SharedPreferences pref;
@@ -72,6 +73,7 @@ public class ServiceExpenseCreateActivity extends AppCompatActivity {
         secCarsSP = findViewById(R.id.secCarsSP);
         secPriceET = findViewById(R.id.secPriceET);
         secNotesET = findViewById(R.id.secNotesET);
+        secMileageET = findViewById(R.id.secMileageET);
         secSaveBtn = findViewById(R.id.secSaveBtn);
 
         final String zeroFormatted = String.format(Locale.getDefault(), "%.2f", 0.00);
@@ -105,6 +107,9 @@ public class ServiceExpenseCreateActivity extends AppCompatActivity {
             secr.setCarId(carId);
             secr.setPrice(Double.parseDouble(secPriceET.getText().toString()));
             secr.setNotes(secNotesET.getText().toString());
+            if (!secMileageET.getText().toString().isEmpty()) {
+                secr.setMileage(Long.parseLong(secMileageET.getText().toString()));
+            }
 
             Retrofit retrofit = getRetrofit();
             ExpensesApi expensesApi = retrofit.create(ExpensesApi.class);

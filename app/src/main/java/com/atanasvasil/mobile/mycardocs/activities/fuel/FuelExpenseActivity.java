@@ -71,7 +71,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuel_expense);
 
-        SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.date_time_2), Locale.getDefault());
+        final SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.date_time_2), Locale.getDefault());
 
         getSupportActionBar().setTitle(R.string.fuel_expense_title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -165,7 +165,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
 
                 final Car car = fuelExpense.getCar();
 
-                fuelExpenseCarBrandModelTV.setText(car.getBrand() + " " + car.getModel());
+                fuelExpenseCarBrandModelTV.setText(getString(R.string.fuel_expense_car_brand_model, car.getBrand(), car.getModel()));
                 fuelExpenseCarLicensePlateTV.setText(car.getLicensePlate());
 
                 if (fuelExpense.getMileage() != null) {

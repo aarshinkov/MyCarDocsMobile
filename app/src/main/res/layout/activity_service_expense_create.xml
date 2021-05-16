@@ -18,7 +18,7 @@
             android:layout_marginEnd="3dp"
             android:fontFamily="@font/nunito"
             android:labelFor="@+id/secTypeSP"
-            android:text="@string/service_expense_types"
+            android:text="@string/service_expense_type"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
             app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
@@ -29,6 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:entries="@array/service_type_options"
+            android:prompt="@string/service_expense_type"
             android:spinnerMode="dialog"
             app:layout_constraintEnd_toStartOf="@+id/secGuideRight"
             app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
@@ -43,17 +44,17 @@
             android:layout_marginEnd="3dp"
             android:fontFamily="@font/nunito"
             android:labelFor="@+id/secCarsSP"
-            android:text="@string/service_expense_cars"
+            android:text="@string/service_expense_car"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
             app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
             app:layout_constraintTop_toBottomOf="@+id/secTypeSP" />
 
-
         <Spinner
             android:id="@+id/secCarsSP"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:prompt="@string/service_expense_car"
             android:spinnerMode="dialog"
             app:layout_constraintEnd_toStartOf="@+id/secGuideRight"
             app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
@@ -112,6 +113,32 @@
             app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
             app:layout_constraintTop_toBottomOf="@+id/secNotesLabelTV" />
 
+        <TextView
+            android:id="@+id/fecMileageLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/secMileageET"
+            android:text="@string/service_expense_mileage"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/secNotesET" />
+
+        <EditText
+            android:id="@+id/secMileageET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="Litres"
+            android:fontFamily="@font/nunito"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
+            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintTop_toBottomOf="@+id/fecMileageLabelTV" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/secSaveBtn"
             android:layout_width="0dp"
@@ -123,7 +150,7 @@
             app:iconGravity="textStart"
             app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
             app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
-            app:layout_constraintTop_toBottomOf="@+id/secNotesET" />
+            app:layout_constraintTop_toBottomOf="@+id/secMileageET" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/secGuideLeft"

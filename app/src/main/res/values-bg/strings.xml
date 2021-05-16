@@ -219,7 +219,8 @@
     <string name="fuel_expense_price_per_litre_data">%1$s лв/л.</string>
     <string name="fuel_expense_litres_data">%1$s л.</string>
     <string name="fuel_expense_car_details">Детайли за автомобила</string>
-    <string name="fuel_expense_car_brand_model">Марка и модел</string>
+    <string name="fuel_expense_car_brand_model_label">Марка и модел</string>
+    <string name="fuel_expense_car_brand_model">%1$s %2$s</string>
     <string name="fuel_expense_car_license_plate">Регистрационен номер</string>
     <string name="fuel_expense_car_mileage">Километраж по време на зареждане</string>
     <string name="fuel_expense_car_mileage_data">%1$d км.</string>
@@ -234,10 +235,11 @@
     <string name="service_label">Сервиз</string>
     <string name="service_expense_title">Разход сервиз</string>
 
-    <string name="service_expense_types">Тип разход</string>
-    <string name="service_expense_cars">Автомобили</string>
+    <string name="service_expense_type">Тип разход</string>
+    <string name="service_expense_car">Автомобил</string>
     <string name="service_expense_price">Цена</string>
     <string name="service_expense_notes">Бележки (опционално)</string>
+    <string name="service_expense_mileage">Километраж (опционално)</string>
 
     <string name="service_type_1">Сервизно обслужване</string>
     <string name="service_type_2">Ремонт на двигател</string>
@@ -274,6 +276,16 @@
     <string name="service_expenses_not_found">Разходи за сервиз не бяха намерени!</string>
 
     <string name="service_expense_create_price_empty">Цената не може да бъде празна!</string>
+
+    <string name="service_expense_notes_label">Бележки</string>
+    <string name="service_expense_notes_not_found">Няма бележки</string>
+    <string name="service_expense_car_brand_model_label">Марка и модел</string>
+    <string name="service_expense_car_brand_model">%1$s %2$s</string>
+    <string name="service_expense_car_mileage">Километраж по време на сервизно обслужване</string>
+    <string name="service_expense_car_mileage_data">%1$d км.</string>
+    <string name="service_expense_car_mileage_unknown">Няма информация</string>
+
+    <string name="service_expense_details">Детайли за разхода за сервиз</string>
 
     <string name="error_server">Грешка в комуникацията със сървъра. Опитайте отново!</string>
 

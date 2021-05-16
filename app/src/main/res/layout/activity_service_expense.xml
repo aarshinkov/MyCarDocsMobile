@@ -15,61 +15,17 @@
             android:paddingBottom="16dp">
 
             <TextView
-                android:id="@+id/serviceExpenseSubtotalLabelTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/nunito"
-                android:gravity="center"
-                android:text="@string/fuel_expense_subtotal"
-                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
-                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/serviceExpenseSubtotalTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
-                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseSubtotalLabelTV"
-                tools:text="25.60" />
-
-            <TextView
-                android:id="@+id/serviceExpenseDiscountLabelTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:gravity="center"
-                android:text="@string/fuel_expense_discount"
-                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
-                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseSubtotalTV" />
-
-            <TextView
-                android:id="@+id/serviceExpenseDiscountTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
-                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDiscountLabelTV"
-                tools:text="-8.50" />
-
-            <TextView
                 android:id="@+id/serviceExpenseTotalTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/nunito"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
                 app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDiscountTV"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="17.10" />
 
             <TextView
@@ -87,13 +43,12 @@
                 tools:text="02 December 2020, 15:43" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/profileAdminRole"
+                android:id="@+id/serviceExpenseTypeChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:clickable="false"
                 android:fontFamily="@font/nunito"
-                android:text="@string/fuel_expense_title"
                 android:textAlignment="center"
                 android:textColor="@color/danger"
                 app:chipIcon="@drawable/ic_gas_station"
@@ -106,7 +61,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
                 app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
                 app:layout_constraintTop_toBottomOf="@+id/serviceExpenseCreatedOnTV"
-                app:textStartPadding="0dp" />
+                app:textStartPadding="0dp"
+                tools:text="@string/service_expense_title" />
 
             <TextView
                 android:id="@+id/serviceExpenseDetailsLabelTV"
@@ -114,12 +70,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/nunito"
-                android:text="@string/fuel_expense_details"
+                android:text="@string/service_expense_details"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
                 app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/profileAdminRole" />
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseTypeChip" />
 
             <View
                 android:id="@+id/serviceExpenseDivider"
@@ -137,78 +93,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/nunito"
-                android:text="@string/fuel_expense_price_per_litre"
+                android:text="@string/service_expense_notes_label"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
                 app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDivider" />
 
             <TextView
-                android:id="@+id/serviceExpensePricePerLitreDetailsTV"
-                android:layout_width="wrap_content"
+                android:id="@+id/serviceExpenseNotesTV"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito"
+                app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
                 app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
                 app:layout_constraintTop_toBottomOf="@+id/serviceExpensePricePerLitreDetailsLabelTV"
-                tools:text="1.95 лв/л" />
-
-            <TextView
-                android:id="@+id/serviceExpenseLitresDetailsLabelTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/nunito"
-                android:text="@string/fuel_expense_litres"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/serviceExpenseGuideRight"
-                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDivider" />
-
-            <TextView
-                android:id="@+id/serviceExpenseLitresDetailsTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                app:layout_constraintEnd_toEndOf="@+id/serviceExpenseGuideRight"
-                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseLitresDetailsLabelTV"
-                tools:text="20 л." />
-
-            <TextView
-                android:id="@+id/serviceExpenseDiscountDetailsLabelTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/nunito"
-                android:text="@string/fuel_expense_discount"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/serviceExpensePricePerLitreDetailsTV" />
-
-            <TextView
-                android:id="@+id/serviceExpenseDiscountDetailsTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDiscountDetailsLabelTV"
-                tools:text="20 л." />
-
-            <TextView
-                android:id="@+id/serviceExpenseDiscountPricePerLitreDetailsLabelTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/nunito"
-                android:text="@string/fuel_expense_discount_price_per_litre"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/serviceExpenseGuideRight"
-                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseLitresDetailsTV" />
-
-            <TextView
-                android:id="@+id/serviceExpenseDiscountPricePerDetailsLitreTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                app:layout_constraintEnd_toEndOf="@+id/serviceExpenseGuideRight"
-                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDiscountPricePerLitreDetailsLabelTV"
                 tools:text="1.95 лв/л" />
 
             <TextView
@@ -222,7 +119,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
                 app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseDiscountDetailsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/serviceExpenseNotesTV" />
 
             <View
                 android:id="@+id/serviceExpenseCarDivider"
@@ -240,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/nunito"
-                android:text="@string/fuel_expense_car_brand_model"
+                android:text="@string/service_expense_car_brand_model_label"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
                 app:layout_constraintTop_toBottomOf="@+id/serviceExpenseCarDivider" />
@@ -280,7 +177,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/nunito"
-                android:text="@string/fuel_expense_car_mileage"
+                android:text="@string/service_expense_car_mileage"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
                 app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"

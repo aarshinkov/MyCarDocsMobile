@@ -176,7 +176,7 @@ public class PolicyActivity extends AppCompatActivity {
                             int allDays = (int) (diff / (1000 * 60 * 60 * 24));
 
                             diff = endDate.getTime() - new Date().getTime();
-                            int remainingDays = (int) (diff / (1000 * 60 * 60 * 24));
+                            int remainingDays = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
 
                             policyValidProgress.setMax(allDays);
                             policyValidProgress.setProgress(allDays - remainingDays);

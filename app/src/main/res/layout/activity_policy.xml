@@ -154,8 +154,8 @@
                     android:text="@string/policy_status"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyEndDateLabelTV" />
+                    app:layout_constraintBottom_toBottomOf="@+id/policyStatusTV"
+                    app:layout_constraintStart_toStartOf="@+id/policyLeftGuide" />
 
                 <TextView
                     android:id="@+id/policyStatusTV"
@@ -178,7 +178,7 @@
                     android:layout_marginTop="8dp"
                     android:max="100"
                     android:progress="50"
-                    android:progressTint="@color/policy_header"
+                    android:progressTint="@color/light"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/policyStatusTV" />
