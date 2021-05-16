@@ -115,7 +115,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/nunito"
                 android:text="@string/fuel_expense_car_details"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/serviceExpenseGuideRight"
                 app:layout_constraintStart_toStartOf="@+id/serviceExpenseGuideLeft"
