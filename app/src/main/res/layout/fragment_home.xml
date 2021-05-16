@@ -63,6 +63,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/welcomeTV" />
 
                 <LinearLayout
+                    android:id="@+id/countContainer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -229,6 +230,71 @@
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/homeLastActivityTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/home_last_activity"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/homeRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/countContainer" />
+
+                <View
+                    android:id="@+id/homeDivider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintEnd_toEndOf="@+id/homeRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/homeLastActivityTV" />
+
+                <TextView
+                    android:id="@+id/homeLastFuelExpensesTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/nunito"
+                    app:layout_constraintEnd_toEndOf="@+id/homeRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/homeDivider"
+                    tools:text="@string/home_fuel_expenses_last" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/homeLastFuelExpensesRV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="@+id/homeRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/homeLastFuelExpensesTV" />
+
+                <TextView
+                    android:id="@+id/homeLastServiceExpensesTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    app:layout_constraintEnd_toEndOf="@+id/homeRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/homeLastFuelExpensesRV"
+                    tools:text="@string/home_service_expenses_last" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/homeLastServiceExpensesRV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:clipToPadding="false"
+                    android:paddingBottom="80dp"
+                    app:layout_constraintEnd_toEndOf="@+id/homeRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/homeLastServiceExpensesTV" />
+
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/homeLeftGuide"
                     android:layout_width="wrap_content"
@@ -246,6 +312,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menu"

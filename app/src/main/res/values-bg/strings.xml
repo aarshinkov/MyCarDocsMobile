@@ -9,6 +9,17 @@
     <string name="home_cars">Автомобили</string>
     <string name="home_policies">Полици</string>
 
+    <string name="home_last_activity">Последна активност</string>
+    <string name="home_fuel_expenses_last">Последните 3 зареждания</string>
+    <string name="home_fuel_expenses_last_n">Последните %1$d зареждания</string>
+    <string name="home_fuel_expenses_last_1">Последното 1 зареждане</string>
+    <string name="home_fuel_expenses_last_0">Все още няма зареждания</string>
+
+    <string name="home_service_expenses_last">Последните 3 сервизни разходи</string>
+    <string name="home_service_expenses_last_n">Последните %1$d сервизни разходи</string>
+    <string name="home_service_expenses_last_1">Последният 1 сервизен разход</string>
+    <string name="home_service_expenses_last_0">Все още няма сервизни разходи</string>
+
     <string name="login">Вход</string>
     <string name="login_header">Влезте във вашия акаунт за да управлявате вашите автомобили, полици и разходи.</string>
     <string name="login_email">Имейл</string>

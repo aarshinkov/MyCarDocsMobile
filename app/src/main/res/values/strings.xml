@@ -9,6 +9,17 @@
     <string name="home_cars">Cars</string>
     <string name="home_policies">Policies</string>
 
+    <string name="home_last_activity">Last activity</string>
+    <string name="home_fuel_expenses_last">Last 3 refueling</string>
+    <string name="home_fuel_expenses_last_n">Last %1$d refueling</string>
+    <string name="home_fuel_expenses_last_1">Last 1 refueling</string>
+    <string name="home_fuel_expenses_last_0">No refueling yet</string>
+
+    <string name="home_service_expenses_last">Last 3 service expenses</string>
+    <string name="home_service_expenses_last_n">Last %1$d service expenses</string>
+    <string name="home_service_expenses_last_1">Last 1 service expense</string>
+    <string name="home_service_expenses_last_0">No refueling yet</string>
+
     <string name="login">Login</string>
     <string name="login_header">Log in to your account to manage your documents, cars and expenses.</string>
     <string name="login_email">Email</string>

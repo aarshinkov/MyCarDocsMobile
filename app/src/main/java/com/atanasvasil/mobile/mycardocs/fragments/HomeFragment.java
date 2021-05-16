@@ -15,21 +15,33 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.ChartActivity;
 import com.atanasvasil.mobile.mycardocs.activities.fuel.FuelExpenseCreateActivity;
 import com.atanasvasil.mobile.mycardocs.activities.service.ServiceExpenseCreateActivity;
+import com.atanasvasil.mobile.mycardocs.adapters.FuelExpenseAdapter;
+import com.atanasvasil.mobile.mycardocs.adapters.ServiceExpenseAdapter;
 import com.atanasvasil.mobile.mycardocs.api.CarsApi;
+import com.atanasvasil.mobile.mycardocs.api.ExpensesApi;
 import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
+import com.atanasvasil.mobile.mycardocs.collections.FuelExpensesCollection;
+import com.atanasvasil.mobile.mycardocs.collections.ServiceExpensesCollection;
 import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
+import com.atanasvasil.mobile.mycardocs.responses.expenses.fuel.FuelExpense;
+import com.atanasvasil.mobile.mycardocs.responses.expenses.service.ServiceExpense;
 import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,7 +67,23 @@ public class HomeFragment extends Fragment {
     private TextView policiesCountTV;
     private CircularProgressIndicator policiesCountProgress;
 
+    private TextView homeLastFuelExpensesTV;
+    private RecyclerView homeLastFuelExpensesRV;
+    private FuelExpenseAdapter homeFuelExpensesAdapter;
+    private List<FuelExpense> homeFuelExpenses;
+
+    private TextView homeLastServiceExpensesTV;
+    private RecyclerView homeLastServiceExpensesRV;
+    private ServiceExpenseAdapter homeServiceExpensesAdapter;
+    private List<ServiceExpense> homeServiceExpenses;
+
     private FloatingActionMenu menu;
+
+    // this variable must be at least 2, no less
+    final int maxFuelCount = 3;
+
+    // this variable must be at least 2, no less
+    final int maxServiceCount = 3;
 
     private FloatingActionButton fuelExpenseBtn;
     private FloatingActionButton serviceExpenseBtn;
@@ -78,6 +106,22 @@ public class HomeFragment extends Fragment {
         policiesCountTV = root.findViewById(R.id.policiesCountTV);
         policiesCountProgress = root.findViewById(R.id.policiesCountProgress);
 
+        homeLastFuelExpensesTV = root.findViewById(R.id.homeLastFuelExpensesTV);
+        homeLastFuelExpensesRV = root.findViewById(R.id.homeLastFuelExpensesRV);
+        homeLastFuelExpensesRV.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        homeFuelExpenses = new ArrayList<>();
+        homeFuelExpensesAdapter = new FuelExpenseAdapter(requireContext(), homeFuelExpenses);
+        homeLastFuelExpensesRV.setAdapter(homeFuelExpensesAdapter);
+
+        homeLastServiceExpensesTV = root.findViewById(R.id.homeLastServiceExpensesTV);
+        homeLastServiceExpensesRV = root.findViewById(R.id.homeLastServiceExpensesRV);
+        homeLastServiceExpensesRV.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        homeServiceExpenses = new ArrayList<>();
+        homeServiceExpensesAdapter = new ServiceExpenseAdapter(requireContext(), homeServiceExpenses);
+        homeLastServiceExpensesRV.setAdapter(homeServiceExpensesAdapter);
+
         menu = root.findViewById(R.id.menu);
 
         fuelExpenseBtn = root.findViewById(R.id.fuelExpenseBtn);
@@ -95,6 +139,8 @@ public class HomeFragment extends Fragment {
 
         homeRefresh.setOnRefreshListener(() -> {
             loadData();
+            getFuelExpenses(1, maxFuelCount);
+            getServiceExpenses(1, maxServiceCount);
             homeRefresh.setRefreshing(false);
         });
 
@@ -128,6 +174,9 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        getFuelExpenses(1, maxFuelCount);
+        getServiceExpenses(1, maxServiceCount);
+
         fuelExpenseBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), FuelExpenseCreateActivity.class);
             startActivity(intent);
@@ -147,6 +196,98 @@ public class HomeFragment extends Fragment {
             Toast.makeText(getContext(), "Helllowww", Toast.LENGTH_SHORT).show();
         }
     };
+
+    private void getFuelExpenses(Integer page, Integer limit) {
+        Retrofit retrofit = getRetrofit();
+        ExpensesApi expensesApi = retrofit.create(ExpensesApi.class);
+
+        expensesApi.getFuelExpensesForUser(page, limit, loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<FuelExpensesCollection>() {
+            @Override
+            public void onResponse(@NotNull Call<FuelExpensesCollection> call, @NotNull Response<FuelExpensesCollection> response) {
+
+                if (!response.isSuccessful()) {
+//                    fuelExpensesProgress.setVisibility(View.GONE);
+                    return;
+                }
+
+                FuelExpensesCollection storedFuelExpenses = response.body();
+
+                if (page == 1) {
+                    homeFuelExpenses.clear();
+                }
+
+
+                if (storedFuelExpenses != null) {
+                    homeFuelExpenses.addAll(storedFuelExpenses.getData());
+
+                    Long fuelExpensesCount = storedFuelExpenses.getPage().getGlobalTotalElements();
+                    if (fuelExpensesCount <= 0) {
+                        homeLastFuelExpensesTV.setText(getString(R.string.home_fuel_expenses_last_0));
+                    } else if (fuelExpensesCount == 1) {
+                        homeLastFuelExpensesTV.setText(getString(R.string.home_fuel_expenses_last_1));
+                    } else if (fuelExpensesCount < maxFuelCount) {
+                        homeLastFuelExpensesTV.setText(getString(R.string.home_fuel_expenses_last_n, fuelExpensesCount));
+                    } else {
+                        homeLastFuelExpensesTV.setText(getString(R.string.home_fuel_expenses_last_n, maxFuelCount));
+                    }
+                }
+
+                homeFuelExpensesAdapter.notifyDataSetChanged();
+//                homeFuelExpensesProgress.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<FuelExpensesCollection> call, @NotNull Throwable t) {
+
+            }
+        });
+    }
+
+    private void getServiceExpenses(Integer page, Integer limit) {
+        Retrofit retrofit = getRetrofit();
+        ExpensesApi expensesApi = retrofit.create(ExpensesApi.class);
+
+        expensesApi.getServiceExpensesForUser(page, limit, loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<ServiceExpensesCollection>() {
+            @Override
+            public void onResponse(@NotNull Call<ServiceExpensesCollection> call, @NotNull Response<ServiceExpensesCollection> response) {
+
+                if (!response.isSuccessful()) {
+//                    serviceExpensesProgress.setVisibility(View.GONE);
+                    return;
+                }
+
+                ServiceExpensesCollection storedServiceExpenses = response.body();
+
+                if (page == 1) {
+                    homeServiceExpenses.clear();
+                }
+
+                if (storedServiceExpenses != null) {
+                    homeServiceExpenses.addAll(storedServiceExpenses.getData());
+
+                    final Long serviceExpensesCount = storedServiceExpenses.getPage().getGlobalTotalElements();
+                    if (serviceExpensesCount <= 0) {
+                        homeLastServiceExpensesTV.setText(getString(R.string.home_service_expenses_last_0));
+                    } else if (serviceExpensesCount == 1) {
+                        homeLastServiceExpensesTV.setText(getString(R.string.home_service_expenses_last_1));
+                    } else if (serviceExpensesCount < maxServiceCount) {
+                        homeLastServiceExpensesTV.setText(getString(R.string.home_service_expenses_last_n, serviceExpensesCount));
+                    } else {
+                        homeLastServiceExpensesTV.setText(getString(R.string.home_service_expenses_last_n, maxServiceCount));
+                    }
+                }
+
+                homeServiceExpensesAdapter.notifyDataSetChanged();
+//                homeFuelExpensesProgress.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<ServiceExpensesCollection> call, @NotNull Throwable
+                    t) {
+
+            }
+        });
+    }
 
     private void loadData() {
 
