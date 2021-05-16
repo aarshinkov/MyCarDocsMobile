@@ -341,4 +341,11 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getFuelExpenses(1, maxFuelCount);
+        getServiceExpenses(1, maxServiceCount);
+    }
 }

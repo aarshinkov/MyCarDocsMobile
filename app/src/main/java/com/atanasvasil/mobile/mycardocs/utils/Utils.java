@@ -48,7 +48,7 @@ public class Utils {
             case 12:
                 return context.getString(R.string.DEC);
             default:
-                return null;
+                return "";
         }
     }
 
