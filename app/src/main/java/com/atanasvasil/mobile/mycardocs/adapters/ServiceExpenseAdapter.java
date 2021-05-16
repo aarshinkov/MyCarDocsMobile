@@ -55,8 +55,8 @@ public class ServiceExpenseAdapter extends RecyclerView.Adapter<ServiceExpenseAd
         cal.setTimeInMillis(timestamp);
 
         int date = cal.get(Calendar.DATE);
-//        int month = cal.get(Calendar.MONTH);
-        String month = getMonthName(context, 4);
+        int monthNum = cal.get(Calendar.MONTH) + 1;
+        String month = getMonthName(context, monthNum);
         int year = cal.get(Calendar.YEAR);
 //        fuelExpense.getCreatedOn().get
 

@@ -71,11 +71,13 @@ public class HomeFragment extends Fragment {
     private RecyclerView homeLastFuelExpensesRV;
     private FuelExpenseAdapter homeFuelExpensesAdapter;
     private List<FuelExpense> homeFuelExpenses;
+    private CircularProgressIndicator homeLastFuelExpensesProgress;
 
     private TextView homeLastServiceExpensesTV;
     private RecyclerView homeLastServiceExpensesRV;
     private ServiceExpenseAdapter homeServiceExpensesAdapter;
     private List<ServiceExpense> homeServiceExpenses;
+    private CircularProgressIndicator homeLastServiceExpensesProgress;
 
     private FloatingActionMenu menu;
 
@@ -113,6 +115,7 @@ public class HomeFragment extends Fragment {
         homeFuelExpenses = new ArrayList<>();
         homeFuelExpensesAdapter = new FuelExpenseAdapter(requireContext(), homeFuelExpenses);
         homeLastFuelExpensesRV.setAdapter(homeFuelExpensesAdapter);
+        homeLastFuelExpensesProgress = root.findViewById(R.id.homeLastFuelExpensesProgress);
 
         homeLastServiceExpensesTV = root.findViewById(R.id.homeLastServiceExpensesTV);
         homeLastServiceExpensesRV = root.findViewById(R.id.homeLastServiceExpensesRV);
@@ -121,6 +124,7 @@ public class HomeFragment extends Fragment {
         homeServiceExpenses = new ArrayList<>();
         homeServiceExpensesAdapter = new ServiceExpenseAdapter(requireContext(), homeServiceExpenses);
         homeLastServiceExpensesRV.setAdapter(homeServiceExpensesAdapter);
+        homeLastServiceExpensesProgress = root.findViewById(R.id.homeLastServiceExpensesProgress);
 
         menu = root.findViewById(R.id.menu);
 
@@ -193,11 +197,13 @@ public class HomeFragment extends Fragment {
     private final TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            Toast.makeText(getContext(), "Helllowww", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "Helllowww", Toast.LENGTH_SHORT).show();
         }
     };
 
     private void getFuelExpenses(Integer page, Integer limit) {
+        homeLastFuelExpensesProgress.setVisibility(View.VISIBLE);
+
         Retrofit retrofit = getRetrofit();
         ExpensesApi expensesApi = retrofit.create(ExpensesApi.class);
 
@@ -206,7 +212,7 @@ public class HomeFragment extends Fragment {
             public void onResponse(@NotNull Call<FuelExpensesCollection> call, @NotNull Response<FuelExpensesCollection> response) {
 
                 if (!response.isSuccessful()) {
-//                    fuelExpensesProgress.setVisibility(View.GONE);
+                    homeLastFuelExpensesProgress.setVisibility(View.GONE);
                     return;
                 }
 
@@ -233,17 +239,19 @@ public class HomeFragment extends Fragment {
                 }
 
                 homeFuelExpensesAdapter.notifyDataSetChanged();
-//                homeFuelExpensesProgress.setVisibility(View.GONE);
+                homeLastFuelExpensesProgress.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(@NotNull Call<FuelExpensesCollection> call, @NotNull Throwable t) {
-
+                homeLastFuelExpensesProgress.setVisibility(View.GONE);
             }
         });
     }
 
     private void getServiceExpenses(Integer page, Integer limit) {
+        homeLastServiceExpensesProgress.setVisibility(View.VISIBLE);
+
         Retrofit retrofit = getRetrofit();
         ExpensesApi expensesApi = retrofit.create(ExpensesApi.class);
 
@@ -252,7 +260,7 @@ public class HomeFragment extends Fragment {
             public void onResponse(@NotNull Call<ServiceExpensesCollection> call, @NotNull Response<ServiceExpensesCollection> response) {
 
                 if (!response.isSuccessful()) {
-//                    serviceExpensesProgress.setVisibility(View.GONE);
+                    homeLastServiceExpensesProgress.setVisibility(View.GONE);
                     return;
                 }
 
@@ -278,13 +286,12 @@ public class HomeFragment extends Fragment {
                 }
 
                 homeServiceExpensesAdapter.notifyDataSetChanged();
-//                homeFuelExpensesProgress.setVisibility(View.GONE);
+                homeLastServiceExpensesProgress.setVisibility(View.GONE);
             }
 
             @Override
-            public void onFailure(@NotNull Call<ServiceExpensesCollection> call, @NotNull Throwable
-                    t) {
-
+            public void onFailure(@NotNull Call<ServiceExpensesCollection> call, @NotNull Throwable t) {
+                homeLastServiceExpensesProgress.setVisibility(View.GONE);
             }
         });
     }

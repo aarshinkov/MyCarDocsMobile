@@ -273,6 +273,16 @@
                     app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/homeLastFuelExpensesTV" />
 
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/homeLastFuelExpensesProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/homeLastFuelExpensesRV"
+                    app:layout_constraintEnd_toEndOf="@+id/homeLastFuelExpensesRV"
+                    app:layout_constraintStart_toStartOf="@+id/homeLastFuelExpensesRV"
+                    app:layout_constraintTop_toBottomOf="@+id/homeLastFuelExpensesTV" />
+
                 <TextView
                     android:id="@+id/homeLastServiceExpensesTV"
                     android:layout_width="0dp"
@@ -294,6 +304,16 @@
                     app:layout_constraintEnd_toEndOf="@+id/homeRightGuide"
                     app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/homeLastServiceExpensesTV" />
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/homeLastServiceExpensesProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/homeLastServiceExpensesRV"
+                    app:layout_constraintEnd_toEndOf="@+id/homeLastServiceExpensesRV"
+                    app:layout_constraintStart_toStartOf="@+id/homeLastServiceExpensesRV"
+                    app:layout_constraintTop_toTopOf="@+id/homeLastServiceExpensesRV" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/homeLeftGuide"
