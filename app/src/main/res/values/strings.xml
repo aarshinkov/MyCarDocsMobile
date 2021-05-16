@@ -20,6 +20,17 @@
     <string name="home_service_expenses_last_1">Last 1 service expense</string>
     <string name="home_service_expenses_last_0">No refueling yet</string>
 
+    <string name="forgot_password_title">Forgotten password</string>
+    <string name="forgot_password_email">Email</string>
+    <string name="forgot_password_email_desc">After you enter your email, we will send you a reset password link on your email address.</string>
+    <string name="forgot_password_send">Send reset password link</string>
+    <string name="forgot_password_progress">Sending reset password link…</string>
+
+    <string name="forgot_password_email_empty">Email must not be empty</string>
+
+    <string name="forgot_password_success">Forgot password email sent successfully</string>
+    <string name="forgot_password_error">Error sending forgot password email</string>
+
     <string name="login">Login</string>
     <string name="login_header">Log in to your account to manage your documents, cars and expenses.</string>
     <string name="login_email">Email</string>
@@ -304,6 +315,7 @@
 
     <string name="expenses_in">Expenses in %1$s</string>
     <string name="expenses_filter">Filter</string>
+    <string name="expenses_export">Export</string>
     <string name="expenses_active_year">Year %1$s</string>
     <string name="expenses_active_car">Car - %1$s</string>
     <string name="expenses_no_active_car">No active car</string>

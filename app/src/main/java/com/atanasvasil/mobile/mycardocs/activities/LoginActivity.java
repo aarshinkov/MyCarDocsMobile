@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(@NotNull Call<AuthenticationResponse> call, @NotNull Throwable t) {
-                    Toast.makeText(getApplicationContext(), R.string.login_error, Toast.LENGTH_LONG).show();
+                    Snackbar.make(v, R.string.login_error, Snackbar.LENGTH_LONG).show();
                     progress.hide();
                 }
             });
@@ -146,18 +146,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginForgotPasswordTV.setOnClickListener(v -> {
-
-            Intent i = new Intent(Intent.ACTION_SEND);
-            i.setType("text/plain");
-            i.putExtra(Intent.EXTRA_EMAIL, new String[]{"recipient@example.com"});
-            i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
-            i.putExtra(Intent.EXTRA_TEXT, "body of email");
-            try {
-                startActivity(Intent.createChooser(i, "Send mail..."));
-            } catch (android.content.ActivityNotFoundException ex) {
-                Toast.makeText(LoginActivity.this,
-                        "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-            }
+            Intent intent = new Intent(LoginActivity.this, ForgottenPasswordActivity.class);
+            startActivity(intent);
         });
     }
 }

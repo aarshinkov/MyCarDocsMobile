@@ -9,6 +9,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface UsersApi {
 
@@ -30,4 +31,7 @@ public interface UsersApi {
 
     @GET("api/users/{userId}/has/cars")
     Call<Boolean> hasUserCars(@Path("userId") String userId);
+
+    @GET("api/users/password/forgot")
+    Call<Boolean> forgotPassword(@Query("email") String email);
 }

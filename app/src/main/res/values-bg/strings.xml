@@ -20,6 +20,17 @@
     <string name="home_service_expenses_last_1">Последният 1 сервизен разход</string>
     <string name="home_service_expenses_last_0">Все още няма сервизни разходи</string>
 
+    <string name="forgot_password_title">Забравена парола</string>
+    <string name="forgot_password_email">Имейл</string>
+    <string name="forgot_password_email_desc">След като въведете своя имейл, ние ще изпратим линк за промяна на паролата на вашия имейл адрес.</string>
+    <string name="forgot_password_send">Изпрати линк за смяна на парола</string>
+    <string name="forgot_password_progress">Изпращане на линк за смяна на парола…</string>
+
+    <string name="forgot_password_email_empty">Имейлът не може да е празен</string>
+
+    <string name="forgot_password_success">Имейлът за смяна на парола е изпратен успешно</string>
+    <string name="forgot_password_error">Грешка при изпращане на имейл за смяна на парола</string>
+
     <string name="login">Вход</string>
     <string name="login_header">Влезте във вашия акаунт за да управлявате вашите автомобили, полици и разходи.</string>
     <string name="login_email">Имейл</string>
@@ -304,6 +315,7 @@
 
     <string name="expenses_in">Разходи в %1$s</string>
     <string name="expenses_filter">Филтър</string>
+    <string name="expenses_export">Експорт</string>
     <string name="expenses_active_year">Година %1$s</string>
     <string name="expenses_active_car">Автомобил - %1$s</string>
     <string name="expenses_no_active_car">Няма активен автомобил</string>

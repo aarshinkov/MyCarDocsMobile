@@ -1,125 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.LoginActivity">
 
-    <TextView
-        android:id="@+id/loginHeaderTV"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/nunito"
-        android:gravity="center"
-        android:text="@string/login_header"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/loginGuideLeft"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingBottom="16dp">
 
-    <ImageView
-        android:id="@+id/appLogoIV"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/app_logo"
-        android:scaleType="fitCenter"
-        android:scaleX="3"
-        android:scaleY="3"
-        app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/loginGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/loginHeaderTV"
-        app:srcCompat="@drawable/logo" />
+        <TextView
+            android:id="@+id/loginHeaderTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:text="@string/login_header"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/loginRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/loginEmailET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:autofillHints="email"
-        android:ems="10"
-        android:fontFamily="@font/nunito"
-        android:hint="@string/login_email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/loginGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/appLogoIV" />
+        <ImageView
+            android:id="@+id/appLogoIV"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/app_logo"
+            android:scaleType="fitCenter"
+            android:scaleX="3"
+            android:scaleY="3"
+            app:layout_constraintEnd_toStartOf="@+id/loginRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/loginHeaderTV"
+            app:srcCompat="@drawable/logo" />
 
-    <EditText
-        android:id="@+id/loginPasswordET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:fontFamily="@font/nunito"
-        android:hint="@string/login_password"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/loginGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmailET" />
+        <TextView
+            android:id="@+id/loginEmailLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@id/loginEmailET"
+            android:text="@string/login_email"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/loginRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/appLogoIV" />
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/nunito"
-        android:text="@string/login_button"
-        android:textColor="@color/design_default_color_surface"
-        app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/loginGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/loginPasswordET" />
+        <EditText
+            android:id="@+id/loginEmailET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="email"
+            android:fontFamily="@font/nunito"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toStartOf="@+id/loginRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/loginEmailLabelTV" />
 
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+        <TextView
+            android:id="@+id/loginPasswordLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@id/loginPasswordET"
+            android:text="@string/login_password"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/loginRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/loginEmailET" />
 
-    <TextView
-        android:id="@+id/loginRegisterTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/nunito"
-        android:text="@string/login_registration"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/loginGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+        <EditText
+            android:id="@+id/loginPasswordET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toStartOf="@+id/loginRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/loginPasswordLabelTV" />
 
-    <TextView
-        android:id="@+id/loginForgotPasswordTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/nunito"
-        android:text="@string/login_forgot"
-        app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/loginGuideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/loginRegisterTV" />
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/login_button"
+            android:textColor="@color/design_default_color_surface"
+            app:layout_constraintEnd_toStartOf="@+id/loginRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/loginPasswordET" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/loginGuideLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/registerGuideRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        <TextView
+            android:id="@+id/loginRegisterTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/login_registration"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toStartOf="@+id/loginRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/loginForgotPasswordTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/login_forgot"
+            app:layout_constraintEnd_toStartOf="@+id/loginRightGuide"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/loginRegisterTV" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/loginLeftGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/loginRightGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

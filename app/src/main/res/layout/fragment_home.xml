@@ -26,21 +26,19 @@
                 <ImageView
                     android:id="@+id/appLogoIV"
                     android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="8dp"
-                    android:scaleType="fitCenter"
-                    android:scaleX="3"
-                    android:scaleY="3"
-                    app:layout_constraintEnd_toStartOf="@+id/homeRightGuide"
-                    app:layout_constraintStart_toStartOf="@+id/homeLeftGuide"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/logo" />
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="Application logo"
+                    android:src="@drawable/ic_cars"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/welcomeTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:fontFamily="@font/nunito"
                     android:gravity="center"
                     android:textSize="18sp"
