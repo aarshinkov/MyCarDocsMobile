@@ -11,42 +11,100 @@
         android:layout_height="wrap_content"
         android:paddingBottom="8dp">
 
+        <TextView
+            android:id="@+id/policyCreateNumberLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/policyCreateNumberET"
+            android:text="@string/policy_number"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/policyCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateProgress" />
+
         <EditText
             android:id="@+id/policyCreateNumberET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ems="10"
+            android:autofillHints="policyNumber"
             android:fontFamily="@font/nunito"
-            android:hint="@string/policy_number"
+            android:inputType="text"
             app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/policyCreateProgress" />
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateNumberLabelTV"
+            tools:ignore="TextFields" />
+
+        <TextView
+            android:id="@+id/policyCreateTypeLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/policyCreateTypeSP"
+            android:text="@string/policy_create_type_prompt"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/policyCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateNumberET" />
 
         <Spinner
             android:id="@+id/policyCreateTypeSP"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:entries="@array/policy_types"
             android:fontFamily="@font/nunito"
             android:prompt="@string/policy_create_type_prompt"
             android:spinnerMode="dialog"
             app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/policyCreateNumberET" />
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateTypeLabelTV" />
+
+        <TextView
+            android:id="@+id/policyCreateInsNameLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/policyCreateInsNameET"
+            android:text="@string/policy_ins_name"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/policyCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateTypeSP" />
 
         <EditText
             android:id="@+id/policyCreateInsNameET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ems="10"
+            android:autofillHints="insName"
             android:fontFamily="@font/nunito"
-            android:hint="@string/policy_ins_name"
+            android:inputType="text"
             app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/policyCreateTypeSP" />
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateInsNameLabelTV" />
+
+        <TextView
+            android:id="@+id/policyCreateCarsLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/policyCreateCarsSP"
+            android:text="@string/policy_create_car_prompt"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/policyCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateInsNameET" />
 
         <Spinner
             android:id="@+id/policyCreateCarsSP"
@@ -58,38 +116,65 @@
             android:spinnerMode="dialog"
             app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/policyCreateInsNameET" />
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateCarsLabelTV" />
+
+        <TextView
+            android:id="@+id/policyCreateStartDateLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/policyCreateStartDateET"
+            android:text="@string/policy_start_date"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/policyCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateCarsSP" />
 
         <EditText
             android:id="@+id/policyCreateStartDateET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ems="10"
+            android:autofillHints="policyCreateStartDate"
             android:fontFamily="@font/nunito"
-            android:hint="@string/policy_start_date"
             android:inputType="date"
             app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/policyCreateCarsSP" />
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateStartDateLabelTV" />
+
+        <TextView
+            android:id="@+id/policyCreateEndDateLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@+id/policyCreateEndDateET"
+            android:text="@string/policy_end_date"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/policyCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateStartDateET" />
 
         <EditText
             android:id="@+id/policyCreateEndDateET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ems="10"
+            android:autofillHints="policyCreateEndDate"
             android:fontFamily="@font/nunito"
-            android:hint="@string/policy_end_date"
             android:inputType="date"
             app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/policyCreateStartDateET" />
+            app:layout_constraintTop_toBottomOf="@+id/policyCreateEndDateLabelTV" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/policyCreateBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/nunito"
             android:text="@string/policy_create_button"
             app:layout_constraintEnd_toStartOf="@+id/policyCreateRightGuide"

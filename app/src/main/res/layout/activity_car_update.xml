@@ -11,105 +11,215 @@
         android:layout_height="wrap_content"
         android:paddingBottom="8dp">
 
+        <TextView
+            android:id="@+id/carUpdateBrandLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@id/carUpdateBrandET"
+            android:text="@string/car_brand"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <EditText
             android:id="@+id/carUpdateBrandET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
+            android:autofillHints="brand"
             android:fontFamily="@font/nunito"
-            android:hint="@string/car_brand"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateBrandLabelTV" />
+
+        <TextView
+            android:id="@+id/carUpdateModelLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@id/carUpdateModelET"
+            android:text="@string/car_model"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateBrandET" />
 
         <EditText
             android:id="@+id/carUpdateModelET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
+            android:autofillHints="model"
             android:fontFamily="@font/nunito"
-            android:hint="@string/car_model"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateBrandET" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateModelLabelTV" />
+
+        <TextView
+            android:id="@+id/carUpdateColorLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@id/carUpdateColorET"
+            android:text="@string/car_color"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateModelET" />
 
         <EditText
             android:id="@+id/carUpdateColorET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
+            android:autofillHints="color"
             android:fontFamily="@font/nunito"
-            android:hint="@string/car_color"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateModelET" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorLabelTV" />
+
+        <TextView
+            android:id="@+id/carUpdateTransmissionLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@id/carUpdateTransmissionSP"
+            android:text="@string/car_transmission_label"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorET" />
 
         <Spinner
             android:id="@+id/carUpdateTransmissionSP"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:entries="@array/car_transmissions"
             android:fontFamily="@font/nunito"
+            android:prompt="@string/car_transmission_label"
+            android:spinnerMode="dialog"
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorET" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateTransmissionLabelTV" />
+
+        <TextView
+            android:id="@+id/carUpdatePowerTypeLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@id/carUpdatePowerTypeSP"
+            android:text="@string/car_power_type_label"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateTransmissionSP" />
 
         <Spinner
             android:id="@+id/carUpdatePowerTypeSP"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:entries="@array/car_power_types"
             android:fontFamily="@font/nunito"
+            android:prompt="@string/car_power_type_label"
+            android:spinnerMode="dialog"
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateTransmissionSP" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdatePowerTypeLabelTV" />
+
+        <TextView
+            android:id="@+id/carUpdateYearLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@id/carUpdateYearET"
+            android:text="@string/car_year_label"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdatePowerTypeSP" />
 
         <EditText
             android:id="@+id/carUpdateYearET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
+            android:autofillHints="powerType"
             android:fontFamily="@font/nunito"
-            android:hint="@string/car_year_label"
             android:inputType="number"
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdatePowerTypeSP" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateYearLabelTV" />
+
+        <TextView
+            android:id="@+id/carUpdateLicensePlateLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@id/carUpdateLicensePlateET"
+            android:text="@string/car_license_plate"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateYearET" />
 
         <EditText
             android:id="@+id/carUpdateLicensePlateET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
+            android:autofillHints="licensePlate"
             android:fontFamily="@font/nunito"
-            android:hint="@string/car_license_plate"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateYearET" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateLicensePlateLabelTV" />
+
+        <TextView
+            android:id="@+id/carUpdateAliasLabelTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/nunito"
+            android:labelFor="@id/carUpdateAliasET"
+            android:text="@string/car_alias"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateLicensePlateET" />
 
         <EditText
             android:id="@+id/carUpdateAliasET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
+            android:autofillHints="alias"
             android:fontFamily="@font/nunito"
-            android:hint="@string/car_alias"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateLicensePlateET" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateAliasLabelTV" />
 
         <Button
             android:id="@+id/carUpdateBtn"

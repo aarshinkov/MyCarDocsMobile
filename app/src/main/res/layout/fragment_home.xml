@@ -28,7 +28,7 @@
                     android:layout_width="0dp"
                     android:layout_height="200dp"
                     android:layout_marginTop="20dp"
-                    android:contentDescription="Application logo"
+                    android:contentDescription="@string/app_logo"
                     android:src="@drawable/ic_cars"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
