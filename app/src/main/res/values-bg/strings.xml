@@ -154,6 +154,9 @@
 
     <string name="policies_filter">Филтър</string>
     <string name="policies_selected_type">Избран тип - %1$s</string>
+    <string name="policies_selected_status_0">Избран статус - Активна</string>
+    <string name="policies_selected_status_1">Избран статус - Изтекла</string>
+    <string name="policies_selected_status_2">Избран статус - Изчакваща</string>
 
     <!-- Policy create -->
     <string name="policy_create_title">Създаване на полица</string>
@@ -195,6 +198,12 @@
     <string name="policy_status_active">Активна полица</string>
     <string name="policy_status_expired">Изтекла полица</string>
     <string name="policy_status_pending">Полица в очакване</string>
+    <string-array name="policy_status_filter">
+        <item>Всички</item>
+        <item>Активна</item>
+        <item>Изтекла</item>
+        <item>Изчакваща</item>
+    </string-array>
 
     <string name="policy_total_days">%1$d дни общо</string>
     <string name="policy_total_days_1">1 ден общо</string>

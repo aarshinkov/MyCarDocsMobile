@@ -154,6 +154,9 @@
 
     <string name="policies_filter">Filter</string>
     <string name="policies_selected_type">Selected type - %1$s</string>
+    <string name="policies_selected_status_0">Selected status - Active</string>
+    <string name="policies_selected_status_1">Selected status - Expired</string>
+    <string name="policies_selected_status_2">Selected status - Pending</string>
 
     <!-- Policy create -->
     <string name="policy_create_title">Create a policy</string>
@@ -195,6 +198,12 @@
     <string name="policy_status_active">Active policy</string>
     <string name="policy_status_expired">Expired policy</string>
     <string name="policy_status_pending">Pending policy</string>
+    <string-array name="policy_status_filter">
+        <item>All</item>
+        <item>Active</item>
+        <item>Expired</item>
+        <item>Pending</item>
+    </string-array>
 
     <string name="policy_total_days">%1$d days in total</string>
     <string name="policy_total_days_1">1 day in total</string>

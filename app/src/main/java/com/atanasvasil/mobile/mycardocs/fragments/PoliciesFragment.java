@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,12 +47,14 @@ public class PoliciesFragment extends Fragment {
 
     private MaterialButton policiesFilterBtn;
     private TextView policiesSelectedTypeTV;
+    private TextView policiesSelectedStatusTV;
     private RecyclerView recyclerView;
     private PolicyAdapter policyAdapter;
     private List<Policy> policies;
     private FloatingActionButton policyCreateFBtn;
 
     private Spinner pfTypeSP;
+    private Spinner pfStatusSP;
     private MaterialButton pfApplyBtn;
 
     private SwipeRefreshLayout policiesNoItemsRefresh;
@@ -76,6 +77,7 @@ public class PoliciesFragment extends Fragment {
         policyCreateFBtn = root.findViewById(R.id.policyCreateFBtn);
         policiesFilterBtn = root.findViewById(R.id.policiesFilterBtn);
         policiesSelectedTypeTV = root.findViewById(R.id.policiesSelectedTypeTV);
+        policiesSelectedStatusTV = root.findViewById(R.id.policiesSelectedStatusTV);
 
         recyclerView = root.findViewById(R.id.policies);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -123,6 +125,7 @@ public class PoliciesFragment extends Fragment {
         final View bottomSheetView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_policies_filter, root.findViewById(R.id.policiesFilterContainer));
 
         pfTypeSP = bottomSheetView.findViewById(R.id.pfTypeSP);
+        pfStatusSP = bottomSheetView.findViewById(R.id.pfStatusSP);
         pfApplyBtn = bottomSheetView.findViewById(R.id.pfApplyBtn);
 
         bottomSheetDialog.setContentView(bottomSheetView);
@@ -132,27 +135,37 @@ public class PoliciesFragment extends Fragment {
         });
 
         pfApplyBtn.setOnClickListener(v -> {
-            final int type = pfTypeSP.getSelectedItemPosition();
+
+            Integer type = pfTypeSP.getSelectedItemPosition();
 
             if (type == 0) {
+                type = null;
                 policiesSelectedTypeTV.setVisibility(View.GONE);
-                getPoliciesByUserId();
-                bottomSheetDialog.setDismissWithAnimation(true);
-                bottomSheetDialog.dismiss();
-                return;
+            } else {
+                policiesSelectedTypeTV.setVisibility(View.VISIBLE);
+                policiesSelectedTypeTV.setText(requireContext().getString(R.string.policies_selected_type, getStringResource(requireContext(), "policy_type_" + type)));
             }
 
-            policiesSelectedTypeTV.setVisibility(View.VISIBLE);
-            policiesSelectedTypeTV.setText(requireContext().getString(R.string.policies_selected_type, getStringResource(requireContext(), "policy_type_" + type)));
+            final int status = pfStatusSP.getSelectedItemPosition() - 1;
+
+            if (status == -1) {
+                policiesSelectedStatusTV.setVisibility(View.GONE);
+            } else {
+                policiesSelectedStatusTV.setVisibility(View.VISIBLE);
+                policiesSelectedStatusTV.setText(getStringResource(requireContext(), "policies_selected_status_" + status));
+            }
+
+            bottomSheetDialog.setDismissWithAnimation(true);
+            bottomSheetDialog.dismiss();
 
             Retrofit retrofit = getRetrofit();
             PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
-            policiesApi.getPoliciesByType(type, loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Policy>>() {
+            policiesApi.getPoliciesByCriteria(type, status, loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Policy>>() {
                 @Override
                 public void onResponse(@NotNull Call<List<Policy>> call, @NotNull Response<List<Policy>> response) {
 
-                    if (response.code() == 400) {
+                    if (!response.isSuccessful()) {
                         policies.clear();
                         policyAdapter.notifyDataSetChanged();
                         policiesNoItemsRefresh.setVisibility(View.VISIBLE);
@@ -206,11 +219,11 @@ public class PoliciesFragment extends Fragment {
         Retrofit retrofit = getRetrofit();
         PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
-        policiesApi.getPoliciesByUserId(loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Policy>>() {
+        policiesApi.getPoliciesByCriteria(null, null, loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Policy>>() {
             @Override
             public void onResponse(@NotNull Call<List<Policy>> call, @NotNull Response<List<Policy>> response) {
 
-                if (response.code() == 400) {
+                if (!response.isSuccessful()) {
                     policies.clear();
                     policyAdapter.notifyDataSetChanged();
                     policiesNoItemsRefresh.setVisibility(View.VISIBLE);
