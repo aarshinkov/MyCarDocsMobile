@@ -42,16 +42,19 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.atanasvasil.mobile.mycardocs.api.Api.getRetrofit;
 import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NAME;
 import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
+import static com.atanasvasil.mobile.mycardocs.utils.Utils.getStringResource;
 
 public class PoliciesFragment extends Fragment {
-    private Button policiesFilterBtn;
+
+    private MaterialButton policiesFilterBtn;
+    private TextView policiesSelectedTypeTV;
     private RecyclerView recyclerView;
     private PolicyAdapter policyAdapter;
     private List<Policy> policies;
-    private Spinner pfTypeSP;
     private FloatingActionButton policyCreateFBtn;
-    private MaterialButton pfApplyBtn;
 
+    private Spinner pfTypeSP;
+    private MaterialButton pfApplyBtn;
 
     private SwipeRefreshLayout policiesNoItemsRefresh;
     private SwipeRefreshLayout policiesRefresh;
@@ -72,7 +75,7 @@ public class PoliciesFragment extends Fragment {
         policiesRefresh = root.findViewById(R.id.policiesRefresh);
         policyCreateFBtn = root.findViewById(R.id.policyCreateFBtn);
         policiesFilterBtn = root.findViewById(R.id.policiesFilterBtn);
-
+        policiesSelectedTypeTV = root.findViewById(R.id.policiesSelectedTypeTV);
 
         recyclerView = root.findViewById(R.id.policies);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -121,22 +124,37 @@ public class PoliciesFragment extends Fragment {
 
         pfTypeSP = bottomSheetView.findViewById(R.id.pfTypeSP);
         pfApplyBtn = bottomSheetView.findViewById(R.id.pfApplyBtn);
+
         bottomSheetDialog.setContentView(bottomSheetView);
 
         policiesFilterBtn.setOnClickListener(v -> {
             bottomSheetDialog.show();
-
         });
+
         pfApplyBtn.setOnClickListener(v -> {
-            int type = pfTypeSP.getSelectedItemPosition() + 1;
+            final int type = pfTypeSP.getSelectedItemPosition();
+
+            if (type == 0) {
+                policiesSelectedTypeTV.setVisibility(View.GONE);
+                getPoliciesByUserId();
+                bottomSheetDialog.setDismissWithAnimation(true);
+                bottomSheetDialog.dismiss();
+                return;
+            }
+
+            policiesSelectedTypeTV.setVisibility(View.VISIBLE);
+            policiesSelectedTypeTV.setText(requireContext().getString(R.string.policies_selected_type, getStringResource(requireContext(), "policy_type_" + type)));
+
             Retrofit retrofit = getRetrofit();
             PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
-            policiesApi.getPoliciesByType(type, loggedUser.getUserId()).enqueue(new Callback<List<Policy>>() {
+            policiesApi.getPoliciesByType(type, loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Policy>>() {
                 @Override
-                public void onResponse(Call<List<Policy>> call, Response<List<Policy>> response) {
+                public void onResponse(@NotNull Call<List<Policy>> call, @NotNull Response<List<Policy>> response) {
 
                     if (response.code() == 400) {
+                        policies.clear();
+                        policyAdapter.notifyDataSetChanged();
                         policiesNoItemsRefresh.setVisibility(View.VISIBLE);
                         progress.setVisibility(View.GONE);
                         return;
@@ -144,39 +162,46 @@ public class PoliciesFragment extends Fragment {
 
                     List<Policy> storedPolicies = response.body();
 
-                    policies.clear();
-
-                    if (storedPolicies != null) {
-                        policies.addAll(storedPolicies);
-
-                        final int size = storedPolicies.size();
-
-                        if (size <= 0) {
-                            policiesNoItemsRefresh.setVisibility(View.VISIBLE);
-                            policiesRefresh.setVisibility(View.INVISIBLE);
-                        } else {
-                            policiesNoItemsRefresh.setVisibility(View.INVISIBLE);
-                            policiesRefresh.setVisibility(View.VISIBLE);
-                        }
-                    }
-
-                    policyAdapter.notifyDataSetChanged();
+                    updatePolicies(storedPolicies);
                     progress.setVisibility(View.GONE);
-
                 }
 
                 @Override
-                public void onFailure(Call<List<Policy>> call, Throwable t) {
-
+                public void onFailure(@NotNull Call<List<Policy>> call, @NotNull Throwable t) {
+                    Toast.makeText(getContext(), R.string.error_server, Toast.LENGTH_SHORT).show();
+                    progress.setVisibility(View.GONE);
                 }
             });
 
+            bottomSheetDialog.setDismissWithAnimation(true);
+            bottomSheetDialog.dismiss();
         });
 
         return root;
     }
 
-    public void getPoliciesByUserId() {
+    private void updatePolicies(List<Policy> storedPolicies) {
+        policies.clear();
+        policyAdapter.notifyDataSetChanged();
+
+        if (storedPolicies != null) {
+            policies.addAll(storedPolicies);
+
+            final int size = storedPolicies.size();
+
+            if (size <= 0) {
+                policiesNoItemsRefresh.setVisibility(View.VISIBLE);
+                policiesRefresh.setVisibility(View.INVISIBLE);
+            } else {
+                policiesNoItemsRefresh.setVisibility(View.INVISIBLE);
+                policiesRefresh.setVisibility(View.VISIBLE);
+            }
+        }
+
+        policyAdapter.notifyDataSetChanged();
+    }
+
+    private void getPoliciesByUserId() {
 
         Retrofit retrofit = getRetrofit();
         PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
@@ -186,6 +211,8 @@ public class PoliciesFragment extends Fragment {
             public void onResponse(@NotNull Call<List<Policy>> call, @NotNull Response<List<Policy>> response) {
 
                 if (response.code() == 400) {
+                    policies.clear();
+                    policyAdapter.notifyDataSetChanged();
                     policiesNoItemsRefresh.setVisibility(View.VISIBLE);
                     progress.setVisibility(View.GONE);
                     return;
@@ -193,23 +220,7 @@ public class PoliciesFragment extends Fragment {
 
                 List<Policy> storedPolicies = response.body();
 
-                policies.clear();
-
-                if (storedPolicies != null) {
-                    policies.addAll(storedPolicies);
-
-                    final int size = storedPolicies.size();
-
-                    if (size <= 0) {
-                        policiesNoItemsRefresh.setVisibility(View.VISIBLE);
-                        policiesRefresh.setVisibility(View.INVISIBLE);
-                    } else {
-                        policiesNoItemsRefresh.setVisibility(View.INVISIBLE);
-                        policiesRefresh.setVisibility(View.VISIBLE);
-                    }
-                }
-
-                policyAdapter.notifyDataSetChanged();
+                updatePolicies(storedPolicies);
                 progress.setVisibility(View.GONE);
             }
 

@@ -152,6 +152,9 @@
     <string name="policies_nofound">Няма открити полици.</string>
     <string name="policies_nocars">За да създадете полици, трябва първо да създадете автомобил.</string>
 
+    <string name="policies_filter">Филтър</string>
+    <string name="policies_selected_type">Избран тип - %1$s</string>
+
     <!-- Policy create -->
     <string name="policy_create_title">Създаване на полица</string>
     <string name="policy_create_button">Създай полица</string>
@@ -174,6 +177,14 @@
     <string name="policy_type_3">Винетка</string>
     <string name="policy_type_4">Годишен технически преглед</string>
     <string-array name="policy_types">
+        <item>Застраховка</item>
+        <item>Каско</item>
+        <item>Винетка</item>
+        <item>Годишен технически преглед</item>
+    </string-array>
+
+    <string-array name="policy_types_filter">
+        <item>Всички</item>
         <item>Застраховка</item>
         <item>Каско</item>
         <item>Винетка</item>

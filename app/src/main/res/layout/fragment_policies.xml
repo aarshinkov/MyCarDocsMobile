@@ -6,14 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".fragments.PoliciesFragment">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/policiesFilterBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Filter"
+        android:fontFamily="@font/nunito"
+        android:text="@string/policies_filter"
+        app:icon="@drawable/ic_filter"
+        app:iconGravity="textStart"
+        app:iconPadding="4dp"
         app:layout_constraintStart_toStartOf="@+id/policiesGuideLeft"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/policiesSelectedTypeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/policiesGuideLeft"
+        app:layout_constraintTop_toBottomOf="@id/policiesFilterBtn"
+        tools:text="Selected type - Insurance" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/policiesNoItemsRefresh"
@@ -24,7 +38,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/policiesFilterBtn"
+        app:layout_constraintTop_toBottomOf="@+id/policiesSelectedTypeTV"
         tools:visibility="visible">
 
         <androidx.core.widget.NestedScrollView
@@ -104,7 +118,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/policiesFilterBtn"
+        app:layout_constraintTop_toBottomOf="@+id/policiesSelectedTypeTV"
         app:layout_constraintVertical_bias="0.0"
         tools:visibility="visible">
 

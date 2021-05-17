@@ -28,7 +28,7 @@ public interface PoliciesApi {
     Call<List<Policy>> getPoliciesByUserId(@Path("userId") String userId, @Header("Authorization") String authorization);
 
     @GET("api/policies/type")
-    Call<List<Policy>> getPoliciesByType(@Query("type") Integer type, @Query("userId") String userId);
+    Call<List<Policy>> getPoliciesByType(@Query("type") Integer type, @Query("userId") String userId, @Header("Authorization") String authorization);
 
     @POST("api/policies")
     Call<Policy> createPolicy(@Body PolicyCreateRequest pcr, @Header("Authorization") String authorization);
