@@ -153,10 +153,10 @@
     <string name="policies_nocars">To create a policies you must create a car first.</string>
 
     <string name="policies_filter">Filter</string>
-    <string name="policies_selected_type">Selected type - %1$s</string>
-    <string name="policies_selected_status_0">Selected status - Active</string>
-    <string name="policies_selected_status_1">Selected status - Expired</string>
-    <string name="policies_selected_status_2">Selected status - Pending</string>
+    <string name="policies_selected_type">Type - %1$s</string>
+    <string name="policies_selected_status_0">Status - Active</string>
+    <string name="policies_selected_status_1">Status - Expired</string>
+    <string name="policies_selected_status_2">Status - Pending</string>
 
     <!-- Policy create -->
     <string name="policy_create_title">Create a policy</string>
