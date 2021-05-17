@@ -14,6 +14,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface PoliciesApi {
 
@@ -25,6 +26,9 @@ public interface PoliciesApi {
 
     @GET("api/policies/user/id/{userId}")
     Call<List<Policy>> getPoliciesByUserId(@Path("userId") String userId, @Header("Authorization") String authorization);
+
+    @GET("api/policies/type")
+    Call<List<Policy>> getPoliciesByType(@Query("type") Integer type, @Query("userId") String userId);
 
     @POST("api/policies")
     Call<Policy> createPolicy(@Body PolicyCreateRequest pcr, @Header("Authorization") String authorization);

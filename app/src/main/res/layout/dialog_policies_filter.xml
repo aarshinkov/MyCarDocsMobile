@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/policiesFilterContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/policiesFilterTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito"
+        android:text="@string/expenses_filter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="@+id/pfRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/pfLeftGuide"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pfTypeLabelTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="3dp"
+        android:fontFamily="@font/nunito"
+        android:labelFor="@+id/fecCarsSP"
+        android:text="@string/policy_type"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/pfRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/pfLeftGuide"
+        app:layout_constraintTop_toBottomOf="@+id/policiesFilterTV" />
+
+    <Spinner
+        android:id="@+id/pfTypeSP"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:prompt="@string/policy_type"
+        android:entries="@array/policy_types"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="@+id/pfRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/pfLeftGuide"
+        app:layout_constraintTop_toBottomOf="@+id/pfTypeLabelTV" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pfApplyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito"
+        android:text="@string/expenses_apply"
+        app:icon="@drawable/ic_check"
+        app:layout_constraintEnd_toEndOf="@+id/pfRightGuide"
+        app:layout_constraintTop_toBottomOf="@id/pfTypeSP" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/pfLeftGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/pfRightGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

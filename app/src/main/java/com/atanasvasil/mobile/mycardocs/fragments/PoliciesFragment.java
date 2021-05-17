@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,8 @@ import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.api.UsersApi;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
@@ -40,11 +44,14 @@ import static com.atanasvasil.mobile.mycardocs.utils.AppConstants.SHARED_PREF_NA
 import static com.atanasvasil.mobile.mycardocs.utils.Utils.getLoggedUser;
 
 public class PoliciesFragment extends Fragment {
-
+    private Button policiesFilterBtn;
     private RecyclerView recyclerView;
     private PolicyAdapter policyAdapter;
     private List<Policy> policies;
+    private Spinner pfTypeSP;
     private FloatingActionButton policyCreateFBtn;
+    private MaterialButton pfApplyBtn;
+
 
     private SwipeRefreshLayout policiesNoItemsRefresh;
     private SwipeRefreshLayout policiesRefresh;
@@ -64,6 +71,8 @@ public class PoliciesFragment extends Fragment {
         policiesNoItemsRefresh = root.findViewById(R.id.policiesNoItemsRefresh);
         policiesRefresh = root.findViewById(R.id.policiesRefresh);
         policyCreateFBtn = root.findViewById(R.id.policyCreateFBtn);
+        policiesFilterBtn = root.findViewById(R.id.policiesFilterBtn);
+
 
         recyclerView = root.findViewById(R.id.policies);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -104,6 +113,64 @@ public class PoliciesFragment extends Fragment {
         policyCreateFBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), PolicyCreateActivity.class);
             startActivity(intent);
+        });
+
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme);
+
+        final View bottomSheetView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_policies_filter, root.findViewById(R.id.policiesFilterContainer));
+
+        pfTypeSP = bottomSheetView.findViewById(R.id.pfTypeSP);
+        pfApplyBtn = bottomSheetView.findViewById(R.id.pfApplyBtn);
+        bottomSheetDialog.setContentView(bottomSheetView);
+
+        policiesFilterBtn.setOnClickListener(v -> {
+            bottomSheetDialog.show();
+
+        });
+        pfApplyBtn.setOnClickListener(v -> {
+            int type = pfTypeSP.getSelectedItemPosition() + 1;
+            Retrofit retrofit = getRetrofit();
+            PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
+
+            policiesApi.getPoliciesByType(type, loggedUser.getUserId()).enqueue(new Callback<List<Policy>>() {
+                @Override
+                public void onResponse(Call<List<Policy>> call, Response<List<Policy>> response) {
+
+                    if (response.code() == 400) {
+                        policiesNoItemsRefresh.setVisibility(View.VISIBLE);
+                        progress.setVisibility(View.GONE);
+                        return;
+                    }
+
+                    List<Policy> storedPolicies = response.body();
+
+                    policies.clear();
+
+                    if (storedPolicies != null) {
+                        policies.addAll(storedPolicies);
+
+                        final int size = storedPolicies.size();
+
+                        if (size <= 0) {
+                            policiesNoItemsRefresh.setVisibility(View.VISIBLE);
+                            policiesRefresh.setVisibility(View.INVISIBLE);
+                        } else {
+                            policiesNoItemsRefresh.setVisibility(View.INVISIBLE);
+                            policiesRefresh.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    policyAdapter.notifyDataSetChanged();
+                    progress.setVisibility(View.GONE);
+
+                }
+
+                @Override
+                public void onFailure(Call<List<Policy>> call, Throwable t) {
+
+                }
+            });
+
         });
 
         return root;
