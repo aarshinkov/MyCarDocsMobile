@@ -158,6 +158,9 @@
     <string name="policies_selected_status_1">Статус - Изтекла</string>
     <string name="policies_selected_status_2">Статус - Изчакваща</string>
 
+    <string name="policies_apply">Приложи</string>
+    <string name="policies_clear">Изчисти</string>
+
     <!-- Policy create -->
     <string name="policy_create_title">Създаване на полица</string>
     <string name="policy_create_button">Създай полица</string>

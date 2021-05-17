@@ -158,6 +158,9 @@
     <string name="policies_selected_status_1">Status - Expired</string>
     <string name="policies_selected_status_2">Status - Pending</string>
 
+    <string name="policies_apply">Apply</string>
+    <string name="policies_clear">Clear</string>
+
     <!-- Policy create -->
     <string name="policy_create_title">Create a policy</string>
     <string name="policy_create_button">Create policy</string>
@@ -344,7 +347,7 @@
 
     <string name="expenses_cars_any">All cars</string>
 
-    <string name="expenses_apply">Apply filter</string>
+    <string name="expenses_apply">Apply</string>
 
     <string name="settings_title">Settings</string>
     <string name="settings_category_system">System</string>

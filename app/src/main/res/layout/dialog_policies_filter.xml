@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito"
-        android:text="@string/expenses_apply"
+        android:text="@string/policies_apply"
         app:icon="@drawable/ic_check"
         app:layout_constraintEnd_toEndOf="@+id/pfRightGuide"
         app:layout_constraintTop_toBottomOf="@id/pfStatusSP" />
