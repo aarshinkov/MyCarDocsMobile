@@ -70,6 +70,31 @@
         app:layout_constraintStart_toStartOf="@+id/pfLeftGuide"
         app:layout_constraintTop_toBottomOf="@+id/pfStatusLabelTV" />
 
+    <TextView
+        android:id="@+id/pfCarLabelTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="3dp"
+        android:fontFamily="@font/nunito"
+        android:labelFor="@+id/pfCarSP"
+        android:text="@string/policy_car"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/pfRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/pfLeftGuide"
+        app:layout_constraintTop_toBottomOf="@+id/pfStatusSP" />
+
+    <Spinner
+        android:id="@+id/pfCarSP"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:prompt="@string/policy_car"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="@+id/pfRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/pfLeftGuide"
+        app:layout_constraintTop_toBottomOf="@+id/pfCarLabelTV" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/pfApplyBtn"
         android:layout_width="wrap_content"
@@ -79,7 +104,7 @@
         android:text="@string/policies_apply"
         app:icon="@drawable/ic_check"
         app:layout_constraintEnd_toEndOf="@+id/pfRightGuide"
-        app:layout_constraintTop_toBottomOf="@id/pfStatusSP" />
+        app:layout_constraintTop_toBottomOf="@id/pfCarSP" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/pfLeftGuide"

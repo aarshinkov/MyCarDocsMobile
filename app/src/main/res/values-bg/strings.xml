@@ -208,6 +208,8 @@
         <item>Изчакваща</item>
     </string-array>
 
+    <string name="policy_car">Автомобил</string>
+
     <string name="policy_total_days">%1$d дни общо</string>
     <string name="policy_total_days_1">1 ден общо</string>
     <string name="policy_days_remaining">%1$d оставащи дни</string>

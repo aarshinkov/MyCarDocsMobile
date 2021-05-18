@@ -208,6 +208,8 @@
         <item>Pending</item>
     </string-array>
 
+    <string name="policy_car">Car</string>
+
     <string name="policy_total_days">%1$d days in total</string>
     <string name="policy_total_days_1">1 day in total</string>
     <string name="policy_days_remaining">%1$d days remaining</string>
