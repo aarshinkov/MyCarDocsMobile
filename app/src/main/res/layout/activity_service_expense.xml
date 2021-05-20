@@ -51,7 +51,6 @@
                 android:fontFamily="@font/nunito"
                 android:textAlignment="center"
                 android:textColor="@color/danger"
-                app:chipIcon="@drawable/ic_gas_station"
                 app:chipIconTint="@color/danger"
                 app:chipStartPadding="10dp"
                 app:chipStrokeColor="@color/danger"

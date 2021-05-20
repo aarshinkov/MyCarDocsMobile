@@ -29,6 +29,7 @@
         android:fontFamily="@font/nunito"
         android:text="@string/expenses_export"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:icon="@drawable/ic_export"
         app:iconGravity="textStart"
         app:iconPadding="4dp"
