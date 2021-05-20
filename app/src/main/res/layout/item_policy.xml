@@ -181,7 +181,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/carItemCarIconView"
                 app:layout_constraintStart_toStartOf="@+id/carItemCarIconView"
                 app:layout_constraintTop_toTopOf="@+id/carItemCarIconView"
-                app:srcCompat="@drawable/ic_check" />
+                app:srcCompat="@drawable/ic_check"
+                app:tint="@color/white" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/policyItemLeftGuide"

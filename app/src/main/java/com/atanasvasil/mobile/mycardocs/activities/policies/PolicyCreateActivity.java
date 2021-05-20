@@ -263,22 +263,22 @@ public class PolicyCreateActivity extends AppCompatActivity {
         String startDate = policyCreateStartDateET.getText().toString();
         String endDate = policyCreateEndDateET.getText().toString();
 
-        if (number == null || number.isEmpty()) {
+        if (number.isEmpty()) {
             policyCreateNumberET.setError(getString(R.string.policy_operation_policy_number_empty));
             hasErrors = true;
         }
 
-        if (insName == null || insName.isEmpty()) {
+        if (insName.isEmpty()) {
             policyCreateInsNameET.setError(getString(R.string.policy_operation_insurer_name_empty));
             hasErrors = true;
         }
 
-        if (startDate == null || startDate.isEmpty()) {
+        if (startDate.isEmpty()) {
             policyCreateStartDateET.setError(getString(R.string.policy_operation_start_date_empty));
             hasErrors = true;
         }
 
-        if (endDate == null || startDate.isEmpty()) {
+        if (endDate.isEmpty()) {
             policyCreateEndDateET.setError(getString(R.string.policy_operation_end_date_empty));
             hasErrors = true;
         }
