@@ -98,7 +98,6 @@ public class PoliciesFragment extends Fragment {
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
 
-        getPoliciesByCriteria();
         hasUserCars();
 
         policiesNoItemsRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -132,7 +131,20 @@ public class PoliciesFragment extends Fragment {
         pfStatusSP = bottomSheetView.findViewById(R.id.pfStatusSP);
         pfApplyBtn = bottomSheetView.findViewById(R.id.pfApplyBtn);
 
+        pfStatusSP.setSelection(1); // The default status is ACTIVE
+
+        status = pfStatusSP.getSelectedItemPosition() - 1;
+
+        if (status == -1) {
+            policiesSelectedStatusTV.setVisibility(View.GONE);
+        } else {
+            policiesSelectedStatusTV.setVisibility(View.VISIBLE);
+            policiesSelectedStatusTV.setText(getStringResource(requireContext(), "policies_selected_status_" + status));
+        }
+
         bottomSheetDialog.setContentView(bottomSheetView);
+
+        getPoliciesByCriteria();
 
         policiesFilterBtn.setOnClickListener(v -> {
             bottomSheetDialog.show();
