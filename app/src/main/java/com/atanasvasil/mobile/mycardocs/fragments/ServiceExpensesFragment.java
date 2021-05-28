@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -58,7 +59,7 @@ public class ServiceExpensesFragment extends Fragment {
     private CircularProgressIndicator serviceExpensesProgress;
 
     private Integer page = 1;
-    private final Integer startLimit = 15;
+    private final Integer startLimit = 10;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -100,6 +101,20 @@ public class ServiceExpensesFragment extends Fragment {
                 page = 1;
                 getServiceExpenses(page, startLimit);
                 serviceExpensesRefresh.setRefreshing(false);
+            }
+        });
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull @NotNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (!recyclerView.canScrollVertically(1)) {
+                    if (page < totalPages) {
+                        page++;
+                        getServiceExpenses(page, startLimit);
+                    }
+                }
             }
         });
 
