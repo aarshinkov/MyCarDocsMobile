@@ -68,6 +68,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
     private LinearProgressIndicator progress;
 
     private String policyId;
+    private Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,8 @@ public class PolicyUpdateActivity extends AppCompatActivity {
 
         policyUpdateBtn = findViewById(R.id.policyUpdateBtn);
 
+        retrofit = getRetrofit();
+
         pref = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
 
@@ -101,43 +104,15 @@ public class PolicyUpdateActivity extends AppCompatActivity {
         policyUpdateStartDateET.setInputType(InputType.TYPE_NULL);
         policyUpdateEndDateET.setInputType(InputType.TYPE_NULL);
 
-        policyUpdateStartDateET.setOnClickListener(v -> {
-            showDateTimeDialog(policyUpdateStartDateET);
-        });
-
-        policyUpdateEndDateET.setOnClickListener(v -> {
-            showDateTimeDialog(policyUpdateEndDateET);
-        });
-
-        Retrofit retrofit = getRetrofit();
-
-        PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
-        policiesApi.getPolicy(policyId, loggedUser.getAuthorization()).enqueue(new Callback<Policy>() {
-            @Override
-            public void onResponse(@NotNull Call<Policy> call, @NotNull Response<Policy> response) {
-
-                Policy policy = response.body();
-                policyUpdateNumberET.setText(policy.getNumber());
-                policyUpdateTypeSP.setSelection(policy.getType() - 1);
-                policyUpdateInsNameET.setText(policy.getInsName());
-
-                Date date = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.date_time_1), Locale.getDefault());
-
-                date.setTime(policy.getStartDate().getTime());
-                policyUpdateStartDateET.setText(sdf.format(date));
-
-                date = new Date();
-                date.setTime(policy.getEndDate().getTime());
-                policyUpdateEndDateET.setText(sdf.format(date));
-
-                ArrayAdapter<String> adapter = (ArrayAdapter<String>) policyUpdateCarsSP.getAdapter();
-                policyUpdateCarsSP.setSelection(adapter.getPosition(policy.getCar().getLicensePlate()));
+        policyUpdateStartDateET.setOnFocusChangeListener((view, hasFocus) -> {
+            if (hasFocus) {
+                showDateTimeDialog(policyUpdateStartDateET);
             }
+        });
 
-            @Override
-            public void onFailure(@NotNull Call<Policy> call, @NotNull Throwable t) {
-                Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
+        policyUpdateEndDateET.setOnFocusChangeListener((view, hasFocus) -> {
+            if (hasFocus) {
+                showDateTimeDialog(policyUpdateEndDateET);
             }
         });
 
@@ -231,6 +206,36 @@ public class PolicyUpdateActivity extends AppCompatActivity {
 
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 policyUpdateCarsSP.setAdapter(adapter);
+
+                PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
+                policiesApi.getPolicy(policyId, loggedUser.getAuthorization()).enqueue(new Callback<Policy>() {
+                    @Override
+                    public void onResponse(@NotNull Call<Policy> call, @NotNull Response<Policy> response) {
+
+                        Policy policy = response.body();
+                        policyUpdateNumberET.setText(policy.getNumber());
+                        policyUpdateTypeSP.setSelection(policy.getType() - 1);
+                        policyUpdateInsNameET.setText(policy.getInsName());
+
+                        Date date = new Date();
+                        SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.date_time_1), Locale.getDefault());
+
+                        date.setTime(policy.getStartDate().getTime());
+                        policyUpdateStartDateET.setText(sdf.format(date));
+
+                        date = new Date();
+                        date.setTime(policy.getEndDate().getTime());
+                        policyUpdateEndDateET.setText(sdf.format(date));
+
+                        ArrayAdapter<String> adapter = (ArrayAdapter<String>) policyUpdateCarsSP.getAdapter();
+                        policyUpdateCarsSP.setSelection(adapter.getPosition(policy.getCar().getLicensePlate()));
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull Call<Policy> call, @NotNull Throwable t) {
+                        Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
+                    }
+                });
             }
 
             @Override

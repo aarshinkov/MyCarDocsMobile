@@ -157,6 +157,7 @@
     <string name="policies_selected_status_0">Статус - Активна</string>
     <string name="policies_selected_status_1">Статус - Изтекла</string>
     <string name="policies_selected_status_2">Статус - Изчакваща</string>
+    <string name="policies_selected_car">Автомобил - %1$s</string>
 
     <string name="policies_apply">Приложи</string>
     <string name="policies_clear">Изчисти</string>

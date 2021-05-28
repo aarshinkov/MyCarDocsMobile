@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,8 +20,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.activities.policies.PolicyCreateActivity;
 import com.atanasvasil.mobile.mycardocs.adapters.PolicyAdapter;
+import com.atanasvasil.mobile.mycardocs.api.CarsApi;
 import com.atanasvasil.mobile.mycardocs.api.PoliciesApi;
 import com.atanasvasil.mobile.mycardocs.api.UsersApi;
+import com.atanasvasil.mobile.mycardocs.responses.cars.Car;
 import com.atanasvasil.mobile.mycardocs.responses.policies.Policy;
 import com.atanasvasil.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -31,7 +34,9 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,6 +54,7 @@ public class PoliciesFragment extends Fragment {
     private MaterialButton policiesFilterBtn;
     private TextView policiesSelectedTypeTV;
     private TextView policiesSelectedStatusTV;
+    private TextView policiesSelectedCarTV;
     private RecyclerView recyclerView;
     private PolicyAdapter policyAdapter;
     private List<Policy> policies;
@@ -56,6 +62,7 @@ public class PoliciesFragment extends Fragment {
 
     private Spinner pfTypeSP;
     private Spinner pfStatusSP;
+    private Spinner pfCarSP;
     private MaterialButton pfApplyBtn;
 
     private SwipeRefreshLayout policiesNoItemsRefresh;
@@ -70,6 +77,14 @@ public class PoliciesFragment extends Fragment {
 
     private Integer type;
     private Integer status;
+    private String carId;
+
+    private Retrofit retrofit;
+
+    private Map<String, String> userCarsMap = new HashMap<>();
+    private List<String> cars = new ArrayList<>();
+
+    private ArrayAdapter<String> adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,6 +97,7 @@ public class PoliciesFragment extends Fragment {
         policiesFilterBtn = root.findViewById(R.id.policiesFilterBtn);
         policiesSelectedTypeTV = root.findViewById(R.id.policiesSelectedTypeTV);
         policiesSelectedStatusTV = root.findViewById(R.id.policiesSelectedStatusTV);
+        policiesSelectedCarTV = root.findViewById(R.id.policiesSelectedCarTV);
 
         recyclerView = root.findViewById(R.id.policies);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -94,6 +110,8 @@ public class PoliciesFragment extends Fragment {
 
         progress = root.findViewById(R.id.policiesProgress);
         progress.setVisibility(View.VISIBLE);
+
+        retrofit = getRetrofit();
 
         pref = getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
@@ -129,6 +147,7 @@ public class PoliciesFragment extends Fragment {
 
         pfTypeSP = bottomSheetView.findViewById(R.id.pfTypeSP);
         pfStatusSP = bottomSheetView.findViewById(R.id.pfStatusSP);
+        pfCarSP = bottomSheetView.findViewById(R.id.pfCarSP);
         pfApplyBtn = bottomSheetView.findViewById(R.id.pfApplyBtn);
 
         pfStatusSP.setSelection(1); // The default status is ACTIVE
@@ -141,6 +160,12 @@ public class PoliciesFragment extends Fragment {
             policiesSelectedStatusTV.setVisibility(View.VISIBLE);
             policiesSelectedStatusTV.setText(getStringResource(requireContext(), "policies_selected_status_" + status));
         }
+
+        adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, cars);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        getUserCars();
 
         bottomSheetDialog.setContentView(bottomSheetView);
 
@@ -158,8 +183,8 @@ public class PoliciesFragment extends Fragment {
                 type = null;
                 policiesSelectedTypeTV.setVisibility(View.GONE);
             } else {
-                policiesSelectedTypeTV.setVisibility(View.VISIBLE);
                 policiesSelectedTypeTV.setText(requireContext().getString(R.string.policies_selected_type, getStringResource(requireContext(), "policy_type_" + type)));
+                policiesSelectedTypeTV.setVisibility(View.VISIBLE);
             }
 
             status = pfStatusSP.getSelectedItemPosition() - 1;
@@ -167,8 +192,18 @@ public class PoliciesFragment extends Fragment {
             if (status == -1) {
                 policiesSelectedStatusTV.setVisibility(View.GONE);
             } else {
-                policiesSelectedStatusTV.setVisibility(View.VISIBLE);
                 policiesSelectedStatusTV.setText(getStringResource(requireContext(), "policies_selected_status_" + status));
+                policiesSelectedStatusTV.setVisibility(View.VISIBLE);
+            }
+
+            if (pfCarSP.getSelectedItemPosition() == 0) {
+                carId = null;
+                policiesSelectedCarTV.setVisibility(View.GONE);
+            } else {
+                final String licensePlate = pfCarSP.getSelectedItem().toString();
+                carId = userCarsMap.get(licensePlate);
+                policiesSelectedCarTV.setText(getString(R.string.policies_selected_car, licensePlate));
+                policiesSelectedCarTV.setVisibility(View.VISIBLE);
             }
 
             getPoliciesByCriteria();
@@ -181,11 +216,9 @@ public class PoliciesFragment extends Fragment {
     }
 
     private void getPoliciesByCriteria() {
-
-        Retrofit retrofit = getRetrofit();
         PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
-        policiesApi.getPoliciesByCriteria(type, status, loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Policy>>() {
+        policiesApi.getPoliciesByCriteria(type, status, carId, loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Policy>>() {
             @Override
             public void onResponse(@NotNull Call<List<Policy>> call, @NotNull Response<List<Policy>> response) {
 
@@ -232,8 +265,37 @@ public class PoliciesFragment extends Fragment {
         policyAdapter.notifyDataSetChanged();
     }
 
+    private void getUserCars() {
+        CarsApi carsApi = retrofit.create(CarsApi.class);
+        carsApi.getUserCars(loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Car>>() {
+            @Override
+            public void onResponse(@NotNull Call<List<Car>> call, @NotNull Response<List<Car>> response) {
+
+                if (response.code() == 400) {
+                    return;
+                }
+
+                List<Car> storedCars = response.body();
+
+                cars.add(requireContext().getString(R.string.expenses_cars_any));
+
+                for (Car car : storedCars) {
+                    userCarsMap.put(car.getLicensePlate(), car.getCarId());
+                    cars.add(car.getLicensePlate());
+                }
+
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                pfCarSP.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<List<Car>> call, @NotNull Throwable t) {
+                Toast.makeText(getContext(), R.string.error_server, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     private void hasUserCars() {
-        Retrofit retrofit = getRetrofit();
         UsersApi usersApi = retrofit.create(UsersApi.class);
 
         usersApi.hasUserCars(loggedUser.getUserId()).enqueue(new Callback<Boolean>() {
@@ -244,12 +306,16 @@ public class PoliciesFragment extends Fragment {
                     return;
                 }
 
-                if (response.body()) {
+                final boolean hasCars = response.body();
+
+                if (hasCars) {
                     noCarsForPolicyTV.setVisibility(View.GONE);
                     policyCreateFBtn.setVisibility(View.VISIBLE);
+                    policiesFilterBtn.setEnabled(true);
                 } else {
                     noCarsForPolicyTV.setVisibility(View.VISIBLE);
                     policyCreateFBtn.setVisibility(View.INVISIBLE);
+                    policiesFilterBtn.setEnabled(false);
                 }
             }
 
@@ -262,6 +328,7 @@ public class PoliciesFragment extends Fragment {
 
     /**
      * Still works.
+     *
      * @deprecated it uses a filterable method
      */
     @Deprecated
@@ -270,7 +337,7 @@ public class PoliciesFragment extends Fragment {
         Retrofit retrofit = getRetrofit();
         PoliciesApi policiesApi = retrofit.create(PoliciesApi.class);
 
-        policiesApi.getPoliciesByCriteria(null, null, loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Policy>>() {
+        policiesApi.getPoliciesByCriteria(null, null, null, loggedUser.getUserId(), loggedUser.getAuthorization()).enqueue(new Callback<List<Policy>>() {
             @Override
             public void onResponse(@NotNull Call<List<Policy>> call, @NotNull Response<List<Policy>> response) {
 

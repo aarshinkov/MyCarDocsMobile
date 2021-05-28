@@ -43,6 +43,18 @@
         tools:text="Selected status - Active"
         tools:visibility="visible" />
 
+    <TextView
+        android:id="@+id/policiesSelectedCarTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/policiesGuideRight"
+        app:layout_constraintStart_toStartOf="@+id/policiesGuideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/policiesSelectedStatusTV"
+        tools:text="Selected car - PA3994BP"
+        tools:visibility="visible" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/policiesNoItemsRefresh"
         android:layout_width="0dp"
@@ -52,7 +64,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/policiesSelectedStatusTV"
+        app:layout_constraintTop_toBottomOf="@+id/policiesSelectedCarTV"
         tools:visibility="visible">
 
         <androidx.core.widget.NestedScrollView
@@ -132,7 +144,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/policiesSelectedStatusTV"
+        app:layout_constraintTop_toBottomOf="@+id/policiesSelectedCarTV"
         app:layout_constraintVertical_bias="0.0"
         tools:visibility="visible">
 

@@ -34,7 +34,7 @@ public interface PoliciesApi {
     Call<List<Policy>> getPoliciesByStatus(@Query("status") Integer status, @Query("userId") String userId, @Header("Authorization") String authorization);
 
     @GET("api/policies/filter")
-    Call<List<Policy>> getPoliciesByCriteria(@Query("type") Integer type, @Query("status") Integer status, @Query("userId") String userId, @Header("Authorization") String authorization);
+    Call<List<Policy>> getPoliciesByCriteria(@Query("type") Integer type, @Query("status") Integer status, @Query("carId") String carId, @Query("userId") String userId, @Header("Authorization") String authorization);
 
     @POST("api/policies")
     Call<Policy> createPolicy(@Body PolicyCreateRequest pcr, @Header("Authorization") String authorization);

@@ -51,13 +51,15 @@
 
                 <TextView
                     android:id="@+id/policyTypeLabelTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/policy_type"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/policyTypeTV"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/policyNumberTV" />
 
@@ -73,17 +75,26 @@
                     app:layout_constraintTop_toBottomOf="@+id/policyNumberTV"
                     tools:text="Type" />
 
-                <TextView
-                    android:id="@+id/policyInsurerNameLabelTV"
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/policyTypeBarrier"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="policyTypeLabelTV, policyTypeTV" />
+
+                <TextView
+                    android:id="@+id/policyInsurerNameLabelTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/policy_ins_name"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/policyInsurerNameTV"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyTypeLabelTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/policyTypeBarrier" />
 
                 <TextView
                     android:id="@+id/policyInsurerNameTV"
@@ -94,20 +105,29 @@
                     android:fontFamily="@font/nunito"
                     android:transitionName="policyInsName"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyTypeTV"
+                    app:layout_constraintTop_toBottomOf="@+id/policyTypeBarrier"
                     tools:text="Name" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/policyInsurerNameBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="policyInsurerNameLabelTV, policyInsurerNameTV" />
 
                 <TextView
                     android:id="@+id/policyStartDateLabelTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/policy_start_date"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/policyStartDateTV"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyInsurerNameLabelTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/policyInsurerNameBarrier" />
 
                 <TextView
                     android:id="@+id/policyStartDateTV"
@@ -118,18 +138,27 @@
                     android:fontFamily="@font/nunito"
                     android:transitionName="policyStartDate"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyInsurerNameTV"
+                    app:layout_constraintTop_toBottomOf="@+id/policyInsurerNameBarrier"
                     tools:text="12.04.2020 00:00" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/policyStartDateBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="policyStartDateLabelTV, policyStartDateTV" />
 
                 <TextView
                     android:id="@+id/policyEndDateLabelTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/policy_end_date"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/policyEndDateTV"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/policyStartDateLabelTV" />
 
@@ -145,16 +174,24 @@
                     app:layout_constraintTop_toBottomOf="@+id/policyStartDateTV"
                     tools:text="11.04.2021 23:59" />
 
-                <TextView
-                    android:id="@+id/policyStatusLabelTV"
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/policyEndDateBarrier"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="policyEndDateLabelTV, policyEndDateTV" />
+
+                <TextView
+                    android:id="@+id/policyStatusLabelTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/policy_status"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/policyStatusTV"
+                    app:layout_constraintEnd_toStartOf="@+id/policyStatusTV"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide" />
 
                 <TextView
@@ -168,7 +205,14 @@
                     android:textColor="@color/success"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyEndDateTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/policyEndDateBarrier" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/policyStatusBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="policyStatusLabelTV, policyStatusTV" />
 
                 <ProgressBar
                     android:id="@+id/policyValidProgress"
@@ -181,7 +225,7 @@
                     android:progressTint="@color/light"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyStatusTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/policyStatusBarrier" />
 
                 <TextView
                     android:id="@+id/policyValidProgressTV"
@@ -216,13 +260,14 @@
 
                 <TextView
                     android:id="@+id/policyCarLabelTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/policy_car_info"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
                     app:layout_constraintStart_toEndOf="@+id/policyCarIV"
                     app:layout_constraintTop_toBottomOf="@id/policyDivider" />
 
@@ -231,10 +276,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/policy_car_brand_model"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/policyCarInfoTV"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/policyCarLabelTV" />
 
@@ -249,17 +296,26 @@
                     app:layout_constraintTop_toBottomOf="@+id/policyCarLabelTV"
                     tools:text="Name" />
 
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/policyCarInfoBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="policyCarInfoLabelTV, policyCarInfoTV" />
+
                 <TextView
                     android:id="@+id/policyCarLicensePlateLabelTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/policy_car_license_plate"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/policyCarLicensePlateTV"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyCarInfoLabelTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarInfoBarrier" />
 
                 <TextView
                     android:id="@+id/policyCarLicensePlateTV"
@@ -270,20 +326,29 @@
                     android:fontFamily="@font/nunito"
                     android:transitionName="policyCarLicensePlate"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyCarInfoTV"
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarInfoBarrier"
                     tools:text="License plate" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/policyCarLicensePlateBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="policyCarLicensePlateLabelTV, policyCarLicensePlateTV" />
 
                 <TextView
                     android:id="@+id/policyCarYearLabelTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/policy_car_year"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/policyCarYearTV"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyCarLicensePlateLabelTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarLicensePlateBarrier" />
 
                 <TextView
                     android:id="@+id/policyCarYearTV"
@@ -293,20 +358,29 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyCarLicensePlateTV"
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarLicensePlateBarrier"
                     tools:text="Year" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/policyCarYearBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="policyCarYearLabelTV, policyCarYearTV" />
 
                 <TextView
                     android:id="@+id/policyCarColorLabelTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/policy_car_color"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/policyCarColorTV"
                     app:layout_constraintStart_toStartOf="@+id/policyLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyCarYearLabelTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarYearBarrier" />
 
                 <TextView
                     android:id="@+id/policyCarColorTV"
@@ -316,8 +390,16 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     app:layout_constraintEnd_toStartOf="@+id/policyRightGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/policyCarYearTV"
+                    app:layout_constraintTop_toBottomOf="@+id/policyCarYearBarrier"
                     tools:text="Color" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/policyCarColorBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="policyCarColorLabelTV, policyCarColorTV" />
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/policyEditBtn"
@@ -330,7 +412,7 @@
                     app:iconGravity="textStart"
                     app:layout_constraintEnd_toEndOf="@id/policyRightGuide"
                     app:layout_constraintStart_toStartOf="@id/policyLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@id/policyCarColorLabelTV" />
+                    app:layout_constraintTop_toBottomOf="@id/policyCarColorBarrier" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/policyDeleteBtn"

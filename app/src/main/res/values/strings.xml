@@ -157,6 +157,7 @@
     <string name="policies_selected_status_0">Status - Active</string>
     <string name="policies_selected_status_1">Status - Expired</string>
     <string name="policies_selected_status_2">Status - Pending</string>
+    <string name="policies_selected_car">Car - %1$s</string>
 
     <string name="policies_apply">Apply</string>
     <string name="policies_clear">Clear</string>
