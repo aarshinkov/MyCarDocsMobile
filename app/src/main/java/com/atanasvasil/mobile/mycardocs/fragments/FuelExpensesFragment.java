@@ -47,6 +47,7 @@ public class FuelExpensesFragment extends Fragment {
 
     private SwipeRefreshLayout fuelExpensesNoItemsRefresh;
     private SwipeRefreshLayout fuelExpensesRefresh;
+    private CircularProgressIndicator fuelExpensesScrollProgress;
 
     private FloatingActionButton fuelExpenseCreateBtn;
 
@@ -78,6 +79,8 @@ public class FuelExpensesFragment extends Fragment {
 
         fuelExpensesNoItemsRefresh = root.findViewById(R.id.fuelExpensesNoItemsRefresh);
         fuelExpensesRefresh = root.findViewById(R.id.fuelExpensesRefresh);
+
+        fuelExpensesScrollProgress = root.findViewById(R.id.fuelExpensesScrollProgress);
 
         fuelExpenseCreateBtn = root.findViewById(R.id.fuelExpenseCreateBtn);
 
@@ -111,6 +114,7 @@ public class FuelExpensesFragment extends Fragment {
 
                 if (!recyclerView.canScrollVertically(1)) {
                     if (page < totalPages) {
+                        fuelExpensesScrollProgress.setVisibility(View.VISIBLE);
                         page++;
                         getFuelExpenses(page, startLimit);
                     }
@@ -193,6 +197,7 @@ public class FuelExpensesFragment extends Fragment {
 
                 fuelExpensesAdapter.notifyDataSetChanged();
                 fuelExpensesProgress.setVisibility(View.GONE);
+                fuelExpensesScrollProgress.setVisibility(View.GONE);
             }
 
             @Override

@@ -99,7 +99,7 @@
     <string name="car_model">Модел</string>
     <string name="car_color">Цвят</string>
     <string name="car_license_plate">Рег. номер</string>
-    <string name="car_alias">Псевдоним</string>
+    <string name="car_alias">Псевдоним (опционално)</string>
     <string name="car_added_on">Добавена на</string>
     <string name="car_edited_on">Редактирана на</string>
 
@@ -179,12 +179,12 @@
     <string name="policy_end_date">Крайна дата</string>
 
     <string name="policy_type">Тип полица</string>
-    <string name="policy_type_1">Застраховка</string>
+    <string name="policy_type_1">Гражданска застраховка</string>
     <string name="policy_type_2">Каско</string>
     <string name="policy_type_3">Винетка</string>
     <string name="policy_type_4">Годишен технически преглед</string>
     <string-array name="policy_types">
-        <item>Застраховка</item>
+        <item>Гражданска застраховка</item>
         <item>Каско</item>
         <item>Винетка</item>
         <item>Годишен технически преглед</item>

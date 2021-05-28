@@ -10,6 +10,8 @@
         <item name="colorSecondary">@color/colorPrimary</item>
         <item name="colorSecondaryVariant">@color/colorPrimaryDark</item>
         <item name="colorOnSecondary">@color/white</item>
+
+        <item name="fontFamily">@font/nunito</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
@@ -48,4 +50,8 @@
     <style name="Theme.MyCarDocs.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MyCarDocs.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Menu_Style">
+        <item name="fontFamily">@font/nunito</item>
+    </style>
 </resources>

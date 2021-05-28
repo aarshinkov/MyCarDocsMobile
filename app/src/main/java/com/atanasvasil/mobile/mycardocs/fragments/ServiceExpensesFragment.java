@@ -47,6 +47,7 @@ public class ServiceExpensesFragment extends Fragment {
 
     private SwipeRefreshLayout serviceExpensesNoItemsRefresh;
     private SwipeRefreshLayout serviceExpensesRefresh;
+    private CircularProgressIndicator serviceExpensesScrollProgress;
 
     private FloatingActionButton serviceExpenseCreateBtn;
 
@@ -78,6 +79,8 @@ public class ServiceExpensesFragment extends Fragment {
 
         serviceExpensesNoItemsRefresh = root.findViewById(R.id.serviceExpensesNoItemsRefresh);
         serviceExpensesRefresh = root.findViewById(R.id.serviceExpensesRefresh);
+
+        serviceExpensesScrollProgress = root.findViewById(R.id.serviceExpensesScrollProgress);
 
         serviceExpenseCreateBtn = root.findViewById(R.id.serviceExpenseCreateBtn);
 
@@ -111,6 +114,7 @@ public class ServiceExpensesFragment extends Fragment {
 
                 if (!recyclerView.canScrollVertically(1)) {
                     if (page < totalPages) {
+                        serviceExpensesScrollProgress.setVisibility(View.VISIBLE);
                         page++;
                         getServiceExpenses(page, startLimit);
                     }
@@ -192,6 +196,7 @@ public class ServiceExpensesFragment extends Fragment {
 
                 serviceExpensesAdapter.notifyDataSetChanged();
                 serviceExpensesProgress.setVisibility(View.GONE);
+                serviceExpensesScrollProgress.setVisibility(View.GONE);
             }
 
             @Override

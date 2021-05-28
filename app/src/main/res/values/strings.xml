@@ -99,7 +99,7 @@
     <string name="car_model">Model</string>
     <string name="car_color">Color</string>
     <string name="car_license_plate">License plate</string>
-    <string name="car_alias">Alias</string>
+    <string name="car_alias">Alias (optional)</string>
     <string name="car_added_on">Added on</string>
     <string name="car_edited_on">Edited on</string>
 
