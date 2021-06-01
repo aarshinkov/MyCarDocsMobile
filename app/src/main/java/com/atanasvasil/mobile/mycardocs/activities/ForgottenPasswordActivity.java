@@ -1,9 +1,12 @@
 package com.atanasvasil.mobile.mycardocs.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.api.UsersApi;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
@@ -24,6 +28,8 @@ import static com.atanasvasil.mobile.mycardocs.api.Api.getRetrofit;
 
 public class ForgottenPasswordActivity extends AppCompatActivity {
 
+    private LinearProgressIndicator fpProgress;
+
     private EditText fpEmailET;
     private MaterialButton fpBtn;
 
@@ -34,17 +40,15 @@ public class ForgottenPasswordActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(R.string.forgot_password_title);
 
+        fpProgress = findViewById(R.id.fpProgress);
+
         fpEmailET = findViewById(R.id.fpEmailET);
         fpBtn = findViewById(R.id.fpBtn);
 
-        ProgressDialog progress = new ProgressDialog(this);
-        progress.setMessage(getString(R.string.forgot_password_progress));
-        progress.setCancelable(false);
-        progress.setCanceledOnTouchOutside(false);
-
         fpBtn.setOnClickListener(v -> {
 
-            progress.show();
+            fpProgress.setVisibility(View.VISIBLE);
+            fpBtn.setEnabled(false);
 
             boolean hasErrors = false;
 
@@ -54,7 +58,8 @@ public class ForgottenPasswordActivity extends AppCompatActivity {
             }
 
             if (hasErrors) {
-                progress.hide();
+                fpProgress.setVisibility(View.INVISIBLE);
+                fpBtn.setEnabled(true);
                 return;
             }
 
@@ -67,18 +72,23 @@ public class ForgottenPasswordActivity extends AppCompatActivity {
 
                     if (!response.isSuccessful()) {
                         Snackbar.make(v, R.string.forgot_password_error, Snackbar.LENGTH_LONG).show();
-                        progress.hide();
+                        fpProgress.setVisibility(View.INVISIBLE);
+                        fpBtn.setEnabled(true);
                         return;
                     }
 
-                    Snackbar.make(v, R.string.forgot_password_success, Snackbar.LENGTH_LONG).show();
-                    progress.hide();
+                    Intent intent = new Intent(ForgottenPasswordActivity.this, LoginActivity.class);
+                    Toast.makeText(getApplicationContext(), R.string.forgot_password_success, Toast.LENGTH_LONG).show();
+                    fpProgress.setVisibility(View.INVISIBLE);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 }
 
                 @Override
                 public void onFailure(@NotNull Call<Boolean> call, @NotNull Throwable t) {
                     Snackbar.make(v, R.string.forgot_password_error, Snackbar.LENGTH_LONG).show();
-                    progress.hide();
+                    fpProgress.setVisibility(View.INVISIBLE);
+                    fpBtn.setEnabled(true);
                 }
             });
         });

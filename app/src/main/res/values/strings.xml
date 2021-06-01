@@ -31,6 +31,18 @@
     <string name="forgot_password_success">Forgot password email sent successfully</string>
     <string name="forgot_password_error">Error sending forgot password email</string>
 
+    <string name="reset_password_title">Set new password</string>
+    <string name="reset_password_new_password">New password</string>
+    <string name="reset_password_confirm_password">Confirm password</string>
+    <string name="reset_password_save">Save new password</string>
+
+    <string name="reset_password_new_password_error">New password must not be empty!</string>
+    <string name="reset_password_confirm_password_error">Confirm password must not be empty!</string>
+    <string name="reset_password_passwords_mismatch">The passwords do not match!</string>
+
+    <string name="reset_password_success">User password reset successfully</string>
+    <string name="reset_password_error">Error resetting password</string>
+
     <string name="login">Login</string>
     <string name="login_header">Log in to your account to manage your documents, cars and expenses.</string>
     <string name="login_email">Email</string>

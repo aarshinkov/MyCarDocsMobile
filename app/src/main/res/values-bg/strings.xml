@@ -31,6 +31,18 @@
     <string name="forgot_password_success">Имейлът за смяна на парола е изпратен успешно</string>
     <string name="forgot_password_error">Грешка при изпращане на имейл за смяна на парола</string>
 
+    <string name="reset_password_title">Задаване на нова парола</string>
+    <string name="reset_password_new_password">Нова парола</string>
+    <string name="reset_password_confirm_password">Потвърждаване на парола</string>
+    <string name="reset_password_save">Запази новата парола</string>
+
+    <string name="reset_password_new_password_error">Новата парола не може да е празна!</string>
+    <string name="reset_password_confirm_password_error">Потвърждението на паролата не може да е празно!</string>
+    <string name="reset_password_passwords_mismatch">Паролите не съвпадат!</string>
+
+    <string name="reset_password_success">Потребителската парола беше сменена успешно</string>
+    <string name="reset_password_error">Грешка при смяна на потребителската парола</string>
+
     <string name="login">Вход</string>
     <string name="login_header">Влезте във вашия акаунт за да управлявате вашите автомобили, полици и разходи.</string>
     <string name="login_email">Имейл</string>

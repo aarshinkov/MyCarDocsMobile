@@ -34,4 +34,7 @@ public interface UsersApi {
 
     @GET("api/users/password/forgot")
     Call<Boolean> forgotPassword(@Query("email") String email);
+
+    @POST("api/users/password/reset")
+    Call<Boolean> resetPassword(@Query("password") String password, @Query("code") String code);
 }
