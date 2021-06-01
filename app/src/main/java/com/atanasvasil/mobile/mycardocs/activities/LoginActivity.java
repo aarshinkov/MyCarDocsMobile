@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.api.Api;
 import com.atanasvasil.mobile.mycardocs.api.AuthApi;
 import com.atanasvasil.mobile.mycardocs.responses.AuthenticationResponse;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
@@ -40,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginBtn;
     private TextView loginRegisterTV;
     private TextView loginForgotPasswordTV;
-    private ProgressDialog progress;
+    private LinearProgressIndicator loginProgress;
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
@@ -56,16 +58,15 @@ public class LoginActivity extends AppCompatActivity {
         loginRegisterTV = findViewById(R.id.loginRegisterTV);
         loginForgotPasswordTV = findViewById(R.id.loginForgotPasswordTV);
 
+        loginProgress = findViewById(R.id.loginProgress);
+
         pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         editor = pref.edit();
 
-        progress = new ProgressDialog(this);
-        progress.setMessage(getString(R.string.login_process));
-        progress.setCancelable(false);
-        progress.setCanceledOnTouchOutside(false);
-
         loginBtn.setOnClickListener(v -> {
-            progress.show();
+
+            loginProgress.setVisibility(View.VISIBLE);
+            loginBtn.setEnabled(false);
 
             String email = loginEmailET.getText().toString();
             String password = loginPasswordET.getText().toString();
@@ -83,7 +84,8 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if (hasErrors) {
-                progress.hide();
+                loginProgress.setVisibility(View.INVISIBLE);
+                loginBtn.setEnabled(true);
                 return;
             }
 
@@ -98,14 +100,16 @@ public class LoginActivity extends AppCompatActivity {
                         Snackbar.make(v, R.string.login_invalid_credentials, Snackbar.LENGTH_LONG).show();
                         loginEmailET.setError(getString(R.string.login_invalid_credentials));
                         loginPasswordET.setError(getString(R.string.login_invalid_credentials));
-                        progress.hide();
+                        loginProgress.setVisibility(View.INVISIBLE);
+                        loginBtn.setEnabled(true);
                         return;
                     }
 
                     AuthenticationResponse auth = response.body();
 
                     if (auth == null) {
-                        progress.hide();
+                        loginProgress.setVisibility(View.INVISIBLE);
+                        loginBtn.setEnabled(true);
                         return;
                     }
 
@@ -124,7 +128,8 @@ public class LoginActivity extends AppCompatActivity {
                     editor.apply();
 
                     Toast.makeText(getApplicationContext(), getString(R.string.login_welcome, auth.getUser().getFullName()), Toast.LENGTH_LONG).show();
-                    progress.hide();
+                    loginProgress.setVisibility(View.INVISIBLE);
+                    loginBtn.setEnabled(true);
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -134,7 +139,8 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(@NotNull Call<AuthenticationResponse> call, @NotNull Throwable t) {
                     Snackbar.make(v, R.string.login_error, Snackbar.LENGTH_LONG).show();
-                    progress.hide();
+                    loginProgress.setVisibility(View.INVISIBLE);
+                    loginBtn.setEnabled(true);
                 }
             });
         });

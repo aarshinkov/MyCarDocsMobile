@@ -18,8 +18,8 @@
             android:layout_marginTop="16dp"
             android:contentDescription="@string/app_logo"
             android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="@+id/registerGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/registerRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_register" />
 
@@ -32,8 +32,8 @@
             android:gravity="center"
             android:text="@string/registration_header"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/appLogoIV" />
 
         <TextView
@@ -47,8 +47,8 @@
             android:labelFor="@id/registerEmailЕТ"
             android:text="@string/registration_email"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/registerGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/registerRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerHeaderTV" />
 
         <EditText
@@ -59,8 +59,8 @@
             android:fontFamily="@font/nunito"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerEmailLabelTV" />
 
         <TextView
@@ -74,8 +74,8 @@
             android:labelFor="@id/registerPasswordЕТ"
             android:text="@string/registration_password"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/registerGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/registerRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerEmailЕТ" />
 
         <EditText
@@ -85,8 +85,8 @@
             android:fontFamily="@font/nunito"
             android:importantForAutofill="no"
             android:inputType="textPassword"
-            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerPasswordLabelTV" />
 
         <TextView
@@ -100,8 +100,8 @@
             android:labelFor="@id/registerConfirmPasswordЕТ"
             android:text="@string/registration_password_confirm"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/registerGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/registerRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerPasswordЕТ" />
 
         <EditText
@@ -111,9 +111,9 @@
             android:fontFamily="@font/nunito"
             android:importantForAutofill="no"
             android:inputType="textPassword"
-            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
+            app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerConfirmPasswordLabelTV" />
 
         <TextView
@@ -127,8 +127,8 @@
             android:labelFor="@id/registerFirstNameET"
             android:text="@string/registration_first_name"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/registerGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/registerRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerConfirmPasswordЕТ" />
 
         <EditText
@@ -138,8 +138,8 @@
             android:fontFamily="@font/nunito"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerFirstNameLabelTV" />
 
         <TextView
@@ -153,8 +153,8 @@
             android:labelFor="@id/registerLastNameET"
             android:text="@string/registration_last_name"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/registerGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/registerRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerFirstNameET" />
 
         <EditText
@@ -164,9 +164,9 @@
             android:fontFamily="@font/nunito"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
+            app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerLastNameLabelTV" />
 
         <com.google.android.material.button.MaterialButton
@@ -176,7 +176,7 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/nunito"
             android:text="@string/registration_button"
-            app:layout_constraintStart_toStartOf="@+id/registerGuideLeft"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerLastNameET" />
 
         <com.google.android.material.button.MaterialButton
@@ -186,18 +186,27 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/nunito"
             android:text="@string/registration_cancel"
-            app:layout_constraintEnd_toStartOf="@+id/registerGuideRight"
+            app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerLastNameET" />
 
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/registerProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/registerGuideLeft"
+            android:id="@+id/registerLeftGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="16dp" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/registerGuideRight"
+            android:id="@+id/registerRightGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"

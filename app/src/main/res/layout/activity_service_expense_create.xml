@@ -20,8 +20,8 @@
             android:labelFor="@+id/secTypeSP"
             android:text="@string/service_expense_type"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/secRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/secLeftGuide"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
@@ -31,8 +31,8 @@
             android:entries="@array/service_type_options"
             android:prompt="@string/service_expense_type"
             android:spinnerMode="dialog"
-            app:layout_constraintEnd_toStartOf="@+id/secGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintEnd_toStartOf="@+id/secRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/secLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/secTypeLabelTV" />
 
         <TextView
@@ -46,8 +46,8 @@
             android:labelFor="@+id/secCarsSP"
             android:text="@string/service_expense_car"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/secRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/secLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/secTypeSP" />
 
         <Spinner
@@ -56,8 +56,8 @@
             android:layout_height="wrap_content"
             android:prompt="@string/service_expense_car"
             android:spinnerMode="dialog"
-            app:layout_constraintEnd_toStartOf="@+id/secGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintEnd_toStartOf="@+id/secRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/secLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/secCarsLabelTV" />
 
         <TextView
@@ -71,8 +71,8 @@
             android:labelFor="@+id/secPriceET"
             android:text="@string/service_expense_price"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/secRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/secLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/secCarsSP" />
 
         <EditText
@@ -82,8 +82,8 @@
             android:ems="10"
             android:fontFamily="@font/nunito"
             android:inputType="numberDecimal"
-            app:layout_constraintEnd_toStartOf="@+id/secGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintEnd_toStartOf="@+id/secRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/secLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/secPriceLabelTV" />
 
         <TextView
@@ -97,8 +97,8 @@
             android:labelFor="@+id/secNotesET"
             android:text="@string/service_expense_notes"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/secRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/secLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/secPriceET" />
 
         <EditText
@@ -109,8 +109,8 @@
             android:fontFamily="@font/nunito"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            app:layout_constraintEnd_toStartOf="@+id/secGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintEnd_toStartOf="@+id/secRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/secLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/secNotesLabelTV" />
 
         <TextView
@@ -124,8 +124,8 @@
             android:labelFor="@+id/secMileageET"
             android:text="@string/service_expense_mileage"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/secRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/secLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/secNotesET" />
 
         <EditText
@@ -135,8 +135,8 @@
             android:autofillHints="Litres"
             android:fontFamily="@font/nunito"
             android:inputType="numberDecimal"
-            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/secRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/secLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecMileageLabelTV" />
 
         <com.google.android.material.button.MaterialButton
@@ -148,19 +148,19 @@
             android:text="@string/expense_save"
             app:icon="@drawable/ic_expense"
             app:iconGravity="textStart"
-            app:layout_constraintEnd_toEndOf="@+id/secGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/secGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/secRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/secLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/secMileageET" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/secGuideLeft"
+            android:id="@+id/secLeftGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="16dp" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/secGuideRight"
+            android:id="@+id/secRightGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"

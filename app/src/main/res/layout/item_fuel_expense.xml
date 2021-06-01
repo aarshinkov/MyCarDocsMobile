@@ -26,7 +26,7 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/feiGuideLeft"
+                app:layout_constraintStart_toStartOf="@+id/feiLeftGuide"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -74,7 +74,7 @@
                 android:gravity="end"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/feiGuideRight"
+                app:layout_constraintEnd_toStartOf="@+id/feiRightGuide"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -97,14 +97,14 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/feiGuideLeft"
+                android:id="@+id/feiLeftGuide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="16dp" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/feiGuideRight"
+                android:id="@+id/feiRightGuide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

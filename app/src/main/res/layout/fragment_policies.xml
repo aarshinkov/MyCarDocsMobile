@@ -16,7 +16,7 @@
         app:icon="@drawable/ic_filter"
         app:iconGravity="textStart"
         app:iconPadding="4dp"
-        app:layout_constraintStart_toStartOf="@+id/policiesGuideLeft"
+        app:layout_constraintStart_toStartOf="@+id/policiesLeftGuide"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -25,8 +25,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/nunito"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/policiesGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/policiesGuideLeft"
+        app:layout_constraintEnd_toEndOf="@+id/policiesRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/policiesLeftGuide"
         app:layout_constraintTop_toBottomOf="@+id/policiesFilterBtn"
         tools:text="Selected type - Insurance"
         tools:visibility="visible" />
@@ -37,8 +37,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/nunito"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/policiesGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/policiesGuideLeft"
+        app:layout_constraintEnd_toEndOf="@+id/policiesRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/policiesLeftGuide"
         app:layout_constraintTop_toBottomOf="@+id/policiesSelectedTypeTV"
         tools:text="Selected status - Active"
         tools:visibility="visible" />
@@ -49,8 +49,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/nunito"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/policiesGuideRight"
-        app:layout_constraintStart_toStartOf="@+id/policiesGuideLeft"
+        app:layout_constraintEnd_toEndOf="@+id/policiesRightGuide"
+        app:layout_constraintStart_toStartOf="@+id/policiesLeftGuide"
         app:layout_constraintTop_toBottomOf="@+id/policiesSelectedStatusTV"
         tools:text="Selected car - PA3994BP"
         tools:visibility="visible" />
@@ -187,14 +187,14 @@
         app:layout_constraintTop_toTopOf="@+id/policiesRefresh" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/policiesGuideLeft"
+        android:id="@+id/policiesLeftGuide"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="8dp" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/policiesGuideRight"
+        android:id="@+id/policiesRightGuide"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"

@@ -26,7 +26,7 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/seiGuideLeft"
+                app:layout_constraintStart_toStartOf="@+id/seiLeftGuide"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -74,7 +74,7 @@
                 android:gravity="end"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/seiGuideRight"
+                app:layout_constraintEnd_toStartOf="@+id/seiRightGuide"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -82,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito"
-                    app:layout_constraintEnd_toStartOf="@+id/seiGuideRight"
+                    app:layout_constraintEnd_toStartOf="@+id/seiRightGuide"
                     app:layout_constraintTop_toTopOf="@+id/imageView"
                     tools:text="Expense type" />
 
@@ -106,14 +106,14 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/seiGuideLeft"
+                android:id="@+id/seiLeftGuide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="16dp" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/seiGuideRight"
+                android:id="@+id/seiRightGuide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

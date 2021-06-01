@@ -21,8 +21,8 @@
             android:labelFor="@+id/fecPricePerLitreET"
             android:text="@string/fuel_expense_price_per_litre"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -32,8 +32,8 @@
             android:autofillHints="Price per litre"
             android:fontFamily="@font/nunito"
             android:inputType="numberDecimal"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecPricePerLitreLabelTV" />
 
         <TextView
@@ -47,8 +47,8 @@
             android:labelFor="@+id/fecLitresET"
             android:text="@string/fuel_expense_litres"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecPricePerLitreET" />
 
         <EditText
@@ -58,8 +58,8 @@
             android:autofillHints="Litres"
             android:fontFamily="@font/nunito"
             android:inputType="numberDecimal"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecLitresLabelET" />
 
         <TextView
@@ -73,8 +73,8 @@
             android:labelFor="@+id/fecTotalET"
             android:text="@string/fuel_expense_total"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecLitresET" />
 
         <EditText
@@ -84,8 +84,8 @@
             android:autofillHints="Litres"
             android:fontFamily="@font/nunito"
             android:inputType="numberDecimal"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecTotalLabelET" />
 
         <View
@@ -109,8 +109,8 @@
             android:labelFor="@+id/fecDiscountET"
             android:text="@string/fuel_expense_discount_placeholder"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecHorizontalDivider" />
 
         <EditText
@@ -121,8 +121,8 @@
             android:enabled="false"
             android:fontFamily="@font/nunito"
             android:inputType="numberDecimal"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecDiscountLabelTV" />
 
         <TextView
@@ -136,8 +136,8 @@
             android:labelFor="@+id/fecCarsSP"
             android:text="@string/fuel_expense_car_prompt"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecDiscountET" />
 
         <Spinner
@@ -147,8 +147,8 @@
             android:fontFamily="@font/nunito"
             android:prompt="@string/fuel_expense_car_prompt"
             android:spinnerMode="dialog"
-            app:layout_constraintEnd_toStartOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toStartOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecCarsLabelTV" />
 
         <TextView
@@ -162,8 +162,8 @@
             android:labelFor="@+id/fecMileageET"
             android:text="@string/fuel_expense_mileage"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecCarsSP" />
 
         <EditText
@@ -173,8 +173,8 @@
             android:autofillHints="Litres"
             android:fontFamily="@font/nunito"
             android:inputType="numberDecimal"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecMileageLabelTV" />
 
         <TableLayout
@@ -182,8 +182,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecMileageET">
 
             <TableRow
@@ -322,19 +322,19 @@
             android:text="@string/expense_save"
             app:icon="@drawable/ic_expense"
             app:iconGravity="textStart"
-            app:layout_constraintEnd_toEndOf="@+id/fecGuideRight"
-            app:layout_constraintStart_toStartOf="@+id/fecGuideLeft"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecSummaryTable" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/fecGuideLeft"
+            android:id="@+id/fecLeftGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="16dp" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/fecGuideRight"
+            android:id="@+id/fecRightGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"

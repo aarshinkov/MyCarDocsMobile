@@ -19,8 +19,8 @@
         android:textColor="@color/white"
         android:textColorLink="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/startupGuideRight"
-        app:layout_constraintStart_toStartOf="@id/startupGuideLeft"
+        app:layout_constraintEnd_toEndOf="@id/startupRightGuide"
+        app:layout_constraintStart_toStartOf="@id/startupLeftGuide"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -32,8 +32,8 @@
         android:text="@string/home_manage"
         android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@id/startupGuideRight"
-        app:layout_constraintStart_toStartOf="@id/startupGuideLeft"
+        app:layout_constraintEnd_toEndOf="@id/startupRightGuide"
+        app:layout_constraintStart_toStartOf="@id/startupLeftGuide"
         app:layout_constraintTop_toBottomOf="@+id/appTitleTV" />
 
     <TextView
@@ -45,8 +45,8 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/startupGuideRight"
-        app:layout_constraintStart_toStartOf="@id/startupGuideLeft"
+        app:layout_constraintEnd_toEndOf="@id/startupRightGuide"
+        app:layout_constraintStart_toStartOf="@id/startupLeftGuide"
         tools:text="v1.0.0" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
@@ -61,14 +61,14 @@
         app:layout_constraintTop_toBottomOf="@+id/appSubtitleTV" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/startupGuideLeft"
+        android:id="@+id/startupLeftGuide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="32dp" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/startupGuideRight"
+        android:id="@+id/startupRightGuide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

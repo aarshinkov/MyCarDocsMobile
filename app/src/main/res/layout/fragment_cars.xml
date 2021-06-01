@@ -118,14 +118,14 @@
         app:layout_constraintTop_toTopOf="@+id/carsRefresh" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/carsGuideLeft"
+        android:id="@+id/carsLeftGuide"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="8dp" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/carsGuideRight"
+        android:id="@+id/carsRightGuide"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"

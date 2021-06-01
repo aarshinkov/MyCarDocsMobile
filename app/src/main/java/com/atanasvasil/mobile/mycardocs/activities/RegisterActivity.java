@@ -1,10 +1,10 @@
 package com.atanasvasil.mobile.mycardocs.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,6 +15,7 @@ import com.atanasvasil.mobile.mycardocs.R;
 import com.atanasvasil.mobile.mycardocs.api.UsersApi;
 import com.atanasvasil.mobile.mycardocs.responses.users.User;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.io.IOException;
 
@@ -36,14 +37,14 @@ public class RegisterActivity extends AppCompatActivity {
     private MaterialButton registerCancelBtn;
     private MaterialButton registerBtn;
 
-    private ProgressDialog dialog;
+    private LinearProgressIndicator registerProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        setTitle(R.string.registration_title);
+        getSupportActionBar().setTitle(R.string.registration_title);
 
         registerEmailЕТ = findViewById(R.id.registerEmailЕТ);
         registerPasswordЕТ = findViewById(R.id.registerPasswordЕТ);
@@ -53,8 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerCancelBtn = findViewById(R.id.registerCancelBtn);
         registerBtn = findViewById(R.id.registerBtn);
 
-        dialog = new ProgressDialog(this);
-        dialog.setMessage(getString(R.string.registration_progress));
+        registerProgress = findViewById(R.id.registerProgress);
 
         registerCancelBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -63,11 +63,10 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         registerBtn.setOnClickListener(v -> {
-//            Toast.makeText(getApplicationContext(), "Register clicked", Toast.LENGTH_LONG).show();
             boolean hasErrors = false;
 
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.show();
+            registerProgress.setVisibility(View.VISIBLE);
+            registerBtn.setEnabled(false);
 
             final String email = registerEmailЕТ.getText().toString();
             final String password = registerPasswordЕТ.getText().toString();
@@ -93,13 +92,15 @@ public class RegisterActivity extends AppCompatActivity {
                 hasErrors = true;
             }
 
-            if (!password.equals(confirmPassword)) {
-                registerPasswordЕТ.setError(getString(R.string.registration_passwords_match));
-                registerConfirmPasswordЕТ.setError(getString(R.string.registration_passwords_match));
-                hasErrors = true;
-            } else {
-                registerPasswordЕТ.setError(null);
-                registerConfirmPasswordЕТ.setError(null);
+            if (!password.isEmpty() && !confirmPassword.isEmpty()) {
+                if (!password.equals(confirmPassword)) {
+                    registerPasswordЕТ.setError(getString(R.string.registration_passwords_match));
+                    registerConfirmPasswordЕТ.setError(getString(R.string.registration_passwords_match));
+                    hasErrors = true;
+                } else {
+                    registerPasswordЕТ.setError(null);
+                    registerConfirmPasswordЕТ.setError(null);
+                }
             }
 
             if (firstName.isEmpty()) {
@@ -137,7 +138,8 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             if (hasErrors) {
-                dialog.hide();
+                registerProgress.setVisibility(View.INVISIBLE);
+                registerBtn.setEnabled(true);
                 return;
             }
 
@@ -155,7 +157,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), R.string.registration_success, Toast.LENGTH_LONG).show();
 
-                    dialog.hide();
+                    registerProgress.setVisibility(View.INVISIBLE);
+                    registerBtn.setEnabled(true);
 
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
@@ -165,7 +168,8 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), R.string.registration_error, Toast.LENGTH_LONG).show();
-                    dialog.hide();
+                    registerProgress.setVisibility(View.INVISIBLE);
+                    registerBtn.setEnabled(true);
                 }
             });
         });
