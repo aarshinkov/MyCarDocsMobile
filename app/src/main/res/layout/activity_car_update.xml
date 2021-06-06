@@ -221,13 +221,15 @@
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/carUpdateAliasLabelTV" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/carUpdateBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@drawable/btn_shape"
             android:fontFamily="@font/nunito"
             android:text="@string/car_update_button"
+            app:backgroundTint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"

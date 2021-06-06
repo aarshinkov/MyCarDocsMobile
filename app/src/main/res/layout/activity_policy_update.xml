@@ -175,8 +175,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@drawable/btn_shape"
             android:fontFamily="@font/nunito"
             android:text="@string/policy_update_button"
+            app:backgroundTint="@color/colorPrimary"
             app:layout_constraintEnd_toStartOf="@+id/policyUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/policyUpdateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/policyUpdateEndDateET" />

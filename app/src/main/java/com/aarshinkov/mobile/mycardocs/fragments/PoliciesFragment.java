@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +51,9 @@ import static com.aarshinkov.mobile.mycardocs.utils.Utils.getStringResource;
 
 public class PoliciesFragment extends Fragment {
 
-    private MaterialButton policiesFilterBtn;
+    private ImageView policiesFilterIV;
+    private TextView policiesFilterTV;
+    //    private MaterialButton policiesFilterBtn;
     private TextView policiesSelectedTypeTV;
     private TextView policiesSelectedStatusTV;
     private TextView policiesSelectedCarTV;
@@ -93,7 +96,9 @@ public class PoliciesFragment extends Fragment {
         policiesNoItemsRefresh = root.findViewById(R.id.policiesNoItemsRefresh);
         policiesRefresh = root.findViewById(R.id.policiesRefresh);
         policyCreateFBtn = root.findViewById(R.id.policyCreateFBtn);
-        policiesFilterBtn = root.findViewById(R.id.policiesFilterBtn);
+        policiesFilterIV = root.findViewById(R.id.policiesFilterIV);
+        policiesFilterTV = root.findViewById(R.id.policiesFilterTV);
+//        policiesFilterBtn = root.findViewById(R.id.policiesFilterBtn);
         policiesSelectedTypeTV = root.findViewById(R.id.policiesSelectedTypeTV);
         policiesSelectedStatusTV = root.findViewById(R.id.policiesSelectedStatusTV);
         policiesSelectedCarTV = root.findViewById(R.id.policiesSelectedCarTV);
@@ -170,7 +175,11 @@ public class PoliciesFragment extends Fragment {
 
         getPoliciesByCriteria();
 
-        policiesFilterBtn.setOnClickListener(v -> {
+        policiesFilterIV.setOnClickListener(v -> {
+            bottomSheetDialog.show();
+        });
+
+        policiesFilterTV.setOnClickListener(v -> {
             bottomSheetDialog.show();
         });
 
@@ -310,11 +319,14 @@ public class PoliciesFragment extends Fragment {
                 if (hasCars) {
                     noCarsForPolicyTV.setVisibility(View.GONE);
                     policyCreateFBtn.setVisibility(View.VISIBLE);
-                    policiesFilterBtn.setEnabled(true);
+                    policiesFilterIV.setEnabled(true);
+                    policiesFilterTV.setEnabled(true);
+//                    policiesFilterBtn.setEnabled(true);
                 } else {
                     noCarsForPolicyTV.setVisibility(View.VISIBLE);
                     policyCreateFBtn.setVisibility(View.INVISIBLE);
-                    policiesFilterBtn.setEnabled(false);
+                    policiesFilterIV.setEnabled(false);
+                    policiesFilterTV.setEnabled(false);
                 }
             }
 

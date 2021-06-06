@@ -221,13 +221,15 @@
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/carCreateAliasLabelTV" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/carCreateBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@drawable/btn_shape"
             android:fontFamily="@font/nunito"
             android:text="@string/car_create_button"
+            app:backgroundTint="@color/success"
             app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/carCreateAliasET" />

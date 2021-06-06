@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +14,7 @@ import com.aarshinkov.mobile.mycardocs.R;
 import com.aarshinkov.mobile.mycardocs.api.Api;
 import com.aarshinkov.mobile.mycardocs.api.AuthApi;
 import com.aarshinkov.mobile.mycardocs.responses.AuthenticationResponse;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText loginEmailET;
     private EditText loginPasswordET;
-    private Button loginBtn;
+    private MaterialButton loginBtn;
     private TextView loginRegisterTV;
     private TextView loginForgotPasswordTV;
     private LinearProgressIndicator loginProgress;

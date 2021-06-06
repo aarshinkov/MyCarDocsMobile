@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,7 +67,9 @@ public class ExpensesFragment extends Fragment {
 
     private Spinner expensesCarsSP;
     private TextView expensesYearsTV;
-    private MaterialButton expensesFilterBtn;
+    //    private MaterialButton expensesFilterBtn;
+    private ImageView expensesFilterIV;
+    private TextView expensesFilterTV;
     private TextView expensesActiveYear;
     private TextView expensesActiveCar;
     private MaterialButton expensesApplyBtn;
@@ -94,7 +97,9 @@ public class ExpensesFragment extends Fragment {
 
         root = inflater.inflate(R.layout.fragment_expenses, container, false);
 
-        expensesFilterBtn = root.findViewById(R.id.expensesFilterBtn);
+        expensesFilterIV = root.findViewById(R.id.expensesFilterIV);
+        expensesFilterTV = root.findViewById(R.id.expensesFilterTV);
+//        expensesFilterBtn = root.findViewById(R.id.expensesFilterBtn);
         expensesActiveYear = root.findViewById(R.id.expensesActiveYear);
         expensesActiveCar = root.findViewById(R.id.expensesActiveCar);
 
@@ -123,7 +128,11 @@ public class ExpensesFragment extends Fragment {
         loadCars();
         bottomSheetDialog.setContentView(bottomSheetView);
 
-        expensesFilterBtn.setOnClickListener(v -> {
+        expensesFilterIV.setOnClickListener(v -> {
+            bottomSheetDialog.show();
+        });
+
+        expensesFilterTV.setOnClickListener(v -> {
             bottomSheetDialog.show();
         });
 

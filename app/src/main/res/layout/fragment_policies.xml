@@ -6,18 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".fragments.PoliciesFragment">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/policiesFilterBtn"
+    <ImageView
+        android:id="@+id/policiesFilterIV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/nunito"
-        android:text="@string/policies_filter"
-        app:icon="@drawable/ic_filter"
-        app:iconGravity="textStart"
-        app:iconPadding="4dp"
-        app:layout_constraintStart_toStartOf="@+id/policiesLeftGuide"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/expenses_filter"
+        android:src="@drawable/ic_slider"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/policiesFilterTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/expenses_filter"
+        app:layout_constraintBottom_toBottomOf="@+id/policiesFilterIV"
+        app:layout_constraintStart_toEndOf="@+id/policiesFilterIV"
+        app:layout_constraintTop_toTopOf="@+id/policiesFilterIV" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/policyFilterBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:barrierMargin="16dp"
+        app:constraint_referenced_ids="policiesFilterIV, policiesFilterTV" />
+
+    <!--    <com.google.android.material.button.MaterialButton-->
+    <!--        android:id="@+id/policiesFilterBtn"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:background="@drawable/btn_shape"-->
+    <!--        android:fontFamily="@font/nunito"-->
+    <!--        android:text="@string/policies_filter"-->
+    <!--        app:backgroundTint="@color/colorPrimary"-->
+    <!--        app:icon="@drawable/ic_filter"-->
+    <!--        app:iconGravity="textStart"-->
+    <!--        app:iconPadding="4dp"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/policiesLeftGuide"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/policiesSelectedTypeTV"
@@ -27,7 +58,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/policiesRightGuide"
         app:layout_constraintStart_toStartOf="@+id/policiesLeftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/policiesFilterBtn"
+        app:layout_constraintTop_toBottomOf="@+id/policyFilterBarrier"
         tools:text="Selected type - Insurance"
         tools:visibility="visible" />
 

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,6 +19,7 @@ import com.aarshinkov.mobile.mycardocs.api.CarsApi;
 import com.aarshinkov.mobile.mycardocs.requests.cars.CarCreateRequest;
 import com.aarshinkov.mobile.mycardocs.responses.cars.Car;
 import com.aarshinkov.mobile.mycardocs.utils.LoggedUser;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import org.jetbrains.annotations.NotNull;
@@ -42,7 +42,7 @@ public class CarCreateActivity extends AppCompatActivity {
     private EditText carCreateYearET;
     private EditText carCreateLicensePlateET;
     private EditText carCreateAliasET;
-    private Button carCreateBtn;
+    private MaterialButton carCreateBtn;
 
     private LoggedUser loggedUser;
     private SharedPreferences pref;

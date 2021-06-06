@@ -178,7 +178,9 @@
     <string name="policy_create_title">Create a policy</string>
     <string name="policy_create_button">Create policy</string>
     <string name="policy_create_type_prompt">Policy type</string>
-    <string name="policy_create_car_prompt">Cars</string>
+    <string name="policy_create_car_prompt">Car</string>
+    <string name="policy_create_success">Policy created successfully!</string>
+    <string name="policy_create_error">Error creating policy!</string>
     <string name="policy_create_button_descr">Policy create button</string>
 
     <!-- Policy view -->
@@ -241,19 +243,21 @@
     <string name="policy_update_title">Edit a policy</string>
     <string name="policy_update_button">Update policy</string>
     <string name="policy_update_success">Policy updated successfully!</string>
+    <string name="policy_update_error">Error updating policy!</string>
 
     <!-- Policy delete -->
     <string name="policy_delete_title">Delete policy.</string>
-    <string name="policy_delete_message">Сигурни ли сте, че искате да изтриете тази полица?</string>
-    <string name="policy_delete_process">Изтриване на полица…</string>
-    <string name="policy_delete_success">Полицата е изтрита успешно!</string>
-    <string name="policy_delete_error">Грешка при изтриване на полица!</string>
+    <string name="policy_delete_message">Are you sure you want to delete the policy?</string>
+    <string name="policy_delete_process">Deleting policy…</string>
+    <string name="policy_delete_success">Policy deleted successfully!</string>
+    <string name="policy_delete_error">Error deleting policy!</string>
 
     <!-- Policy operations -->
     <string name="policy_operation_policy_number_empty">Policy number must not be empty</string>
     <string name="policy_operation_insurer_name_empty">Insurer name must not be empty</string>
     <string name="policy_operation_start_date_empty">Start date must not be empty</string>
     <string name="policy_operation_end_date_empty">End date must not be empty</string>
+    <string name="policy_operation_end_date_before_start_date">The end date must be after start date!</string>
 
     <!-- Policy responses -->
     <string name="policy_get_error">Error getting policy</string>
@@ -292,7 +296,7 @@
     <string name="fuel_expense_create_litres_empty">Litres must not be empty!</string>
     <string name="fuel_expense_create_discount_invalid">Discount must not be more than the subtotal!</string>
 
-    <string name="service_label">Label</string>
+    <string name="service_label">Service</string>
     <string name="service_expense_title">Service expense</string>
 
     <string name="service_expense_type">Expense type</string>

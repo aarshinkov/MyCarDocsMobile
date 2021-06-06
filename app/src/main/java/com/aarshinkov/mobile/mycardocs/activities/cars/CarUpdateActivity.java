@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,6 +17,7 @@ import com.aarshinkov.mobile.mycardocs.api.CarsApi;
 import com.aarshinkov.mobile.mycardocs.requests.cars.CarUpdateRequest;
 import com.aarshinkov.mobile.mycardocs.responses.cars.Car;
 import com.aarshinkov.mobile.mycardocs.utils.LoggedUser;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import org.jetbrains.annotations.NotNull;
@@ -40,7 +40,7 @@ public class CarUpdateActivity extends AppCompatActivity {
     private EditText carUpdateYearET;
     private EditText carUpdateLicensePlateET;
     private EditText carUpdateAliasET;
-    private Button carUpdateBtn;
+    private MaterialButton carUpdateBtn;
 
     private LinearProgressIndicator progress;
 

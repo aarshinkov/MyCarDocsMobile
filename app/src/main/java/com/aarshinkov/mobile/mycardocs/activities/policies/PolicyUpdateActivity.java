@@ -27,6 +27,7 @@ import com.aarshinkov.mobile.mycardocs.responses.policies.Policy;
 import com.aarshinkov.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -161,6 +162,11 @@ public class PolicyUpdateActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(@NotNull Call<Policy> call, @NotNull Response<Policy> response) {
 
+                            if (!response.isSuccessful()) {
+                                Snackbar.make(v, R.string.policy_update_error, Snackbar.LENGTH_LONG).show();
+                                return;
+                            }
+
                             Toast.makeText(getApplicationContext(), R.string.policy_update_success, Toast.LENGTH_LONG).show();
                             finish();
 
@@ -169,7 +175,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(@NotNull Call<Policy> call, @NotNull Throwable t) {
-                            Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
+                            Snackbar.make(v, R.string.policy_update_error, Snackbar.LENGTH_LONG).show();
                             progress.setVisibility(View.GONE);
                         }
                     });
@@ -178,7 +184,7 @@ public class PolicyUpdateActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(@NotNull Call<Car> call, @NotNull Throwable t) {
-                    Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_LONG).show();
+                    Snackbar.make(v, R.string.policy_update_error, Snackbar.LENGTH_LONG).show();
                     progress.setVisibility(View.GONE);
                 }
             });

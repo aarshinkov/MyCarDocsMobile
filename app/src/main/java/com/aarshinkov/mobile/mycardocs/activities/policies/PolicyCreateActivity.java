@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -27,12 +28,16 @@ import com.aarshinkov.mobile.mycardocs.responses.cars.Car;
 import com.aarshinkov.mobile.mycardocs.responses.policies.Policy;
 import com.aarshinkov.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -49,12 +54,18 @@ import static com.aarshinkov.mobile.mycardocs.utils.Utils.getLoggedUser;
 
 public class PolicyCreateActivity extends AppCompatActivity {
 
-    private EditText policyCreateNumberET;
-    private Spinner policyCreateTypeSP;
-    private EditText policyCreateInsNameET;
-    private Spinner policyCreateCarsSP;
-    private EditText policyCreateStartDateET;
-    private EditText policyCreateEndDateET;
+    private TextInputLayout policyCreateNumberLabelTV;
+    private TextInputEditText policyCreateNumberET;
+    private TextInputLayout policyCreateTypeLabelTV;
+    private AutoCompleteTextView policyCreateTypeDD;
+    private TextInputLayout policyCreateInsNameLabelTV;
+    private TextInputEditText policyCreateInsNameET;
+    private TextInputLayout policyCreateCarsLabelTV;
+    private AutoCompleteTextView policyCreateCarsDD;
+    private TextInputLayout policyCreateStartDateLabelTV;
+    private TextInputEditText policyCreateStartDateET;
+    private TextInputLayout policyCreateEndDateLabelTV;
+    private TextInputEditText policyCreateEndDateET;
 
     private MaterialButton policyCreateBtn;
 
@@ -63,7 +74,8 @@ public class PolicyCreateActivity extends AppCompatActivity {
     private LoggedUser loggedUser;
     private SharedPreferences pref;
 
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> policiesAdapter;
+    private ArrayAdapter<String> carsAdapter;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -73,11 +85,17 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(R.string.policy_create_title);
 
+        policyCreateNumberLabelTV = findViewById(R.id.policyCreateNumberLabelTV);
         policyCreateNumberET = findViewById(R.id.policyCreateNumberET);
-        policyCreateTypeSP = findViewById(R.id.policyCreateTypeSP);
+        policyCreateTypeLabelTV = findViewById(R.id.policyCreateTypeLabelTV);
+        policyCreateTypeDD = findViewById(R.id.policyCreateTypeDD);
+        policyCreateInsNameLabelTV = findViewById(R.id.policyCreateInsNameLabelTV);
         policyCreateInsNameET = findViewById(R.id.policyCreateInsNameET);
-        policyCreateCarsSP = findViewById(R.id.policyCreateCarsSP);
+        policyCreateCarsLabelTV = findViewById(R.id.policyCreateCarsLabelTV);
+        policyCreateCarsDD = findViewById(R.id.policyCreateCarsDD);
+        policyCreateStartDateLabelTV = findViewById(R.id.policyCreateStartDateLabelTV);
         policyCreateStartDateET = findViewById(R.id.policyCreateStartDateET);
+        policyCreateEndDateLabelTV = findViewById(R.id.policyCreateEndDateLabelTV);
         policyCreateEndDateET = findViewById(R.id.policyCreateEndDateET);
 
         policyCreateBtn = findViewById(R.id.policyCreateBtn);
@@ -85,24 +103,32 @@ public class PolicyCreateActivity extends AppCompatActivity {
         pref = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
 
+        final String[] policyTypes = getResources().getStringArray(R.array.policy_types);
+
+        policiesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, policyTypes);
+
+        policiesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        policyCreateTypeDD.setAdapter(policiesAdapter);
+        policyCreateTypeDD.setText(policyTypes[0], false);
+
         loadCars();
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
+        carsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         policyCreateStartDateET.setInputType(InputType.TYPE_NULL);
         policyCreateEndDateET.setInputType(InputType.TYPE_NULL);
 
         policyCreateStartDateET.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
-                showDateTimeDialog(policyCreateStartDateET);
+                showDateTimeDialog(policyCreateStartDateET, policyCreateStartDateLabelTV);
             }
         });
 
         policyCreateEndDateET.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
-                showDateTimeDialog(policyCreateEndDateET);
+                showDateTimeDialog(policyCreateEndDateET, policyCreateEndDateLabelTV);
             }
         });
 
@@ -115,10 +141,12 @@ public class PolicyCreateActivity extends AppCompatActivity {
             PolicyCreateRequest pcr = new PolicyCreateRequest();
 
             pcr.setNumber(policyCreateNumberET.getText().toString());
-            pcr.setType(policyCreateTypeSP.getSelectedItemPosition() + 1);
+//            Toast.makeText(getApplicationContext(), "Type: " + Arrays.asList(policyTypes).indexOf(policyCreateTypeDD.getText().toString()), Toast.LENGTH_SHORT).show();
+            pcr.setType(Arrays.asList(policyTypes).indexOf(policyCreateTypeDD.getText().toString()) + 1);
             pcr.setInsName(policyCreateInsNameET.getText().toString());
 
-            String licensePlate = policyCreateCarsSP.getSelectedItem().toString();
+//            Toast.makeText(getApplicationContext(), "Car: " + policyCreateCarsDD.getText().toString(), Toast.LENGTH_SHORT).show();
+            final String licensePlate = policyCreateCarsDD.getText().toString().split(" - ")[0].trim();
 
             try {
                 DateFormat dateFormat = new SimpleDateFormat(getString(R.string.date_time_default), Locale.getDefault());
@@ -132,15 +160,29 @@ public class PolicyCreateActivity extends AppCompatActivity {
                 String endFDate = dateFormat.format(endDate);
                 pcr.setEndDate(endFDate);
 
-            } catch (Exception e) {
+                if (startDate.after(endDate)) {
+                    policyCreateEndDateLabelTV.setError(getString(R.string.policy_operation_end_date_before_start_date));
+                    return;
+                } else {
+                    policyCreateEndDateLabelTV.setError(null);
+                }
+
+            } catch (Exception ignored) {
 
             }
+
             Retrofit retrofit = getRetrofit();
             CarsApi carsApi = retrofit.create(CarsApi.class);
             carsApi.getCarByLicensePlate(licensePlate, loggedUser.getAuthorization()).enqueue(new Callback<Car>() {
                 @Override
                 public void onResponse(@NotNull Call<Car> call, @NotNull Response<Car> response) {
                     Car car = response.body();
+
+                    if (car == null) {
+                        Snackbar.make(v, R.string.policy_create_error, Snackbar.LENGTH_LONG).show();
+                        return;
+                    }
+
                     pcr.setCarId(car.getCarId());
                     pcr.setUserId(loggedUser.getUserId());
 
@@ -148,6 +190,14 @@ public class PolicyCreateActivity extends AppCompatActivity {
                     policiesApi.createPolicy(pcr, loggedUser.getAuthorization()).enqueue(new Callback<Policy>() {
                         @Override
                         public void onResponse(@NotNull Call<Policy> call, @NotNull Response<Policy> response) {
+
+                            if (!response.isSuccessful()) {
+                                Snackbar.make(v, R.string.policy_create_error, Snackbar.LENGTH_LONG).show();
+                                return;
+                            }
+
+                            Toast.makeText(getApplicationContext(), R.string.policy_create_success, Toast.LENGTH_LONG).show();
+
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("fragment", "policies");
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -156,7 +206,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(@NotNull Call<Policy> call, @NotNull Throwable t) {
-
+                            Snackbar.make(v, R.string.policy_create_error, Snackbar.LENGTH_LONG).show();
                         }
                     });
 
@@ -164,7 +214,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(@NotNull Call<Car> call, @NotNull Throwable t) {
-
+                    Snackbar.make(v, R.string.policy_create_error, Snackbar.LENGTH_LONG).show();
                 }
             });
         });
@@ -185,12 +235,17 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
                 List<Car> storedCars = response.body();
 
-                for (Car car : storedCars) {
-                    cars.add(car.getLicensePlate());
-                }
+                if (storedCars != null) {
+                    for (Car car : storedCars) {
+                        cars.add(car.getLicensePlate() + " - " + car.getBrand() + " " + car.getModel());
+                    }
 
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                policyCreateCarsSP.setAdapter(adapter);
+                    carsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    policyCreateCarsDD.setAdapter(carsAdapter);
+
+                    Car firstCar = storedCars.get(0);
+                    policyCreateCarsDD.setText(firstCar.getLicensePlate() + " - " + firstCar.getBrand() + " " + firstCar.getModel(), false);
+                }
             }
 
             @Override
@@ -206,7 +261,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
         return true;
     }
 
-    private void showDateTimeDialog(final EditText field) {
+    private void showDateTimeDialog(final EditText field, TextInputLayout label) {
         final Calendar calendar = Calendar.getInstance();
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -224,7 +279,7 @@ public class PolicyCreateActivity extends AppCompatActivity {
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_time_1), Locale.getDefault());
 
                         field.setText(simpleDateFormat.format(calendar.getTime()));
-                        field.setError(null);
+                        label.setError(null);
                     }
                 };
 
@@ -258,29 +313,38 @@ public class PolicyCreateActivity extends AppCompatActivity {
         boolean hasErrors = false;
 
         String number = policyCreateNumberET.getText().toString();
-        Integer type = policyCreateTypeSP.getSelectedItemPosition() + 1;
+//        Integer type = policyCreateTypeDD.getSelectedItemPosition() + 1;
         String insName = policyCreateInsNameET.getText().toString();
         String startDate = policyCreateStartDateET.getText().toString();
         String endDate = policyCreateEndDateET.getText().toString();
 
         if (number.isEmpty()) {
-            policyCreateNumberET.setError(getString(R.string.policy_operation_policy_number_empty));
+            policyCreateNumberLabelTV.setError(getString(R.string.policy_operation_policy_number_empty));
             hasErrors = true;
+        } else {
+            policyCreateNumberLabelTV.setError(null);
+//            policyCreateNumberLabelTV.setBoxStrokeColor(getResources().getColor(R.color.success, null));
         }
 
         if (insName.isEmpty()) {
-            policyCreateInsNameET.setError(getString(R.string.policy_operation_insurer_name_empty));
+            policyCreateInsNameLabelTV.setError(getString(R.string.policy_operation_insurer_name_empty));
             hasErrors = true;
+        } else {
+            policyCreateInsNameLabelTV.setError(null);
         }
 
         if (startDate.isEmpty()) {
-            policyCreateStartDateET.setError(getString(R.string.policy_operation_start_date_empty));
+            policyCreateStartDateLabelTV.setError(getString(R.string.policy_operation_start_date_empty));
             hasErrors = true;
+        } else {
+            policyCreateStartDateLabelTV.setError(null);
         }
 
         if (endDate.isEmpty()) {
-            policyCreateEndDateET.setError(getString(R.string.policy_operation_end_date_empty));
+            policyCreateEndDateLabelTV.setError(getString(R.string.policy_operation_end_date_empty));
             hasErrors = true;
+        } else {
+            policyCreateEndDateLabelTV.setError(null);
         }
 
         return hasErrors;

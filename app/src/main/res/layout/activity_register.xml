@@ -174,8 +174,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:background="@drawable/btn_shape"
             android:fontFamily="@font/nunito"
             android:text="@string/registration_button"
+            app:backgroundTint="@color/success"
             app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerLastNameET" />
 
@@ -184,8 +186,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:background="@drawable/btn_shape"
             android:fontFamily="@font/nunito"
             android:text="@string/registration_cancel"
+            app:backgroundTint="@color/colorPrimary"
             app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
             app:layout_constraintTop_toBottomOf="@+id/registerLastNameET" />
 

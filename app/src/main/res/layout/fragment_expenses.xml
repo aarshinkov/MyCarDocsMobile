@@ -6,25 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".activities.ChartActivity">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/expensesFilterBtn"
+    <ImageView
+        android:id="@+id/expensesFilterIV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:fontFamily="@font/nunito"
-        android:text="@string/expenses_filter"
-        android:textSize="12sp"
-        app:icon="@drawable/ic_filter"
-        app:iconGravity="textStart"
-        app:iconPadding="4dp"
-        app:iconSize="16sp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/expenses_filter"
+        android:src="@drawable/ic_slider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/expensesFilterTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/expenses_filter"
+        app:layout_constraintBottom_toBottomOf="@+id/expensesFilterIV"
+        app:layout_constraintStart_toEndOf="@+id/expensesFilterIV"
+        app:layout_constraintTop_toTopOf="@+id/expensesFilterIV" />
+
+    <!--    <com.google.android.material.button.MaterialButton-->
+    <!--        android:id="@+id/expensesFilterBtn"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:background="@drawable/btn_shape"-->
+    <!--        android:fontFamily="@font/nunito"-->
+    <!--        android:text="@string/expenses_filter"-->
+    <!--        android:textSize="12sp"-->
+    <!--        app:backgroundTint="@color/colorPrimary"-->
+    <!--        app:icon="@drawable/ic_filter"-->
+    <!--        app:iconGravity="textStart"-->
+    <!--        app:iconPadding="4dp"-->
+    <!--        app:iconSize="16sp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/expensesExportBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/nunito"
         android:text="@string/expenses_export"
@@ -42,21 +67,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expensesFilterBtn"
+        app:layout_constraintTop_toBottomOf="@+id/expensesFilterIV"
         tools:text="Expenses for 2021" />
 
     <TextView
         android:id="@+id/expensesActiveCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/nunito"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expensesFilterBtn"
+        app:layout_constraintTop_toBottomOf="@+id/expensesFilterIV"
         tools:text="Car - PA9897CA" />
 
     <com.anychart.AnyChartView

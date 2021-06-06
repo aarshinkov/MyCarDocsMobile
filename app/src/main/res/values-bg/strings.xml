@@ -179,6 +179,8 @@
     <string name="policy_create_button">Създай полица</string>
     <string name="policy_create_type_prompt">Тип на полица</string>
     <string name="policy_create_car_prompt">Автомобил</string>
+    <string name="policy_create_success">Полицата е създадена успешно!</string>
+    <string name="policy_create_error">Грешка при създаването на полица!</string>
     <string name="policy_create_button_descr">Бутон за създаване на полица</string>
 
     <!-- Policy view -->
@@ -241,6 +243,7 @@
     <string name="policy_update_title">Редактиране на полица</string>
     <string name="policy_update_button">Редактирай полица</string>
     <string name="policy_update_success">Полицата е редактирана успешно!</string>
+    <string name="policy_update_error">Грешка при редактиране на полица!</string>
 
     <!-- Policy delete -->
     <string name="policy_delete_title">Изтриване на полица.</string>
@@ -254,6 +257,7 @@
     <string name="policy_operation_insurer_name_empty">Името на изпълнителят не може да бъде празен</string>
     <string name="policy_operation_start_date_empty">Началната дата не може да бъде празна</string>
     <string name="policy_operation_end_date_empty">Крайната дата не може да бъде празна</string>
+    <string name="policy_operation_end_date_before_start_date">Крайната дата не може да бъде преди началната дата!</string>
 
     <!-- Policy responses -->
     <string name="policy_get_error">Грешка при вземане на полица</string>
