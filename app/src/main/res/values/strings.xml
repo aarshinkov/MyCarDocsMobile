@@ -110,6 +110,21 @@
     <string name="car_brand">Brand</string>
     <string name="car_model">Model</string>
     <string name="car_color">Color</string>
+    <string-array name="car_colors">
+        <item>White</item>
+        <item>Black</item>
+        <item>Gray</item>
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Yellow</item>
+        <item>Brown</item>
+        <item>Orange</item>
+        <item>Lilac</item>
+        <item>Pink</item>
+        <item>Beige</item>
+    </string-array>
+
     <string name="car_license_plate">License plate</string>
     <string name="car_alias">Alias (optional)</string>
     <string name="car_added_on">Added on</string>

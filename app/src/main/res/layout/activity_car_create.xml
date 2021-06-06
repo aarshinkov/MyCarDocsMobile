@@ -11,215 +11,177 @@
         android:layout_height="wrap_content"
         android:paddingBottom="8dp">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carCreateBrandLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carCreateBrandET"
-            android:text="@string/car_brand"
-            android:textStyle="bold"
+            android:hint="@string/car_brand"
+            android:labelFor="@+id/carCreateBrandET"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/carCreateBrandET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="brand"
-            android:fontFamily="@font/nunito"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateBrandLabelTV" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/carCreateBrandET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carCreateModelLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carCreateModelET"
-            android:text="@string/car_model"
-            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:hint="@string/car_model"
+            android:labelFor="@+id/carCreateModelET"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateBrandET" />
+            app:layout_constraintTop_toBottomOf="@+id/carCreateBrandLabelTV">
 
-        <EditText
-            android:id="@+id/carCreateModelET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="model"
-            android:fontFamily="@font/nunito"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateModelLabelTV" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/carCreateModelET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carCreateColorLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carCreateColorET"
-            android:text="@string/car_color"
-            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:hint="@string/car_color"
+            android:labelFor="@+id/carCreateColorDD"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateModelET" />
+            app:layout_constraintTop_toBottomOf="@+id/carCreateModelLabelTV">
 
-        <EditText
-            android:id="@+id/carCreateColorET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="color"
-            android:fontFamily="@font/nunito"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateColorLabelTV" />
+            <AutoCompleteTextView
+                android:id="@+id/carCreateColorDD"
+                style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:inputType="text" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carCreateTransmissionLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carCreateTransmissionSP"
-            android:text="@string/car_transmission_label"
-            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:hint="@string/car_transmission_label"
+            android:labelFor="@+id/carCreateTransmissionDD"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateColorET" />
+            app:layout_constraintTop_toBottomOf="@+id/carCreateColorLabelTV"
+            app:startIconDrawable="@drawable/ic_transmission">
 
-        <Spinner
-            android:id="@+id/carCreateTransmissionSP"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:entries="@array/car_transmissions"
-            android:fontFamily="@font/nunito"
-            android:prompt="@string/car_transmission_label"
-            android:spinnerMode="dialog"
-            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateTransmissionLabelTV" />
+            <AutoCompleteTextView
+                android:id="@+id/carCreateTransmissionDD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carCreatePowerTypeLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carCreatePowerTypeSP"
-            android:text="@string/car_power_type_label"
-            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:hint="@string/car_power_type_label"
+            android:labelFor="@+id/carCreatePowerTypeDD"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateTransmissionSP" />
+            app:layout_constraintTop_toBottomOf="@+id/carCreateTransmissionLabelTV"
+            app:startIconDrawable="@drawable/ic_gas_station">
 
-        <Spinner
-            android:id="@+id/carCreatePowerTypeSP"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:entries="@array/car_power_types"
-            android:fontFamily="@font/nunito"
-            android:prompt="@string/car_power_type_label"
-            android:spinnerMode="dialog"
-            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreatePowerTypeLabelTV" />
+            <AutoCompleteTextView
+                android:id="@+id/carCreatePowerTypeDD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carCreateYearLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carCreateYearET"
-            android:text="@string/car_year_label"
-            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:hint="@string/car_year_label"
+            android:labelFor="@+id/carCreateYearET"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreatePowerTypeSP" />
+            app:layout_constraintTop_toBottomOf="@+id/carCreatePowerTypeLabelTV">
 
-        <EditText
-            android:id="@+id/carCreateYearET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="powerType"
-            android:fontFamily="@font/nunito"
-            android:inputType="number"
-            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateYearLabelTV" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/carCreateYearET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carCreateLicensePlateLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carCreateLicensePlateET"
-            android:text="@string/car_license_plate"
-            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:hint="@string/car_license_plate"
+            android:labelFor="@+id/carCreateLicensePlateET"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateYearET" />
+            app:layout_constraintTop_toBottomOf="@+id/carCreateYearLabelTV">
 
-        <EditText
-            android:id="@+id/carCreateLicensePlateET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="licensePlate"
-            android:fontFamily="@font/nunito"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateLicensePlateLabelTV" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/carCreateLicensePlateET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapCharacters" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carCreateAliasLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carCreateAliasET"
-            android:text="@string/car_alias"
-            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:hint="@string/car_alias"
+            android:labelFor="@+id/carCreateAliasET"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateLicensePlateET" />
+            app:layout_constraintTop_toBottomOf="@+id/carCreateLicensePlateLabelTV">
 
-        <EditText
-            android:id="@+id/carCreateAliasET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="alias"
-            android:fontFamily="@font/nunito"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateAliasLabelTV" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/carCreateAliasET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/carCreateBtn"
@@ -232,7 +194,7 @@
             app:backgroundTint="@color/success"
             app:layout_constraintEnd_toStartOf="@+id/carCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carCreateAliasET" />
+            app:layout_constraintTop_toBottomOf="@+id/carCreateAliasLabelTV" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/carCreateProgress"

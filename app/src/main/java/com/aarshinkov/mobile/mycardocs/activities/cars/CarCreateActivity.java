@@ -3,10 +3,13 @@ package com.aarshinkov.mobile.mycardocs.activities.cars;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,8 +24,12 @@ import com.aarshinkov.mobile.mycardocs.responses.cars.Car;
 import com.aarshinkov.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,13 +41,24 @@ import static com.aarshinkov.mobile.mycardocs.utils.Utils.getLoggedUser;
 
 public class CarCreateActivity extends AppCompatActivity {
 
-    private EditText carCreateBrandET;
-    private EditText carCreateModelET;
-    private EditText carCreateColorET;
-    private Spinner carCreateTransmissionSP;
-    private Spinner carCreatePowerTypeSP;
-    private EditText carCreateYearET;
-    private EditText carCreateLicensePlateET;
+    private TextInputLayout carCreateBrandLabelTV;
+    private TextInputEditText carCreateBrandET;
+
+    private TextInputLayout carCreateModelLabelTV;
+    private TextInputEditText carCreateModelET;
+
+    private TextInputLayout carCreateColorLabelTV;
+    private AutoCompleteTextView carCreateColorDD;
+
+    private AutoCompleteTextView carCreateTransmissionDD;
+    private AutoCompleteTextView carCreatePowerTypeDD;
+
+    private TextInputLayout carCreateYearLabelTV;
+    private TextInputEditText carCreateYearET;
+
+    private TextInputLayout carCreateLicensePlateLabelTV;
+    private TextInputEditText carCreateLicensePlateET;
+
     private EditText carCreateAliasET;
     private MaterialButton carCreateBtn;
 
@@ -48,6 +66,10 @@ public class CarCreateActivity extends AppCompatActivity {
     private SharedPreferences pref;
 
     private LinearProgressIndicator progress;
+
+    private ArrayAdapter<String> colorsAdapter;
+    private ArrayAdapter<String> transmissionsAdapter;
+    private ArrayAdapter<String> powerTypesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,18 +81,76 @@ public class CarCreateActivity extends AppCompatActivity {
 
         progress = findViewById(R.id.carCreateProgress);
 
+        carCreateBrandLabelTV = findViewById(R.id.carCreateBrandLabelTV);
         carCreateBrandET = findViewById(R.id.carCreateBrandET);
+
+        carCreateModelLabelTV = findViewById(R.id.carCreateModelLabelTV);
         carCreateModelET = findViewById(R.id.carCreateModelET);
-        carCreateColorET = findViewById(R.id.carCreateColorET);
-        carCreateTransmissionSP = findViewById(R.id.carCreateTransmissionSP);
-        carCreatePowerTypeSP = findViewById(R.id.carCreatePowerTypeSP);
+
+        carCreateColorLabelTV = findViewById(R.id.carCreateColorLabelTV);
+
+        carCreateColorDD = findViewById(R.id.carCreateColorDD);
+        carCreateTransmissionDD = findViewById(R.id.carCreateTransmissionDD);
+        carCreatePowerTypeDD = findViewById(R.id.carCreatePowerTypeDD);
+
+        carCreateYearLabelTV = findViewById(R.id.carCreateYearLabelTV);
         carCreateYearET = findViewById(R.id.carCreateYearET);
+
+        carCreateLicensePlateLabelTV = findViewById(R.id.carCreateLicensePlateLabelTV);
         carCreateLicensePlateET = findViewById(R.id.carCreateLicensePlateET);
+
+        final String[] colors = getResources().getStringArray(R.array.car_colors);
+
+        colorsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, colors);
+
+        colorsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        carCreateColorDD.setAdapter(colorsAdapter);
+
+        final String[] transmissions = getResources().getStringArray(R.array.car_transmissions);
+
+        transmissionsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, transmissions);
+
+        transmissionsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        carCreateTransmissionDD.setAdapter(transmissionsAdapter);
+        carCreateTransmissionDD.setText(transmissions[0], false);
+
+        final String[] powerTypes = getResources().getStringArray(R.array.car_power_types);
+
+        powerTypesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, powerTypes);
+
+        powerTypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        carCreatePowerTypeDD.setAdapter(powerTypesAdapter);
+        carCreatePowerTypeDD.setText(powerTypes[0], false);
+
         carCreateAliasET = findViewById(R.id.carCreateAliasET);
         carCreateBtn = findViewById(R.id.carCreateBtn);
 
         pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
+
+        carCreateLicensePlateET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String text = s.toString();
+                if (!text.equals(text.toUpperCase())) {
+                    text = text.toUpperCase();
+                    carCreateLicensePlateET.setText(text);
+                    carCreateLicensePlateET.setSelection(carCreateLicensePlateET.length()); //fix reverse texting
+                }
+            }
+        });
 
         carCreateBtn.setOnClickListener(v -> {
 
@@ -84,13 +164,13 @@ public class CarCreateActivity extends AppCompatActivity {
             CarCreateRequest ccr = new CarCreateRequest();
             ccr.setBrand(carCreateBrandET.getText().toString());
             ccr.setModel(carCreateModelET.getText().toString());
-            ccr.setColor(carCreateColorET.getText().toString());
-            int transmission = carCreateTransmissionSP.getSelectedItemPosition();
+            ccr.setColor(carCreateColorDD.getText().toString());
+            final int transmission = Arrays.asList(transmissions).indexOf(carCreateTransmissionDD.getText().toString());
             ccr.setTransmission(transmission);
-            int powerType = carCreatePowerTypeSP.getSelectedItemPosition();
+            final int powerType = Arrays.asList(powerTypes).indexOf(carCreatePowerTypeDD.getText().toString());
             ccr.setPowerType(powerType);
-            ccr.setYear(Integer.parseInt(carCreateYearET.getText().toString()));
-            ccr.setLicensePlate(carCreateLicensePlateET.getText().toString());
+            ccr.setYear(Integer.parseInt(carCreateYearET.getText().toString().trim()));
+            ccr.setLicensePlate(carCreateLicensePlateET.getText().toString().trim());
             ccr.setAlias(carCreateAliasET.getText().toString());
             ccr.setUserId(loggedUser.getUserId());
 
@@ -122,7 +202,6 @@ public class CarCreateActivity extends AppCompatActivity {
                     progress.setVisibility(View.GONE);
                 }
             });
-
         });
     }
 
@@ -137,43 +216,54 @@ public class CarCreateActivity extends AppCompatActivity {
 
         boolean hasErrors = false;
 
-        String brand = carCreateBrandET.getText().toString();
-        String model = carCreateModelET.getText().toString();
-        String color = carCreateColorET.getText().toString();
-        Integer year = 0;
+        final String brand = carCreateBrandET.getText().toString();
+        final String model = carCreateModelET.getText().toString();
+        final String color = carCreateColorDD.getText().toString();
+        Integer year = null;
 
         try {
             year = Integer.parseInt(carCreateYearET.getText().toString());
+            carCreateYearLabelTV.setError(null);
         } catch (NumberFormatException e) {
-            carCreateYearET.setError(getString(R.string.car_operation_invalid_format));
+            carCreateYearLabelTV.setError(getString(R.string.car_operation_invalid_format));
             hasErrors = true;
         }
 
-        String licensePlate = carCreateLicensePlateET.getText().toString();
+        final String licensePlate = carCreateLicensePlateET.getText().toString();
 
-        if (brand == null || brand.isEmpty()) {
-            carCreateBrandET.setError(getString(R.string.car_operation_brand_empty));
+        if (brand.isEmpty()) {
+            carCreateBrandLabelTV.setError(getString(R.string.car_operation_brand_empty));
             hasErrors = true;
+        } else {
+            carCreateBrandLabelTV.setError(null);
         }
 
-        if (model == null || model.isEmpty()) {
-            carCreateModelET.setError(getString(R.string.car_operation_model_empty));
+        if (model.isEmpty()) {
+            carCreateModelLabelTV.setError(getString(R.string.car_operation_model_empty));
             hasErrors = true;
+        } else {
+            carCreateModelLabelTV.setError(null);
         }
 
-        if (color == null || color.isEmpty()) {
-            carCreateColorET.setError(getString(R.string.car_operation_color_empty));
+        if (color.isEmpty()) {
+            carCreateColorLabelTV.setError(getString(R.string.car_operation_color_empty));
             hasErrors = true;
+        } else {
+            carCreateColorLabelTV.setError(null);
         }
 
         if (year == null) {
-            carCreateYearET.setError(getString(R.string.car_operation_year_empty));
+            carCreateYearLabelTV.setError(getString(R.string.car_operation_year_empty));
             hasErrors = true;
+        } else {
+            carCreateYearLabelTV.setError(null);
         }
 
-        if (licensePlate == null || licensePlate.isEmpty()) {
-            carCreateLicensePlateET.setError(getString(R.string.car_operation_license_plate_empty));
+        if (licensePlate.isEmpty()) {
+            carCreateLicensePlateLabelTV.setError(getString(R.string.car_operation_license_plate_empty));
             hasErrors = true;
+        } else {
+            carCreateLicensePlateLabelTV.setError(null);
         }
 
         return hasErrors;

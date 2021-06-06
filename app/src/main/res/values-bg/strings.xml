@@ -110,6 +110,21 @@
     <string name="car_brand">Марка</string>
     <string name="car_model">Модел</string>
     <string name="car_color">Цвят</string>
+    <string-array name="car_colors">
+        <item>Бял</item>
+        <item>Черен</item>
+        <item>Сив</item>
+        <item>Червен</item>
+        <item>Син</item>
+        <item>Зелен</item>
+        <item>Жълт</item>
+        <item>Кафяв</item>
+        <item>Оранжев</item>
+        <item>Лилав</item>
+        <item>Розов</item>
+        <item>Бежов</item>
+    </string-array>
+
     <string name="car_license_plate">Рег. номер</string>
     <string name="car_alias">Псевдоним (опционално)</string>
     <string name="car_added_on">Добавена на</string>
