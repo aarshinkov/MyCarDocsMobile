@@ -34,7 +34,7 @@ import com.anychart.enums.Orientation;
 import com.anychart.enums.ScaleStackMode;
 import com.anychart.enums.TooltipDisplayMode;
 import com.anychart.enums.TooltipPositionMode;
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 import bg.forcar.mobile.api.CarsApi;
 import bg.forcar.mobile.api.ExpensesApi;
 import bg.forcar.mobile.responses.cars.Car;

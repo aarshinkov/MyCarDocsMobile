@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.aarshinkov.mobile.mycardocs">
+    package="bg.forcar.mobile">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,45 +11,45 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyCarDocs"
+        android:theme="@style/Theme.Forcar"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.ChartActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="bg.forcar.mobile.activities.ChartActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.fuel.FuelExpenseCreateActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="bg.forcar.mobile.activities.fuel.FuelExpenseCreateActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.fuel.FuelExpenseActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="bg.forcar.mobile.activities.fuel.FuelExpenseActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.service.ServiceExpenseCreateActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="bg.forcar.mobile.activities.service.ServiceExpenseCreateActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.service.ServiceExpenseActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="bg.forcar.mobile.activities.service.ServiceExpenseActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.policies.PolicyActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="bg.forcar.mobile.activities.policies.PolicyActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.policies.PolicyUpdateActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="bg.forcar.mobile.activities.policies.PolicyUpdateActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.policies.PolicyCreateActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="bg.forcar.mobile.activities.policies.PolicyCreateActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.cars.CarUpdateActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.cars.CarActivity" />
+            android:name="bg.forcar.mobile.activities.cars.CarUpdateActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.cars.CarActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.cars.CarActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="bg.forcar.mobile.activities.cars.CarActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.cars.CarCreateActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="bg.forcar.mobile.activities.cars.CarCreateActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.StartupActivity"
-            android:theme="@style/MyCarDocs.ThemeNo">
+            android:name="bg.forcar.mobile.activities.StartupActivity"
+            android:theme="@style/Forcar.ThemeNo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,19 +57,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity"
+            android:name="bg.forcar.mobile.activities.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/Theme.MyCarDocs.NoActionBar" />
+            android:theme="@style/Theme.Forcar.NoActionBar" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.RegisterActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.LoginActivity" />
-        <activity android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.LoginActivity" />
+            android:name="bg.forcar.mobile.activities.RegisterActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.LoginActivity" />
+        <activity android:name="bg.forcar.mobile.activities.LoginActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.ForgottenPasswordActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.LoginActivity" />
+            android:name="bg.forcar.mobile.activities.ForgottenPasswordActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.LoginActivity" />
 
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.ResetPasswordActivity"
+            android:name="bg.forcar.mobile.activities.ResetPasswordActivity"
             android:label="@string/reset_password_title">
             <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.VIEW" />
@@ -80,11 +80,11 @@
                 <!-- It should be as a link like in a notepad on mobile phone -->
                 <data
                     android:host="94.72.129.171"
-                    android:pathPrefix="/MyCarDocsApi/api/password"
+                    android:pathPrefix="/ForcarApi/api/password"
                     android:port="9003"
                     android:scheme="http" />
                 <data
-                    android:host="mycardocs.com"
+                    android:host="forcar.bg"
                     android:pathPrefix="/api/password"
                     android:scheme="http" />
                 <!-- note that the leading "/" is required for pathPrefix-->

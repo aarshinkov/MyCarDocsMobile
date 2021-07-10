@@ -10,12 +10,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 import bg.forcar.mobile.api.Api;
 import bg.forcar.mobile.api.CarsApi;
 import bg.forcar.mobile.requests.cars.CarUpdateRequest;
 import bg.forcar.mobile.responses.cars.Car;
 import bg.forcar.mobile.utils.LoggedUser;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
@@ -105,6 +106,9 @@ public class CarUpdateActivity extends AppCompatActivity {
 
         String carId = getIntent().getStringExtra("carId");
 
+        final String[] transmissions = getResources().getStringArray(R.array.car_transmissions);
+        final String[] powerTypes = getResources().getStringArray(R.array.car_power_types);
+
         carsApi.getCar(carId, loggedUser.getAuthorization()).enqueue(new Callback<Car>() {
             @Override
             public void onResponse(@NotNull Call<Car> call, @NotNull Response<Car> response) {
@@ -138,10 +142,11 @@ public class CarUpdateActivity extends AppCompatActivity {
             cur.setBrand(carUpdateBrandET.getText().toString());
             cur.setModel(carUpdateModelET.getText().toString());
             cur.setColor(carUpdateColorDD.getText().toString());
-            final int transmission = Arrays.asList(transmissions).indexOf(carCreateTransmissionDD.getText().toString());
-            int transmission = carUpdateTransmissionDD.getSelectedItemPosition();
+            final int transmission = Arrays.asList(transmissions).indexOf(carUpdateTransmissionDD.getText().toString());
+//            int transmission = carUpdateTransmissionDD.getSelectedItemPosition();
             cur.setTransmission(transmission);
-            int powerType = carUpdatePowerTypeDD.getSelectedItemPosition();
+//            int powerType = carUpdatePowerTypeDD.getSelectedItemPosition();
+            final int powerType = Arrays.asList(powerTypes).indexOf(carUpdatePowerTypeDD.getText().toString());
             cur.setPowerType(powerType);
             cur.setYear(Integer.parseInt(carUpdateYearET.getText().toString()));
             cur.setLicensePlate(carUpdateLicensePlateET.getText().toString());
@@ -177,43 +182,54 @@ public class CarUpdateActivity extends AppCompatActivity {
 
         boolean hasErrors = false;
 
-        String brand = carUpdateBrandET.getText().toString();
-        String model = carUpdateModelET.getText().toString();
-        String color = carUpdateColorET.getText().toString();
-        Integer year = 0;
+        final String brand = carUpdateBrandET.getText().toString();
+        final String model = carUpdateModelET.getText().toString();
+        final String color = carUpdateColorDD.getText().toString();
+        Integer year = null;
 
         try {
             year = Integer.parseInt(carUpdateYearET.getText().toString());
+            carUpdateYearLabelTV.setError(null);
         } catch (NumberFormatException e) {
-            carUpdateYearET.setError(getString(R.string.car_operation_invalid_format));
+            carUpdateYearLabelTV.setError(getString(R.string.car_operation_invalid_format));
             hasErrors = true;
         }
 
-        String licensePlate = carUpdateLicensePlateET.getText().toString();
+        final String licensePlate = carUpdateLicensePlateET.getText().toString();
 
-        if (brand == null || brand.isEmpty()) {
-            carUpdateBrandET.setError(getString(R.string.car_operation_brand_empty));
+        if (brand.isEmpty()) {
+            carUpdateBrandLabelTV.setError(getString(R.string.car_operation_brand_empty));
             hasErrors = true;
+        } else {
+            carUpdateBrandLabelTV.setError(null);
         }
 
-        if (model == null || model.isEmpty()) {
-            carUpdateModelET.setError(getString(R.string.car_operation_model_empty));
+        if (model.isEmpty()) {
+            carUpdateModelLabelTV.setError(getString(R.string.car_operation_model_empty));
             hasErrors = true;
+        } else {
+            carUpdateModelLabelTV.setError(null);
         }
 
-        if (color == null || color.isEmpty()) {
-            carUpdateColorET.setError(getString(R.string.car_operation_color_empty));
+        if (color.isEmpty()) {
+            carUpdateColorLabelTV.setError(getString(R.string.car_operation_color_empty));
             hasErrors = true;
+        } else {
+            carUpdateColorLabelTV.setError(null);
         }
 
         if (year == null) {
-            carUpdateYearET.setError(getString(R.string.car_operation_year_empty));
+            carUpdateYearLabelTV.setError(getString(R.string.car_operation_year_empty));
             hasErrors = true;
+        } else {
+            carUpdateYearLabelTV.setError(null);
         }
 
-        if (licensePlate == null || licensePlate.isEmpty()) {
-            carUpdateLicensePlateET.setError(getString(R.string.car_operation_license_plate_empty));
+        if (licensePlate.isEmpty()) {
+            carUpdateLicensePlateLabelTV.setError(getString(R.string.car_operation_license_plate_empty));
             hasErrors = true;
+        } else {
+            carUpdateLicensePlateLabelTV.setError(null);
         }
 
         return hasErrors;

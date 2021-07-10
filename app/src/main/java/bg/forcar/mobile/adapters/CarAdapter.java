@@ -14,7 +14,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 
 import bg.forcar.mobile.activities.cars.CarActivity;
 import bg.forcar.mobile.responses.cars.Car;

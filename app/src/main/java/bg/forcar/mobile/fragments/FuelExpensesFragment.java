@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 
 import bg.forcar.mobile.activities.fuel.FuelExpenseCreateActivity;
 import bg.forcar.mobile.collections.FuelExpensesCollection;

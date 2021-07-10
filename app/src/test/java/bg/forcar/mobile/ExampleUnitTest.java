@@ -1,4 +1,4 @@
-package bg.forcar.mobile.mycardocs;
+package bg.forcar.mobile;
 
 import org.junit.Test;
 

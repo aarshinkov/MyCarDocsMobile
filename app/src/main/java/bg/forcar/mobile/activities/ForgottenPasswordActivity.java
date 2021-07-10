@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 import bg.forcar.mobile.api.UsersApi;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;

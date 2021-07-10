@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 
 import bg.forcar.mobile.activities.StartupActivity;
 

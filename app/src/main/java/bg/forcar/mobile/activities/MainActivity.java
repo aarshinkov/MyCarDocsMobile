@@ -18,7 +18,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 import bg.forcar.mobile.utils.LoggedUser;
 import com.google.android.material.navigation.NavigationView;
 

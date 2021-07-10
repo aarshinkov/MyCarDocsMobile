@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 import bg.forcar.mobile.api.Api;
 import bg.forcar.mobile.api.AuthApi;
 import bg.forcar.mobile.responses.AuthenticationResponse;

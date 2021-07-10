@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 import bg.forcar.mobile.activities.MainActivity;
 import bg.forcar.mobile.api.PoliciesApi;
 import bg.forcar.mobile.responses.cars.Car;

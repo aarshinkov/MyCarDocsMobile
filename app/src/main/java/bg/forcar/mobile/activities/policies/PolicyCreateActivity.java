@@ -18,7 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 import bg.forcar.mobile.activities.MainActivity;
 import bg.forcar.mobile.api.CarsApi;
 import bg.forcar.mobile.api.PoliciesApi;

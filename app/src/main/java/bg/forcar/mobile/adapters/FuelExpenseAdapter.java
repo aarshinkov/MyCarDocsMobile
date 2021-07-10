@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 
 import bg.forcar.mobile.activities.fuel.FuelExpenseActivity;
 import bg.forcar.mobile.responses.cars.Car;

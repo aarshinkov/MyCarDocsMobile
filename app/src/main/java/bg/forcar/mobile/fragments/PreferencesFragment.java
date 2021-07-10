@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.preference.PreferenceFragmentCompat;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 
 public class PreferencesFragment extends PreferenceFragmentCompat {
 

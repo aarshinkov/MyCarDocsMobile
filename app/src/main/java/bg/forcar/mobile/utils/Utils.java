@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;

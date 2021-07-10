@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aarshinkov.mobile.mycardocs.R;
+import bg.forcar.mobile.R;
 import bg.forcar.mobile.utils.LoggedUser;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
