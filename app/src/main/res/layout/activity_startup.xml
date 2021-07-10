@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".activities.StartupActivity">
+    tools:context="bg.forcar.mobile.activities.StartupActivity">
 
     <TextView
         android:id="@+id/appTitleTV"

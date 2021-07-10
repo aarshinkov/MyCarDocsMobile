@@ -5,7 +5,7 @@
     android:id="@+id/policyActivityLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.policies.PolicyActivity">
+    tools:context="bg.forcar.mobile.activities.policies.PolicyActivity">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/policyRefresh"

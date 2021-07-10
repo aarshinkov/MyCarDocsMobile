@@ -7,43 +7,43 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.aarshinkov.mobile.mycardocs.fragments.HomeFragment"
+        android:name="bg.forcar.mobile.fragments.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_cars"
-        android:name="com.aarshinkov.mobile.mycardocs.fragments.CarsFragment"
+        android:name="bg.forcar.mobile.fragments.CarsFragment"
         android:label="@string/menu_cars"
         tools:layout="@layout/fragment_cars" />
 
     <fragment
         android:id="@+id/nav_policies"
-        android:name="com.aarshinkov.mobile.mycardocs.fragments.PoliciesFragment"
+        android:name="bg.forcar.mobile.fragments.PoliciesFragment"
         android:label="@string/menu_policies"
         tools:layout="@layout/fragment_policies" />
 
     <fragment
         android:id="@+id/nav_expenses"
-        android:name="com.aarshinkov.mobile.mycardocs.fragments.ExpensesFragment"
+        android:name="bg.forcar.mobile.fragments.ExpensesFragment"
         android:label="@string/menu_expenses"
         tools:layout="@layout/fragment_expenses" />
 
     <fragment
         android:id="@+id/nav_fuel_expense"
-        android:name="com.aarshinkov.mobile.mycardocs.fragments.FuelExpensesFragment"
+        android:name="bg.forcar.mobile.fragments.FuelExpensesFragment"
         android:label="@string/menu_fuel_expense"
         tools:layout="@layout/fragment_fuel_expenses" />
 
     <fragment
         android:id="@+id/nav_service_expense"
-        android:name="com.aarshinkov.mobile.mycardocs.fragments.ServiceExpensesFragment"
+        android:name="bg.forcar.mobile.fragments.ServiceExpensesFragment"
         android:label="@string/menu_service_expense"
         tools:layout="@layout/fragment_service_expenses" />
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.aarshinkov.mobile.mycardocs.fragments.SettingsFragment"
+        android:name="bg.forcar.mobile.fragments.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

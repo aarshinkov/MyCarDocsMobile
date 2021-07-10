@@ -15,40 +15,40 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.ChartActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.ChartActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.fuel.FuelExpenseCreateActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.fuel.FuelExpenseCreateActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.fuel.FuelExpenseActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.fuel.FuelExpenseActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.service.ServiceExpenseCreateActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.service.ServiceExpenseCreateActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.service.ServiceExpenseActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.service.ServiceExpenseActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.policies.PolicyActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.policies.PolicyActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.policies.PolicyUpdateActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.policies.PolicyUpdateActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.policies.PolicyCreateActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.policies.PolicyCreateActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.cars.CarUpdateActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.cars.CarActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.cars.CarUpdateActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.cars.CarActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.cars.CarActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.cars.CarActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.cars.CarCreateActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.MainActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.cars.CarCreateActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.StartupActivity"
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.StartupActivity"
             android:theme="@style/MyCarDocs.ThemeNo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,19 +57,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.MainActivity"
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.MyCarDocs.NoActionBar" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.RegisterActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.LoginActivity" />
-        <activity android:name="com.aarshinkov.mobile.mycardocs.activities.LoginActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.RegisterActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.LoginActivity" />
+        <activity android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.LoginActivity" />
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.ForgottenPasswordActivity"
-            android:parentActivityName="com.aarshinkov.mobile.mycardocs.activities.LoginActivity" />
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.ForgottenPasswordActivity"
+            android:parentActivityName="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.LoginActivity" />
 
         <activity
-            android:name="com.aarshinkov.mobile.mycardocs.activities.ResetPasswordActivity"
+            android:name="com.aarshinkov.mobile.mycardocs.bg.aarshinkov.mobile.mycardocs.activities.ResetPasswordActivity"
             android:label="@string/reset_password_title">
             <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.VIEW" />
