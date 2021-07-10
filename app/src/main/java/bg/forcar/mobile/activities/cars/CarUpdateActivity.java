@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
@@ -64,6 +65,10 @@ public class CarUpdateActivity extends AppCompatActivity {
     private LoggedUser loggedUser;
     private SharedPreferences pref;
 
+    private ArrayAdapter<String> colorsAdapter;
+    private ArrayAdapter<String> transmissionsAdapter;
+    private ArrayAdapter<String> powerTypesAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,10 +109,25 @@ public class CarUpdateActivity extends AppCompatActivity {
 
         CarsApi carsApi = retrofit.create(CarsApi.class);
 
-        String carId = getIntent().getStringExtra("carId");
+        final String carId = getIntent().getStringExtra("carId");
+
+        final String[] colors = getResources().getStringArray(R.array.car_colors);
+
+        colorsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, colors);
+
+        colorsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        carUpdateColorDD.setAdapter(colorsAdapter);
 
         final String[] transmissions = getResources().getStringArray(R.array.car_transmissions);
+        transmissionsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, transmissions);
+        transmissionsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carUpdateTransmissionDD.setAdapter(transmissionsAdapter);
+
         final String[] powerTypes = getResources().getStringArray(R.array.car_power_types);
+        powerTypesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, powerTypes);
+        powerTypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carUpdatePowerTypeDD.setAdapter(powerTypesAdapter);
 
         carsApi.getCar(carId, loggedUser.getAuthorization()).enqueue(new Callback<Car>() {
             @Override
@@ -116,8 +136,13 @@ public class CarUpdateActivity extends AppCompatActivity {
                 carUpdateBrandET.setText(car.getBrand());
                 carUpdateModelET.setText(car.getModel());
                 carUpdateColorDD.setText(car.getColor());
-                carUpdateTransmissionDD.setSelection(car.getTransmission());
-                carUpdatePowerTypeDD.setSelection(car.getPowerType());
+
+                final int currentTransmission = car.getTransmission();
+                final int currentPowerType = car.getPowerType();
+
+                carUpdateTransmissionDD.setText(transmissions[currentTransmission], false);
+                carUpdatePowerTypeDD.setText(powerTypes[currentPowerType], false);
+
                 carUpdateYearET.setText(String.valueOf(car.getYear()));
                 carUpdateLicensePlateET.setText(car.getLicensePlate());
                 carUpdateAliasET.setText(car.getAlias());
