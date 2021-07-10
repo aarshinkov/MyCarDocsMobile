@@ -15,6 +15,8 @@ import com.aarshinkov.mobile.mycardocs.api.UsersApi;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,10 +29,12 @@ import static com.aarshinkov.mobile.mycardocs.api.Api.getRetrofit;
 
 public class ForgottenPasswordActivity extends AppCompatActivity {
 
-    private LinearProgressIndicator fpProgress;
+    private TextInputLayout fpEmailLabelTV;
+    private TextInputEditText fpEmailET;
 
-    private EditText fpEmailET;
     private MaterialButton fpBtn;
+
+    private LinearProgressIndicator fpProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,9 @@ public class ForgottenPasswordActivity extends AppCompatActivity {
 
         fpProgress = findViewById(R.id.fpProgress);
 
+        fpEmailLabelTV = findViewById(R.id.fpEmailLabelTV);
         fpEmailET = findViewById(R.id.fpEmailET);
+
         fpBtn = findViewById(R.id.fpBtn);
 
         fpBtn.setOnClickListener(v -> {
@@ -52,7 +58,7 @@ public class ForgottenPasswordActivity extends AppCompatActivity {
             boolean hasErrors = false;
 
             if (fpEmailET.getText().toString().isEmpty()) {
-                fpEmailET.setError(getString(R.string.forgot_password_email_empty));
+                fpEmailLabelTV.setError(getString(R.string.forgot_password_email_empty));
                 hasErrors = true;
             }
 

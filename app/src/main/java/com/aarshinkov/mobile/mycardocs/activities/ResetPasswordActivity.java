@@ -14,6 +14,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -26,8 +27,12 @@ import static com.aarshinkov.mobile.mycardocs.api.Api.getRetrofit;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
+    private TextInputLayout resetPasswordNewPasswordLabelTV;
     private TextInputEditText resetPasswordNewPasswordET;
+
+    private TextInputLayout resetPasswordConfirmPasswordLabelTV;
     private TextInputEditText resetPasswordConfirmPasswordET;
+
     private MaterialButton resetPasswordSaveBtn;
 
     private LinearProgressIndicator resetPasswordProgress;
@@ -37,8 +42,12 @@ public class ResetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
+        resetPasswordNewPasswordLabelTV = findViewById(R.id.resetPasswordNewPasswordLabelTV);
         resetPasswordNewPasswordET = findViewById(R.id.resetPasswordNewPasswordET);
+
+        resetPasswordConfirmPasswordLabelTV = findViewById(R.id.resetPasswordConfirmPasswordLabelTV);
         resetPasswordConfirmPasswordET = findViewById(R.id.resetPasswordConfirmPasswordET);
+
         resetPasswordSaveBtn = findViewById(R.id.resetPasswordSaveBtn);
 
         resetPasswordProgress = findViewById(R.id.resetPasswordProgress);
@@ -97,26 +106,26 @@ public class ResetPasswordActivity extends AppCompatActivity {
         final String confirmPassword = resetPasswordConfirmPasswordET.getText().toString();
 
         if (newPassword.isEmpty()) {
-            resetPasswordNewPasswordET.setError(getString(R.string.reset_password_new_password_error));
+            resetPasswordNewPasswordLabelTV.setError(getString(R.string.reset_password_new_password_error));
             hasErrors = true;
         }
 
         if (confirmPassword.isEmpty()) {
-            resetPasswordConfirmPasswordET.setError(getString(R.string.reset_password_confirm_password_error));
+            resetPasswordConfirmPasswordLabelTV.setError(getString(R.string.reset_password_confirm_password_error));
             hasErrors = true;
         }
 
         if (!hasErrors) {
             if (!newPassword.equals(confirmPassword)) {
-                resetPasswordNewPasswordET.setError(getString(R.string.reset_password_passwords_mismatch));
-                resetPasswordConfirmPasswordET.setError(getString(R.string.reset_password_passwords_mismatch));
+                resetPasswordNewPasswordLabelTV.setError(getString(R.string.reset_password_passwords_mismatch));
+                resetPasswordConfirmPasswordLabelTV.setError(getString(R.string.reset_password_passwords_mismatch));
                 hasErrors = true;
             }
         }
 
         if (!hasErrors) {
-            resetPasswordNewPasswordET.setError(null);
-            resetPasswordConfirmPasswordET.setError(null);
+            resetPasswordNewPasswordLabelTV.setError(null);
+            resetPasswordConfirmPasswordLabelTV.setError(null);
         }
 
         return hasErrors;

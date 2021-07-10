@@ -16,6 +16,10 @@ import com.aarshinkov.mobile.mycardocs.api.UsersApi;
 import com.aarshinkov.mobile.mycardocs.responses.users.User;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
@@ -29,11 +33,21 @@ import static com.aarshinkov.mobile.mycardocs.utils.AppConstants.API_URL;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText registerEmailЕТ;
-    private EditText registerPasswordЕТ;
-    private EditText registerConfirmPasswordЕТ;
-    private EditText registerFirstNameET;
-    private EditText registerLastNameET;
+    private TextInputLayout registerEmailLabelTV;
+    private TextInputEditText registerEmailET;
+
+    private TextInputLayout registerPasswordLabelTV;
+    private TextInputEditText registerPasswordЕТ;
+
+    private TextInputLayout registerConfirmPasswordLabelTV;
+    private TextInputEditText registerConfirmPasswordЕТ;
+
+    private TextInputLayout registerFirstNameLabelTV;
+    private TextInputEditText registerFirstNameET;
+
+    private TextInputLayout registerLastNameLabelTV;
+    private TextInputEditText registerLastNameET;
+
     private MaterialButton registerCancelBtn;
     private MaterialButton registerBtn;
 
@@ -46,11 +60,21 @@ public class RegisterActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(R.string.registration_title);
 
-        registerEmailЕТ = findViewById(R.id.registerEmailЕТ);
+        registerEmailLabelTV = findViewById(R.id.registerEmailLabelTV);
+        registerEmailET = findViewById(R.id.registerEmailET);
+
+        registerPasswordLabelTV = findViewById(R.id.registerPasswordLabelTV);
         registerPasswordЕТ = findViewById(R.id.registerPasswordЕТ);
+
+        registerConfirmPasswordLabelTV = findViewById(R.id.registerConfirmPasswordLabelTV);
         registerConfirmPasswordЕТ = findViewById(R.id.registerConfirmPasswordЕТ);
+
+        registerFirstNameLabelTV = findViewById(R.id.registerFirstNameLabelTV);
         registerFirstNameET = findViewById(R.id.registerFirstNameET);
+
+        registerLastNameLabelTV = findViewById(R.id.registerLastNameLabelTV);
         registerLastNameET = findViewById(R.id.registerLastNameET);
+        
         registerCancelBtn = findViewById(R.id.registerCancelBtn);
         registerBtn = findViewById(R.id.registerBtn);
 
@@ -68,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
             registerProgress.setVisibility(View.VISIBLE);
             registerBtn.setEnabled(false);
 
-            final String email = registerEmailЕТ.getText().toString();
+            final String email = registerEmailET.getText().toString();
             final String password = registerPasswordЕТ.getText().toString();
             final String confirmPassword = registerConfirmPasswordЕТ.getText().toString();
             final String firstName = registerFirstNameET.getText().toString();
@@ -77,39 +101,39 @@ public class RegisterActivity extends AppCompatActivity {
             boolean isEmailEmpty = false;
 
             if (email.isEmpty()) {
-                registerEmailЕТ.setError(getString(R.string.registration_email_empty));
+                registerEmailLabelTV.setError(getString(R.string.registration_email_empty));
                 hasErrors = true;
                 isEmailEmpty = true;
             }
 
             if (password.isEmpty()) {
-                registerPasswordЕТ.setError(getString(R.string.registration_password_empty));
+                registerPasswordLabelTV.setError(getString(R.string.registration_password_empty));
                 hasErrors = true;
             }
 
             if (confirmPassword.isEmpty()) {
-                registerConfirmPasswordЕТ.setError(getString(R.string.registration_confirm_password_empty));
+                registerConfirmPasswordLabelTV.setError(getString(R.string.registration_confirm_password_empty));
                 hasErrors = true;
             }
 
             if (!password.isEmpty() && !confirmPassword.isEmpty()) {
                 if (!password.equals(confirmPassword)) {
-                    registerPasswordЕТ.setError(getString(R.string.registration_passwords_match));
-                    registerConfirmPasswordЕТ.setError(getString(R.string.registration_passwords_match));
+                    registerPasswordLabelTV.setError(getString(R.string.registration_passwords_match));
+                    registerConfirmPasswordLabelTV.setError(getString(R.string.registration_passwords_match));
                     hasErrors = true;
                 } else {
-                    registerPasswordЕТ.setError(null);
-                    registerConfirmPasswordЕТ.setError(null);
+                    registerPasswordLabelTV.setError(null);
+                    registerConfirmPasswordLabelTV.setError(null);
                 }
             }
 
             if (firstName.isEmpty()) {
-                registerFirstNameET.setError(getString(R.string.registration_first_name_empty));
+                registerFirstNameLabelTV.setError(getString(R.string.registration_first_name_empty));
                 hasErrors = true;
             }
 
             if (lastName.isEmpty()) {
-                registerLastNameET.setError(getString(R.string.registration_last_name_empty));
+                registerLastNameLabelTV.setError(getString(R.string.registration_last_name_empty));
                 hasErrors = true;
             }
 
@@ -133,7 +157,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             if (isExist) {
-                registerEmailЕТ.setError(getString(R.string.registration_email_exists));
+                registerEmailLabelTV.setError(getString(R.string.registration_email_exists));
                 hasErrors = true;
             }
 
@@ -151,7 +175,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             usersApi.createUser(user).enqueue(new Callback<User>() {
                 @Override
-                public void onResponse(Call<User> call, Response<User> response) {
+                public void onResponse(@NotNull Call<User> call, @NotNull Response<User> response) {
 
                     response.body();
 
@@ -166,7 +190,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                 @Override
-                public void onFailure(Call<User> call, Throwable t) {
+                public void onFailure(@NotNull Call<User> call, @NotNull Throwable t) {
                     Toast.makeText(getApplicationContext(), R.string.registration_error, Toast.LENGTH_LONG).show();
                     registerProgress.setVisibility(View.INVISIBLE);
                     registerBtn.setEnabled(true);

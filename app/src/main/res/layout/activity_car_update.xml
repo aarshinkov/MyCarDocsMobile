@@ -9,217 +9,189 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="8dp">
+        android:paddingBottom="16dp">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carUpdateBrandLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carUpdateBrandET"
-            android:text="@string/car_brand"
-            android:textStyle="bold"
+            android:hint="@string/car_brand"
+            android:labelFor="@+id/carUpdateBrandET"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/carUpdateBrandET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="brand"
-            android:fontFamily="@font/nunito"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateBrandLabelTV" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/carUpdateBrandET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Brand"
+                android:inputType="text"
+                android:textCursorDrawable="@drawable/cursor_color" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carUpdateModelLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carUpdateModelET"
-            android:text="@string/car_model"
-            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:hint="@string/car_model"
+            android:labelFor="@+id/carUpdateModelET"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateBrandET" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateBrandLabelTV">
 
-        <EditText
-            android:id="@+id/carUpdateModelET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="model"
-            android:fontFamily="@font/nunito"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateModelLabelTV" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/carUpdateModelET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Model"
+                android:inputType="text"
+                android:textCursorDrawable="@drawable/cursor_color" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carUpdateColorLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carUpdateColorET"
-            android:text="@string/car_color"
-            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:hint="@string/car_color"
+            android:labelFor="@+id/carUpdateColorDD"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateModelET" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateModelLabelTV">
 
-        <EditText
-            android:id="@+id/carUpdateColorET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="color"
-            android:fontFamily="@font/nunito"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorLabelTV" />
+            <AutoCompleteTextView
+                android:id="@+id/carUpdateColorDD"
+                style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:inputType="text" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carUpdateTransmissionLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carUpdateTransmissionSP"
-            android:text="@string/car_transmission_label"
-            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:hint="@string/car_transmission_label"
+            android:labelFor="@+id/carUpdateTransmissionDD"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorET" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorLabelTV"
+            app:startIconDrawable="@drawable/ic_transmission">
 
-        <Spinner
-            android:id="@+id/carUpdateTransmissionSP"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:entries="@array/car_transmissions"
-            android:fontFamily="@font/nunito"
-            android:prompt="@string/car_transmission_label"
-            android:spinnerMode="dialog"
-            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateTransmissionLabelTV" />
+            <AutoCompleteTextView
+                android:id="@+id/carUpdateTransmissionDD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carUpdatePowerTypeLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carUpdatePowerTypeSP"
-            android:text="@string/car_power_type_label"
-            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:hint="@string/car_power_type_label"
+            android:labelFor="@+id/carUpdatePowerTypeDD"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateTransmissionSP" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateTransmissionLabelTV"
+            app:startIconDrawable="@drawable/ic_gas_station">
 
-        <Spinner
-            android:id="@+id/carUpdatePowerTypeSP"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:entries="@array/car_power_types"
-            android:fontFamily="@font/nunito"
-            android:prompt="@string/car_power_type_label"
-            android:spinnerMode="dialog"
-            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdatePowerTypeLabelTV" />
+            <AutoCompleteTextView
+                android:id="@+id/carUpdatePowerTypeDD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carUpdateYearLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carUpdateYearET"
-            android:text="@string/car_year_label"
-            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:hint="@string/car_year_label"
+            android:labelFor="@+id/carUpdateYearET"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdatePowerTypeSP" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdatePowerTypeLabelTV">
 
-        <EditText
-            android:id="@+id/carUpdateYearET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="powerType"
-            android:fontFamily="@font/nunito"
-            android:inputType="number"
-            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateYearLabelTV" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/carUpdateYearET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Year"
+                android:inputType="number"
+                android:textCursorDrawable="@drawable/cursor_color" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carUpdateLicensePlateLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carUpdateLicensePlateET"
-            android:text="@string/car_license_plate"
-            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:hint="@string/car_license_plate"
+            android:labelFor="@+id/carUpdateLicensePlateET"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateYearET" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateYearLabelTV">
 
-        <EditText
-            android:id="@+id/carUpdateLicensePlateET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="licensePlate"
-            android:fontFamily="@font/nunito"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateLicensePlateLabelTV" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/carUpdateLicensePlateET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Year"
+                android:inputType="text"
+                android:textCursorDrawable="@drawable/cursor_color" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carUpdateAliasLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@id/carUpdateAliasET"
-            android:text="@string/car_alias"
-            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:hint="@string/car_alias"
+            android:labelFor="@+id/carUpdateAliasET"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateLicensePlateET" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateLicensePlateLabelTV">
 
-        <EditText
-            android:id="@+id/carUpdateAliasET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="alias"
-            android:fontFamily="@font/nunito"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateAliasLabelTV" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/carUpdateAliasET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Alias"
+                android:inputType="text"
+                android:textCursorDrawable="@drawable/cursor_color" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/carUpdateBtn"
@@ -233,7 +205,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateAliasET" />
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateAliasLabelTV" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/carUpdateProgress"

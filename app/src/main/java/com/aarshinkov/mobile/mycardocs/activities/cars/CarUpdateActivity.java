@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -19,8 +20,12 @@ import com.aarshinkov.mobile.mycardocs.responses.cars.Car;
 import com.aarshinkov.mobile.mycardocs.utils.LoggedUser;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,14 +37,27 @@ import static com.aarshinkov.mobile.mycardocs.utils.Utils.getLoggedUser;
 
 public class CarUpdateActivity extends AppCompatActivity {
 
-    private EditText carUpdateBrandET;
-    private EditText carUpdateModelET;
-    private EditText carUpdateColorET;
-    private Spinner carUpdateTransmissionSP;
-    private Spinner carUpdatePowerTypeSP;
-    private EditText carUpdateYearET;
-    private EditText carUpdateLicensePlateET;
-    private EditText carUpdateAliasET;
+    private TextInputLayout carUpdateBrandLabelTV;
+    private TextInputEditText carUpdateBrandET;
+
+    private TextInputLayout carUpdateModelLabelTV;
+    private TextInputEditText carUpdateModelET;
+
+    private TextInputLayout carUpdateColorLabelTV;
+    private AutoCompleteTextView carUpdateColorDD;
+
+    private AutoCompleteTextView carUpdateTransmissionDD;
+    private AutoCompleteTextView carUpdatePowerTypeDD;
+
+    private TextInputLayout carUpdateYearLabelTV;
+    private TextInputEditText carUpdateYearET;
+
+    private TextInputLayout carUpdateLicensePlateLabelTV;
+    private TextInputEditText carUpdateLicensePlateET;
+
+    private TextInputLayout carUpdateAliasLabelTV;
+    private TextInputEditText carUpdateAliasET;
+
     private MaterialButton carUpdateBtn;
 
     private LinearProgressIndicator progress;
@@ -57,14 +75,27 @@ public class CarUpdateActivity extends AppCompatActivity {
 
         progress = findViewById(R.id.carUpdateProgress);
 
+        carUpdateBrandLabelTV = findViewById(R.id.carUpdateBrandLabelTV);
         carUpdateBrandET = findViewById(R.id.carUpdateBrandET);
+
+        carUpdateModelLabelTV = findViewById(R.id.carUpdateModelLabelTV);
         carUpdateModelET = findViewById(R.id.carUpdateModelET);
-        carUpdateColorET = findViewById(R.id.carUpdateColorET);
-        carUpdateTransmissionSP = findViewById(R.id.carUpdateTransmissionSP);
-        carUpdatePowerTypeSP = findViewById(R.id.carUpdatePowerTypeSP);
+
+        carUpdateColorLabelTV = findViewById(R.id.carUpdateColorLabelTV);
+        carUpdateColorDD = findViewById(R.id.carUpdateColorDD);
+
+        carUpdateTransmissionDD = findViewById(R.id.carUpdateTransmissionDD);
+        carUpdatePowerTypeDD = findViewById(R.id.carUpdatePowerTypeDD);
+
+        carUpdateYearLabelTV = findViewById(R.id.carUpdateYearLabelTV);
         carUpdateYearET = findViewById(R.id.carUpdateYearET);
+
+        carUpdateLicensePlateLabelTV = findViewById(R.id.carUpdateLicensePlateLabelTV);
         carUpdateLicensePlateET = findViewById(R.id.carUpdateLicensePlateET);
+
+        carUpdateAliasLabelTV = findViewById(R.id.carUpdateAliasLabelTV);
         carUpdateAliasET = findViewById(R.id.carUpdateAliasET);
+
         carUpdateBtn = findViewById(R.id.carUpdateBtn);
 
         pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
@@ -82,9 +113,9 @@ public class CarUpdateActivity extends AppCompatActivity {
                 Car car = response.body();
                 carUpdateBrandET.setText(car.getBrand());
                 carUpdateModelET.setText(car.getModel());
-                carUpdateColorET.setText(car.getColor());
-                carUpdateTransmissionSP.setSelection(car.getTransmission(), true);
-                carUpdatePowerTypeSP.setSelection(car.getPowerType(), true);
+                carUpdateColorDD.setText(car.getColor());
+                carUpdateTransmissionDD.setSelection(car.getTransmission());
+                carUpdatePowerTypeDD.setSelection(car.getPowerType());
                 carUpdateYearET.setText(String.valueOf(car.getYear()));
                 carUpdateLicensePlateET.setText(car.getLicensePlate());
                 carUpdateAliasET.setText(car.getAlias());
@@ -108,10 +139,11 @@ public class CarUpdateActivity extends AppCompatActivity {
             CarUpdateRequest cur = new CarUpdateRequest();
             cur.setBrand(carUpdateBrandET.getText().toString());
             cur.setModel(carUpdateModelET.getText().toString());
-            cur.setColor(carUpdateColorET.getText().toString());
-            int transmission = carUpdateTransmissionSP.getSelectedItemPosition();
+            cur.setColor(carUpdateColorDD.getText().toString());
+            final int transmission = Arrays.asList(transmissions).indexOf(carCreateTransmissionDD.getText().toString());
+            int transmission = carUpdateTransmissionDD.getSelectedItemPosition();
             cur.setTransmission(transmission);
-            int powerType = carUpdatePowerTypeSP.getSelectedItemPosition();
+            int powerType = carUpdatePowerTypeDD.getSelectedItemPosition();
             cur.setPowerType(powerType);
             cur.setYear(Integer.parseInt(carUpdateYearET.getText().toString()));
             cur.setLicensePlate(carUpdateLicensePlateET.getText().toString());

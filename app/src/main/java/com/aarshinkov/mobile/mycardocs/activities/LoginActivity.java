@@ -17,6 +17,8 @@ import com.aarshinkov.mobile.mycardocs.responses.AuthenticationResponse;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;
@@ -36,8 +38,12 @@ import static com.aarshinkov.mobile.mycardocs.utils.AppConstants.SHARED_PREF_USE
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText loginEmailET;
-    private EditText loginPasswordET;
+    private TextInputLayout loginEmailLabelTV;
+    private TextInputEditText loginEmailET;
+
+    private TextInputLayout loginPasswordLabelTV;
+    private TextInputEditText loginPasswordET;
+
     private MaterialButton loginBtn;
     private TextView loginRegisterTV;
     private TextView loginForgotPasswordTV;
@@ -51,8 +57,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        loginEmailLabelTV = findViewById(R.id.loginEmailLabelTV);
         loginEmailET = findViewById(R.id.loginEmailET);
+
+        loginPasswordLabelTV = findViewById(R.id.loginPasswordLabelTV);
         loginPasswordET = findViewById(R.id.loginPasswordET);
+
         loginBtn = findViewById(R.id.loginBtn);
         loginRegisterTV = findViewById(R.id.loginRegisterTV);
         loginForgotPasswordTV = findViewById(R.id.loginForgotPasswordTV);
@@ -73,12 +83,12 @@ public class LoginActivity extends AppCompatActivity {
             boolean hasErrors = false;
 
             if (email.isEmpty()) {
-                loginEmailET.setError(getString(R.string.login_email_empty));
+                loginEmailLabelTV.setError(getString(R.string.login_email_empty));
                 hasErrors = true;
             }
 
             if (password.isEmpty()) {
-                loginPasswordET.setError(getString(R.string.login_password_empty));
+                loginPasswordLabelTV.setError(getString(R.string.login_password_empty));
                 hasErrors = true;
             }
 
@@ -97,8 +107,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (response.code() == 400) {
                         Snackbar.make(v, R.string.login_invalid_credentials, Snackbar.LENGTH_LONG).show();
-                        loginEmailET.setError(getString(R.string.login_invalid_credentials));
-                        loginPasswordET.setError(getString(R.string.login_invalid_credentials));
+                        loginEmailLabelTV.setError(getString(R.string.login_invalid_credentials));
+                        loginPasswordLabelTV.setError(getString(R.string.login_invalid_credentials));
                         loginProgress.setVisibility(View.INVISIBLE);
                         loginBtn.setEnabled(true);
                         return;
