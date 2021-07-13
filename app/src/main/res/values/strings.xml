@@ -18,7 +18,7 @@
     <string name="home_service_expenses_last">Last 3 service expenses</string>
     <string name="home_service_expenses_last_n">Last %1$d service expenses</string>
     <string name="home_service_expenses_last_1">Last 1 service expense</string>
-    <string name="home_service_expenses_last_0">No refueling yet</string>
+    <string name="home_service_expenses_last_0">No service visits yet</string>
 
     <string name="forgot_password_title">Forgotten password</string>
     <string name="forgot_password_email">Email</string>
