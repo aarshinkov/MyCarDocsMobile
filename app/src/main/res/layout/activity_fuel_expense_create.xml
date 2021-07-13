@@ -177,6 +177,28 @@
             app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/fecMileageLabelTV" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fecCreatedOnLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/fuel_expense_create_date"
+            android:labelFor="@+id/fecCreatedOnET"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/fecMileageET"
+            app:startIconDrawable="@drawable/ic_date_from">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fecCreatedOnET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <TableLayout
             android:id="@+id/fecSummaryTable"
             android:layout_width="0dp"
@@ -184,7 +206,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
             app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecMileageET">
+            app:layout_constraintTop_toBottomOf="@+id/fecCreatedOnLabelTV">
 
             <TableRow
                 android:layout_width="match_parent"

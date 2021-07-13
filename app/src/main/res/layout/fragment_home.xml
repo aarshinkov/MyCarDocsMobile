@@ -383,7 +383,7 @@
             android:src="@drawable/ic_gas_station_white"
             app:fab_colorNormal="@color/colorPrimary"
             app:fab_colorPressed="@color/colorAccent"
-            app:fab_colorRipple="@color/danger"
+            app:fab_colorRipple="@color/colorPrimaryDark"
             app:fab_label="@string/fuel_label"
             app:fab_size="mini" />
 
@@ -396,7 +396,7 @@
             android:src="@drawable/ic_service"
             app:fab_colorNormal="@color/colorPrimary"
             app:fab_colorPressed="@color/colorAccent"
-            app:fab_colorRipple="@color/danger"
+            app:fab_colorRipple="@color/colorPrimaryDark"
             app:fab_label="@string/service_label"
             app:fab_size="mini" />
 

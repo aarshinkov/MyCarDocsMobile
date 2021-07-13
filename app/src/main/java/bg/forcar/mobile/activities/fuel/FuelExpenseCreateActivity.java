@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
@@ -26,17 +27,24 @@ import bg.forcar.mobile.requests.expenses.fuel.FuelExpenseCreateRequest;
 import bg.forcar.mobile.responses.cars.Car;
 import bg.forcar.mobile.responses.expenses.fuel.FuelExpense;
 import bg.forcar.mobile.utils.LoggedUser;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import bg.forcar.mobile.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,6 +62,8 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
     private Spinner fecCarsSP;
     private EditText fecTotalET;
     private EditText fecMileageET;
+    private TextInputLayout fecCreatedOnLabelTV;
+    private TextInputEditText fecCreatedOnET;
 
     private TextView fecPricePerLitreSummaryTV;
     private TextView fecLitresSummaryTV;
@@ -98,6 +108,8 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
         fecCarsSP = findViewById(R.id.fecCarsSP);
         fecTotalET = findViewById(R.id.fecTotalET);
         fecMileageET = findViewById(R.id.fecMileageET);
+        fecCreatedOnLabelTV = findViewById(R.id.fecCreatedOnLabelTV);
+        fecCreatedOnET = findViewById(R.id.fecCreatedOnET);
 
         fecPricePerLitreSummaryTV = findViewById(R.id.fecPricePerLitreSummaryTV);
         fecLitresSummaryTV = findViewById(R.id.fecLitresSummaryTV);
@@ -126,6 +138,14 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
         progress.setCanceledOnTouchOutside(false);
         progress.setCancelable(false);
 
+        fecCreatedOnET.setInputType(InputType.TYPE_NULL);
+
+        fecCreatedOnET.setOnFocusChangeListener((view, hasFocus) -> {
+            if (hasFocus) {
+                Utils.showDateTimeDialog(fecCreatedOnET, fecCreatedOnLabelTV, getApplicationContext());
+            }
+        });
+
         fecSaveBtn.setOnClickListener(v -> {
             progress.show();
 
@@ -147,7 +167,21 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
 
             fecr.setCarId(carId);
 
-            Retrofit retrofit = getRetrofit();
+            try {
+                DateFormat dateFormat = new SimpleDateFormat(getString(R.string.date_time_default), Locale.getDefault());
+                SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.date_time_1), Locale.getDefault());
+
+                if (fecCreatedOnET != null) {
+                    Date createdOnDate = sdf.parse(fecCreatedOnET.getText().toString());
+                    final String createdOnFDate = dateFormat.format(createdOnDate);
+                    fecr.setCreatedOn(createdOnFDate);
+                }
+
+            } catch (Exception ignored) {
+
+            }
+
+            final Retrofit retrofit = getRetrofit();
 
             ExpensesApi expensesApi = retrofit.create(ExpensesApi.class);
 
@@ -393,6 +427,13 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
 
                 List<Car> storedCars = response.body();
 
+                if (storedCars == null) {
+                    cars.clear();
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    fecCarsSP.setAdapter(adapter);
+                    return;
+                }
+
                 for (Car car : storedCars) {
                     userCarsMap.put(car.getLicensePlate(), car.getCarId());
                     cars.add(car.getLicensePlate());
@@ -493,6 +534,13 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
                 hasErrors = true;
             }
         }
+
+//        if (fecCreatedOnET.getText().toString().isEmpty()) {
+//            fecCreatedOnLabelTV.setError(getString(R.string.fuel_expense_create_date_empty));
+//            hasErrors = true;
+//        } else {
+//            fecCreatedOnLabelTV.setError(null);
+//        }
 
         return hasErrors;
     }

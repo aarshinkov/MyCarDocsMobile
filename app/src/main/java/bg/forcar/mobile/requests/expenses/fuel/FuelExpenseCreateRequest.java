@@ -9,6 +9,7 @@ public class FuelExpenseCreateRequest implements Serializable {
     private Double discount;
     private Long mileage;
     private String carId;
+    private String createdOn;
 
     public Double getPricePerLitre() {
         return pricePerLitre;
@@ -48,5 +49,13 @@ public class FuelExpenseCreateRequest implements Serializable {
 
     public void setCarId(String carId) {
         this.carId = carId;
+    }
+
+    public String getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
     }
 }

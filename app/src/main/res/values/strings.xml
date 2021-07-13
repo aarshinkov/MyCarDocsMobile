@@ -289,6 +289,7 @@
     <string name="fuel_expense_total">Total</string>
     <string name="fuel_expense_mileage">Mileage (optional)</string>
     <string name="fuel_expense_car_prompt">Car</string>
+    <string name="fuel_expense_create_date">Date of refueling</string>
 
     <string name="fuel_expense_create_progress">Creating fuel expense…</string>
     <string name="fuel_expense_create_successful">Fuel expense added successfully!</string>
@@ -310,6 +311,7 @@
     <string name="fuel_expense_create_ppl_empty">Price per litre must not be empty!</string>
     <string name="fuel_expense_create_litres_empty">Litres must not be empty!</string>
     <string name="fuel_expense_create_discount_invalid">Discount must not be more than the subtotal!</string>
+    <string name="fuel_expense_create_date_empty">The day of the refueling must not be empty!</string>
 
     <string name="service_label">Service</string>
     <string name="service_expense_title">Service expense</string>

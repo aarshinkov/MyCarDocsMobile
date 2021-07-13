@@ -289,6 +289,7 @@
     <string name="fuel_expense_total">Общо</string>
     <string name="fuel_expense_mileage">Километраж (опционално)</string>
     <string name="fuel_expense_car_prompt">Автомобил</string>
+    <string name="fuel_expense_create_date">Дата на зареждане</string>
 
     <string name="fuel_expense_create_progress">Създаване на разход за гориво…</string>
     <string name="fuel_expense_create_successful">Разходът на гориво е добавен успешно!</string>
@@ -310,6 +311,7 @@
     <string name="fuel_expense_create_ppl_empty">Цената за литър не може да е празна!</string>
     <string name="fuel_expense_create_litres_empty">Литрите не може да са празни!</string>
     <string name="fuel_expense_create_discount_invalid">Отстъпката не може да е повече от общата сума!</string>
+    <string name="fuel_expense_create_date_empty">Датата на зареждане не може да е празна!</string>
 
     <string name="service_label">Сервиз</string>
     <string name="service_expense_title">Разход сервиз</string>

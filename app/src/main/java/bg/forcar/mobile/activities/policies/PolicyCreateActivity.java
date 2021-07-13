@@ -42,6 +42,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import bg.forcar.mobile.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -121,13 +122,13 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
         policyCreateStartDateET.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
-                showDateTimeDialog(policyCreateStartDateET, policyCreateStartDateLabelTV);
+                Utils.showDateTimeDialog(policyCreateStartDateET, policyCreateStartDateLabelTV, getApplicationContext());
             }
         });
 
         policyCreateEndDateET.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
-                showDateTimeDialog(policyCreateEndDateET, policyCreateEndDateLabelTV);
+                Utils.showDateTimeDialog(policyCreateEndDateET, policyCreateEndDateLabelTV, getApplicationContext());
             }
         });
 
@@ -258,53 +259,6 @@ public class PolicyCreateActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         onBackPressed();
         return true;
-    }
-
-    private void showDateTimeDialog(final EditText field, TextInputLayout label) {
-        final Calendar calendar = Calendar.getInstance();
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(Calendar.YEAR, year);
-                calendar.set(Calendar.MONTH, month);
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
-                TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                        calendar.set(Calendar.MINUTE, minute);
-
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_time_1), Locale.getDefault());
-
-                        field.setText(simpleDateFormat.format(calendar.getTime()));
-                        label.setError(null);
-                    }
-                };
-
-                new TimePickerDialog(PolicyCreateActivity.this, timeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
-            }
-        };
-
-        new DatePickerDialog(PolicyCreateActivity.this, dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
-
-    }
-
-    private void showDateDialog(final EditText date_in) {
-        final Calendar calendar = Calendar.getInstance();
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(Calendar.YEAR, year);
-                calendar.set(Calendar.MONTH, month);
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_1), Locale.getDefault());
-                policyCreateStartDateET.setText(simpleDateFormat.format(calendar.getTime()));
-
-            }
-        };
-
-        new DatePickerDialog(this, dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
     private boolean isFieldsInvalid() {
