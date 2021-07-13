@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -56,12 +57,18 @@ import static bg.forcar.mobile.utils.Utils.getLoggedUser;
 
 public class FuelExpenseCreateActivity extends AppCompatActivity {
 
-    private EditText fecPricePerLitreET;
-    private EditText fecLitresET;
-    private EditText fecDiscountET;
-    private Spinner fecCarsSP;
-    private EditText fecTotalET;
-    private EditText fecMileageET;
+    private TextInputLayout fecPricePerLitreLabelTV;
+    private TextInputEditText fecPricePerLitreET;
+    private TextInputLayout fecLitresLabelTV;
+    private TextInputEditText fecLitresET;
+    private TextInputLayout fecDiscountLabelTV;
+    private TextInputEditText fecDiscountET;
+    private TextInputLayout fecCarsLabelTV;
+    private AutoCompleteTextView fecCarsDD;
+    private TextInputLayout fecTotalLabelTV;
+    private TextInputEditText fecTotalET;
+    private TextInputLayout fecMileageLabelTV;
+    private TextInputEditText fecMileageET;
     private TextInputLayout fecCreatedOnLabelTV;
     private TextInputEditText fecCreatedOnET;
 
@@ -88,7 +95,7 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
     private Map<String, String> userCarsMap = new HashMap<>();
     private List<String> cars = new ArrayList<>();
 
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> carsAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,11 +109,17 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
 
         final String zeroFormatted = String.format(Locale.getDefault(), "%.2f", 0.00);
 
+        fecPricePerLitreLabelTV = findViewById(R.id.fecPricePerLitreLabelTV);
         fecPricePerLitreET = findViewById(R.id.fecPricePerLitreET);
+        fecLitresLabelTV = findViewById(R.id.fecLitresLabelTV);
         fecLitresET = findViewById(R.id.fecLitresET);
+        fecDiscountLabelTV = findViewById(R.id.fecDiscountLabelTV);
         fecDiscountET = findViewById(R.id.fecDiscountET);
-        fecCarsSP = findViewById(R.id.fecCarsSP);
+        fecCarsLabelTV = findViewById(R.id.fecCarsLabelTV);
+        fecCarsDD = findViewById(R.id.fecCarsDD);
+        fecTotalLabelTV = findViewById(R.id.fecTotalLabelTV);
         fecTotalET = findViewById(R.id.fecTotalET);
+        fecMileageLabelTV = findViewById(R.id.fecMileageLabelTV);
         fecMileageET = findViewById(R.id.fecMileageET);
         fecCreatedOnLabelTV = findViewById(R.id.fecCreatedOnLabelTV);
         fecCreatedOnET = findViewById(R.id.fecCreatedOnET);
@@ -129,9 +142,8 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
 
         loadCars();
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
+        carsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         ProgressDialog progress = new ProgressDialog(FuelExpenseCreateActivity.this);
         progress.setMessage(getString(R.string.fuel_expense_create_progress));
@@ -142,7 +154,7 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
 
         fecCreatedOnET.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
-                Utils.showDateTimeDialog(fecCreatedOnET, fecCreatedOnLabelTV, getApplicationContext());
+                Utils.showDateTimeDialog(fecCreatedOnET, fecCreatedOnLabelTV, FuelExpenseCreateActivity.this);
             }
         });
 
@@ -162,7 +174,7 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
                 fecr.setMileage(Long.parseLong(fecMileageET.getText().toString()));
             }
 
-            final String licensePlate = fecCarsSP.getSelectedItem().toString();
+            final String licensePlate = fecCarsDD.getText().toString().split(" - ")[0].trim();
             final String carId = userCarsMap.get(licensePlate);
 
             fecr.setCarId(carId);
@@ -427,20 +439,18 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
 
                 List<Car> storedCars = response.body();
 
-                if (storedCars == null) {
-                    cars.clear();
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    fecCarsSP.setAdapter(adapter);
-                    return;
-                }
+                if (storedCars != null) {
+                    for (Car car : storedCars) {
+                        cars.add(car.getLicensePlate() + " - " + car.getBrand() + " " + car.getModel());
+                        userCarsMap.put(car.getLicensePlate(), car.getCarId());
+                    }
 
-                for (Car car : storedCars) {
-                    userCarsMap.put(car.getLicensePlate(), car.getCarId());
-                    cars.add(car.getLicensePlate());
-                }
+                    carsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    fecCarsDD.setAdapter(carsAdapter);
 
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                fecCarsSP.setAdapter(adapter);
+                    Car firstCar = storedCars.get(0);
+                    fecCarsDD.setText(firstCar.getLicensePlate() + " - " + firstCar.getBrand() + " " + firstCar.getModel(), false);
+                }
             }
 
             @Override
@@ -514,24 +524,32 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
         boolean hasErrors = false;
 
         if (fecPricePerLitreET.getText().toString().isEmpty()) {
-            fecPricePerLitreET.setError(getString(R.string.fuel_expense_create_ppl_empty));
+            fecPricePerLitreLabelTV.setError(getString(R.string.fuel_expense_create_ppl_empty));
             hasErrors = true;
+        } else {
+            fecPricePerLitreLabelTV.setError(null);
         }
 
         if (fecLitresET.getText().toString().isEmpty()) {
-            fecLitresET.setError(getString(R.string.fuel_expense_create_litres_empty));
+            fecLitresLabelTV.setError(getString(R.string.fuel_expense_create_litres_empty));
             hasErrors = true;
+        } else {
+            fecLitresLabelTV.setError(null);
         }
 
 //        if (fecTotalET.getText().toString().isEmpty()) {
-//            fecTotalET.setError(getString(R.string.login_email_empty));
+//            fecTotalLabelTV.setError(getString(R.string.login_email_empty));
 //            hasErrors = true;
+//        } else {
+//            fecTotalLabelTV.setError(null);
 //        }
 
         if (discount != null && total != null) {
             if (discount > total) {
-                fecDiscountET.setError(getString(R.string.fuel_expense_create_discount_invalid));
+                fecDiscountLabelTV.setError(getString(R.string.fuel_expense_create_discount_invalid));
                 hasErrors = true;
+            } else {
+                fecDiscountLabelTV.setError(null);
             }
         }
 

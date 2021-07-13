@@ -3,6 +3,7 @@ package bg.forcar.mobile.activities.policies;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import bg.forcar.mobile.requests.policies.PolicyCreateRequest;
 import bg.forcar.mobile.responses.cars.Car;
 import bg.forcar.mobile.responses.policies.Policy;
 import bg.forcar.mobile.utils.LoggedUser;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -122,13 +124,13 @@ public class PolicyCreateActivity extends AppCompatActivity {
 
         policyCreateStartDateET.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
-                Utils.showDateTimeDialog(policyCreateStartDateET, policyCreateStartDateLabelTV, getApplicationContext());
+                Utils.showDateTimeDialog(policyCreateStartDateET, policyCreateStartDateLabelTV, PolicyCreateActivity.this);
             }
         });
 
         policyCreateEndDateET.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
-                Utils.showDateTimeDialog(policyCreateEndDateET, policyCreateEndDateLabelTV, getApplicationContext());
+                Utils.showDateTimeDialog(policyCreateEndDateET, policyCreateEndDateLabelTV, PolicyCreateActivity.this);
             }
         });
 

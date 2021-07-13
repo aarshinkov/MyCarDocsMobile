@@ -10,83 +10,71 @@
         android:layout_height="wrap_content"
         android:paddingBottom="8dp">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fecPricePerLitreLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
+            android:hint="@string/fuel_expense_price_per_litre"
             android:labelFor="@+id/fecPricePerLitreET"
-            android:text="@string/fuel_expense_price_per_litre"
-            android:textStyle="bold"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
             app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ic_litres">
 
-        <EditText
-            android:id="@+id/fecPricePerLitreET"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fecPricePerLitreET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fecLitresLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:autofillHints="Price per litre"
-            android:fontFamily="@font/nunito"
-            android:inputType="numberDecimal"
-            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecPricePerLitreLabelTV" />
-
-        <TextView
-            android:id="@+id/fecLitresLabelET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
+            android:layout_marginTop="4dp"
+            android:hint="@string/fuel_expense_litres"
             android:labelFor="@+id/fecLitresET"
-            android:text="@string/fuel_expense_litres"
-            android:textStyle="bold"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
             app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecPricePerLitreET" />
+            app:layout_constraintTop_toBottomOf="@+id/fecPricePerLitreLabelTV"
+            app:startIconDrawable="@drawable/ic_litres">
 
-        <EditText
-            android:id="@+id/fecLitresET"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fecLitresET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fecTotalLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:autofillHints="Litres"
-            android:fontFamily="@font/nunito"
-            android:inputType="numberDecimal"
-            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecLitresLabelET" />
-
-        <TextView
-            android:id="@+id/fecTotalLabelET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
+            android:layout_marginTop="4dp"
+            android:hint="@string/fuel_expense_total"
             android:labelFor="@+id/fecTotalET"
-            android:text="@string/fuel_expense_total"
-            android:textStyle="bold"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
             app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecLitresET" />
+            app:layout_constraintTop_toBottomOf="@+id/fecLitresLabelTV"
+            app:startIconDrawable="@drawable/ic_total">
 
-        <EditText
-            android:id="@+id/fecTotalET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="Litres"
-            android:fontFamily="@font/nunito"
-            android:inputType="numberDecimal"
-            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecTotalLabelET" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fecTotalET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <View
             android:id="@+id/fecHorizontalDivider"
@@ -96,86 +84,99 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fecTotalET" />
+            app:layout_constraintTop_toBottomOf="@+id/fecTotalLabelTV" />
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fecDiscountLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
+            android:layout_marginTop="4dp"
+            android:hint="@string/fuel_expense_discount_placeholder"
             android:labelFor="@+id/fecDiscountET"
-            android:text="@string/fuel_expense_discount_placeholder"
-            android:textStyle="bold"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
             app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecHorizontalDivider" />
+            app:layout_constraintTop_toBottomOf="@+id/fecHorizontalDivider"
+            app:startIconDrawable="@drawable/ic_discount">
 
-        <EditText
-            android:id="@+id/fecDiscountET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="Litres"
-            android:enabled="false"
-            android:fontFamily="@font/nunito"
-            android:inputType="numberDecimal"
-            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecDiscountLabelTV" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fecDiscountET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fecCarsLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
-            android:labelFor="@+id/fecCarsSP"
-            android:text="@string/fuel_expense_car_prompt"
-            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:hint="@string/fuel_expense_car_prompt"
+            android:labelFor="@+id/fecCarsDD"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
             app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecDiscountET" />
+            app:layout_constraintTop_toBottomOf="@+id/fecDiscountLabelTV"
+            app:startIconDrawable="@drawable/ic_car">
 
-        <Spinner
-            android:id="@+id/fecCarsSP"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito"
-            android:prompt="@string/fuel_expense_car_prompt"
-            android:spinnerMode="dialog"
-            app:layout_constraintEnd_toStartOf="@+id/fecRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecCarsLabelTV" />
+            <AutoCompleteTextView
+                android:id="@+id/fecCarsDD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/fecCarsLabelTV"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="3dp"-->
+        <!--            android:layout_marginTop="8dp"-->
+        <!--            android:layout_marginEnd="3dp"-->
+        <!--            android:fontFamily="@font/nunito"-->
+        <!--            android:labelFor="@+id/fecCarsSP"-->
+        <!--            android:text="@string/fuel_expense_car_prompt"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/fecDiscountLabelTV" />-->
+
+        <!--        <Spinner-->
+        <!--            android:id="@+id/fecCarsSP"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:fontFamily="@font/nunito"-->
+        <!--            android:prompt="@string/fuel_expense_car_prompt"-->
+        <!--            android:spinnerMode="dialog"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/fecRightGuide"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/fecCarsLabelTV" />-->
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fecMileageLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/nunito"
+            android:layout_marginTop="4dp"
+            android:hint="@string/fuel_expense_mileage"
             android:labelFor="@+id/fecMileageET"
-            android:text="@string/fuel_expense_mileage"
-            android:textStyle="bold"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
             app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecCarsSP" />
+            app:layout_constraintTop_toBottomOf="@+id/fecCarsLabelTV"
+            app:startIconDrawable="@drawable/ic_speed">
 
-        <EditText
-            android:id="@+id/fecMileageET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="Litres"
-            android:fontFamily="@font/nunito"
-            android:inputType="numberDecimal"
-            app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecMileageLabelTV" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fecMileageET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fecCreatedOnLabelTV"
@@ -188,8 +189,8 @@
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/fecRightGuide"
             app:layout_constraintStart_toStartOf="@+id/fecLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/fecMileageET"
-            app:startIconDrawable="@drawable/ic_date_from">
+            app:layout_constraintTop_toBottomOf="@+id/fecMileageLabelTV"
+            app:startIconDrawable="@drawable/ic_date_to">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/fecCreatedOnET"
