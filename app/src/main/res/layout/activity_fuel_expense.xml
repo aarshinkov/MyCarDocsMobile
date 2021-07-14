@@ -296,6 +296,36 @@
                 tools:text="200000" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/fuelExpenseEditBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_shape"
+                android:fontFamily="@font/nunito"
+                android:text="@string/action_edit"
+                app:backgroundTint="@color/colorPrimary"
+                app:icon="@drawable/ic_edit"
+                app:iconGravity="textStart"
+                app:layout_constraintEnd_toEndOf="@id/fuelExpenseRightGuide"
+                app:layout_constraintStart_toStartOf="@id/fuelExpenseLeftGuide"
+                app:layout_constraintTop_toBottomOf="@id/fuelExpenseCarMileageTV" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fuelExpenseDeleteBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_shape"
+                android:fontFamily="@font/nunito"
+                android:text="@string/action_delete"
+                app:backgroundTint="@color/danger"
+                app:icon="@drawable/ic_delete"
+                app:iconGravity="textStart"
+                app:layout_constraintEnd_toEndOf="@id/fuelExpenseRightGuide"
+                app:layout_constraintStart_toStartOf="@id/fuelExpenseLeftGuide"
+                app:layout_constraintTop_toBottomOf="@id/fuelExpenseEditBtn" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/fuelExpenseBackBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -303,12 +333,13 @@
                 android:background="@drawable/btn_shape"
                 android:fontFamily="@font/nunito"
                 android:text="@string/btn_close"
+                android:visibility="gone"
                 app:backgroundTint="@color/colorPrimary"
                 app:icon="@drawable/ic_close"
                 app:iconGravity="textStart"
                 app:layout_constraintEnd_toEndOf="@+id/fuelExpenseRightGuide"
                 app:layout_constraintStart_toStartOf="@+id/fuelExpenseLeftGuide"
-                app:layout_constraintTop_toBottomOf="@+id/fuelExpenseCarMileageTV" />
+                app:layout_constraintTop_toBottomOf="@+id/fuelExpenseDeleteBtn" />
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/fuelExpenseProgress"

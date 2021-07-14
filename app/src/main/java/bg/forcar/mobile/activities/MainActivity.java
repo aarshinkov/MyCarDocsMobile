@@ -20,6 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import bg.forcar.mobile.R;
 import bg.forcar.mobile.utils.LoggedUser;
+
 import com.google.android.material.navigation.NavigationView;
 
 import static bg.forcar.mobile.utils.AppConstants.SHARED_PREF_NAME;
@@ -108,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case "policies":
                     navigationView.getMenu().performIdentifierAction(R.id.nav_policies, 0);
+                    break;
+                case "fuel_expenses":
+                    navigationView.getMenu().performIdentifierAction(R.id.nav_fuel_expense, 0);
+                    break;
+                case "service_expenses":
+                    navigationView.getMenu().performIdentifierAction(R.id.nav_service_expense, 0);
                     break;
             }
         }

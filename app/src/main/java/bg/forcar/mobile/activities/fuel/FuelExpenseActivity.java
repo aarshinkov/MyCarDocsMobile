@@ -1,5 +1,7 @@
 package bg.forcar.mobile.activities.fuel;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -8,16 +10,22 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import bg.forcar.mobile.R;
+import bg.forcar.mobile.activities.MainActivity;
+import bg.forcar.mobile.activities.policies.PolicyActivity;
+import bg.forcar.mobile.activities.policies.PolicyUpdateActivity;
 import bg.forcar.mobile.api.ExpensesApi;
+import bg.forcar.mobile.api.PoliciesApi;
 import bg.forcar.mobile.responses.cars.Car;
 import bg.forcar.mobile.responses.expenses.fuel.FuelExpense;
 import bg.forcar.mobile.utils.LoggedUser;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
@@ -54,9 +62,13 @@ public class FuelExpenseActivity extends AppCompatActivity {
     private TextView fuelExpenseCarBrandModelTV;
     private TextView fuelExpenseCarLicensePlateTV;
     private TextView fuelExpenseCarMileageTV;
+    private MaterialButton fuelExpenseEditBtn;
+    private MaterialButton fuelExpenseDeleteBtn;
     private MaterialButton fuelExpenseBackBtn;
 
     private CircularProgressIndicator fuelExpenseProgress;
+
+    SimpleDateFormat sdf;
 
     private ColorStateList defaultTextColor;
 
@@ -70,7 +82,7 @@ public class FuelExpenseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuel_expense);
 
-        final SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.date_time_2), Locale.getDefault());
+        sdf = new SimpleDateFormat(getString(R.string.date_time_2), Locale.getDefault());
 
         getSupportActionBar().setTitle(R.string.fuel_expense_title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -87,18 +99,39 @@ public class FuelExpenseActivity extends AppCompatActivity {
         fuelExpenseCarBrandModelTV = findViewById(R.id.fuelExpenseCarBrandModelTV);
         fuelExpenseCarLicensePlateTV = findViewById(R.id.fuelExpenseCarLicensePlateTV);
         fuelExpenseCarMileageTV = findViewById(R.id.fuelExpenseCarMileageTV);
+        fuelExpenseEditBtn = findViewById(R.id.fuelExpenseEditBtn);
+        fuelExpenseDeleteBtn = findViewById(R.id.fuelExpenseDeleteBtn);
         fuelExpenseBackBtn = findViewById(R.id.fuelExpenseBackBtn);
         fuelExpenseProgress = findViewById(R.id.fuelExpenseProgress);
 
         defaultTextColor = fuelExpenseDiscountTV.getTextColors();
-
-        fuelExpenseProgress.setVisibility(View.VISIBLE);
 
         Intent intent = getIntent();
         fuelExpenseId = intent.getStringExtra("fuelExpenseId");
 
         pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
+
+        fuelExpenseProgress.setVisibility(View.VISIBLE);
+
+        getFuelExpense(fuelExpenseId);
+
+        fuelExpenseEditBtn.setOnClickListener(v -> {
+            editFuelExpense();
+        });
+
+        fuelExpenseDeleteBtn.setOnClickListener(v -> {
+            deleteFuelExpense();
+        });
+
+        fuelExpenseBackBtn.setOnClickListener(v -> {
+            onBackPressed();
+        });
+    }
+
+    private void getFuelExpense(String fuelExpenseId) {
+
+        fuelExpenseProgress.setVisibility(View.VISIBLE);
 
         Retrofit retrofit = getRetrofit();
         ExpensesApi expensesApi = retrofit.create(ExpensesApi.class);
@@ -183,10 +216,86 @@ public class FuelExpenseActivity extends AppCompatActivity {
                 fuelExpenseProgress.setVisibility(View.INVISIBLE);
             }
         });
+    }
 
-        fuelExpenseBackBtn.setOnClickListener(v -> {
-            onBackPressed();
+    private void editFuelExpense() {
+
+        Intent intent = new Intent(getApplicationContext(), FuelExpenseUpdateActivity.class);
+        intent.putExtra("fuelExpenseId", fuelExpenseId);
+        startActivity(intent);
+    }
+
+    private void deleteFuelExpense() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(FuelExpenseActivity.this);
+
+        builder.setTitle(R.string.fuel_expense_delete_title);
+
+        builder.setMessage(R.string.fuel_expense_delete_message);
+
+        ProgressDialog loadingDialog = new ProgressDialog(this);
+        loadingDialog.setCanceledOnTouchOutside(false);
+        loadingDialog.setMessage(getString(R.string.fuel_expense_delete_process));
+
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+
+            loadingDialog.show();
+
+            Retrofit retrofit = getRetrofit();
+
+            ExpensesApi expensesApi = retrofit.create(ExpensesApi.class);
+
+            expensesApi.deleteFuelExpense(fuelExpenseId, loggedUser.getAuthorization()).enqueue(new Callback<Boolean>() {
+                @Override
+                public void onResponse(@NotNull Call<Boolean> call, @NotNull Response<Boolean> response) {
+
+                    if (response.code() == 404) {
+                        Toast.makeText(getApplicationContext(), R.string.fuel_expense_not_found, Toast.LENGTH_LONG).show();
+                        loadingDialog.hide();
+                        return;
+                    }
+
+                    final Boolean result = response.body();
+
+                    if (result != null) {
+                        if (result) {
+                            loadingDialog.hide();
+                            Toast.makeText(getApplicationContext(), R.string.fuel_expense_delete_success, Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("fragment", "fuel_expenses");
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+//                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), R.string.fuel_expense_delete_error, Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    loadingDialog.hide();
+                }
+
+                @Override
+                public void onFailure(@NotNull Call<Boolean> call, @NotNull Throwable t) {
+                    Toast.makeText(getApplicationContext(), R.string.fuel_expense_delete_error, Toast.LENGTH_LONG).show();
+                    loadingDialog.hide();
+                }
+            });
         });
+
+        builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
+        });
+
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
+    }
+
+    @Override
+    protected void onResume() {
+        getFuelExpense(fuelExpenseId);
+        fuelExpenseProgress.setVisibility(View.GONE);
+        super.onResume();
     }
 
     @Override

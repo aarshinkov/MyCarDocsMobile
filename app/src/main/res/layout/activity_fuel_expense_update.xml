@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/feuPricePerLitreLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/fuel_expense_price_per_litre"
+            android:labelFor="@+id/feuPricePerLitreET"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="@+id/feuRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/feuLeftGuide"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ic_litres">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/feuPricePerLitreET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/feuLitresLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/fuel_expense_litres"
+            android:labelFor="@+id/feuLitresET"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="@+id/feuRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/feuLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/feuPricePerLitreLabelTV"
+            app:startIconDrawable="@drawable/ic_litres">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/feuLitresET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/feuTotalLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/fuel_expense_total"
+            android:labelFor="@+id/feuTotalET"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="@+id/feuRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/feuLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/feuLitresLabelTV"
+            app:startIconDrawable="@drawable/ic_total">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/feuTotalET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/feuHorizontalDivider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feuTotalLabelTV" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/feuDiscountLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/fuel_expense_discount_placeholder"
+            android:labelFor="@+id/feuDiscountET"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="@+id/feuRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/feuLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/feuHorizontalDivider"
+            app:startIconDrawable="@drawable/ic_discount">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/feuDiscountET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/feuCarsLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/fuel_expense_car_prompt"
+            android:labelFor="@+id/feuCarsDD"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="@+id/feuRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/feuLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/feuDiscountLabelTV"
+            app:startIconDrawable="@drawable/ic_car">
+
+            <AutoCompleteTextView
+                android:id="@+id/feuCarsDD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/feuCarsLabelTV"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="3dp"-->
+        <!--            android:layout_marginTop="8dp"-->
+        <!--            android:layout_marginEnd="3dp"-->
+        <!--            android:fontFamily="@font/nunito"-->
+        <!--            android:labelFor="@+id/feuCarsSP"-->
+        <!--            android:text="@string/fuel_expense_car_prompt"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/feuRightGuide"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/feuLeftGuide"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/feuDiscountLabelTV" />-->
+
+        <!--        <Spinner-->
+        <!--            android:id="@+id/feuCarsSP"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:fontFamily="@font/nunito"-->
+        <!--            android:prompt="@string/fuel_expense_car_prompt"-->
+        <!--            android:spinnerMode="dialog"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/feuRightGuide"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/feuLeftGuide"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/feuCarsLabelTV" />-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/feuMileageLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/fuel_expense_mileage"
+            android:labelFor="@+id/feuMileageET"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="@+id/feuRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/feuLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/feuCarsLabelTV"
+            app:startIconDrawable="@drawable/ic_speed">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/feuMileageET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/feuCreatedOnLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/fuel_expense_create_date"
+            android:labelFor="@+id/feuCreatedOnET"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="@+id/feuRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/feuLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/feuMileageLabelTV"
+            app:startIconDrawable="@drawable/ic_date_to">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/feuCreatedOnET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TableLayout
+            android:id="@+id/feuSummaryTable"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/feuRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/feuLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/feuCreatedOnLabelTV">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_price_per_litre"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/feuPricePerLitreSummaryTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
+                    tools:text="0.00" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_litres"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/feuLitresSummaryTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
+                    tools:text="0.00" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_subtotal"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/soft_black" />
+
+                <TextView
+                    android:id="@+id/feuSubtotalSummaryTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/soft_black"
+                    tools:text="0.00" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_discount"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/feuDiscountSummaryTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
+                    tools:text="0.00" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/fuel_expense_total"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/feuTotalSummaryTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    tools:text="0.00" />
+            </TableRow>
+
+        </TableLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/feuSaveBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_shape"
+            android:fontFamily="@font/nunito"
+            android:text="@string/expense_update"
+            app:backgroundTint="@color/colorPrimary"
+            app:icon="@drawable/ic_expense"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="@+id/feuRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/feuLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/feuSummaryTable" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/feuLeftGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/feuRightGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Forcar</string>
+    <string name="app_name" translatable="false">Forcar (DEV)</string>
     <string name="app_logo">Application logo</string>
 
     <string name="nav_home">Home</string>
@@ -291,6 +291,7 @@
     <string name="fuel_expense_car_prompt">Car</string>
     <string name="fuel_expense_create_date">Date of refueling</string>
 
+    <string name="fuel_expense_create_title">Create fuel expense</string>
     <string name="fuel_expense_create_progress">Creating fuel expense…</string>
     <string name="fuel_expense_create_successful">Fuel expense added successfully!</string>
     <string name="fuel_expense_create_error">Error adding fuel expense!</string>
@@ -312,6 +313,29 @@
     <string name="fuel_expense_create_litres_empty">Litres must not be empty!</string>
     <string name="fuel_expense_create_discount_invalid">Discount must not be more than the subtotal!</string>
     <string name="fuel_expense_create_date_empty">The day of the refueling must not be empty!</string>
+
+    <!-- Fuel expense update -->
+    <string name="fuel_expense_update_title">Edit fuel expense</string>
+    <string name="fuel_expense_update_progress">Updating fuel expense…</string>
+    <string name="fuel_expense_update_button">Update fuel expense</string>
+    <string name="fuel_expense_update_success">Fuel expense updated successfully!</string>
+    <string name="fuel_expense_update_error">Error updating fuel expense!</string>
+
+    <string name="fuel_expense_update_ppl_empty">Price per litre must not be empty!</string>
+    <string name="fuel_expense_update_litres_empty">Litres must not be empty!</string>
+    <string name="fuel_expense_update_discount_invalid">Discount must not be more than the subtotal!</string>
+    <string name="fuel_expense_update_date_empty">The day of the refueling must not be empty!</string>
+
+    <!-- Fuel expense delete -->
+    <string name="fuel_expense_delete_title">Delete fuel expense.</string>
+    <string name="fuel_expense_delete_message">Are you sure you want to delete this fuel expense?</string>
+    <string name="fuel_expense_delete_process">Deleting fuel expense…</string>
+    <string name="fuel_expense_delete_success">Fuel expense deleted successfully!</string>
+    <string name="fuel_expense_delete_error">Error deleting fuel expense!</string>
+
+    <!-- Fuel expense responses -->
+    <string name="fuel_expense_get_error">Error getting fuel expense</string>
+    <string name="fuel_expense_not_found">Fuel expense not found</string>
 
     <string name="service_label">Service</string>
     <string name="service_expense_title">Service expense</string>
@@ -371,6 +395,7 @@
     <string name="error_server">Error communicating with the server. Try again!</string>
 
     <string name="expense_save">Add an expense</string>
+    <string name="expense_update">Update an expense</string>
 
     <string name="expenses_in">Expenses in %1$s</string>
     <string name="expenses_filter">Filter</string>
@@ -434,6 +459,8 @@
     <string name="no">No</string>
     <string name="cancel">Cancel</string>
 
+    <string name="btn_save">Save</string>
+    <string name="btn_save_update">Save changes</string>
     <string name="btn_close">Close</string>
 
     <string name="negative_number">- %1$s</string>

@@ -10,8 +10,8 @@ android {
         applicationId "bg.forcar.mobile"
         minSdkVersion 26
         targetSdkVersion 30
-        versionCode 4
-        versionName "2.7.0"
+        versionCode 5
+        versionName "2.7.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

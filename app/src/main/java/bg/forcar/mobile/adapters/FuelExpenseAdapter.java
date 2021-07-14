@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import bg.forcar.mobile.R;
 
 import bg.forcar.mobile.activities.fuel.FuelExpenseActivity;
+import bg.forcar.mobile.activities.fuel.FuelExpenseUpdateActivity;
 import bg.forcar.mobile.responses.cars.Car;
 import bg.forcar.mobile.responses.expenses.fuel.FuelExpense;
 
@@ -77,6 +78,17 @@ public class FuelExpenseAdapter extends RecyclerView.Adapter<FuelExpenseAdapter.
         final Car car = fuelExpense.getCar();
 
         holder.getFeiCarTV().setText(car.getBrand() + " " + car.getModel() + " (" + car.getLicensePlate() + ")");
+
+        holder.getFeiCardView().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                Intent intent = new Intent(context, FuelExpenseUpdateActivity.class);
+                intent.putExtra("fuelExpenseId", fuelExpense.getFuelExpenseId());
+                context.startActivity(intent);
+                return false;
+            }
+        });
 
         holder.getFeiCardView().setOnClickListener(v -> {
             Intent intent = new Intent(context.getApplicationContext(), FuelExpenseActivity.class);

@@ -21,6 +21,9 @@
             android:name="bg.forcar.mobile.activities.fuel.FuelExpenseCreateActivity"
             android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
+            android:name="bg.forcar.mobile.activities.fuel.FuelExpenseUpdateActivity"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
+        <activity
             android:name="bg.forcar.mobile.activities.fuel.FuelExpenseActivity"
             android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity

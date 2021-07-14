@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Forcar</string>
+
     <string name="app_logo">Лого на приложението</string>
 
     <string name="nav_home">Начало</string>
@@ -291,6 +291,7 @@
     <string name="fuel_expense_car_prompt">Автомобил</string>
     <string name="fuel_expense_create_date">Дата на зареждане</string>
 
+    <string name="fuel_expense_create_title">Създаване на разход за гориво</string>
     <string name="fuel_expense_create_progress">Създаване на разход за гориво…</string>
     <string name="fuel_expense_create_successful">Разходът на гориво е добавен успешно!</string>
     <string name="fuel_expense_create_error">Грешка при добавяне на разход на гориво!</string>
@@ -312,6 +313,29 @@
     <string name="fuel_expense_create_litres_empty">Литрите не може да са празни!</string>
     <string name="fuel_expense_create_discount_invalid">Отстъпката не може да е повече от общата сума!</string>
     <string name="fuel_expense_create_date_empty">Датата на зареждане не може да е празна!</string>
+
+    <!-- Fuel expense update -->
+    <string name="fuel_expense_update_title">Редактиране на разход</string>
+    <string name="fuel_expense_update_progress">Редактиране на разход за гориво…</string>
+    <string name="fuel_expense_update_button">Редактиране на разход</string>
+    <string name="fuel_expense_update_success">Разходът на гориво е редактиран успешно!</string>
+    <string name="fuel_expense_update_error">Грешка при редактиране на разход!</string>
+
+    <string name="fuel_expense_update_ppl_empty">Цената за литър не може да е празна!</string>
+    <string name="fuel_expense_update_litres_empty">Литрите не може да са празни!</string>
+    <string name="fuel_expense_update_discount_invalid">Отстъпката не може да е повече от общата сума!</string>
+    <string name="fuel_expense_update_date_empty">Датата на зареждане не може да е празна!</string>
+
+    <!-- Fuel expense delete -->
+    <string name="fuel_expense_delete_title">Изтриване на разход за гориво.</string>
+    <string name="fuel_expense_delete_message">Сигурни ли сте, че сикате да изтриете този разход?</string>
+    <string name="fuel_expense_delete_process">Изтриване на разход…</string>
+    <string name="fuel_expense_delete_success">Разходът е изтрит успешно!</string>
+    <string name="fuel_expense_delete_error">Грешка при изтриване на разход!</string>
+
+    <!-- Fuel expense responses -->
+    <string name="fuel_expense_get_error">Грешка при вземане на разход за гориво</string>
+    <string name="fuel_expense_not_found">Разходът за гориво не е намерен</string>
 
     <string name="service_label">Сервиз</string>
     <string name="service_expense_title">Разход сервиз</string>
@@ -371,6 +395,7 @@
     <string name="error_server">Грешка в комуникацията със сървъра. Опитайте отново!</string>
 
     <string name="expense_save">Добавяне на разход</string>
+    <string name="expense_update">Редактиране на разход</string>
 
     <string name="expenses_in">Разходи в %1$s</string>
     <string name="expenses_filter">Филтър</string>
@@ -434,6 +459,8 @@
     <string name="no">Не</string>
     <string name="cancel">Отказ</string>
 
+    <string name="btn_save">Запази</string>
+    <string name="btn_save_update">Запази промените</string>
     <string name="btn_close">Затвори</string>
 
     <string name="negative_number">- %1$s</string>
