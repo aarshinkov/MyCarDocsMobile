@@ -81,17 +81,39 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/carUpdateBodyTypeLabelTV"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/car_body_type"
+            android:labelFor="@+id/carUpdateBodyTypeDD"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorLabelTV"
+            app:startIconDrawable="@drawable/ic_body_type">
+
+            <AutoCompleteTextView
+                android:id="@+id/carUpdateBodyTypeDD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carUpdateTransmissionLabelTV"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="@string/car_transmission_label"
+            android:hint="@string/car_transmission"
             android:labelFor="@+id/carUpdateTransmissionDD"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@+id/carUpdateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/carUpdateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/carUpdateColorLabelTV"
+            app:layout_constraintTop_toBottomOf="@+id/carUpdateBodyTypeLabelTV"
             app:startIconDrawable="@drawable/ic_transmission">
 
             <AutoCompleteTextView

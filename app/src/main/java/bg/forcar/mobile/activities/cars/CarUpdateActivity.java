@@ -46,7 +46,13 @@ public class CarUpdateActivity extends AppCompatActivity {
     private TextInputLayout carUpdateColorLabelTV;
     private AutoCompleteTextView carUpdateColorDD;
 
+    private TextInputLayout carUpdateBodyTypeLabelTV;
+    private AutoCompleteTextView carUpdateBodyTypeDD;
+
+    private TextInputLayout carUpdateTransmissionLabelTV;
     private AutoCompleteTextView carUpdateTransmissionDD;
+
+    private TextInputLayout carUpdatePowerTypeLabelTV;
     private AutoCompleteTextView carUpdatePowerTypeDD;
 
     private TextInputLayout carUpdateYearLabelTV;
@@ -66,6 +72,7 @@ public class CarUpdateActivity extends AppCompatActivity {
     private SharedPreferences pref;
 
     private ArrayAdapter<String> colorsAdapter;
+    private ArrayAdapter<String> bodyTypesAdapter;
     private ArrayAdapter<String> transmissionsAdapter;
     private ArrayAdapter<String> powerTypesAdapter;
 
@@ -88,7 +95,13 @@ public class CarUpdateActivity extends AppCompatActivity {
         carUpdateColorLabelTV = findViewById(R.id.carUpdateColorLabelTV);
         carUpdateColorDD = findViewById(R.id.carUpdateColorDD);
 
+        carUpdateBodyTypeLabelTV = findViewById(R.id.carUpdateBodyTypeLabelTV);
+        carUpdateBodyTypeDD = findViewById(R.id.carUpdateBodyTypeDD);
+
+        carUpdateTransmissionLabelTV = findViewById(R.id.carUpdateTransmissionLabelTV);
         carUpdateTransmissionDD = findViewById(R.id.carUpdateTransmissionDD);
+
+        carUpdatePowerTypeLabelTV = findViewById(R.id.carUpdatePowerTypeLabelTV);
         carUpdatePowerTypeDD = findViewById(R.id.carUpdatePowerTypeDD);
 
         carUpdateYearLabelTV = findViewById(R.id.carUpdateYearLabelTV);
@@ -119,6 +132,11 @@ public class CarUpdateActivity extends AppCompatActivity {
 
         carUpdateColorDD.setAdapter(colorsAdapter);
 
+        final String[] bodyTypes = getResources().getStringArray(R.array.car_body_types);
+        bodyTypesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, bodyTypes);
+        bodyTypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carUpdateBodyTypeDD.setAdapter(bodyTypesAdapter);
+
         final String[] transmissions = getResources().getStringArray(R.array.car_transmissions);
         transmissionsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, transmissions);
         transmissionsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -137,9 +155,11 @@ public class CarUpdateActivity extends AppCompatActivity {
                 carUpdateModelET.setText(car.getModel());
                 carUpdateColorDD.setText(car.getColor());
 
+                final int currentBodyType = car.getBodyType().getBodyType();
                 final int currentTransmission = car.getTransmission();
                 final int currentPowerType = car.getPowerType();
 
+                carUpdateBodyTypeDD.setText(bodyTypes[currentBodyType], false);
                 carUpdateTransmissionDD.setText(transmissions[currentTransmission], false);
                 carUpdatePowerTypeDD.setText(powerTypes[currentPowerType], false);
 
@@ -167,6 +187,9 @@ public class CarUpdateActivity extends AppCompatActivity {
             cur.setBrand(carUpdateBrandET.getText().toString());
             cur.setModel(carUpdateModelET.getText().toString());
             cur.setColor(carUpdateColorDD.getText().toString());
+            final int bodyType = Arrays.asList(bodyTypes).indexOf(carUpdateBodyTypeDD.getText().toString());
+//            int bodyType = carUpdateBodyTypeDD.getSelectedItemPosition();
+            cur.setBodyType(bodyType);
             final int transmission = Arrays.asList(transmissions).indexOf(carUpdateTransmissionDD.getText().toString());
 //            int transmission = carUpdateTransmissionDD.getSelectedItemPosition();
             cur.setTransmission(transmission);

@@ -22,6 +22,7 @@ import bg.forcar.mobile.api.CarsApi;
 import bg.forcar.mobile.requests.cars.CarCreateRequest;
 import bg.forcar.mobile.responses.cars.Car;
 import bg.forcar.mobile.utils.LoggedUser;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
@@ -50,7 +51,13 @@ public class CarCreateActivity extends AppCompatActivity {
     private TextInputLayout carCreateColorLabelTV;
     private AutoCompleteTextView carCreateColorDD;
 
+    private TextInputLayout carCreateBodyTypeLabelTV;
+    private AutoCompleteTextView carCreateBodyTypeDD;
+
+    private TextInputLayout carCreateTransmissionLabelTV;
     private AutoCompleteTextView carCreateTransmissionDD;
+
+    private TextInputLayout carCreatePowerTypeLabelTV;
     private AutoCompleteTextView carCreatePowerTypeDD;
 
     private TextInputLayout carCreateYearLabelTV;
@@ -68,6 +75,7 @@ public class CarCreateActivity extends AppCompatActivity {
     private LinearProgressIndicator progress;
 
     private ArrayAdapter<String> colorsAdapter;
+    private ArrayAdapter<String> bodyTypesAdapter;
     private ArrayAdapter<String> transmissionsAdapter;
     private ArrayAdapter<String> powerTypesAdapter;
 
@@ -88,9 +96,15 @@ public class CarCreateActivity extends AppCompatActivity {
         carCreateModelET = findViewById(R.id.carCreateModelET);
 
         carCreateColorLabelTV = findViewById(R.id.carCreateColorLabelTV);
-
         carCreateColorDD = findViewById(R.id.carCreateColorDD);
+
+        carCreateBodyTypeLabelTV = findViewById(R.id.carCreateBodyTypeLabelTV);
+        carCreateBodyTypeDD = findViewById(R.id.carCreateBodyTypeDD);
+
+        carCreateTransmissionLabelTV = findViewById(R.id.carCreateTransmissionLabelTV);
         carCreateTransmissionDD = findViewById(R.id.carCreateTransmissionDD);
+
+        carCreatePowerTypeLabelTV = findViewById(R.id.carCreatePowerTypeLabelTV);
         carCreatePowerTypeDD = findViewById(R.id.carCreatePowerTypeDD);
 
         carCreateYearLabelTV = findViewById(R.id.carCreateYearLabelTV);
@@ -106,6 +120,15 @@ public class CarCreateActivity extends AppCompatActivity {
         colorsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         carCreateColorDD.setAdapter(colorsAdapter);
+
+        final String[] bodyTypes = getResources().getStringArray(R.array.car_body_types);
+
+        bodyTypesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, bodyTypes);
+
+        bodyTypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        carCreateBodyTypeDD.setAdapter(bodyTypesAdapter);
+        carCreateBodyTypeDD.setText(bodyTypes[0], false);
 
         final String[] transmissions = getResources().getStringArray(R.array.car_transmissions);
 
@@ -165,6 +188,8 @@ public class CarCreateActivity extends AppCompatActivity {
             ccr.setBrand(carCreateBrandET.getText().toString());
             ccr.setModel(carCreateModelET.getText().toString());
             ccr.setColor(carCreateColorDD.getText().toString());
+            final int bodyType = Arrays.asList(bodyTypes).indexOf(carCreateBodyTypeDD.getText().toString());
+            ccr.setBodyType(bodyType);
             final int transmission = Arrays.asList(transmissions).indexOf(carCreateTransmissionDD.getText().toString());
             ccr.setTransmission(transmission);
             final int powerType = Arrays.asList(powerTypes).indexOf(carCreatePowerTypeDD.getText().toString());

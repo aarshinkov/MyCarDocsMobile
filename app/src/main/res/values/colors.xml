@@ -13,4 +13,9 @@
     <color name="policy_header">#E17949</color>
     <color name="soft_black">#5A5A5A</color>
     <color name="text_muted">#6c757d</color>
+
+    <!-- New colors -->
+    <color name="primary_light">#5496FE</color>
+    <color name="primary_medium">#447FFD</color>
+    <color name="primary_dark">#3065FF</color>
 </resources>

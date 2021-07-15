@@ -14,6 +14,7 @@ public class Car implements Serializable {
     private Integer transmission;
     private Integer powerType;
     private Integer year;
+    private BodyType bodyType;
     private String licensePlate;
     private String alias;
     private User owner;
@@ -74,6 +75,14 @@ public class Car implements Serializable {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(BodyType bodyType) {
+        this.bodyType = bodyType;
     }
 
     public String getLicensePlate() {

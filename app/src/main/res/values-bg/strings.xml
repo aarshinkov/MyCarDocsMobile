@@ -125,12 +125,39 @@
         <item>Бежов</item>
     </string-array>
 
+    <string name="car_body_type">Тип автомобил</string>
+    <string name="car_body_type_unspecified">Типът на автомобила не е уточнен</string>
+    <string name="car_body_type_0">Неуточнен</string>
+    <string name="car_body_type_1">Седан</string>
+    <string name="car_body_type_2">Купе</string>
+    <string name="car_body_type_3">Комби</string>
+    <string name="car_body_type_4">Хетчбек</string>
+    <string name="car_body_type_5">SUV</string>
+    <string name="car_body_type_6">Кросоувър</string>
+    <string name="car_body_type_7">Миниван</string>
+    <string name="car_body_type_8">Ван</string>
+    <string name="car_body_type_9">Пикап</string>
+    <string name="car_body_type_10">Кабриолет</string>
+    <string-array name="car_body_types">
+        <item>Неуточнен</item>
+        <item>Седан</item>
+        <item>Купе</item>
+        <item>Комби</item>
+        <item>Хетчбек</item>
+        <item>SUV</item>
+        <item>Кросоувър</item>
+        <item>Миниван</item>
+        <item>Ван</item>
+        <item>Пикап</item>
+        <item>Кабриолет</item>
+    </string-array>
+
     <string name="car_license_plate">Рег. номер</string>
     <string name="car_alias">Псевдоним (опционално)</string>
     <string name="car_added_on">Добавена на</string>
     <string name="car_edited_on">Редактирана на</string>
 
-    <string name="car_transmission_label">Скоростна кутия</string>
+    <string name="car_transmission">Скоростна кутия</string>
     <string name="car_transmission_0">Ръчна</string>
     <string name="car_transmission_1">Автоматична</string>
     <string-array name="car_transmissions">

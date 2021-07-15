@@ -10,6 +10,7 @@ public class CarUpdateRequest implements Serializable {
     private Integer transmission;
     private Integer powerType;
     private Integer year;
+    private Integer bodyType;
     private String licensePlate;
     private String alias;
     private String userId;
@@ -60,6 +61,14 @@ public class CarUpdateRequest implements Serializable {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public Integer getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(Integer bodyType) {
+        this.bodyType = bodyType;
     }
 
     public String getLicensePlate() {

@@ -22,6 +22,7 @@ import bg.forcar.mobile.api.Api;
 import bg.forcar.mobile.api.CarsApi;
 import bg.forcar.mobile.responses.cars.Car;
 import bg.forcar.mobile.utils.LoggedUser;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
@@ -45,6 +46,7 @@ public class CarActivity extends AppCompatActivity {
     private ConstraintLayout carActivityLayout;
 
     private TextView carInfoTV;
+    private TextView carBodyTypeTV;
     private TextView carYearTV;
     private TextView carLicensePlateTV;
     private TextView carTransmissionTV;
@@ -83,6 +85,7 @@ public class CarActivity extends AppCompatActivity {
         carId = intent.getStringExtra("carId");
 
         carInfoTV = findViewById(R.id.carInfoTV);
+        carBodyTypeTV = findViewById(R.id.carBodyTypeTV);
         carYearTV = findViewById(R.id.carYearTV);
         carLicensePlateTV = findViewById(R.id.carLicensePlateTV);
         carTransmissionTV = findViewById(R.id.carTransmissionTV);
@@ -156,6 +159,14 @@ public class CarActivity extends AppCompatActivity {
                     if (car != null) {
 
                         carInfoTV.setText(getString(R.string.car_info, car.getBrand(), car.getModel()));
+
+                        // Unspecified
+                        if (car.getBodyType().getBodyType() == 0) {
+                            carBodyTypeTV.setText(getString(R.string.car_body_type_unspecified));
+                        } else {
+                            carBodyTypeTV.setText(getStringResource(getApplicationContext(), "car_body_type_" + car.getBodyType().getBodyType()));
+                        }
+
                         carYearTV.setText(getString(R.string.car_year, car.getYear()));
 
                         carLicensePlateTV.setTooltipText(getString(R.string.car_license_plate));

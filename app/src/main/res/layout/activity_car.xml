@@ -25,50 +25,122 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="16dp">
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/carImageCV"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="16dp"
+                    android:innerRadius="0dp"
+                    android:shape="ring"
+                    app:cardCornerRadius="200dp"
+                    app:layout_constraintEnd_toEndOf="@+id/carRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/carImageIV"
+                        android:layout_width="match_parent"
+                        android:layout_height="115dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_car_item" />
+                </androidx.cardview.widget.CardView>
+
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/fsdf"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="140dp"-->
+                <!--                    android:layout_marginTop="16dp"-->
+                <!--                    android:contentDescription="@string/app_logo"-->
+                <!--                    android:scaleType="fitCenter"-->
+                <!--                    app:layout_constraintEnd_toEndOf="@+id/carRightGuide"-->
+                <!--                    app:layout_constraintStart_toStartOf="@+id/carLeftGuide"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent"-->
+                <!--                    app:srcCompat="@drawable/ic_car_item" />-->
+
+                <TextView
+                    android:id="@+id/carLicensePlateTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-20dp"
+                    android:background="@drawable/label_shape"
+                    android:fontFamily="@font/nunito"
+                    android:paddingStart="5dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="5dp"
+                    android:paddingBottom="2dp"
+                    android:textAlignment="center"
+                    android:transitionName="carLicensePlate"
+                    android:translationZ="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/carImageCV"
+                    app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
+                    tools:text="License plate" />
+
                 <TextView
                     android:id="@+id/carInfoTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/nunito"
+                    android:textAlignment="center"
+                    android:background="@drawable/color_gradient"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:transitionName="carInfo"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/carLicensePlateTV"
                     tools:text="Car info" />
 
                 <TextView
-                    android:id="@+id/carYearTV"
+                    android:id="@+id/carBodyTypeTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/nunito"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp"
-                    android:transitionName="carYear"
-                    app:layout_constraintEnd_toStartOf="@+id/carCenterGuide"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:tooltipText="@string/car_body_type"
+                    app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carInfoTV"
-                    tools:text="Year" />
+                    tools:text="Body type" />
 
-                <TextView
-                    android:id="@+id/carLicensePlateTV"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:id="@+id/carYearLL"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/nunito"
-                    android:textAlignment="textEnd"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:transitionName="carLicensePlate"
+                    android:tooltipText="@string/car_year_label"
+                    android:weightSum="2"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
-                    app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/carInfoTV"
-                    tools:text="License plate" />
+                    app:layout_constraintStart_toEndOf="@+id/carLeftGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/carBodyTypeTV">
+
+                    <ImageView
+                        android:id="@+id/carYearIV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/car_transmission"
+                        app:srcCompat="@drawable/ic_calendar" />
+
+                    <TextView
+                        android:id="@+id/carYearTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nunito"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:transitionName="carYear"
+                        tools:text="Year" />
+
+                </LinearLayout>
 
                 <View
                     android:id="@+id/carDividerOne"
@@ -78,14 +150,14 @@
                     android:background="?android:attr/listDivider"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/carYearTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/carYearLL" />
 
                 <ImageView
                     android:id="@+id/carTransmissionIV"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="8dp"
-                    android:contentDescription="@string/car_transmission_label"
+                    android:contentDescription="@string/car_transmission"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carDividerOne"
                     app:srcCompat="@drawable/ic_transmission" />
@@ -97,7 +169,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/nunito"
-                    android:text="@string/car_transmission_label"
+                    android:text="@string/car_transmission"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textStyle="bold"

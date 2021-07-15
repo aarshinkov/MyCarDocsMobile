@@ -125,12 +125,39 @@
         <item>Beige</item>
     </string-array>
 
+    <string name="car_body_type">Car type</string>
+    <string name="car_body_type_unspecified">Car type is not specified</string>
+    <string name="car_body_type_0">Unspecified</string>
+    <string name="car_body_type_1">Sedan</string>
+    <string name="car_body_type_2">Coupe</string>
+    <string name="car_body_type_3">Combi</string>
+    <string name="car_body_type_4">Hatchback</string>
+    <string name="car_body_type_5">SUV</string>
+    <string name="car_body_type_6">Crossover</string>
+    <string name="car_body_type_7">Minivan</string>
+    <string name="car_body_type_8">Van</string>
+    <string name="car_body_type_9">Pickup</string>
+    <string name="car_body_type_10">Cabriolet</string>
+    <string-array name="car_body_types">
+        <item>Unspecified</item>
+        <item>Sedan</item>
+        <item>Coupe</item>
+        <item>Combi</item>
+        <item>Hatchback</item>
+        <item>SUV</item>
+        <item>Crossover</item>
+        <item>Minivan</item>
+        <item>Van</item>
+        <item>Pickup</item>
+        <item>Cabriolet</item>
+    </string-array>
+
     <string name="car_license_plate">License plate</string>
     <string name="car_alias">Alias (optional)</string>
     <string name="car_added_on">Added on</string>
     <string name="car_edited_on">Edited on</string>
 
-    <string name="car_transmission_label">Transmission</string>
+    <string name="car_transmission">Transmission</string>
     <string name="car_transmission_0">Manual</string>
     <string name="car_transmission_1">Automatic</string>
     <string-array name="car_transmissions">
