@@ -492,13 +492,24 @@ public class FuelExpenseCreateActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void calculateTotal() {
-        total = pricePerLitre * litres;
+
+        if (pricePerLitre != null && litres != null) {
+            total = pricePerLitre * litres;
+        } else {
+            total = null;
+        }
 
         final boolean hasDiscount = discount != null;
 
         isFromUser = false;
         fecTotalET.setEnabled(false);
-        fecTotalET.setText(total.toString());
+
+        if (total != null) {
+            fecTotalET.setText(total.toString());
+        } else {
+            fecTotalET.setText("");
+        }
+
         final String formattedPrice = String.format(Locale.getDefault(), "%.2f", total);
 
         if (!hasDiscount) {

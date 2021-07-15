@@ -18,38 +18,49 @@
             android:name="bg.forcar.mobile.activities.ChartActivity"
             android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
+            android:name="bg.forcar.mobile.activities.fuel.FuelExpenseActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
+        <activity
             android:name="bg.forcar.mobile.activities.fuel.FuelExpenseCreateActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
             android:name="bg.forcar.mobile.activities.fuel.FuelExpenseUpdateActivity"
-            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
-        <activity
-            android:name="bg.forcar.mobile.activities.fuel.FuelExpenseActivity"
-            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
-        <activity
-            android:name="bg.forcar.mobile.activities.service.ServiceExpenseCreateActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
             android:name="bg.forcar.mobile.activities.service.ServiceExpenseActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
+        <activity
+            android:name="bg.forcar.mobile.activities.service.ServiceExpenseCreateActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
             android:name="bg.forcar.mobile.activities.policies.PolicyActivity"
-            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
-        <activity
-            android:name="bg.forcar.mobile.activities.policies.PolicyUpdateActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
             android:name="bg.forcar.mobile.activities.policies.PolicyCreateActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
-            android:name="bg.forcar.mobile.activities.cars.CarUpdateActivity"
-            android:parentActivityName="bg.forcar.mobile.activities.cars.CarActivity" />
+            android:name="bg.forcar.mobile.activities.policies.PolicyUpdateActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
             android:name="bg.forcar.mobile.activities.cars.CarActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
         <activity
             android:name="bg.forcar.mobile.activities.cars.CarCreateActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName="bg.forcar.mobile.activities.MainActivity" />
+        <activity
+            android:name="bg.forcar.mobile.activities.cars.CarUpdateActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:parentActivityName="bg.forcar.mobile.activities.cars.CarActivity" />
         <activity
             android:name="bg.forcar.mobile.activities.StartupActivity"
             android:theme="@style/Forcar.ThemeNo">

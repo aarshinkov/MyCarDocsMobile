@@ -299,7 +299,7 @@
                 android:id="@+id/fuelExpenseEditBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 android:background="@drawable/btn_shape"
                 android:fontFamily="@font/nunito"
                 android:text="@string/action_edit"
