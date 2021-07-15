@@ -27,39 +27,46 @@
 
                 <TextView
                     android:id="@+id/carInfoTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/nunito"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:transitionName="carInfo"
+                    app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Car info" />
 
                 <TextView
                     android:id="@+id/carYearTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/nunito"
+                    android:textAlignment="textStart"
                     android:textSize="18sp"
                     android:transitionName="carYear"
+                    app:layout_constraintEnd_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carInfoTV"
                     tools:text="Year" />
 
                 <TextView
                     android:id="@+id/carLicensePlateTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:transitionName="carLicensePlate"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carInfoTV"
                     tools:text="License plate" />
 
@@ -85,23 +92,29 @@
 
                 <TextView
                     android:id="@+id/carTransmissionLabelTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/car_transmission_label"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carTransmissionIV" />
 
                 <TextView
                     android:id="@+id/carTransmissionTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/nunito"
+                    android:textAlignment="textStart"
                     android:textSize="18sp"
+                    app:layout_constraintEnd_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carTransmissionLabelTV"
                     tools:text="Transmission" />
@@ -118,25 +131,31 @@
 
                 <TextView
                     android:id="@+id/carPowerTypeTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carPowerTypeLabelTV"
                     tools:text="Power type" />
 
                 <TextView
                     android:id="@+id/carPowerTypeLabelTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/car_power_type_label"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carPowerTypeIV" />
 
                 <View
@@ -151,96 +170,117 @@
 
                 <TextView
                     android:id="@+id/carAliasLabelTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/car_alias"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:visibility="gone"
+                    app:layout_constraintEnd_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carDividerTwo"
                     tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/carAliasTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
                     android:visibility="gone"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carDividerTwo"
                     tools:text="Alias"
                     tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/carColorLabelTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/car_color"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carAliasLabelTV" />
 
                 <TextView
                     android:id="@+id/carColorTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carAliasTV"
                     tools:text="Color" />
 
                 <TextView
                     android:id="@+id/carAddedOnLabelTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/car_added_on"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carColorLabelTV" />
 
                 <TextView
                     android:id="@+id/carAddedOnTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carColorTV"
                     tools:text="Added on" />
 
                 <TextView
                     android:id="@+id/carEditedOnLabelTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/car_edited_on"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:visibility="gone"
+                    app:layout_constraintEnd_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carAddedOnLabelTV"
                     tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/carEditedOnTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
                     android:visibility="gone"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carAddedOnTV"
                     tools:text="Edited on"
                     tools:visibility="visible" />
@@ -293,6 +333,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintGuide_begin="16dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/carCenterGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/carRightGuide"
