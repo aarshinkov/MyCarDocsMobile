@@ -29,7 +29,7 @@
                 android:id="@+id/policyItemHeaderBG"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:background="@color/policy_header"
+                android:background="@drawable/color_orange_gradient"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

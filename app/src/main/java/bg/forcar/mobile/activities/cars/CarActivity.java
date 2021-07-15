@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import bg.forcar.mobile.utils.ShaderUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -109,7 +112,10 @@ public class CarActivity extends AppCompatActivity {
         pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         loggedUser = getLoggedUser(pref);
 
+
         getCar(carId);
+
+        carInfoTV.setTextColor(getColor(R.color.primary_light));
 
         carRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -159,6 +165,10 @@ public class CarActivity extends AppCompatActivity {
                     if (car != null) {
 
                         carInfoTV.setText(getString(R.string.car_info, car.getBrand(), car.getModel()));
+
+                        final Shader shader = ShaderUtils.getTextShader(getApplicationContext(), R.color.primary_light, R.color.primary_dark, carInfoTV);
+
+                        carInfoTV.getPaint().setShader(shader);
 
                         // Unspecified
                         if (car.getBodyType().getBodyType() == 0) {

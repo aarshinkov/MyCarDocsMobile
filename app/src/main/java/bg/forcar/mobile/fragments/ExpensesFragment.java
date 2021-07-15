@@ -34,6 +34,7 @@ import com.anychart.enums.Orientation;
 import com.anychart.enums.ScaleStackMode;
 import com.anychart.enums.TooltipDisplayMode;
 import com.anychart.enums.TooltipPositionMode;
+
 import bg.forcar.mobile.R;
 import bg.forcar.mobile.api.CarsApi;
 import bg.forcar.mobile.api.ExpensesApi;
@@ -41,6 +42,7 @@ import bg.forcar.mobile.responses.cars.Car;
 import bg.forcar.mobile.responses.expenses.ExpenseSummaryItem;
 import bg.forcar.mobile.responses.expenses.ExpensesSummaryResponse;
 import bg.forcar.mobile.utils.LoggedUser;
+
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
@@ -384,7 +386,7 @@ public class ExpensesFragment extends Fragment {
 
         List<DataEntry> serviceData = initServiceData(summary.getService());
 
-        final String fuelColor = String.format("#%06x", ContextCompat.getColor(requireContext(), R.color.danger) & 0xffffff);
+        final String fuelColor = String.format("#%06x", ContextCompat.getColor(requireContext(), R.color.danger_medium) & 0xffffff);
 
         fuelBar = barChart.bar(fuelData);
         fuelBar.name(getString(R.string.fuel_label))
@@ -393,7 +395,7 @@ public class ExpensesFragment extends Fragment {
                 .position("right")
                 .anchor(Anchor.LEFT_CENTER);
 
-        final String serviceColor = String.format("#%06x", ContextCompat.getColor(requireContext(), R.color.colorAccent) & 0xffffff);
+        final String serviceColor = String.format("#%06x", ContextCompat.getColor(requireContext(), R.color.primary_medium) & 0xffffff);
 
         serviceBar = barChart.bar(serviceData);
         serviceBar.name(getString(R.string.service_label))

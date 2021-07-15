@@ -80,7 +80,7 @@
 
                 <TextView
                     android:id="@+id/carInfoTV"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/nunito"
@@ -201,20 +201,6 @@
                     app:srcCompat="@drawable/ic_gas_station" />
 
                 <TextView
-                    android:id="@+id/carPowerTypeTV"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/nunito"
-                    android:textAlignment="textEnd"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
-                    app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/carPowerTypeLabelTV"
-                    tools:text="Power type" />
-
-                <TextView
                     android:id="@+id/carPowerTypeLabelTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -229,6 +215,27 @@
                     app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintTop_toBottomOf="@+id/carPowerTypeIV" />
 
+                <TextView
+                    android:id="@+id/carPowerTypeTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:textAlignment="textEnd"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
+                    app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/carPowerTypeLabelTV"
+                    tools:text="Power type" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/carTransmissionPowerTypeBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="carTransmissionTV, carPowerTypeTV" />
+
                 <View
                     android:id="@+id/carDividerTwo"
                     android:layout_width="0dp"
@@ -237,7 +244,7 @@
                     android:background="?android:attr/listDivider"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/carTransmissionTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/carTransmissionPowerTypeBarrier" />
 
                 <TextView
                     android:id="@+id/carAliasLabelTV"
@@ -271,6 +278,13 @@
                     tools:text="Alias"
                     tools:visibility="visible" />
 
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/carAliasBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="carAliasLabelTV, carAliasTV" />
+
                 <TextView
                     android:id="@+id/carColorLabelTV"
                     android:layout_width="0dp"
@@ -283,7 +297,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/carAliasLabelTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/carAliasBarrier" />
 
                 <TextView
                     android:id="@+id/carColorTV"
@@ -295,8 +309,15 @@
                     android:textAlignment="textEnd"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
                     app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/carAliasTV"
+                    app:layout_constraintTop_toBottomOf="@+id/carAliasBarrier"
                     tools:text="Color" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/carColorBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="carColorLabelTV, carColorTV" />
 
                 <TextView
                     android:id="@+id/carAddedOnLabelTV"
@@ -310,7 +331,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/carColorLabelTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/carColorBarrier" />
 
                 <TextView
                     android:id="@+id/carAddedOnTV"
@@ -322,8 +343,15 @@
                     android:textAlignment="textEnd"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
                     app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/carColorTV"
+                    app:layout_constraintTop_toBottomOf="@+id/carColorBarrier"
                     tools:text="Added on" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/carAddedOnBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="carAddedOnLabelTV, carAddedOnTV" />
 
                 <TextView
                     android:id="@+id/carEditedOnLabelTV"
@@ -338,7 +366,7 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toStartOf="@+id/carCenterGuide"
                     app:layout_constraintStart_toStartOf="@+id/carLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/carAddedOnLabelTV"
+                    app:layout_constraintTop_toBottomOf="@+id/carAddedOnBarrier"
                     tools:visibility="visible" />
 
                 <TextView
@@ -352,35 +380,41 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toStartOf="@+id/carRightGuide"
                     app:layout_constraintStart_toStartOf="@+id/carCenterGuide"
-                    app:layout_constraintTop_toBottomOf="@+id/carAddedOnTV"
+                    app:layout_constraintTop_toBottomOf="@+id/carAddedOnBarrier"
                     tools:text="Edited on"
                     tools:visibility="visible" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/carEditedOnBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="carEditedOnLabelTV, carEditedOnBarrier" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/carEditBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/btn_shape"
+                    android:background="@drawable/btn_shape_primary_gradient"
                     android:fontFamily="@font/nunito"
                     android:text="@string/action_edit"
-                    app:backgroundTint="@color/colorPrimary"
+                    app:backgroundTint="@null"
                     app:icon="@drawable/ic_edit"
                     app:iconGravity="textStart"
                     app:layout_constraintEnd_toEndOf="@id/carRightGuide"
                     app:layout_constraintStart_toStartOf="@id/carLeftGuide"
-                    app:layout_constraintTop_toBottomOf="@id/carEditedOnLabelTV" />
+                    app:layout_constraintTop_toBottomOf="@id/carEditedOnBarrier" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/carDeleteBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/btn_shape"
-                    android:backgroundTint="@color/danger"
+                    android:background="@drawable/btn_shape_danger_gradient"
                     android:fontFamily="@font/nunito"
                     android:text="@string/action_delete"
-                    app:backgroundTint="@color/danger"
+                    app:backgroundTint="@null"
                     app:icon="@drawable/ic_delete"
                     app:iconGravity="textStart"
                     app:layout_constraintEnd_toEndOf="@id/carRightGuide"

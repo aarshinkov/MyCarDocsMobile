@@ -153,7 +153,8 @@
     </string-array>
 
     <string name="car_license_plate">Рег. номер</string>
-    <string name="car_alias">Псевдоним (опционално)</string>
+    <string name="car_alias">Псевдоним</string>
+    <string name="car_alias_optional">Псевдоним (опционално)</string>
     <string name="car_added_on">Добавена на</string>
     <string name="car_edited_on">Редактирана на</string>
 

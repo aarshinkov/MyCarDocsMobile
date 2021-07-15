@@ -153,7 +153,8 @@
     </string-array>
 
     <string name="car_license_plate">License plate</string>
-    <string name="car_alias">Alias (optional)</string>
+    <string name="car_alias">Alias</string>
+    <string name="car_alias_optional">Alias (optional)</string>
     <string name="car_added_on">Added on</string>
     <string name="car_edited_on">Edited on</string>
 

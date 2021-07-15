@@ -29,7 +29,7 @@
                 android:id="@+id/carItemHeaderBG"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/color_primary_gradient"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +38,7 @@
                 android:id="@+id/carItemCarIconView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@color/success"
+                android:background="@drawable/color_success_gradient"
                 app:layout_constraintStart_toStartOf="@+id/carItemLeftGuide"
                 app:layout_constraintTop_toTopOf="@+id/carItemHeaderBG" />
 
